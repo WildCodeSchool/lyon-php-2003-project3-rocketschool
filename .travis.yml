@@ -19,7 +19,11 @@ script:
 notifications:
     email:
         - n.gaget69@gmail.com
-        - STUDENT_MAIL
+        - galgros@yahoo.fr
+        - francois.ansel@hotmail.fr
+        - brice.darmenia@sfr.fr
+        - zazaz9zzzzz@gmail.com
+
 branches:
     only:
         - master
