@@ -18,10 +18,6 @@ It's symfony website-skeleton project with some additional tools to validate cod
     * Tasks to check if vendor, .idea, env.local are not versionned,
     * PHP_CodeSniffer to check PSR2,
     * PHPStan will check PHP recommendation.
- 
-### Travis CI
-
-https://travis-ci.com/github/WildCodeSchool/lyon-php-2003-project3-rocketschool
 
 ### Prerequisites
 
