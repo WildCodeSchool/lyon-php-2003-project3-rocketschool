@@ -5,10 +5,12 @@ body {
     background-color: $primary-color;
     width: 100%;
 }
+
 header {
     width: 100%;
     position: fixed;
 }
+
 .LT_page_name {
     width: 100%;
     display: flex;
@@ -70,7 +72,6 @@ footer a {
         font-size: 18px;
         text-align: center;
         width: 200px;
-
     }
 }
 
@@ -82,11 +83,12 @@ footer a {
 
     li.nav-item {
         border-bottom: solid $secondary-color;
-
     }
+
     li.nav-item:hover {
         background-color: $secondary-color;
     }
+
     .navbar-light .navbar-nav .nav-link {
         color: black;
         font-family: 'Raleway Bold';
@@ -99,6 +101,5 @@ footer a {
         text-decoration: none;
         color: white;
     }
-
 }
 
