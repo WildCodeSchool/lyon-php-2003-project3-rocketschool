@@ -21,6 +21,6 @@ class HomeController extends AbstractController
      */
     public function inscription()
     {
-       return $this->render('home/inscription.html.twig', ['page_name' => 'Inscription']);
+        return $this->render('home/inscription.html.twig', ['page_name' => 'Inscription']);
     }
 }
