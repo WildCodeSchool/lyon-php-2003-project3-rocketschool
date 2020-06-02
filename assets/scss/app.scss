@@ -1,9 +1,107 @@
 @import "vars";
+@import "~bootstrap/scss/bootstrap";
 
 body {
+    background-color: $primary-color;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+}
+
+.LT_page_name {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
     background-color: $secondary-color;
+    height: 200px;
+    color: white;
+}
+
+.LT_page_name h2 {
+    margin-top: 80px;
+    font-family: 'Raleway Bold';
+    font-weight: bold;
 }
 
 a {
     color: $warm-color;
 }
+
+.navbar-light .navbar-nav .nav-link {
+    width: 100%;
+}
+
+ul.navbar.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+    width: 87%;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    text-decoration: underline;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: $secondary-color;
+}
+
+footer a {
+    color: white;
+    font-family: 'Raleway Bold';
+}
+
+@media (min-width: 940px) {
+    .container {
+        max-width: 100%;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: black;
+        font-family: 'Raleway Bold';
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    li.nav-item.active {
+        border-bottom: solid $secondary-color;
+
+    }
+
+    li.nav-item {
+        border-bottom: solid $secondary-color;
+    }
+
+    li.nav-item:hover {
+        background-color: $secondary-color;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: black;
+        font-family: 'Raleway Bold';
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: none;
+        color: white;
+    }
+}
+
