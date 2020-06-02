@@ -21,11 +21,13 @@ header {
     height: 200px;
     color: white;
 }
+
 .LT_page_name h2 {
     margin-top: 80px;
     font-family: 'Raleway Bold';
     font-weight: bold;
 }
+
 a {
     color: $warm-color;
 }
@@ -63,8 +65,8 @@ footer a {
 @media (min-width: 940px) {
     .container {
         max-width: 100%;
-
     }
+
     .navbar-light .navbar-nav .nav-link {
         color: black;
         font-family: 'Raleway Bold';
