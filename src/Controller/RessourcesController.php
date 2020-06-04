@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Video;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,8 +13,14 @@ class RessourcesController extends AbstractController
      */
     public function index()
     {
+        $video = $this->getDoctrine()
+            ->getRepository(Video::class)
+            ->findOneBy(['name' => 'Formation Rocket School']);
+
         return $this->render('ressources/index.html.twig', [
-            'controller_name' => 'RessourcesController', 'page_name' => 'Vidéos'
+            'controller_name' => 'RessourcesController',
+            'page_name' => 'Vidéo',
+            'video' => $video
         ]);
     }
 

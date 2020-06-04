@@ -4,6 +4,8 @@
 body {
     background-color: $primary-color;
     width: 100%;
+    font-family: 'Raleway';
+    font-weight: 400;
 }
 
 header {
@@ -51,7 +53,7 @@ ul.navbar.nav {
 }
 
 footer {
-    position: absolute;
+    //position: absolute;
     width: 100%;
     bottom: 0;
     background-color: $secondary-color;
@@ -60,6 +62,60 @@ footer {
 footer a {
     color: white;
     font-family: 'Raleway Bold';
+}
+
+.btn-round-darkblue {
+    background-color: $dark-blue;
+    color: $primary-color;
+    border-radius: 30px;
+}
+.btn-round-darkblue:hover {
+    background-color: $dark-blue;
+    color: $secondary-color;
+}
+.btn-show-more {
+    width: 100px;
+    text-align: center;
+    box-shadow: black 0px 0px 5px 0px;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
+}
+
+// VIDEO SECTION
+.content-container {
+    width: 80%;
+    margin: auto;
+    box-shadow: black 0px 15px 15px -5px;
+    iframe {
+        width: 80%;
+        max-width: 700px;
+        height: 350px;
+    }
+    .btn-container {
+        padding: 20px;
+        text-align: center
+    }
+}
+.video-container {
+    padding: 20px;
+    text-align: center;
+}
+.video-title-container {
+    text-align: center;
+}
+.video-script-container {
+    #video-description-id {
+        padding: 20px 0px;
+        width: 75%;
+        color: #1d2124;
+        margin: auto;
+        overflow: hidden;
+        height: 120px;
+        box-shadow: inset black 0px -20px 20px -20px;
+    }
+    #video-description-id.is-active {
+        height: auto;
+    }
 }
 
 @media (min-width: 940px) {
