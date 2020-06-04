@@ -22,7 +22,7 @@ class RessourcesController extends AbstractController
      */
     public function quizz()
     {
-        return $this->render('ressources/quizz.html.twig', ['page_name' => 'Inscription']);
+        return $this->render('ressources/quizz.html.twig', ['page_name' => 'Quizz']);
     }
 
     /**
@@ -38,7 +38,7 @@ class RessourcesController extends AbstractController
      * @Route("ressources/guide", name="ressources_guide")
      */
 
-    public function guideEntretien()
+    public function guide()
     {
         return $this->render('ressources/guide.html.twig', ['page_name' => 'Guide d\'entretien']);
     }
