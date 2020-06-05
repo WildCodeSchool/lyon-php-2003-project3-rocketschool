@@ -1,9 +1,12 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
+// GENERAL CSS
 body {
     background-color: $primary-color;
     width: 100%;
+    font-family: 'Raleway';
+    font-weight: 400;
 }
 
 header {
@@ -40,6 +43,7 @@ header {
 }
 
 footer {
+
     /*Insert your content html for push footer at end*/
     display: block;
     width: 100%;
@@ -52,6 +56,79 @@ footer a {
     font-family: 'Raleway Bold';
 }
 
+// BUTTONS
+.btn-round-darkblue {
+    margin-top: 15px;
+    background-color: $dark-blue;
+    color: $primary-color;
+    border-radius: 30px;
+}
+
+.btn-round-darkblue:hover {
+    background-color: $dark-blue;
+    color: $secondary-color;
+}
+
+.btn-show-more {
+    width: 110px;
+    text-align: center;
+    box-shadow: black 0px 0px 5px 0px;
+    margin: auto;
+    border-radius: 0 0 5px 5px;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.content-container {
+    width: 80%;
+    margin: auto;
+    box-shadow: black 0px 15px 15px -5px;
+
+    iframe {
+        width: 80%;
+        max-width: 700px;
+        height: 350px;
+    }
+
+    .btn-container {
+        padding: 20px;
+        text-align: center
+    }
+}
+
+// VIDEO SECTION
+.video-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.video-title-container {
+    text-align: center;
+}
+
+.video-script-container {
+
+    #video-description-id {
+        padding: 20px 0px;
+        width: 75%;
+        color: #1d2124;
+        margin: auto;
+        overflow: hidden;
+        height: 100px;
+        opacity: 0.8;
+        transition: opacity 1s;
+        box-shadow: inset black 0px -20px 20px -20px;
+    }
+
+    #video-description-id.is-active {
+        height: auto;
+        opacity: 1;
+    }
+}
+
+// DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
 
     .container {
@@ -82,6 +159,7 @@ footer a {
     }
 }
 
+// TABLET AND SMALL SCREEN
 @media screen and (max-width: 940px) {
 
     li.nav-item {
@@ -110,5 +188,24 @@ footer a {
         color: white;
         border-bottom: none;
     }
+
+    // VIDEO SECTION
+    .content-container {
+        iframe {
+            height: 250px;
+        }
+    }
 }
 
+// PHONE AND EXTRA SMALL SCREEN
+@media screen and (max-width: 720px) {
+
+    // VIDEO SECTION
+    .content-container {
+        width: 100%;
+
+        iframe {
+            height: 160px;
+        }
+    }
+}
