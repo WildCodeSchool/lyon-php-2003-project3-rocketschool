@@ -1,6 +1,7 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
+// GENERAL CSS
 body {
     background-color: $primary-color;
     width: 100%;
@@ -64,7 +65,9 @@ footer a {
     font-family: 'Raleway Bold';
 }
 
+// BUTTONS
 .btn-round-darkblue {
+    margin-top: 15px;
     background-color: $dark-blue;
     color: $primary-color;
     border-radius: 30px;
@@ -74,14 +77,16 @@ footer a {
     color: $secondary-color;
 }
 .btn-show-more {
-    width: 100px;
+    width: 110px;
     text-align: center;
     box-shadow: black 0px 0px 5px 0px;
     margin: auto;
     border-radius: 0 0 5px 5px;
 }
+.btn:focus {
+    box-shadow: none;
+}
 
-// VIDEO SECTION
 .content-container {
     width: 80%;
     margin: auto;
@@ -96,6 +101,7 @@ footer a {
         text-align: center
     }
 }
+// VIDEO SECTION
 .video-container {
     padding: 20px;
     text-align: center;
@@ -110,14 +116,17 @@ footer a {
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        height: 120px;
+        height: 100px;
+        opacity: 0.8;
+        transition: opacity 1s;
         box-shadow: inset black 0px -20px 20px -20px;
     }
     #video-description-id.is-active {
         height: auto;
+        opacity: 1;
     }
 }
-
+// DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
     .container {
         max-width: 100%;
@@ -132,7 +141,7 @@ footer a {
         width: 200px;
     }
 }
-
+// TABLET AND SMALL SCREEN
 @media screen and (max-width: 940px) {
     li.nav-item.active {
         border-bottom: solid $secondary-color;
@@ -158,6 +167,24 @@ footer a {
     .navbar-light .navbar-nav .nav-link:hover {
         text-decoration: none;
         color: white;
+    }
+
+    // VIDEO SECTION
+    .content-container {
+        iframe {
+            height: 250px;
+        }
+    }
+}
+// PHONE AND EXTRA SMALL SCREEN
+@media screen and (max-width: 720px) {
+
+    // VIDEO SECTION
+    .content-container {
+        width: 100%;
+        iframe {
+            height: 160px;
+        }
     }
 }
 

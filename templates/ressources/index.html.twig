@@ -20,7 +20,7 @@
                 {{ video.description }}
             </div>
             <div class="btn-show-more">
-                <button onclick="collapse()" class="btn">Voir tout</button>
+                <button onclick="collapse()" class="btn" id="video-btn-show-more">Voir tout</button>
             </div>
         </div>
         <div class="btn-container">
@@ -33,6 +33,10 @@
     <script>
         function collapse() {
             document.getElementById("video-description-id").classList.toggle("is-active");
+            if (document.getElementById("video-btn-show-more").textContent === 'Voir tout')
+                document.getElementById("video-btn-show-more").textContent = 'Voir moins';
+            else
+                document.getElementById("video-btn-show-more").textContent = 'Voir tout';
         }
     </script>
 {% endblock %}
