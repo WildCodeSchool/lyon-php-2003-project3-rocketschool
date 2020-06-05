@@ -54,7 +54,6 @@ ul.navbar.nav {
 }
 
 footer {
-    //position: absolute;
     width: 100%;
     bottom: 0;
     background-color: $secondary-color;
@@ -72,10 +71,12 @@ footer a {
     color: $primary-color;
     border-radius: 30px;
 }
+
 .btn-round-darkblue:hover {
     background-color: $dark-blue;
     color: $secondary-color;
 }
+
 .btn-show-more {
     width: 110px;
     text-align: center;
@@ -83,6 +84,7 @@ footer a {
     margin: auto;
     border-radius: 0 0 5px 5px;
 }
+
 .btn:focus {
     box-shadow: none;
 }
@@ -91,25 +93,31 @@ footer a {
     width: 80%;
     margin: auto;
     box-shadow: black 0px 15px 15px -5px;
+
     iframe {
         width: 80%;
         max-width: 700px;
         height: 350px;
     }
+
     .btn-container {
         padding: 20px;
         text-align: center
     }
 }
+
 // VIDEO SECTION
 .video-container {
     padding: 20px;
     text-align: center;
 }
+
 .video-title-container {
     text-align: center;
 }
+
 .video-script-container {
+
     #video-description-id {
         padding: 20px 0px;
         width: 75%;
@@ -121,13 +129,16 @@ footer a {
         transition: opacity 1s;
         box-shadow: inset black 0px -20px 20px -20px;
     }
+
     #video-description-id.is-active {
         height: auto;
         opacity: 1;
     }
 }
+
 // DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
+
     .container {
         max-width: 100%;
     }
@@ -141,6 +152,7 @@ footer a {
         width: 200px;
     }
 }
+
 // TABLET AND SMALL SCREEN
 @media screen and (max-width: 940px) {
     li.nav-item.active {
@@ -176,6 +188,7 @@ footer a {
         }
     }
 }
+
 // PHONE AND EXTRA SMALL SCREEN
 @media screen and (max-width: 720px) {
 
