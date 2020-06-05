@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
+//Login is the home page
 {
     /**
      * @Route("/", name="home")
@@ -13,7 +14,7 @@ class HomeController extends AbstractController
     public function index()
     {
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController', 'page_name' => 'Connexion'
+            'controller_name' => 'HomeController', 'page_name' => 'Login'
         ]);
     }
     /**

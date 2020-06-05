@@ -31,30 +31,20 @@ header {
     font-weight: bold;
 }
 
-a {
-    color: $warm-color;
-}
-
 .navbar-light .navbar-nav .nav-link {
     width: 100%;
 }
 
-ul.navbar.nav {
+.navbar-nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-}
-
-.navbar-light .navbar-nav .active > .nav-link {
-    width: 87%;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-    text-decoration: underline;
+    width: 100%;
 }
 
 footer {
-    //position: absolute;
+    /*Insert your content html for push footer at end*/
+    display: block;
     width: 100%;
     bottom: 0;
     background-color: $secondary-color;
@@ -128,6 +118,7 @@ footer a {
 }
 // DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
+
     .container {
         max-width: 100%;
     }
@@ -139,21 +130,33 @@ footer a {
         font-size: 18px;
         text-align: center;
         width: 200px;
+        letter-spacing: 2px;
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link {
+        width: 87%;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: underline;
+        color: black;
+    }
+
+    #nav-link-profil {
+        display: none;
     }
 }
+  
 // TABLET AND SMALL SCREEN
 @media screen and (max-width: 940px) {
-    li.nav-item.active {
-        border-bottom: solid $secondary-color;
-
-    }
 
     li.nav-item {
-        border-bottom: solid $secondary-color;
+        border-bottom: solid lightgrey;
     }
 
     li.nav-item:hover {
         background-color: $secondary-color;
+        border-bottom: solid white;
     }
 
     .navbar-light .navbar-nav .nav-link {
@@ -164,9 +167,14 @@ footer a {
         text-align: center;
     }
 
+    .LT_logo_profil {
+        display: none;
+    }
+
     .navbar-light .navbar-nav .nav-link:hover {
         text-decoration: none;
         color: white;
+        border-bottom: none;
     }
 
     // VIDEO SECTION
