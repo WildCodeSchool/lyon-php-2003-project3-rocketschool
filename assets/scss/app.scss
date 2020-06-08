@@ -9,6 +9,7 @@ body {
 header {
     width: 100%;
     position: fixed;
+    top: 0;
 }
 
 .LT_page_name {
@@ -95,7 +96,7 @@ footer a {
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
-        font-family: 'Raleway Bold';
+        font-family: 'Raleway Bold', serif;
         font-weight: bold;
         font-size: 18px;
         text-align: center;
@@ -110,5 +111,9 @@ footer a {
         color: white;
         border-bottom: none;
     }
+}
+
+#login_form {
+    margin-top: 100px;
 }
 
