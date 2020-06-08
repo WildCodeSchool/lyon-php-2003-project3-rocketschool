@@ -6,7 +6,39 @@
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
+    <div class="content-container">
+        <div class="video-container">
+            <iframe src="{{ video.getEmbedUrl }}"
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        <div class="video-title-container">
+            <h2>{{ video.name }}</h2>
+            <small>updated {{ video.getUpdatedAt|date }}</small>
+        </div>
+        <div class="video-script-container">
+            <div class="video-description" id="video-description-id">
+                {{ video.description }}
+            </div>
+            <div class="btn-show-more">
+                <button onclick="collapse()" class="btn" id="video-btn-show-more">Voir tout</button>
+            </div>
+        </div>
+        <div class="btn-container">
+            <a href="{{ path('ressources_quizz') }}"><button class="btn btn-round-darkblue">Passer le test</button></a>
+        </div>
+    </div>
 {% endblock %}
 
-
-
+{% block javascripts %}
+    <script>
+        function collapse() {
+            document.getElementById("video-description-id").classList.toggle("is-active");
+            if (document.getElementById("video-btn-show-more").textContent === 'Voir tout')
+                document.getElementById("video-btn-show-more").textContent = 'Voir moins';
+            else
+                document.getElementById("video-btn-show-more").textContent = 'Voir tout';
+        }
+    </script>
+{% endblock %}
