@@ -213,12 +213,14 @@ footer a {
 
 #login_form, #register_form {
     margin: 50px auto;
+
     button {
         display: block;
         margin: 30px auto;
         padding: 10px 50px;
         border-radius: 30px;
     }
+
     .group_input {
         margin: 0 auto;
         width: 70%;
@@ -226,13 +228,16 @@ footer a {
         flex-direction: column;
         align-content: center;
     }
+
     .form-control {
         margin: 10px auto;
         height: 50px;
     }
+
     p {
         text-align: center;
     }
+
     img {
         display: block;
         margin: 80px auto;
@@ -245,6 +250,7 @@ footer a {
         margin-bottom: 10px;
         font-family: 'Raleway Bold', serif;
     }
+
     .col-md-3 {
         margin: 0 auto;
     }
@@ -254,6 +260,7 @@ footer a {
     .col-md-3 {
         margin: 50px auto;
     }
+
     ul {
         padding-left: 5px;
         li {
