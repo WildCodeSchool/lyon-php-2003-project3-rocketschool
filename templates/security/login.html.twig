@@ -2,9 +2,30 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body > header {
+            visibility: hidden;
+        }
+        .LT_page_name_bis {
+            background-color: #4EB6E8;
+            height: 150px;
+            color: white;
+        }
+        .LT_page_name_bis > h2 { text-align: center; padding-top: 30px;}
+
+    </style>
+{% endblock %}
+
+
 {% block body %}
+    <div class="LT_page_name_bis">
+        <h2>Ressources pour<br>vos entretiens</h2>
+    </div>
+
     <section class="container" id="login_form">
-        <div class="col-md-4 offset-md-4">
+        <div class="col-md-3">
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -16,16 +37,20 @@
                     </div>
                 {% endif %}
 
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="inputEmail">Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                <label for="inputPassword">Password</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" required>
+                <h5>Par mail si tu as un compte</h5>
 
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
+                <section class="group_input">
 
+                    <label for="inputEmail"></label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control shadow" placeholder="Email" required autofocus>
+                    <label for="inputPassword"></label>
+                    <input type="password" name="password" id="inputPassword" class="form-control shadow" placeholder="Password" required>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                </section>
                 {#
                     Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
                     See https://symfony.com/doc/current/security/remember_me.html
@@ -37,10 +62,18 @@
                     </div>
                 #}
 
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Sign in
+                <button class="btn btn-dark" type="submit">
+                    Connexion
                 </button>
             </form>
+
+            <p>Nouveau ? Inscris-toi en cliquant sur <a href="{{ path('app_register') }}">ce lien</a></p>
+
+            <img
+                    width="150px"
+                    src="https://rocket-school.com/wp-content/uploads/2019/03/rocket-school.png"
+                    alt="Fusée Rocket School"
+            >
 
         </div>
     </section>

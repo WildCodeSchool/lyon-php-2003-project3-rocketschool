@@ -34,6 +34,15 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $check = $_POST['verify_pass'];
+            $pass = $form->get('plainPassword')->getData();
+
+            if ($pass != $check) {
+                return $this->render('registration/register.html.twig', [
+                    'registrationForm' => $form->createView(),
+                    'error_check_pass' => 'Erreur lors de la saisie du mot de passe'
+                ]);
+            }
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
