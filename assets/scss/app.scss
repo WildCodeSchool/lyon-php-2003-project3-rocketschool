@@ -12,6 +12,7 @@ body {
 header {
     width: 100%;
     position: fixed;
+    top: 0;
 }
 
 .LT_page_name {
@@ -173,7 +174,7 @@ footer a {
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
-        font-family: 'Raleway Bold';
+        font-family: 'Raleway Bold', serif;
         font-weight: bold;
         font-size: 18px;
         text-align: center;
@@ -209,3 +210,65 @@ footer a {
         }
     }
 }
+
+#login_form, #register_form {
+    margin: 50px auto;
+
+    button {
+        display: block;
+        margin: 30px auto;
+        padding: 10px 50px;
+        border-radius: 30px;
+    }
+
+    .group_input {
+        margin: 0 auto;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .form-control {
+        margin: 10px auto;
+        height: 50px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin: 80px auto;
+    }
+}
+
+#login_form {
+    h5, h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-family: 'Raleway Bold', serif;
+    }
+
+    .col-md-3 {
+        margin: 0 auto;
+    }
+}
+
+#register_form {
+    .col-md-3 {
+        margin: 50px auto;
+    }
+
+    ul {
+        padding-left: 5px;
+
+        li {
+            list-style-type: none;
+            color: darkred;
+            font-size: 0.8em;
+        }
+    }
+}
+

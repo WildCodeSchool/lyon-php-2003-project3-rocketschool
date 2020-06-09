@@ -6,10 +6,14 @@ use App\Entity\Video;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/ressources", name="ressources_")
+ * @package App\Controller
+ */
 class RessourcesController extends AbstractController
 {
     /**
-     * @Route("/ressources", name="ressources")
+     * @Route("/", name="index")
      */
     public function index()
     {
@@ -25,7 +29,7 @@ class RessourcesController extends AbstractController
     }
 
     /**
-     * @Route("ressources/quizz", name="ressources_quizz")
+     * @Route("/quizz", name="quizz")
      */
     public function quizz()
     {
@@ -33,7 +37,7 @@ class RessourcesController extends AbstractController
     }
 
     /**
-     * @Route("ressources/faq", name="ressources_faq")
+     * @Route("/faq", name="faq")
      */
 
     public function faq()
@@ -42,7 +46,7 @@ class RessourcesController extends AbstractController
     }
 
     /**
-     * @Route("ressources/guide", name="ressources_guide")
+     * @Route("/guide", name="guide")
      */
 
     public function guide()
