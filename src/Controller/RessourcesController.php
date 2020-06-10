@@ -22,6 +22,9 @@ class RessourcesController extends AbstractController
             ->findOneBy(['name' => 'Formation Rocket School']);
 
         // if GET
+        if ($_GET) {
+            dump($_GET);
+        }
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',

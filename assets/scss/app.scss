@@ -121,6 +121,10 @@ footer a {
         opacity: 0.8;
         transition: opacity 1s;
         box-shadow: inset black 0px -20px 20px -20px;
+
+        form label {
+            margin-left: 10px;
+        }
     }
 
     #video-description-id.is-active {
