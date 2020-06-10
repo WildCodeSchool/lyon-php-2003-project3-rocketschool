@@ -21,6 +21,8 @@ class RessourcesController extends AbstractController
             ->getRepository(Video::class)
             ->findOneBy(['name' => 'Formation Rocket School']);
 
+        // if GET
+
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',
             'page_name' => 'Vidéo',
