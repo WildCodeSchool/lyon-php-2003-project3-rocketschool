@@ -46,6 +46,11 @@ class User implements UserInterface
      */
     private $lastname;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isReady = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -144,6 +149,18 @@ class User implements UserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getIsReady(): ?bool
+    {
+        return $this->isReady;
+    }
+
+    public function setIsReady(bool $isReady): self
+    {
+        $this->isReady = $isReady;
 
         return $this;
     }
