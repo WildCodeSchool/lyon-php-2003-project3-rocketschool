@@ -25,9 +25,13 @@
                 <button onclick="collapse()" class="btn" id="video-btn-show-more">Voir tout</button>
             </div>
         </div>
-        <div class="btn-container">
-            <a href="{{ path('ressources_quizz') }}"><button class="btn btn-round-darkblue">Passer le test</button></a>
-        </div>
+
+        {% if app.user.isReady %}
+            <div class="btn-container">
+                <a href="{{ path('ressources_quizz') }}"><button class="btn btn-round-darkblue">Passer le test</button></a>
+            </div>
+        {% endif %}
+
     </div>
 {% endblock %}
 
