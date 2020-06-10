@@ -10,40 +10,42 @@
     </head>
     <body>
             <!-- Header + Navigation with routes  -->
-            <header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href={{ path('home') }}><img width="150px" src="https://rocket-school.com/wp-content/uploads/2019/03/rocket-school.png" alt="fusée sous forme de logo de la rocket school"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href={{ path('ressources_guide') }}>Guide d'entretien</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href={{ path('ressources_index') }}>Vidéos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href={{ path('ressources_quizz') }}>Quizz</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href={{ path('ressources_faq') }}>Faq</a>
-                        </li>
-                        <li class="nav-item" >
-                            <a id="nav-link-profil" class="nav-link"  href={{ path('profil') }}>Profil</a>
-                        </li>
-                    </ul>
-                    </div>
-                    <a class="LT_logo_profil" class="navbar-brand"  href={{ path('profil') }}>
-                        <img
-                                width="50px"
-                                src="https://www.tours-fondettes-agrocampus.fr/wp-content/themes/groscampus/images/avatar.png"
-                                alt=""
-                        >
-                    </a>
-                </nav>
-            </header>
+            {% if app.user is not null %}
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href={{ path('home') }}><img width="150px" src="https://rocket-school.com/wp-content/uploads/2019/03/rocket-school.png" alt="fusée sous forme de logo de la rocket school"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('ressources_guide') }}>Guide d'entretien</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('ressources_index') }}>Vidéos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('ressources_quizz') }}>Quizz</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('ressources_faq') }}>Faq</a>
+                                </li>
+                                <li class="nav-item" >
+                                    <a id="nav-link-profil" class="nav-link"  href={{ path('profil') }}>Profil</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="LT_logo_profil" class="navbar-brand"  href={{ path('profil') }}>
+                            <img
+                                    width="50px"
+                                    src="https://www.tours-fondettes-agrocampus.fr/wp-content/themes/groscampus/images/avatar.png"
+                                    alt=""
+                            >
+                        </a>
+                    </nav>
+                </header>
+            {% endif %}
 
             {% block body %}{% endblock %}
 

@@ -272,3 +272,23 @@ footer a {
     }
 }
 
+// 'Sub-classes' of .LT_page_name
+// for login & register pages
+.LT_page_name_ter, .LT_page_name_bis {
+    background-color: #4EB6E8;
+    color: white;
+
+    h2 {
+        text-align: center;
+        padding-top: 30px;
+    }
+}
+
+.LT_page_name_bis {
+    height: 150px;
+}
+
+.LT_page_name_ter {
+    height: 100px;
+}
+
