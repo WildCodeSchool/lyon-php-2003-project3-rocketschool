@@ -5,7 +5,7 @@
 body {
     background-color: $primary-color;
     width: 100%;
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
 }
 
@@ -13,6 +13,18 @@ header {
     width: 100%;
     position: fixed;
     top: 0;
+}
+
+blockquote
+{
+    font-style: italic;
+    margin-left: 32px;
+    border-left: 4px solid #CCC;
+    padding: 10px;
+
+    p {
+        margin-bottom: 0;
+    }
 }
 
 .LT_page_name {
@@ -35,7 +47,9 @@ header {
 .navbar-light .navbar-nav .nav-link {
     width: 100%;
 }
-
+.navbar {
+    border-bottom: solid $secondary-color;
+}
 .navbar-nav {
     display: flex;
     flex-direction: column;
@@ -112,19 +126,38 @@ footer a {
 .video-script-container {
 
     #video-description-id {
-        padding: 20px 0px;
+        padding: 20px 10px;
         width: 75%;
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        height: 100px;
+        height: 120px;
         opacity: 0.8;
         transition: opacity 1s;
         box-shadow: inset black 0px -20px 20px -20px;
+        border-radius: 5px;
     }
 
     #video-description-id.is-active {
         height: auto;
+        opacity: 1;
+    }
+}
+
+// VIDEO EDIT SECTION
+.video-form-label {
+    margin: 0;
+    font-weight: bold;
+}
+
+.ckeditor {
+    margin: 10px auto;
+
+    a.cke_button, .cke_combo {
+        position: unset;
+    }
+
+    a.cke_button_disabled .cke_button_icon {
         opacity: 1;
     }
 }
@@ -213,6 +246,7 @@ footer a {
 
 #login_form, #register_form {
     margin: 50px auto;
+    position: unset;
 
     button {
         display: block;
@@ -229,7 +263,7 @@ footer a {
         align-content: center;
     }
 
-    .form-control {
+    .form-control{
         margin: 10px auto;
         height: 50px;
     }

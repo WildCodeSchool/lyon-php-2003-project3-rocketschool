@@ -8,7 +8,7 @@
     </div>
     <div class="content-container">
         <div class="video-container">
-            <iframe src="{{ video.getEmbedUrl }}"
+            <iframe src="{{ video.getEmbedUrl|replace({'watch?v=' : 'embed/'}) }}"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
             </iframe>
@@ -19,15 +19,25 @@
         </div>
         <div class="video-script-container">
             <div class="video-description" id="video-description-id">
-                {{ video.description }}
+                {{ video.description|raw }}
             </div>
             <div class="btn-show-more">
                 <button onclick="collapse()" class="btn" id="video-btn-show-more">Voir tout</button>
             </div>
         </div>
-        <div class="btn-container">
-            <a href="{{ path('ressources_quizz') }}"><button class="btn btn-round-darkblue">Passer le test</button></a>
-        </div>
+        {% if (is_granted('ROLE_ADMIN')) %}
+            <div class="btn-container">
+                <a href="{{ path('admin_video_edit') }}">
+                    <button class="btn btn-round-darkblue">Modifier le contenu</button>
+                </a>
+            </div>
+        {% else %}
+            <div class="btn-container">
+                <a href="{{ path('ressources_quizz') }}">
+                    <button class="btn btn-round-darkblue">Passer le test</button>
+                </a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 

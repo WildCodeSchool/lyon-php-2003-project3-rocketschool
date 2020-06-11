@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_name }}{% endblock %}
+
+{% block body %}
+    <div class="LT_page_name">
+        <h2>{{ page_name }}</h2>
+    </div>
+
+    <div>
+        <section class="col-md-7" id="register_form">
+            {{ form_start(form) }}
+            <section class="group_input"></section>
+            <label class="video-form-label">Titre</label>
+            {{ form_widget(form.name, { 'attr':
+                {'value': video.name , 'class': 'form-control shadow'} }) }}
+            <label class="video-form-label">Url de la vidéo</label>
+            {{ form_widget(form.embedUrl, { 'attr':
+                {'value': video.embedUrl, 'class': 'form-control shadow'} }) }}
+            <label class="video-form-label">Contenu</label>
+            <div class="ckeditor shadow">
+                {{ form_widget(form.description, { 'attr':
+                    {'data' : video.description, 'class': 'form-control shadow'} }) }}
+            </div>
+            <button class="btn btn-round-darkblue" type="submit">Valider</button>
+            {{ form_end(form) }}
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.getElementById("video_edit_description").value = document.getElementById("video_edit_description").getAttribute('data');
+
+        CKEDITOR.replace( 'video_edit[description]', {
+            removeButtons: 'Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,' +
+                'CreateDiv,Anchor,Flash,PageBreak,NewPage,Format,Source,Save,RemoveFormat,Iframe',
+            language: 'fr',
+            uiColor: '#EFEFEF'
+        });
+    </script>
+{% endblock %}
