@@ -29,6 +29,10 @@ class RegistrationController extends AbstractController
         LoginFormAuthenticator $authenticator
     ): ?Response {
 
+        if ($this->getUser()) {
+            return $this->redirectToRoute('profil');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
