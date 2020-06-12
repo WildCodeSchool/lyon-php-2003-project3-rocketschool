@@ -9,7 +9,6 @@
 
     <section class="col-md-3" id="register_form">
         {{ form_start(registrationForm) }}
-
             <section class="group_input">
                 {{
                     form_widget(registrationForm.lastname,
@@ -79,7 +78,6 @@
             <button class="btn btn-dark" type="submit">
                 Je m'inscris
             </button>
-
         {{ form_end(registrationForm) }}
 
         <p>Déjà inscrit.e ? Connecte toi en cliquant sur <a href="{{ path('app_login') }}">ce lien</a></p>
