@@ -40,7 +40,6 @@ blockquote
 
 .LT_page_name h2 {
     margin-top: 80px;
-    font-family: 'Raleway Bold';
     font-weight: bold;
 }
 
@@ -68,12 +67,11 @@ footer {
 
 footer a {
     color: white;
-    font-family: 'Raleway Bold';
 }
 
 // BUTTONS
 .btn-round-darkblue {
-    margin-top: 15px;
+    margin-top: 30px;
     background-color: $dark-blue;
     color: $primary-color;
     border-radius: 30px;
@@ -86,10 +84,14 @@ footer a {
 
 .btn-show-more {
     width: 110px;
+    height: 30px;
     text-align: center;
-    box-shadow: black 0px 0px 5px 0px;
     margin: auto;
-    border-radius: 0 0 5px 5px;
+    transition: border-bottom 0.5s;
+}
+
+.btn-show-more:hover {
+    border-bottom: solid $dark-blue 1px;
 }
 
 .btn:focus {
@@ -100,6 +102,7 @@ footer a {
     width: 80%;
     margin: auto;
     box-shadow: black 0px 15px 15px -5px;
+    padding-bottom: 70px;
 
     iframe {
         width: 80%;
@@ -115,6 +118,7 @@ footer a {
 
 // VIDEO SECTION
 .video-container {
+    margin-top: 20px;
     padding: 20px;
     text-align: center;
 }
@@ -126,7 +130,7 @@ footer a {
 .video-script-container {
 
     #video-description-id {
-        padding: 20px 10px;
+        padding: 20px 25px;
         width: 75%;
         color: #1d2124;
         margin: auto;
@@ -134,7 +138,7 @@ footer a {
         height: 120px;
         opacity: 0.8;
         transition: opacity 1s;
-        box-shadow: inset black 0px -20px 20px -20px;
+        box-shadow: inset black 0px -20px 55px -30px;
         border-radius: 5px;
     }
 
@@ -148,6 +152,10 @@ footer a {
 .video-form-label {
     margin: 0;
     font-weight: bold;
+}
+
+.cke_reset {
+    min-height: 500px;
 }
 
 .ckeditor {
@@ -171,7 +179,6 @@ footer a {
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
-        font-family: 'Raleway Bold';
         font-weight: bold;
         font-size: 18px;
         text-align: center;
@@ -207,7 +214,6 @@ footer a {
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
-        font-family: 'Raleway Bold', serif;
         font-weight: bold;
         font-size: 18px;
         text-align: center;
@@ -282,7 +288,6 @@ footer a {
     h5, h2 {
         text-align: center;
         margin-bottom: 10px;
-        font-family: 'Raleway Bold', serif;
     }
 
     .col-md-3 {

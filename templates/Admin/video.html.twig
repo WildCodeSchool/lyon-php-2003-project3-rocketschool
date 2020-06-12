@@ -9,6 +9,9 @@
 
     <div>
         <section class="col-md-7" id="register_form">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
             {{ form_start(form) }}
             <section class="group_input"></section>
             <label class="video-form-label">Titre</label>

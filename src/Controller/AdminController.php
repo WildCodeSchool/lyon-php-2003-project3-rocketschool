@@ -51,7 +51,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render('Admin/video.html.twig', [
-                'page_name' => 'Edition Page Video',
+                'page_name' => 'Vidéo - Édition',
                 'video' => $video,
                 'form' => $form->createView()
             ]);
