@@ -32,7 +32,7 @@ class AdminController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)
             ->findAll();
         return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats', 'user' => $user]);
-        }
+    }
 
     /**
      * @param Request $request
