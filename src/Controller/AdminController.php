@@ -50,7 +50,6 @@ class AdminController extends AbstractController
 
         if ($video && $form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            //$video->setUpdatedAt(date_create('now'));
             $entityManager->persist($video);
             $entityManager->flush();
 

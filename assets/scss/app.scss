@@ -100,6 +100,10 @@ footer a {
     box-shadow: none;
 }
 
+.form-section {
+    margin: auto;
+}
+
 .content-container {
     width: 80%;
     margin: auto;
@@ -138,15 +142,20 @@ footer a {
         margin: auto;
         overflow: hidden;
         height: 120px;
-        opacity: 0.8;
-        transition: opacity 1s;
         box-shadow: inset black 0px -20px 55px -30px;
         border-radius: 5px;
     }
 
     #video-description-id.is-active {
         height: auto;
-        opacity: 1;
+    }
+}
+
+.check-video {
+    margin: auto;
+
+    label {
+        padding: 5px;
     }
 }
 
@@ -269,7 +278,7 @@ footer a {
 
     .group_input {
         margin: 0 auto;
-        width: 70%;
+        max-width: 300px;
         display: flex;
         flex-direction: column;
         align-content: center;
