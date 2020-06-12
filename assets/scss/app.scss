@@ -43,6 +43,21 @@ header {
     width: 100%;
 }
 
+.nav_admin {
+    background-color: $dark-blue;
+    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
+    color: $primary-color;
+    height: 80px;
+    justify-content: end;
+
+    ul {
+        //padding-right: 200px;
+    }
+    .navbar-nav .nav-link {
+        color: $primary-color;
+    }
+}
+
 footer {
 
     /*Insert your content html for push footer at end*/
