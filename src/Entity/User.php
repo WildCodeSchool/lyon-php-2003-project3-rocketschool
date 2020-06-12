@@ -51,6 +51,11 @@ class User implements UserInterface
      */
     private $isReady = false;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_admin;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +166,18 @@ class User implements UserInterface
     public function setIsReady(bool $isReady): self
     {
         $this->isReady = $isReady;
+
+        return $this;
+    }
+
+    public function getIsAdmin(): ?bool
+    {
+        return $this->is_admin;
+    }
+
+    public function setIsAdmin(bool $is_admin): self
+    {
+        $this->is_admin = $is_admin;
 
         return $this;
     }
