@@ -2,23 +2,6 @@
 
 {% block title %}Register{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        body > header {
-            visibility: hidden;
-        }
-        .LT_page_name_ter {
-            background-color: #4EB6E8;
-            height: 100px;
-            color: white;
-        }
-        .LT_page_name_ter > h2 { text-align: center; padding-top: 30px;}
-
-    </style>
-{% endblock %}
-
-
 {% block body %}
     <div class="LT_page_name_ter">
         <h2>Inscription</h2>
@@ -26,43 +9,75 @@
 
     <section class="col-md-3" id="register_form">
         {{ form_start(registrationForm) }}
+            <section class="group_input">
+                {{
+                    form_widget(registrationForm.lastname,
+                        {
+                            'attr':
+                            {
+                                'placeholder': 'Nom :',
+                                'class': 'form-control shadow'
+                            }
+                        })
+                }}
+                {{ form_errors(registrationForm.lastname, { 'attr': {'class': 'form-error'} }) }}
 
-        <section class="group_input">
-            {{ form_widget(registrationForm.lastname, { 'attr':
-                {'placeholder': 'Nom :', 'class': 'form-control shadow'} }) }}
-            {{ form_errors(registrationForm.lastname, { 'attr':
-                {'class': 'form-error'} }) }}
+                {{
+                    form_widget(registrationForm.firstname,
+                        {
+                            'attr':
+                            {
+                                'placeholder': 'Prénom :',
+                                'class': 'form-control shadow'
+                            }
+                        })
+                }}
+                {{ form_errors(registrationForm.firstname, { 'attr': {'class': 'form-error'} }) }}
 
-            {{ form_widget(registrationForm.firstname, { 'attr':
-                {'placeholder': 'Prénom :', 'class': 'form-control shadow'} }) }}
-            {{ form_errors(registrationForm.firstname, { 'attr':
-                {'class': 'form-error'} }) }}
+                {{
+                    form_widget(registrationForm.email,
+                        {
+                            'attr':
+                            {
+                                'placeholder': 'Email :',
+                                'class': 'form-control shadow'
+                            }
+                        })
+                }}
+                {{ form_errors(registrationForm.email, { 'attr': {'class': 'form-error'} }) }}
 
-            {{ form_widget(registrationForm.email, { 'attr':
-                {'placeholder': 'Email :', 'class': 'form-control shadow'} }) }}
-            {{ form_errors(registrationForm.email, { 'attr':
-                {'class': 'form-error'} }) }}
+                {{
+                    form_widget(registrationForm.plainPassword,
+                        {
+                            'attr':
+                            {
+                                'placeholder': 'Mot de passe :',
+                                'class': 'form-control shadow'
+                            }
+                        })
+                }}
+                {{ form_errors(registrationForm.plainPassword, { 'attr': {'class': 'form-error'} }) }}
 
-            {{ form_widget(registrationForm.plainPassword, { 'attr':
-                {'placeholder': 'Mot de passe :', 'class': 'form-control shadow'} }) }}
-            {{ form_errors(registrationForm.plainPassword, { 'attr':
-                {'class': 'form-error'} }) }}
 
+                <label for="verify_pass"></label>
+                <input
+                        type="password" name="verify_pass" id="verify_pass"
+                        class="form-control shadow" placeholder="Confirmez le mot de passe"
+                >
 
-            <input type="password" name="verify_pass" id="verify_pass"
-                   class="form-control shadow" placeholder="Confirmez le mot de passe"
-            >
-            {% if error_check_pass is defined %}
-                <div class="form-error">
-                    <ul>
-                        <li>{{ error_check_pass }}</li>
-                    </ul>
-                </div>
-            {% endif %}
-        </section>
-        <button class="btn btn-round-darkblue" type="submit">
-            Je m'inscris
-        </button>
+                {% if error_check_pass is defined %}
+                    <div class="form-error">
+                        <ul>
+                            <li>{{ error_check_pass }}</li>
+                        </ul>
+                    </div>
+                {% endif %}
+
+            </section>
+
+            <button class="btn btn-dark" type="submit">
+                Je m'inscris
+            </button>
         {{ form_end(registrationForm) }}
 
         <p>Déjà inscrit.e ? Connecte toi en cliquant sur <a href="{{ path('app_login') }}">ce lien</a></p>

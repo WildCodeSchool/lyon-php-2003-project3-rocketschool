@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Video;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -14,12 +19,23 @@ class RessourcesController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
-    public function index()
+    public function index(EntityManagerInterface $entityManager)
     {
         $video = $this->getDoctrine()
             ->getRepository(Video::class)
             ->findOneBy(['name' => 'Formation Rocket School']);
+
+        if ($_GET) {
+            if ($_GET['ready']) {
+                $user = $this->getUser();
+                $user->setIsReady(true);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
+        }
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',
