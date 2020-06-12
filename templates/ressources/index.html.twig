@@ -20,6 +20,19 @@
         <div class="video-script-container">
             <div class="video-description" id="video-description-id">
                 {{ video.description|raw }}
+                <form action="" method="get" class="form-inline">	
+                    <div class="form-group">	
+                        <input	
+                                type="checkbox"	
+                                name="ready"	
+                                id="ready"	
+                                class="form-control"	
+                                onclick="this.form.submit()"	
+                                {% if app.user.isReady is same as(true) %}checked{% endif %}	
+                        >	
+                        <label for="ready">J'ai compris !</label>	
+                    </div>	
+                </form>
             </div>
             <div class="btn-show-more">
                 <button onclick="collapse()" class="btn" id="video-btn-show-more">Voir tout</button>
