@@ -27,16 +27,13 @@ class Reponse
      */
     private $isGood;
 
+
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="reponse")
      * @ORM\JoinColumn(nullable=false)
      */
     private $question;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getProposition(): ?string
     {

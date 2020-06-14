@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+{#    {{ form_widget(form) }}#}
+            {{ form_row(form.title) }}
+            {{ form_row(form.solution) }}
+
+<h2>Proposition de réponse</h2>
+
+<ul id="proposition-fields-list"
+    data-prototype="{{ form_widget(form.reponse.vars.prototype)|e }}"
+    data-widget-tags="{{ '<li></li>'|e }}"
+    data-widget-counter="{{ form.reponse|length }}">
+    {% for reponse in form.reponse %}
+        <li>
+            {{ form_widget(reponse) }}
+        </li>
+
+    {% endfor %}
+</ul>
+<button type="button"
+        class="add-another-collection-widget"
+        data-list-selector="#proposition-fields-list">Ajouter une proposition</button>
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

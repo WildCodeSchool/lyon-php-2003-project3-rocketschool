@@ -49,6 +49,7 @@ class RessourcesController extends AbstractController
      */
     public function quizz()
     {
+
         return $this->render('ressources/quizz.html.twig', ['page_name' => 'Quizz']);
     }
 

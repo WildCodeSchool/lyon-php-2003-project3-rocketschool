@@ -20,7 +20,22 @@ class Question
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="question", orphanRemoval=true)
+     * @ORM\Column(type="text")
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $solution;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="question", orphanRemoval=true, cascade={"persist"})
      */
     private $reponse;
 
@@ -32,6 +47,42 @@ class Question
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSolution(): ?string
+    {
+        return $this->solution;
+    }
+
+    public function setSolution(string $solution): self
+    {
+        $this->solution = $solution;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
