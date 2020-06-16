@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,7 +31,9 @@ class Question
     private $solution;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -78,12 +81,6 @@ class Question
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Reponse[]
