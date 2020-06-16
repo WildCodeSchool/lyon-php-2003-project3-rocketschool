@@ -7,7 +7,7 @@
         <h2>{{ page_name }}</h2>
     </div>
     <section class="user_table">
-        <table class="table table-hover" id = "table_user">
+        <table class="table table-hover table_user">
             <thead class="thead-light">
                 <tr>
                     <th class="th" scope="col">Prénom</th>
@@ -17,8 +17,8 @@
             </thead>
             <tbody class="thead-light">
 
-            {% for user in user %}
-                {% if user.roles.0 != 'ROLE_ADMIN' %}
+            {% for user in users %}
+                {% if 'ROLE_ADMIN' not in user.roles %}
                 <tr>
                     <td> {{ user.firstname }} </td>
                     <td> {{ user.lastname }} </td>

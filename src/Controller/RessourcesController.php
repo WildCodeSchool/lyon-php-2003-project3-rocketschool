@@ -24,9 +24,10 @@ class RessourcesController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager)
     {
+
         $video = $this->getDoctrine()
             ->getRepository(Video::class)
-            ->findOneBy(['name' => 'Formation Rocket School']);
+            ->find(1);
 
         if ($_GET) {
             if ($_GET['ready']) {
