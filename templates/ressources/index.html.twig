@@ -8,7 +8,7 @@
     </div>
     <div class="content-container">
         <div class="video-container">
-            <iframe src="{{ video.getEmbedUrl }}"
+            <iframe src="{{ video.getEmbedUrl|replace({'watch?v=' : 'embed/'}) }}"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
             </iframe>
@@ -19,147 +19,40 @@
         </div>
         <div class="video-script-container">
             <div class="video-description" id="video-description-id">
-                {{ video.description }}
-
-                {# astuce : div>lorem10*100 #}
-                <div>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, magnam.</div>
-                    <div>Consectetur exercitationem facere fugit inventore ipsam nostrum porro provident rem.</div>
-                    <div>Consectetur delectus est et fugiat, modi quas quibusdam sunt voluptas?</div>
-                    <div>Alias magni natus perspiciatis recusandae. Consectetur debitis mollitia reiciendis
-                        temporibus?
-                    </div>
-                    <div>Cumque dignissimos ex impedit itaque quaerat quis reprehenderit! Consectetur, enim!</div>
-                    <div>Fuga fugiat inventore itaque maiores non odit quibusdam vel voluptatum?</div>
-                    <div>Accusamus debitis, ipsum nam neque perferendis qui reprehenderit repudiandae voluptatum!</div>
-                    <div>Distinctio enim hic laudantium quam veniam. Aperiam ea natus nesciunt!</div>
-                    <div>Culpa debitis dolorum enim esse facere natus soluta sunt velit?</div>
-                    <div>Cum deserunt dolore iusto molestias nesciunt, quis veritatis? Libero, officia.</div>
-                    <div>Cum delectus ducimus natus praesentium, reiciendis sed sunt tempora temporibus.</div>
-                    <div>Aliquam blanditiis consectetur doloribus, ipsum laboriosam magnam ratione sequi voluptatum.
-                    </div>
-                    <div>Ab amet animi beatae dignissimos, harum laboriosam modi vel voluptates.</div>
-                    <div>Culpa distinctio hic ipsa praesentium quae quos rem saepe soluta!</div>
-                    <div>Blanditiis, doloremque eum fuga ipsum libero magni natus quisquam ullam.</div>
-                    <div>Blanditiis cum dolore iusto nihil nisi placeat voluptate. Aliquid, eius.</div>
-                    <div>Commodi culpa inventore, ipsa ipsam iusto labore laborum quis quos.</div>
-                    <div>A accusamus dolor error expedita labore, nesciunt optio quidem sint!</div>
-                    <div>Accusamus, ipsam iure laboriosam maxime nisi nulla qui totam velit!</div>
-                    <div>Ab amet animi blanditiis cumque dicta dolor dolores fuga fugiat?</div>
-                    <div>Dolorem, earum est fuga ipsa placeat possimus repellat veritatis voluptatibus!</div>
-                    <div>Accusantium dignissimos doloribus laborum maiores officiis quae sint totam vitae!</div>
-                    <div>Accusamus ad id iusto provident rem similique sint sit vel.</div>
-                    <div>A ab culpa excepturi illo laboriosam minima optio quia ut.</div>
-                    <div>Cupiditate deleniti distinctio explicabo laboriosam, magni molestias perspiciatis reprehenderit
-                        rerum.
-                    </div>
-                    <div>Dolor dolorum ea expedita fugit hic incidunt porro rerum voluptate.</div>
-                    <div>Consectetur cum dolores explicabo facilis iste maiores obcaecati quibusdam repudiandae!</div>
-                    <div>Ipsum, similique, vero. Beatae harum laborum nisi, nostrum quia veniam.</div>
-                    <div>Autem ex incidunt nulla odit perferendis, perspiciatis recusandae sapiente voluptate!</div>
-                    <div>Ab alias autem excepturi, nihil quia recusandae reiciendis sed temporibus.</div>
-                    <div>A eius error esse est illo ipsum provident tempora. Animi?</div>
-                    <div>Aliquid animi beatae commodi dolore neque optio perspiciatis rerum voluptates!</div>
-                    <div>Atque dolor, ducimus eius excepturi nulla quaerat repellendus sequi veniam!</div>
-                    <div>Amet ipsum, maxime nam nisi odio quasi suscipit vero voluptas.</div>
-                    <div>Assumenda at eligendi explicabo fugit itaque optio tempora, vel vero.</div>
-                    <div>Dolor eaque error et inventore quis! Culpa incidunt neque officiis?</div>
-                    <div>Culpa iste libero, maxime praesentium provident quos repudiandae sapiente vel.</div>
-                    <div>At beatae consequatur debitis dolor eos expedita praesentium quisquam tempore?</div>
-                    <div>Ad consequatur est magni molestiae sapiente! Dolorum eum maiores nulla.</div>
-                    <div>Autem ducimus error impedit non placeat quo sit vero? Recusandae.</div>
-                    <div>Culpa distinctio eaque ipsa nam possimus reprehenderit sequi tenetur vero.</div>
-                    <div>Assumenda error inventore ipsa ipsam itaque molestiae quos recusandae tempora.</div>
-                    <div>Amet dicta dolores error laudantium magnam officia rerum veritatis voluptate.</div>
-                    <div>Atque dolorum iure labore magnam neque obcaecati perspiciatis reiciendis. Tempora.</div>
-                    <div>Ad autem consectetur consequuntur illum inventore nostrum optio reprehenderit vitae.</div>
-                    <div>Cupiditate fugiat, fugit? Alias asperiores atque doloribus error reprehenderit! Laboriosam.
-                    </div>
-                    <div>Alias blanditiis consectetur deserunt eligendi expedita. Esse et similique tenetur.</div>
-                    <div>Cum dolorum eaque enim et labore maxime provident quod totam.</div>
-                    <div>Blanditiis corporis ea, incidunt officiis quaerat repellendus rerum? Asperiores, laborum.</div>
-                    <div>Ex libero nisi non? Animi atque ducimus exercitationem quam repudiandae.</div>
-                    <div>Deserunt ex excepturi magni minus nam nostrum pariatur quisquam repudiandae?</div>
-                    <div>Cupiditate, deserunt distinctio esse modi nam omnis quidem repudiandae similique!</div>
-                    <div>Aspernatur, consequuntur doloremque iste itaque nulla optio totam voluptate voluptates.</div>
-                    <div>Eveniet labore officiis quam quibusdam quod. Cupiditate iste odio vitae.</div>
-                    <div>Ab at cum fugiat maxime quis quos. Eaque reiciendis, repellendus.</div>
-                    <div>Ad alias animi dicta hic in iste magnam, quidem quo.</div>
-                    <div>Adipisci aliquid cupiditate eveniet explicabo incidunt, quas sed temporibus! Officiis.</div>
-                    <div>Architecto asperiores atque deleniti deserunt est exercitationem illo saepe, temporibus?</div>
-                    <div>Accusamus aliquid aperiam, architecto fugit ipsum qui suscipit ut veniam!</div>
-                    <div>Aperiam dolor est ipsa magnam nemo placeat quasi soluta vitae?</div>
-                    <div>Aliquid consequatur deleniti, doloribus iste molestiae nihil obcaecati quod saepe.</div>
-                    <div>Aspernatur cum delectus dolorem ex excepturi exercitationem iure placeat reiciendis.</div>
-                    <div>A consequuntur eaque in maxime omnis perferendis rem vel vero?</div>
-                    <div>Aspernatur autem dignissimos pariatur quaerat quasi rem saepe sapiente, voluptatum?</div>
-                    <div>Cupiditate dicta eius explicabo in laboriosam necessitatibus pariatur placeat voluptatum.</div>
-                    <div>Cupiditate dolores harum minima numquam quia recusandae sunt, suscipit velit?</div>
-                    <div>Deleniti dicta earum illum impedit non numquam quidem quisquam ratione?</div>
-                    <div>Consectetur eum quis veritatis. Amet assumenda autem laboriosam minus repellat!</div>
-                    <div>Architecto, culpa dolores dolorum explicabo maxime nam nobis nulla officia.</div>
-                    <div>Accusamus animi ea repudiandae ut vel. Facilis ipsam nihil non?</div>
-                    <div>Aliquam consectetur distinctio esse nostrum perspiciatis, saepe totam? Consequatur,
-                        doloribus?
-                    </div>
-                    <div>Aut cum dolorem eligendi et harum labore maiores necessitatibus possimus.</div>
-                    <div>Hic laborum quaerat repudiandae. Aspernatur doloribus laudantium maiores sed voluptatem.</div>
-                    <div>Adipisci cupiditate doloribus excepturi illo praesentium saepe tempore totam velit.</div>
-                    <div>At atque dolores eum impedit inventore quasi quo tenetur voluptatem?</div>
-                    <div>Accusamus eaque facere harum itaque reiciendis repellat reprehenderit veritatis voluptatem.
-                    </div>
-                    <div>Distinctio, dolorum necessitatibus obcaecati praesentium quas reiciendis sed sequi! Quod.</div>
-                    <div>Commodi esse exercitationem fugit illo iusto laborum nemo perspiciatis. Ipsam.</div>
-                    <div>Ad, aliquid consectetur deleniti doloremque explicabo minus odio quod soluta?</div>
-                    <div>Animi dolor dolores esse facilis magni perferendis quibusdam, quod quos.</div>
-                    <div>Commodi ducimus facere molestiae odit quia sunt suscipit temporibus ullam?</div>
-                    <div>Animi architecto enim laborum laudantium magnam perferendis porro saepe ut!</div>
-                    <div>Delectus facere illum iusto nam officia recusandae rem sapiente sit!</div>
-                    <div>Aliquid est magnam saepe voluptatum. Asperiores dignissimos libero perferendis quaerat!</div>
-                    <div>Aut blanditiis facere minima nesciunt pariatur perspiciatis sed. Earum, explicabo.</div>
-                    <div>Dolor facere in, maiores officiis tenetur voluptatem? Assumenda, consectetur quam?</div>
-                    <div>Accusamus at blanditiis doloremque nobis nostrum pariatur tempore velit voluptatum!</div>
-                    <div>A eaque nemo omnis pariatur perferendis recusandae, rem repudiandae rerum.</div>
-                    <div>Alias beatae, dolorem id impedit laboriosam molestias officiis ratione velit!</div>
-                    <div>Debitis enim illum suscipit temporibus veniam. Aut cum cupiditate deleniti!</div>
-                    <div>Debitis dolores eum eveniet nihil, nobis quae sunt tempora ut?</div>
-                    <div>A aliquam asperiores impedit quas quod! Autem optio quam ullam?</div>
-                    <div>Animi dignissimos ex maxime numquam obcaecati ratione temporibus totam, unde!</div>
-                    <div>Ea eius labore laborum pariatur, provident quasi qui rerum veritatis.</div>
-                    <div>Ipsa nam nulla repellendus tempore voluptatum! At commodi iusto maxime.</div>
-                    <div>Architecto doloremque eligendi neque porro praesentium ratione sunt, tempora veniam!</div>
-                    <div>Animi autem culpa deserunt eaque esse incidunt ipsum sint veritatis!</div>
-                    <div>Deleniti dolor fuga laudantium, praesentium quae quas reiciendis temporibus. Possimus?</div>
-                    <div>Delectus inventore officiis placeat quisquam reiciendis sint. Eaque, fugit voluptatem!</div>
-                    <div>Ad esse eum explicabo minima provident quaerat quisquam suscipit unde.</div>
-                </div>
-
-                <form action="" method="get" class="form-inline">
-                    <div class="form-group">
-                        <input
-                                type="checkbox"
-                                name="ready"
-                                id="ready"
-                                class="form-control"
-                                onclick="this.form.submit()"
-                                {% if app.user.isReady is same as(true) %}checked{% endif %}
-                        >
-                        <label for="ready">J'ai compris !</label>
-                    </div>
-                </form>
-
+                {{ video.description|raw }}
             </div>
             <div class="btn-show-more">
                 <button onclick="collapse()" class="btn" id="video-btn-show-more">Voir tout</button>
             </div>
         </div>
-
-        {% if app.user.isReady %}
+        {% if (is_granted('ROLE_ADMIN')) %}
             <div class="btn-container">
-                <a href="{{ path('ressources_quizz') }}"><button class="btn btn-round-darkblue">Passer le test</button></a>
+                <a href="{{ path('admin_video_edit') }}">
+                    <button class="btn btn-round-darkblue">Modifier le contenu</button>
+                </a>
             </div>
+        {% else %}
+            {% if (app.user.isReady) %}
+                <div class="btn-container">
+                    <a href="{{ path('ressources_quizz') }}">
+                        <button class="btn btn-round-darkblue">Passer le test</button>
+                    </a>
+                </div>
+            {% endif %}
+            <form action="" method="get" class="form-inline">
+                <div class="form-group check-video">
+                    <input
+                            type="checkbox"
+                            name="ready"
+                            id="ready"
+                            class="form-control"
+                            onclick="this.form.submit()"
+                            {% if app.user.isReady is same as(true) %}checked{% endif %}
+                    >
+                    <label for="ready">J'ai compris !</label>
+                </div>
+            </form>
         {% endif %}
-
     </div>
 {% endblock %}
 

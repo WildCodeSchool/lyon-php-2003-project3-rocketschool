@@ -1,11 +1,12 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
+
 // GENERAL CSS
 body {
     background-color: $primary-color;
     width: 100%;
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
 }
 
@@ -13,6 +14,18 @@ header {
     width: 100%;
     position: fixed;
     top: 0;
+}
+
+blockquote
+{
+    font-style: italic;
+    margin-left: 32px;
+    border-left: 4px solid #CCC;
+    padding: 10px;
+
+    p {
+        margin-bottom: 0;
+    }
 }
 
 .LT_page_name {
@@ -34,6 +47,7 @@ header {
 .LT_page_name h2 {
     //margin-top: 80px;
     font-family: 'Raleway Bold';
+    //margin-top: 80px;
     font-weight: bold;
     //margin-block-start: 0;
     margin-block-end: 0;
@@ -46,6 +60,10 @@ header {
     font-weight: bold;
     font-size: 18px;
     text-align: center;
+}
+
+.navbar {
+    border-bottom: solid $secondary-color;
 }
 
 .navbar-nav {
@@ -73,21 +91,19 @@ header {
 
 footer {
 
-    /*Insert your content html for push footer at end*/
     display: block;
     width: 100%;
-    bottom: 0;
     background-color: $secondary-color;
+    position: absolute;
 }
 
 footer a {
     color: white;
-    font-family: 'Raleway Bold';
 }
 
 // BUTTONS
 .btn-round-darkblue {
-    margin-top: 15px;
+    margin-top: 30px;
     background-color: $dark-blue;
     color: $primary-color;
     border-radius: 30px;
@@ -100,20 +116,29 @@ footer a {
 
 .btn-show-more {
     width: 110px;
+    height: 30px;
     text-align: center;
-    box-shadow: black 0px 0px 5px 0px;
     margin: auto;
-    border-radius: 0 0 5px 5px;
+    transition: border-bottom 0.5s;
+}
+
+.btn-show-more:hover {
+    border-bottom: solid $dark-blue 1px;
 }
 
 .btn:focus {
     box-shadow: none;
 }
 
+.form-section {
+    margin: auto;
+}
+
 .content-container {
     width: 80%;
     margin: auto;
     box-shadow: black 0px 15px 15px -5px;
+    padding-bottom: 70px;
 
     iframe {
         width: 80%;
@@ -129,6 +154,7 @@ footer a {
 
 // VIDEO SECTION
 .video-container {
+    margin-top: 20px;
     padding: 20px;
     text-align: center;
 }
@@ -140,23 +166,47 @@ footer a {
 .video-script-container {
 
     #video-description-id {
-        padding: 20px 0px;
+        padding: 20px 25px;
         width: 75%;
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        height: 100px;
-        opacity: 0.8;
-        transition: opacity 1s;
-        box-shadow: inset black 0px -20px 20px -20px;
-
-        form label {
-            margin-left: 10px;
-        }
+        height: 120px;
+        box-shadow: inset black 0px -20px 55px -30px;
+        border-radius: 5px;
     }
 
     #video-description-id.is-active {
         height: auto;
+    }
+}
+
+.check-video {
+    margin: auto;
+
+    label {
+        padding: 5px;
+    }
+}
+
+// VIDEO EDIT SECTION
+.video-form-label {
+    margin: 0;
+    font-weight: bold;
+}
+
+.cke_reset {
+    min-height: 500px;
+}
+
+.ckeditor {
+    margin: 10px auto;
+
+    a.cke_button, .cke_combo {
+        position: unset;
+    }
+
+    a.cke_button_disabled .cke_button_icon {
         opacity: 1;
     }
 }
@@ -185,6 +235,10 @@ footer a {
 
     .container {
         max-width: 100%;
+    }
+
+    .table {
+        width: 80%;
     }
 
     .navbar-light .navbar-nav .nav-link {
@@ -264,6 +318,7 @@ footer a {
 
 #login_form, #register_form {
     margin: 50px auto;
+    position: unset;
 
     button {
         display: block;
@@ -274,13 +329,13 @@ footer a {
 
     .group_input {
         margin: 0 auto;
-        width: 70%;
+        max-width: 300px;
         display: flex;
         flex-direction: column;
         align-content: center;
     }
 
-    .form-control {
+    .form-control{
         margin: 10px auto;
         height: 50px;
     }
@@ -299,7 +354,6 @@ footer a {
     h5, h2 {
         text-align: center;
         margin-bottom: 10px;
-        font-family: 'Raleway Bold', serif;
     }
 
     .col-md-3 {
@@ -341,4 +395,38 @@ footer a {
 
 .LT_page_name_ter {
     height: 100px;
+}
+
+//Administration_users
+.user_table {
+    width: 100%;
+    height: 400px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table td {
+    text-align: center;
+    background-color: whitesmoke;
+    border-bottom: 1px solid $third-color;
+    color: black;
+    font-family: 'Raleway';
+}
+
+.table td:hover {
+    background-color: $primary-color;
+    border-bottom: 1px solid $secondary-color;
+}
+
+.table .thead-light th {
+    text-align: center;
+    color: black;
+    font-family: 'Raleway';
+}
+
+.table_user {
+    width: 80%;
 }
