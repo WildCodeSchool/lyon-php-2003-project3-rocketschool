@@ -1,17 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <script src="https://cdn.ckeditor.com/4.14.0/full-all/ckeditor.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700;900&display=swap" rel="stylesheet">
+        {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
+            <!-- Header + Navigation with routes  -->
+            {% if app.user is not null %}
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href={{ path('home') }}><img width="150px" src="https://rocket-school.com/wp-content/uploads/2019/03/rocket-school.png" alt="fusée sous forme de logo de la rocket school"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('ressources_index') }}>Vidéo</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a
+                                                class="nav-link {% if app.user.isReady is same as(false) %}disabled{% endif %}"
+                                                href={{ path('ressources_quizz') }}>
+                                            Quiz
+
+                                        </a>
+                                    </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ path('ressources_faq') }}>FAQ</a>
+                                </li>
+                                <li class="nav-item" >
+                                    <a id="nav-link-profil" class="nav-link"  href={{ path('profil') }}>Profil</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="LT_logo_profil" class="navbar-brand"  href={{ path('profil') }}>
+                            <img
+                                    width="50px"
+                                    src="https://www.tours-fondettes-agrocampus.fr/wp-content/themes/groscampus/images/avatar.png"
+                                    alt="">
+                        </a>
+                    </nav>
+                </header>
+            {% endif %}
+            {% block body %}{% endblock %}
+
+            {% block javascripts %}
+            {% endblock %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+            <!-- Footer -->
+            <footer class="page-footer font-small blue">
+
+                <div class="footer-copyright text-center py-3">
+                    <a href="">contact@rocket-school.com</a>
+                </div>
+            </footer>
     </body>
 </html>

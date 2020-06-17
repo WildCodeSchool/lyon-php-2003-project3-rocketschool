@@ -1,9 +1,381 @@
 @import "vars";
+@import "~bootstrap/scss/bootstrap";
 
+
+// GENERAL CSS
 body {
-    background-color: $secondary-color;
+    background-color: $primary-color;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
 }
 
-a {
-    color: $warm-color;
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+blockquote
+{
+    font-style: italic;
+    margin-left: 32px;
+    border-left: 4px solid #CCC;
+    padding: 10px;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.LT_page_name {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $secondary-color;
+    height: 200px;
+    color: white;
+}
+
+.LT_page_name h2 {
+    margin-top: 80px;
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    width: 100%;
+}
+
+.navbar {
+    border-bottom: solid $secondary-color;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+
+footer {
+
+    display: block;
+    width: 100%;
+    background-color: $secondary-color;
+    position: absolute;
+}
+
+footer a {
+    color: white;
+}
+
+// BUTTONS
+.btn-round-darkblue {
+    margin-top: 30px;
+    background-color: $dark-blue;
+    color: $primary-color;
+    border-radius: 30px;
+}
+
+.btn-round-darkblue:hover {
+    background-color: $dark-blue;
+    color: $secondary-color;
+}
+
+.btn-show-more {
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    margin: auto;
+    transition: border-bottom 0.5s;
+}
+
+.btn-show-more:hover {
+    border-bottom: solid $dark-blue 1px;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.form-section {
+    margin: auto;
+}
+
+.content-container {
+    width: 80%;
+    margin: auto;
+    box-shadow: black 0px 15px 15px -5px;
+    padding-bottom: 70px;
+
+    iframe {
+        width: 80%;
+        max-width: 700px;
+        height: 350px;
+    }
+
+    .btn-container {
+        padding: 20px;
+        text-align: center
+    }
+}
+
+// VIDEO SECTION
+.video-container {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.video-title-container {
+    text-align: center;
+}
+
+.video-script-container {
+
+    #video-description-id {
+        padding: 20px 25px;
+        width: 75%;
+        color: #1d2124;
+        margin: auto;
+        overflow: hidden;
+        height: 120px;
+        box-shadow: inset black 0px -20px 55px -30px;
+        border-radius: 5px;
+    }
+
+    #video-description-id.is-active {
+        height: auto;
+    }
+}
+
+.check-video {
+    margin: auto;
+
+    label {
+        padding: 5px;
+    }
+}
+
+// VIDEO EDIT SECTION
+.video-form-label {
+    margin: 0;
+    font-weight: bold;
+}
+
+.cke_reset {
+    min-height: 500px;
+}
+
+.ckeditor {
+    margin: 10px auto;
+
+    a.cke_button, .cke_combo {
+        position: unset;
+    }
+
+    a.cke_button_disabled .cke_button_icon {
+        opacity: 1;
+    }
+}
+
+// DESKTOP AND LARGE SCREEN
+@media (min-width: 940px) {
+
+    .container {
+        max-width: 100%;
+    }
+
+    .table {
+        width: 80%;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        width: 200px;
+        letter-spacing: 2px;
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link {
+        width: 87%;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: underline;
+        color: black;
+    }
+
+    #nav-link-profil {
+        display: none;
+    }
+}
+
+// TABLET AND SMALL SCREEN
+@media screen and (max-width: 940px) {
+
+    li.nav-item {
+        border-bottom: solid lightgrey;
+    }
+
+    li.nav-item:hover {
+        background-color: $secondary-color;
+        border-bottom: solid white;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .LT_logo_profil {
+        display: none;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: none;
+        color: white;
+        border-bottom: none;
+    }
+
+    // VIDEO SECTION
+    .content-container {
+        iframe {
+            height: 250px;
+        }
+    }
+}
+
+// PHONE AND EXTRA SMALL SCREEN
+@media screen and (max-width: 720px) {
+
+    // VIDEO SECTION
+    .content-container {
+        width: 100%;
+
+        iframe {
+            height: 160px;
+        }
+    }
+}
+
+#login_form, #register_form {
+    margin: 50px auto;
+    position: unset;
+
+    button {
+        display: block;
+        margin: 30px auto;
+        padding: 10px 50px;
+        border-radius: 30px;
+    }
+
+    .group_input {
+        margin: 0 auto;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .form-control{
+        margin: 10px auto;
+        height: 50px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin: 80px auto;
+    }
+}
+
+#login_form {
+    h5, h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .col-md-3 {
+        margin: 0 auto;
+    }
+}
+
+#register_form {
+    .col-md-3 {
+        margin: 50px auto;
+    }
+
+    ul {
+        padding-left: 5px;
+
+        li {
+            list-style-type: none;
+            color: darkred;
+            font-size: 0.8em;
+        }
+    }
+}
+
+// 'Sub-classes' of .LT_page_name
+// for login & register pages
+.LT_page_name_ter, .LT_page_name_bis {
+    background-color: #4EB6E8;
+    color: white;
+
+    h2 {
+        text-align: center;
+        padding-top: 30px;
+    }
+}
+
+.LT_page_name_bis {
+    height: 150px;
+}
+
+.LT_page_name_ter {
+    height: 100px;
+}
+
+//Administration_users
+.user_table {
+    width: 100%;
+    height: 400px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.table td {
+    text-align: center;
+    background-color: whitesmoke;
+    border-bottom: 1px solid $third-color;
+    color: black;
+    font-family: 'Raleway';
+}
+
+.table td:hover {
+    background-color: $primary-color;
+    border-bottom: 1px solid $secondary-color;
+}
+
+.table .thead-light th {
+    text-align: center;
+    color: black;
+    font-family: 'Raleway';
+}
+
+.table_user {
+    width: 80%;
 }
