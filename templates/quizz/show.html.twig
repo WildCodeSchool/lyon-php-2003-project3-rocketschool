@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quizz{% endblock %}
+
+{% block body %}
+    <div class="LT_page_name">
+        <h2>{{ quizz.name }}</h2>
+    </div>
+
+<hr/>
+    <table class="table content-container">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Questions / solutions</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>
+                    <div class="question-title">{{ question.title }}</div>
+                    <div class="question-title"><em>{{ question.solution }}</em></div>
+                </td>
+                <td>
+                    <a href="{{ path('question_edit', {'id': question.id}) }}">Edition</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-quizz" href="{{ path('question_new') }}" >Ajouter une question</a>
+
+    <div>
+        <a class="btn btn-quizz" href="{{ path('quizz_index') }}">Retour à la liste des quizzs</a>
+
+        <a  class="btn btn-quizz" href="{{ path('quizz_edit', {'id': quizz.id}) }}">edit</a>
+
+        {{ include('quizz/_delete_form.html.twig') }}
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Quizz{% endblock %}
+
+{% block body %}
+    <div class="LT_page_name">
+        <h2>Créer un nouveau quizz</h2>
+    </div>
+
+    {{ include('quizz/_form.html.twig') }}
+
+    <a href="{{ path('quizz_index') }}">Retour à la liste</a>
+{% endblock %}

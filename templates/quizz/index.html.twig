@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quizz index{% endblock %}
+
+{% block body %}
+    <h1 class="quizz-title">Quizz index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre du quizz</th>
+                <th>En ligne</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quizz in quizzs %}
+            <tr>
+
+                <td>{{ quizz.name }}</td>
+                <td>{{ quizz.isEnable ? 'Yes' : 'No' }}</td>
+                <td id="quizz-action">
+
+                    <a href="{{ path('quizz_show', {'id': quizz.id}) }}">show</a>
+                    <a href="{{ path('quizz_edit', {'id': quizz.id}) }}">edit</a>
+                    {{ include('quizz/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a type="button" class="btn-quizz" href="{{ path('quizz_new') }}">Créer un nouveau quizz</a>
+{% endblock %}
