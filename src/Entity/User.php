@@ -51,6 +51,12 @@ class User implements UserInterface
      */
     private $isReady = false;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Program::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $program;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -164,4 +170,17 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getProgram(): ?Program
+    {
+        return $this->program;
+    }
+
+    public function setProgram(?Program $program): self
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
 }

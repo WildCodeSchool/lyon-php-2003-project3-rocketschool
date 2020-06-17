@@ -5,14 +5,25 @@
 {% block body %}
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
+
     </div>
+
+
     <section class="user_table">
+        <form class="form-inline ">
+            <input class="form-control form-control-sm mr-3 w-15" type="text" placeholder="Search"
+                   aria-label="Search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+        </form>
         <table class="table table-hover table_user">
             <thead class="thead-light">
                 <tr>
                     <th class="th" scope="col">Prénom</th>
                     <th class="th" scope="col">Nom</th>
                     <th class="th" scope="col">Mail</th>
+                    <th class="th" scope="col">Programme</th>
+                    <th class="th" scope="col">1er essai</th>
+                    <th class="th" scope="col">2eme essai</th>
                 </tr>
             </thead>
             <tbody class="thead-light">
@@ -23,9 +34,14 @@
                     <td> {{ user.firstname }} </td>
                     <td> {{ user.lastname }} </td>
                     <td> {{ user.email }} </td>
+                    <td> {{ user.program.name}} </td>
+                    {% for score in score %}
+                    <td> {{ score.result}} % </td>
+                    {% endfor %}
                 </tr>
                 {% endif %}
             {% endfor %}
+
 
             </tbody>
         </table>

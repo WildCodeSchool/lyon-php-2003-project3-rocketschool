@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\QuizResult;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Entity\Video;
@@ -29,7 +30,12 @@ class AdminController extends AbstractController
     {
         $users = $this->getDoctrine()->getRepository(User::class)
             ->findAll();
-        return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats', 'users' => $users]);
+        dump($users);
+        $score = $this->getDoctrine()->getRepository(QuizResult::class)
+            ->findAll();
+        dump($score);
+        return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats',
+            'users' => $users, 'score' => $score]);
     }
 
     /**
