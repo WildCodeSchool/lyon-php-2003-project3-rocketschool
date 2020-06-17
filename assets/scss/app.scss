@@ -263,6 +263,18 @@ footer a {
     #nav-link-profil {
         display: none;
     }
+/////////////////////////////////////////////////////////////////////////////////////
+    #navbarAdminNavDropdown .navbar-nav {
+        background-color: $dark-blue;
+        .nav-link {
+            //border-bottom: 1px solid white;
+            //width: 100%;
+        }
+        .nav-link:hover {
+            background-color: $secondary-color;
+            color : $dark-blue;
+        }
+    }
 }
 
 // TABLET AND SMALL SCREEN
@@ -293,6 +305,18 @@ footer a {
         text-decoration: none;
         color: white;
         border-bottom: none;
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////
+    #navbarAdminNavDropdown .navbar-nav {
+        background-color: $dark-blue;
+        .nav-link {
+            border-bottom: 1px solid $dark-blue;
+            //width: 100%;
+        }
+        .nav-link:hover {
+            background-color: $secondary-color;
+            color : $dark-blue;
+        }
     }
 
     // VIDEO SECTION
