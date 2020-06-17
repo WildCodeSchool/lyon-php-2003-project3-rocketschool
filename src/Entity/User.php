@@ -53,7 +53,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Program::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $program;
 
