@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Edition de question{% endblock %}
-{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
 {% block body %}
+
 
     <div class="quizz-title">
     <h1>Edition de question</h1>
@@ -14,7 +15,10 @@
 
     {{ include('question/_delete_form.html.twig') }}
 {% endblock %}
-{% block javascripts %}
-    {{ include ('_js.html.twig') }}
 
-{% endblock %}
+    {% block javascripts %}
+
+        {{ include ('question/_methods_question.html.twig') }}
+    {% endblock %}
+
+

@@ -1,4 +1,32 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button >{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
+
+{{ dump(form.questions) }}
+<div class="container">
+
+    {{ form_label(form.name, 'Titre du quizz') }}
+
+    {{ form_row(form.name) }}
+{#    {{ form_row(form.solution) }}#}
+    <h1>Questions</h1>
+    <ul class="question"
+        id="question-fields-list"
+        data-prototype="{{ form_row(form.questions.vars.prototype)|e }}"
+        data-widget-questions="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ form.questions|length }}">
+        {% for question in form.questions %}
+            <li>
+
+                {{ form_row(question) }}
+                <h2>Proposition de réponse</h2>
+
+
+            </li>
+
+        {% endfor %}
+    </ul>
+
+{#    {{ form_row(form.questions) }}#}
+
+</div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+

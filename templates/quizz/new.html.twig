@@ -6,8 +6,14 @@
     <div class="LT_page_name">
         <h2>Créer un nouveau quizz</h2>
     </div>
-
+{{ dump(form) }}
     {{ include('quizz/_form.html.twig') }}
 
     <a href="{{ path('quizz_index') }}">Retour à la liste</a>
+{% endblock %}
+{% block javascripts %}
+    {{ include ('question/_methods_question.html.twig') }}
+
+
+
 {% endblock %}

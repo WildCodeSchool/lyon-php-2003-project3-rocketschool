@@ -1,6 +1,9 @@
 <script type="text/javascript">
 
-   // add-collection-widget.js
+    function addPropositionFormDeleteLink($) {
+    }
+
+    // add-collection-widget.js
     jQuery(document).ready(function () {
 
         jQuery('.add-another-collection-widget').click(function (e) {
@@ -8,6 +11,7 @@
                 .attr('data-list-selector'));
             let counter = list.data('widget-counter') || list.children().length;
             let newWidget = list.attr('data-prototype');
+            newWidget = newWidget.replace(/__name__label__/g,'reponse ' + counter+1);
             newWidget = newWidget.replace(/__name__/g, counter);
             counter++;
             list.data('widget-counter', counter);
@@ -43,10 +47,11 @@
             // Get the data-prototype explained earlier
             const prototype = $collectionHolder.data('prototype');
 
-            const index = $collectionHolder.data('index');
+            const index = parseInt($collectionHolder.data('index'));
 
             let newForm = prototype;
 
+            newForm = newForm.replace( /__name__label__/g,'reponse ' + (index+1));
             newForm = newForm.replace(/__name__/g, index);
 
             $collectionHolder.data('index', index + 1);

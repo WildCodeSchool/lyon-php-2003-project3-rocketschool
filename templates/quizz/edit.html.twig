@@ -6,12 +6,20 @@
     <div class="LT_page_name">
         <h2>Edition {{ quizz.name }}</h2>
     </div>
+    <div class="content-container">
 
     {{ include('quizz/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 
+        <a href="{{ path('quizz_show', {'id': quizz.id}) }}">Voir les questions du Quizz</a>
+
+    </div>
 
 
     <a href="{{ path('quizz_index') }}">Retour à la liste des quizzs</a>
 
     {{ include('quizz/_delete_form.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    {{ include ('quizz/_methods_quizz.html.twig') }}
+    {{ include ('question/_methods_question.html.twig') }}
 {% endblock %}
