@@ -3,11 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -32,16 +30,15 @@ class Question
     private $solution;
 
     /**
-     * @var DateTime
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="question", orphanRemoval=true, cascade={"persist"})
      */
     private $reponse;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
+     */
+    private $quizz;
+
 
     public function __construct()
     {
@@ -77,11 +74,6 @@ class Question
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
 
     /**
      * @return Collection|Reponse[]
@@ -110,6 +102,18 @@ class Question
                 $reponse->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuizz(): ?Quizz
+    {
+        return $this->quizz;
+    }
+
+    public function setQuizz(?Quizz $quizz): self
+    {
+        $this->quizz = $quizz;
 
         return $this;
     }

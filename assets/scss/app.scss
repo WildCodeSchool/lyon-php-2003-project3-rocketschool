@@ -180,13 +180,22 @@ footer a {
         opacity: 1;
     }
 }
-// QUIZZ INDEX
+// QUIZZ ADMIN
 .quizz-title{
-    margin-top: 80px;
+    margin-top: 100px;
+    text-align: center;
 }
-.question-title{
-    text-align: start;
+
+.btn-quizz{
+    background-color: $dark-blue;
+    color: $primary-color;
+    border-radius: 30px;
 }
+.btn-quizz:hover {
+    background-color: $dark-blue;
+    color: $secondary-color;
+}
+
 
 // DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {

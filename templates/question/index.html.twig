@@ -3,30 +3,28 @@
 {% block title %}Question index{% endblock %}
 
 {% block body %}
-<div class="quizz-title">
-    <h1>Liste des questions</h1>
-</div>
+    <div class="LT_page_name">
+        <h2>Liste des questions</h2>
+    </div>
 
-    <table class="table">
+    <table class="table content-container">
         <thead>
             <tr>
+                <th></th>
                 <th>Questions / solutions</th>
-
-                <th>Date de création</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for question in questions %}
             <tr>
-                <td class="question-title">
-                    <div>{{ question.title }}</div>
-                    <div><em>{{ question.solution }}</em></div>
-                </td>
-
-                <td>{{ question.createdAt ? question.createdAt|date('d-M-Y') : '' }}</td>
+                <td>{{ question.id }}</td>
                 <td>
-                    <a href="{{ path('question_edit', {'id': question.id}) }}">edit</a>
+                    <div class="quizz-col-start">{{ question.title }}</div>
+                    <div class="quizz-col-start"><em>{{ question.solution }}</em></div>
+                </td>
+                <td>
+                    <a href="{{ path('question_edit', {'id': question.id}) }}">Edition</a>
                 </td>
             </tr>
         {% else %}

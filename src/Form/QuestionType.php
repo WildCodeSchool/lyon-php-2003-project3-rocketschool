@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Question;
+use App\Entity\Quizz;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,6 +16,10 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('quizz', EntityType::class, [
+                'choice_label'=>'name',
+                'class'=>Quizz::class
+            ])
             ->add('title', TextType::class, [
                 'label'=>'Question'
             ])
@@ -23,7 +29,9 @@ class QuestionType extends AbstractType
                 'allow_add'=>true,
                 'allow_delete'=>true,
                 'prototype'=>true,
-                'by_reference' => false
+                'by_reference' => false,
+                'required'=>false,
+                'label'=>false
             ])
         ;
     }

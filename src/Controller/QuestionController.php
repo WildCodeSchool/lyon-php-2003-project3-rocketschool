@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Entity\Quizz;
 use App\Entity\Reponse;
 use App\Form\QuestionType;
 use App\Form\ReponseType;
@@ -43,11 +44,11 @@ class QuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
+            $quizz= $question->getQuizz();
             $entityManager->persist($question);
             $entityManager->flush();
 
-            return $this->redirectToRoute('question_index');
+            return $this->render('quizz/show.html.twig', ['id'=>$quizz->getId()]);
         }
 
         return $this->render('question/new.html.twig', [
