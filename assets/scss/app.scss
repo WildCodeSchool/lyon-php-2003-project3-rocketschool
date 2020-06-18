@@ -187,8 +187,15 @@ footer a {
 
 // FAQ SECTION
 .faq-search {
-    width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     margin: 30px auto;
+
+    .form-control {
+        margin: 10px;
+        width: 300px;
+    }
 }
 
 .faq-no-result {
