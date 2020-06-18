@@ -29,6 +29,13 @@
             </div>
         {{ form_end(form) }}
         {% if faq is not empty %}
+            <div id="faq-result-length">
+                {% if faq|length == 1 %}
+                    <small>1 résultat</small>
+                {% else %}
+                    <small>{{ faq|length }} résultats</small>
+                {% endif %}
+            </div>
             {% for card in faq %}
                 <div class="faq-card">
                     <h3>{{ card.question }}</h3>
