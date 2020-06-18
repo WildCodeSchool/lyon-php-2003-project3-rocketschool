@@ -145,13 +145,14 @@ footer a {
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        height: 120px;
+        max-height: 120px;
         box-shadow: inset black 0px -20px 55px -30px;
         border-radius: 5px;
     }
 
     #video-description-id.is-active {
-        height: auto;
+        min-height: 120px;
+        max-height: none;
     }
 }
 
