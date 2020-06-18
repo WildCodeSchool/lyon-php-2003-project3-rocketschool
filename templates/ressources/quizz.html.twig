@@ -6,4 +6,32 @@
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
+<form method="post">
+    <div class="container-fluid quizz-container" id="quizz">
+        {% for question in questions %}
+
+            <div class="card w-auto quizz-card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ question.title }}</h3>
+                    {% for reponse in question.reponse  %}
+                    <ul>
+                        <li class="card-text quizz-text">
+                            <label class="quizz-radio">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+
+
+                            <P>{{ reponse.proposition }}</P>
+                        </li>
+                    </ul>
+                    {%  endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</form>
+
+
 {% endblock %}
