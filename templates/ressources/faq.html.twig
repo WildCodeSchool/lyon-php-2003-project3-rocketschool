@@ -6,4 +6,34 @@
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
+    <div class="content-container">
+        {{ form_start(form, {
+            'attr': {
+                'class': 'form-group faq-search',
+                'novalidate': 'novalidate'
+            }}) }}
+            {{ form_widget(form.searchField, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Rechercher'
+                }
+            }) }}
+        {{ form_end(form) }}
+        <div class="faq-delimiter"></div>
+        {% if faq is not empty %}
+            {% for card in faq %}
+                <div class="faq-card">
+                    <h3>{{ card.question }}</h3>
+                    <div class="faq-answer-container">
+                        <p>{{ card.answer }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="faq-card">
+                <p class="faq-no-result">Aucun résultat</p>
+            </div>
+        {% endif %}
+        <div class="faq-delimiter"></div>
+    </div>
 {% endblock %}
