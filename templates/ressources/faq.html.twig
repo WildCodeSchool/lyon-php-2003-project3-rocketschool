@@ -18,6 +18,12 @@
                     'placeholder': 'Rechercher'
                 }
             }) }}
+            {{ form_widget(form.category, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Rechercher'
+                }
+            }) }}
         {{ form_end(form) }}
         <div class="faq-delimiter"></div>
         {% if faq is not empty %}

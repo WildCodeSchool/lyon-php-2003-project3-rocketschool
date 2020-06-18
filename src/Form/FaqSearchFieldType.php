@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Faq;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +17,11 @@ class FaqSearchFieldType extends AbstractType
         $builder
             ->setMethod('GET')
             ->add('searchField')
+            ->add('category', EntityType::class, [
+                'placeholder' => 'Toutes les catégories',
+                'class' => Category::class,
+                'choice_label' => 'name',
+            ])
         ;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Faq;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,17 +22,28 @@ class FaqRepository extends ServiceEntityRepository
 
     /**
      * @param string $keyword
+     * @param Category $category
      * @return Faq[]
      */
-    public function findBySomeField($keyword): array
+    public function findBySomeField($keyword, $category): array
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.question like :val')
-            ->orWhere('f.answer like :val')
-            ->setParameter('val', '%' . $keyword . '%')
-            ->getQuery()
-            ->getResult()
-        ;
+        if (!empty($category)) {
+            $query = $this->createQueryBuilder('f')
+                ->andWhere('f.question like :keyword')
+                ->orWhere('f.answer like :keyword')
+                ->andwhere('f.category = :category')
+                ->setParameters([
+                    'keyword' => '%' . $keyword . '%',
+                    'category' => $category->getId(),
+                ]);
+        } else {
+            $query = $this->createQueryBuilder('f')
+                ->andWhere('f.question like :keyword')
+                ->orWhere('f.answer like :keyword')
+                ->setParameter('keyword', '%' . $keyword . '%');
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 
