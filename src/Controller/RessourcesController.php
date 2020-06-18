@@ -24,11 +24,6 @@ class RessourcesController extends AbstractController
 
     private $faqRepository;
 
-    public function __construct(FaqRepository $faqRepository)
-    {
-        $this->faqRepository = $faqRepository;
-    }
-
     /**
      * @Route("/", name="index")
      * @param EntityManagerInterface $entityManager
@@ -67,12 +62,15 @@ class RessourcesController extends AbstractController
 
     /**
      * @param Request $request
+     * @param FaqRepository $faqRepository
      * @return Response
      * @Route("/faq", name="faq")
      */
 
-    public function faq(Request $request): Response
+    public function faq(Request $request, FaqRepository $faqRepository): Response
     {
+        $this->faqRepository = $faqRepository;
+
         $faq = $this->getDoctrine()
             ->getRepository(Faq::class)
             ->findAll();
