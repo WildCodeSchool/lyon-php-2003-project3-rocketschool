@@ -58,9 +58,10 @@ class RessourcesController extends AbstractController
             $quizz= $this->getDoctrine()
                 ->getRepository(Quizz::class)
                 ->findOneBy(['isEnable'=>true]);
+
             $questions= $this->getDoctrine()
                 ->getRepository(Question::class)
-                ->findBy(['quizz'=>$quizz->getId()]);
+                ->findBy(['quizz'=>1]);
             $reponses =$this->getDoctrine()
                 ->getRepository(Reponse::class)
                 ->findAll();

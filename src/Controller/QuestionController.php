@@ -44,11 +44,10 @@ class QuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $quizz= $question->getQuizz();
             $entityManager->persist($question);
             $entityManager->flush();
 
-            return $this->render('quizz/show.html.twig', ['id'=>$quizz->getId()]);
+            return $this->render('quizz/show.html.twig', ['id'=>1]);
         }
 
         return $this->render('question/new.html.twig', [
