@@ -25,13 +25,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-
-    //request to display the table of candidates
     public function index()
     {
-        $user = $this->getDoctrine()->getRepository(User::class)
+        $users = $this->getDoctrine()->getRepository(User::class)
             ->findAll();
-        return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats', 'user' => $user]);
+        return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats', 'users' => $users]);
     }
 
     /**
