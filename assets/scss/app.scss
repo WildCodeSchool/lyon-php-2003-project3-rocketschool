@@ -195,6 +195,17 @@ footer a {
     .form-control {
         margin: 10px;
         width: 300px;
+        border-bottom: solid $dark-blue;
+    }
+
+    .faq-form-btn-container {
+        width: 100%;
+        text-align: center;
+
+        .btn-round-darkblue {
+            margin-top: 20px;
+            width: 230px;
+        }
     }
 }
 
@@ -203,19 +214,13 @@ footer a {
     text-align: center;
 }
 
-.faq-delimiter {
-    border-bottom: solid $secondary-color;
-    margin: auto;
-    width: 70%;
-    height: 10px;
-}
-
 .faq-card {
     padding: 15px;
     margin: 20px auto;
     max-width: 600px;
     border-radius: 5px;
     box-shadow: black 0px 0px 15px -5px;
+    border-top: solid $dark-blue;
 
     h3 {
         margin: 0;

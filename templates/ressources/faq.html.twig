@@ -24,8 +24,10 @@
                     'placeholder': 'Rechercher'
                 }
             }) }}
+            <div class="faq-form-btn-container">
+                <button type="submit" class="btn btn-round-darkblue">Rechercher</button>
+            </div>
         {{ form_end(form) }}
-        <div class="faq-delimiter"></div>
         {% if faq is not empty %}
             {% for card in faq %}
                 <div class="faq-card">
@@ -40,6 +42,5 @@
                 <p class="faq-no-result">Aucun résultat</p>
             </div>
         {% endif %}
-        <div class="faq-delimiter"></div>
     </div>
 {% endblock %}
