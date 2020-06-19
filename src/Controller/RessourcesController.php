@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Proposition;
 use App\Entity\Quizz;
 use App\Entity\Video;
+use App\Repository\PropositionRepository;
 use App\Repository\QuizzRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
@@ -56,7 +58,13 @@ class RessourcesController extends AbstractController
     {
         $quizz = $quizzRepository->findOneBy(['isEnable' => true]);
 
-        return $this->render('ressources/quizz.html.twig', ['page_name' => 'Quizz', 'quizz'=>$quizz]);
+
+        return $this->render('ressources/quizz.html.twig', [
+            'page_name' => 'Quizz',
+            'quizz'=>$quizz,
+
+
+        ]);
     }
 
     /**
