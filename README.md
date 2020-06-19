@@ -31,9 +31,13 @@ It's symfony website-skeleton project with some additional tools to validate cod
 3. Run `yarn install`
 
 ### Working
+1. Copy paste `.env` in new file `.env.local` configure your mysql database
+2. Run `php bin/console doctrine:migration:migrate` to set the database
+3. Run `php bin/console doctrine:fixtures:load` to load fixtures (make sur you have Faker required, if you don't, Run `composer req  --dev fzaninotto/faker
+`)
 
-1. Run `symfony server:start` to launch your local php web server
-2. Run `yarn run dev --watch` to launch your local server for assets
+4. Run `symfony server:start` to launch your local php web server
+5. Run `yarn run dev --watch` to launch your local server for assets
 
 ### Testing
 
