@@ -41,7 +41,7 @@ class AdminController extends AbstractController
     {
         $video = $this->getDoctrine()
             ->getRepository(Video::class)
-            ->find(1);
+            ->findOneBy([]);
 
         $form = $this->createForm(VideoEditType::class, $video);
         $form->handleRequest($request);
