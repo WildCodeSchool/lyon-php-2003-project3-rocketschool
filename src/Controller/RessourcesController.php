@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Quizz;
 use App\Entity\Video;
+use App\Repository\QuizzRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -47,10 +49,14 @@ class RessourcesController extends AbstractController
 
     /**
      * @Route("/quizz", name="quizz")
+     * @param QuizzRepository $quizzRepository
+     * @return Response
      */
-    public function quizz()
+    public function quizz(QuizzRepository $quizzRepository)
     {
-        return $this->render('ressources/quizz.html.twig', ['page_name' => 'Quizz']);
+        $quizz = $quizzRepository->findOneBy(['isEnable' => true]);
+
+        return $this->render('ressources/quizz.html.twig', ['page_name' => 'Quizz', 'quizz'=>$quizz]);
     }
 
     /**

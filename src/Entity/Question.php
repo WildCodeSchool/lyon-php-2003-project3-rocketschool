@@ -40,6 +40,12 @@ class Question
      */
     private $propositions;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $questionOrder;
+
+
     public function __construct()
     {
         $this->propositions = new ArrayCollection();
@@ -113,6 +119,18 @@ class Question
                 $proposition->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuestionOrder(): ?int
+    {
+        return $this->questionOrder;
+    }
+
+    public function setQuestionOrder(?int $questionOrder): self
+    {
+        $this->questionOrder = $questionOrder;
 
         return $this;
     }
