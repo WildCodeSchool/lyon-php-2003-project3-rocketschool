@@ -231,7 +231,8 @@ footer a {
 //  end  of tests
 
 // DESKTOP AND LARGE SCREEN
-@media (min-width: 940px) {
+//@media (min-width: 940px) {
+@media (min-width: 992px) {
 
     .container {
         max-width: 100%;
@@ -271,17 +272,30 @@ footer a {
             //width: 100%;
         }
         .nav-link:hover {
-            background-color: $secondary-color;
-            color : $dark-blue;
+            text-decoration: underline;
+            // background-color: $secondary-color;
+            //color : $dark-blue;
         }
     }
 }
 
 // TABLET AND SMALL SCREEN
-@media screen and (max-width: 940px) {
+//@media screen and (max-width: 940px) {
+@media screen and (max-width: 991px) {
+
+    #navbarNavDropdown {
+        z-index: 1;
+        .navbar-nav {
+            background-color: $primary-color;
+            //z-index: 100;
+        }
+    }
+
+
 
     li.nav-item {
-        border-bottom: solid lightgrey;
+        border: 1px solid lightgrey;
+        //z-index: 100;
     }
 
     li.nav-item:hover {
@@ -307,15 +321,24 @@ footer a {
         border-bottom: none;
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////
-    #navbarAdminNavDropdown .navbar-nav {
-        background-color: $dark-blue;
-        .nav-link {
-            border-bottom: 1px solid $dark-blue;
-            //width: 100%;
+    .nav_admin {
+        .navbar-toggler {
+            margin: 11px 0;
         }
-        .nav-link:hover {
-            background-color: $secondary-color;
-            color : $dark-blue;
+
+        #navbarAdminNavDropdown .navbar-nav {
+            background-color: $dark-blue;
+            //z-index: 1;
+            .nav-link {
+                //border-bottom: 1px solid $dark-blue;
+                text-align: center;
+                //width: 100%;
+            }
+
+            .nav-link:hover {
+                background-color: $secondary-color;
+                color : $dark-blue;
+            }
         }
     }
 
@@ -404,7 +427,7 @@ footer a {
 // 'Sub-classes' of .LT_page_name
 // for login & register pages
 .LT_page_name_ter, .LT_page_name_bis {
-    background-color: #4EB6E8;
+    background-color: $secondary-color;
     color: white;
 
     h2 {
