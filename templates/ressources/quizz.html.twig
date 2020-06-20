@@ -17,7 +17,7 @@
                                 <ul>
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
-                                            <input type="checkbox" name="{{ proposition.id }}">
+                                            <input type="checkbox" name="checkbox-{{ proposition.id }}">
                                             <span class="checkmark"></span>
                                         </label>
                                         <P>{{ proposition.title }}</P>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <button class="btn quizz-button btn-round-darkblue" type="submit">
+            <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
                 Valider vos réponses
             </button>
         </div>
