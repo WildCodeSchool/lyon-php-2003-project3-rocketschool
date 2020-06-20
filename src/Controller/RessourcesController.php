@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Proposition;
 use App\Entity\Quizz;
 use App\Repository\PropositionRepository;

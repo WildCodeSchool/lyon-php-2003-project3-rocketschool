@@ -111,7 +111,7 @@ footer a {
 .content-container {
     width: 80%;
     margin: auto;
-    box-shadow: black 0px 15px 15px -5px;
+    box-shadow: black 0 15px 15px -5px;
     padding-bottom: 70px;
 
     iframe {
@@ -235,9 +235,9 @@ footer a {
         }
     }
 
-    .quizz-button{
+    .quizz-button {
         align-self: center;
-        margin-bottom: 20px ;
+        margin-bottom: 20px;
     }
 
     /* Customize the label (the container) */
@@ -308,6 +308,8 @@ footer a {
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+    }
+}
 
 // FAQ SECTION
 .faq-search {
@@ -347,7 +349,7 @@ footer a {
     margin: 20px auto;
     max-width: 600px;
     border-radius: 5px;
-    box-shadow: black 0px 0px 15px -5px;
+    box-shadow: black 0 0 15px -5px;
     border-top: solid $dark-blue;
 
     h3 {
