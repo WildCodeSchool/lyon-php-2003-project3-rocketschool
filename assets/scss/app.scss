@@ -381,8 +381,20 @@ footer a {
 }
 
 #account_index {
-    header {
+    height: 100%;
 
+    header {
+        background-color: $secondary-color;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+
+        svg {
+            display: block;
+            margin: 20px auto 0;
+        }
     }
 
     .carousel {
