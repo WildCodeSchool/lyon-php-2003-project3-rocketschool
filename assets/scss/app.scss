@@ -16,6 +16,10 @@ header {
     top: 0;
 }
 
+h3 {
+    font-weight: 700;
+}
+
 blockquote
 {
     font-style: italic;
@@ -141,13 +145,14 @@ footer a {
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        height: 120px;
+        max-height: 120px;
         box-shadow: inset black 0px -20px 55px -30px;
         border-radius: 5px;
     }
 
     #video-description-id.is-active {
-        height: auto;
+        min-height: 120px;
+        max-height: none;
     }
 }
 
@@ -180,6 +185,7 @@ footer a {
         opacity: 1;
     }
 }
+
 
 #quizz {
     .quizz-title {
@@ -302,6 +308,61 @@ footer a {
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+
+// FAQ SECTION
+.faq-search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto;
+
+    .form-control {
+        margin: 10px;
+        width: 300px;
+        border-bottom: solid $dark-blue;
+    }
+
+    .faq-form-btn-container {
+        width: 100%;
+        text-align: center;
+
+        .btn-round-darkblue {
+            margin-top: 20px;
+            width: 230px;
+        }
+    }
+}
+
+#faq-result-length {
+    text-align: center;
+}
+
+.faq-no-result {
+    margin: 0;
+    text-align: center;
+}
+
+.faq-card {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: black 0px 0px 15px -5px;
+    border-top: solid $dark-blue;
+
+    h3 {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .faq-answer-container {
+        border-bottom: solid $secondary-color;
+
+        p {
+            margin: 0;
+            padding: 15px;
+        }
+
     }
 }
 
@@ -379,6 +440,12 @@ footer a {
             height: 250px;
         }
     }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px 100px;
+    }
 }
 
 // PHONE AND EXTRA SMALL SCREEN
@@ -391,6 +458,12 @@ footer a {
         iframe {
             height: 160px;
         }
+    }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px 15px;
     }
 }
 

@@ -2,16 +2,21 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Proposition;
 use App\Entity\Quizz;
-use App\Entity\Video;
 use App\Repository\PropositionRepository;
 use App\Repository\QuizzRepository;
+use App\Entity\Faq;
+use App\Entity\Video;
+use App\Form\FaqSearchFieldType;
+use App\Repository\FaqRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,6 +26,9 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RessourcesController extends AbstractController
 {
+
+    private $faqRepository;
+
     /**
      * @Route("/", name="index")
      * @param EntityManagerInterface $entityManager
@@ -31,7 +39,7 @@ class RessourcesController extends AbstractController
 
         $video = $this->getDoctrine()
             ->getRepository(Video::class)
-            ->find(1);
+            ->findOneBy([]);
 
         if ($_GET) {
             if ($_GET['ready']) {
@@ -68,12 +76,34 @@ class RessourcesController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param FaqRepository $faqRepository
+     * @return Response
      * @Route("/faq", name="faq")
      */
 
-    public function faq()
+    public function faq(Request $request, FaqRepository $faqRepository): Response
     {
-        return $this->render('ressources/faq.html.twig', ['page_name' => 'Faq']);
+        $this->faqRepository = $faqRepository;
+
+        $faq = $this->getDoctrine()
+            ->getRepository(Faq::class)
+            ->findAll();
+
+        $form = $this->createForm(FaqSearchFieldType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && !empty($form->getData())) {
+            $data = $form->getData();
+            $faq = $this->faqRepository
+                ->findBySomeField($data['searchField'], $data['category']);
+        }
+
+        return $this->render('ressources/faq.html.twig', [
+            'page_name' => 'FAQ',
+            'form' => $form->createView(),
+            'faq' => $faq
+        ]);
     }
 
     /**
