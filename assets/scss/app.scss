@@ -447,8 +447,19 @@ footer a {
            table {
                width: 100%;
 
+               tr {
+                   line-height: 2.5em;
+               }
+
                tbody > tr > td:last-of-type {
                    text-align: right;
+               }
+
+               img {
+                   width: 35px;
+                   height: auto;
+                   margin-left: auto;
+                   //transform: rotateZ(-45deg);
                }
            }
         }
