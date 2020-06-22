@@ -3,10 +3,10 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-    <main class="container" id="account_index">
+    <main class="container mh-100" id="account_index">
 
         <div class="row">
-            <header id="infos" class="col-md-6">
+            <header id="infos" class="col-lg-3">
 {#                <img src="" alt="photo_profil">#}
                 <svg height="160" width="160">
                     <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="darkyellow" />
@@ -19,28 +19,52 @@
 
             <section id="quiz_check" class="carousel slide col-md-6">
 
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <article class="checklist">
+                            <h3>Checklist</h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><img src="" alt=""></td>
+                                        <td>Je prépare mon entretien</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="" alt=""></td>
+                                        <td>J'évalue mes connaissances</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="" alt=""></td>
+                                        <td>Je m'informe sur les métiers</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="{{ asset('build/images/rocket.08e559d3.png') }}" alt=""></td>
+                                        <td>Je vérifie mes infos personnelles</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
+                    </div>
+                    <div class="carousel-item">
+                        <article class="quiz">
+                            <h3>Quiz</h3>
+
+                            // if quiz no active : blabla regarder la video
+                            // if quiz active : passer le test
+                            // if essai 1 : result + repasser le quiz
+                            // if 2 essais : results
+
+                        </article>
+                    </div>
+                </div>
+
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
                     <li data-target="#quiz_check" data-slide-to="0" class="active"></li>
                     <li data-target="#quiz_check" data-slide-to="1"></li>
                 </ul>
 
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <article class="checklist">
-                            <p>Je vérifie mes infos personnelles</p>
-                            <p>Je m'informe sur les métiers</p>
-                            <p>J'évalue mes connaissances</p>
-                            <p>Je prépare mon entretien</p>
-                        </article>
-                    </div>
-                    <div class="carousel-item">
-                        <article class="quiz">
-
-                        </article>
-                    </div>
-                </div>
 
             </section>
         </div>
