@@ -56,6 +56,8 @@ class FaqController extends AbstractController
 
     /**
      * @Route("/{id}", name="faq_show", methods={"GET"})
+     * @param Faq $faq
+     * @return Response
      */
     public function show(Faq $faq): Response
     {
@@ -67,6 +69,9 @@ class FaqController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="faq_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Faq $faq
+     * @return Response
      */
     public function edit(Request $request, Faq $faq): Response
     {
