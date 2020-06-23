@@ -387,6 +387,32 @@ footer a {
     }
 }
 
+// FAQ ADMIN SECTION
+.faq-table {
+    margin: 40px auto;
+    text-align: center;
+
+    input, textarea {
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        height: 200px;
+    }
+}
+
+.faq-show-table {
+    margin: 0px auto 15px auto;
+    text-align: center;
+}
+
+.faq-action-btn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 // DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
 

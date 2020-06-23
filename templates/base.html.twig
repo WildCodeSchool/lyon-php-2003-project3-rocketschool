@@ -48,6 +48,9 @@
                     </nav>
                 </header>
             {% endif %}
+            <div class="LT_page_name">
+                <h2>{{ page_name|default('') }}</h2>
+            </div>
             {% block body %}{% endblock %}
 
             {% block javascripts %}

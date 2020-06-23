@@ -39,7 +39,13 @@ class Faq
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="faqs")
      */
-    private $category;
+    private $category = null;
+
+    /**
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $position = 0;
 
     public function getId(): ?int
     {
@@ -90,6 +96,18 @@ class Faq
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

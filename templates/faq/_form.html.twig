@@ -1,0 +1,22 @@
+{{ form_start(form, {'attr': {
+    'class': 'col-md-7 faq-table',
+    'novalidate': 'novalidate',
+}}) }}
+    {{ form_widget(form.question, {
+        'attr': {
+            'class': 'form-control faq-form-control shadow',
+            'placeholder': 'Question'
+        }}) }}
+    {{ form_widget(form.answer, {
+        'attr': {
+            'class': 'form-control faq-form-control shadow',
+            'placeholder': 'Réponse'
+        }}) }}
+    {{ form_widget(form.category, {
+        'attr': {
+            'class': 'form-control faq-form-control shadow',
+    }}) }}
+    <div class="faq-action-btn">
+        <button class="btn btn-round-darkblue">{{ button_label|default('Poster') }}</button>
+    </div>
+{{ form_end(form) }}

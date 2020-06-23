@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faq index{% endblock %}
+
+{% block body %}
+    <div class="faq-action-btn">
+        <a href="{{ path('faq_new') }}">Create new</a>
+    </div>
+    <table class="table faq-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Position</th>
+                <th>Catégorie</th>
+                <th>Question</th>
+                <th>réponse</th>
+                <th>Créé le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for faq in faqs %}
+            <tr>
+                <td>{{ faq.id }}</td>
+                <td>{{ faq.position }}</td>
+                <td>{{ faq.category.name|default('Sans catégorie') }}</td>
+                <td>{{ faq.question }}</td>
+                <td>{{ faq.answer }}</td>
+                <td>{{ faq.createdAt ? faq.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('faq_show', {'id': faq.id}) }}">show</a>
+                    <a href="{{ path('faq_edit', {'id': faq.id}) }}">edit</a>
+                    <a href="{{ path('faq_delete', {'id': faq.id}) }}">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
