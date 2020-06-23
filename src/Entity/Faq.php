@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FaqRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FaqRepository::class)
@@ -19,12 +20,14 @@ class Faq
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $question;
 
     /**
-     * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $answer;
 
@@ -43,7 +46,7 @@ class Faq
 
     /**
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $position = 0;
 

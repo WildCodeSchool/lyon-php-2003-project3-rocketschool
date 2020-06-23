@@ -48,11 +48,12 @@
                     </nav>
                 </header>
             {% endif %}
+            <main>
             <div class="LT_page_name">
                 <h2>{{ page_name|default('') }}</h2>
             </div>
             {% block body %}{% endblock %}
-
+            </main>
             {% block javascripts %}
             {% endblock %}
             {{ encore_entry_script_tags('app') }}
