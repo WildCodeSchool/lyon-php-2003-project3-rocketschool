@@ -6,7 +6,7 @@
     <div class="faq-action-btn">
         <a href="{{ path('faq_new') }}">Create new</a>
     </div>
-    <table class="table faq-table">
+    <table class="table faq-table sortable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,7 +22,24 @@
         {% for faq in faqs %}
             <tr>
                 <td>{{ faq.id }}</td>
-                <td>{{ faq.position }}</td>
+                <td>
+                    <div class="faq-arrow-container">
+                        {% if faq.position != 0 %}
+                            <a href="{{ path('faq_move', {'id': faq.id, 'position': 'Up'}) }}">
+                                <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                     class="faq-position-btn faq-up-btn"
+                                     alt="Monter dans la file">
+                            </a>
+                        {% endif %}
+                        {% if faq.position != faqs|length - 1 %}
+                            <a href="{{ path('faq_move', {'id': faq.id, 'position': 'Down'}) }}">
+                                <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                     class="faq-position-btn faq-down-btn"
+                                     alt="Descendre dans la file">
+                            </a>
+                        {% endif %}
+                    </div>
+                </td>
                 <td>{{ faq.category.name|default('Sans catégorie') }}</td>
                 <td>{{ faq.question }}</td>
                 <td>{{ faq.answer }}</td>
@@ -40,4 +57,7 @@
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block javascrips %}
 {% endblock %}

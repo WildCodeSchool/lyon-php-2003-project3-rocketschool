@@ -45,8 +45,10 @@ class Faq
     private $category = null;
 
     /**
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer", nullable=true)
+     * @var integer $position
+     *
+     * @Gedmo\SortablePosition()
+     * @ORM\Column(name="position", type="integer", nullable=true)
      */
     private $position = 0;
 

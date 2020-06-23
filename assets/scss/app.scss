@@ -414,6 +414,21 @@ footer a {
     align-items: center;
 }
 
+.faq-position-btn {
+    width: 30px;
+    height: 30px;
+}
+
+.faq-up-btn {
+    transform: rotate(180deg);
+}
+
+.faq-arrow-container {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+
 // DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
 

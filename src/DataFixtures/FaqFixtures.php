@@ -18,13 +18,14 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-
+        $index = 0;
         for ($i = 0; $i < 5; $i++) {
             $faq = new Faq();
             $faq->setQuestion($faker->sentence)
                 ->setAnswer($faker->paragraph(3))
                 ->setCreatedAt(date_create('now'))
-                ->setPosition(0);
+                ->setPosition($index);
+            $index++;
             $manager->persist($faq);
         }
         for ($i = 0; $i < 5; $i++) {
@@ -33,7 +34,8 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
                 ->setAnswer($faker->paragraph(3))
                 ->setCreatedAt(date_create('now'))
                 ->setCategory($this->getReference('category_1'))
-                ->setPosition(0);
+                ->setPosition($index);
+            $index++;
             $manager->persist($faq);
         }
         for ($i = 0; $i < 5; $i++) {
@@ -42,7 +44,8 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
                 ->setAnswer($faker->paragraph(3))
                 ->setCreatedAt(date_create('now'))
                 ->setCategory($this->getReference('category_2'))
-                ->setPosition(0);
+                ->setPosition($index);
+            $index++;
             $manager->persist($faq);
         }
         $manager->flush();

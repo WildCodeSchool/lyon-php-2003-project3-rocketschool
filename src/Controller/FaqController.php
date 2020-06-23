@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Faq;
 use App\Form\FaqType;
 use App\Repository\FaqRepository;
+use App\Services\FaqMoveItem;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,13 +23,15 @@ class FaqController extends AbstractController
     public function index(FaqRepository $faqRepository): Response
     {
         return $this->render('faq/index.html.twig', [
-            'faqs' => $faqRepository->findAll(),
-            'page_name' => 'Faq index'
+            'faqs' => $faqRepository->findBy([], ['position'=> 'ASC']),
+            'page_name' => 'FAQ - index'
         ]);
     }
 
     /**
      * @Route("/new", name="faq_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -77,7 +81,7 @@ class FaqController extends AbstractController
         return $this->render('faq/edit.html.twig', [
             'faq' => $faq,
             'form' => $form->createView(),
-            'page_name' => 'Edition FAQ'
+            'page_name' => 'FAQ - Edition'
         ]);
     }
 
@@ -91,6 +95,17 @@ class FaqController extends AbstractController
             $entityManager->remove($faq);
             $entityManager->flush();
         }
+
+        return $this->redirectToRoute('faq_index');
+    }
+
+    /**
+     * @Route("/move/{id}/{position}", name="faq_move")
+     * @return Response
+     */
+    public function move(FaqMoveItem $faqMoveItem, Faq $faq, string $position): Response
+    {
+        $faqMoveItem->move($faq, $position);
 
         return $this->redirectToRoute('faq_index');
     }
