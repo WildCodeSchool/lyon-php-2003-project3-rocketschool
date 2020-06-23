@@ -38,6 +38,11 @@
             </div>
             {% for card in faq %}
                 <div class="faq-card">
+                    <div class="icone-btn-container">
+                        <a href="#" class="icone-btn-container">
+                            <img src="{{ asset('build/images/edit.png') }}" class="icone-btn icone-btn-edit" alt="Editer">
+                        </a>
+                    </div>
                     <h3>{{ card.question }}</h3>
                     <div class="faq-answer-container">
                         <p>{{ card.answer }}</p>

@@ -104,6 +104,24 @@ footer a {
     box-shadow: none;
 }
 
+.icone-btn {
+    z-index: -1;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+}
+
+.icone-btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+    }
+}
+
 .form-section {
     margin: auto;
 }
@@ -355,6 +373,7 @@ footer a {
     h3 {
         margin: 0;
         font-weight: bold;
+        width: 92%;
     }
 
     .faq-answer-container {
