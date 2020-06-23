@@ -9,8 +9,8 @@
             <header id="infos" class="col-lg-3">
 {#                <img src="" alt="photo_profil">#}
                 <svg height="160" width="160">
-                    <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="darkyellow" />
-                    <text x="70" y="80" fill="white">BD</text>
+                    <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />
+                    <text x="70" y="80" fill="dark">BD</text>
                 </svg>
                 <h2>{{ app.user.firstname}} {{ app.user.lastname }}</h2>
                 <h6>{{ app.user.email }}</h6>
@@ -27,20 +27,21 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="">#}</td>
-                                        <td>Je prépare mon entretien</td>
+                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="" class="rocket">#}</td>
+                                        {#<td>Décollage réussi !</td>#}
+                                        <td><strong>Paré au décollage ?</strong></td>
                                     </tr>
                                     <tr>
-                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="">#}</td>
-                                        <td>J'évalue mes connaissances</td>
+                                        <td>{#<img src="{{ asset('build/images/check.7267afdc.svg') }}" alt="" class="checked">#}</td>
+                                        <td>3° J'évalue mes connaissances</td>
                                     </tr>
                                     <tr>
-                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="">#}</td>
-                                        <td>Je m'informe sur les métiers</td>
+                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="" class="rocket">#}</td>
+                                        <td>2° Je m'informe sur les métiers</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt=""></td>
-                                        <td>Je vérifie mes infos personnelles</td>
+                                        <td><img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="" class="rocket"></td>
+                                        <td>1° Je choisis mon programme</td>
                                     </tr>
                                 </tbody>
                             </table>

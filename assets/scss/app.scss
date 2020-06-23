@@ -399,7 +399,7 @@ footer a {
     }
 
     header {
-        background-color: $secondary-color;
+        background-color: $third-color;
         color: white;
         display: flex;
         flex-direction: column;
@@ -452,14 +452,22 @@ footer a {
                }
 
                tbody > tr > td:last-of-type {
-                   text-align: right;
+                   text-align: left;
                }
 
                img {
-                   width: 35px;
                    height: auto;
-                   margin-left: auto;
+                   //margin-left: auto;
                    //transform: rotateZ(-45deg);
+               }
+
+               .rocket {
+                   width: 35px;
+               }
+
+               .checked {
+                   width: 20px;
+                   margin-left: 8px;
                }
            }
         }
