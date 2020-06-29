@@ -61,21 +61,34 @@ class RessourcesController extends AbstractController
      * @Route("/quizz", name="quizz")
      * @param QuizzRepository $quizzRepo
      * @param PropositionRepository $propoRepo
-     * @return Response
+     * @return string
      */
     public function quizz(QuizzRepository $quizzRepo, PropositionRepository $propoRepo)
     {
         $quizz = $quizzRepo->findOneBy(['isEnable' => true]);
-        $propIsGood = $propoRepo->findBy(array('isGood' => true));
-        $userProp=[];
+        $goodProp = $propoRepo->findBy(array('isGood'=>true));
+        $goodAnswers = [];
+        $errors =[];
 
-        if ($_SERVER['REQUEST_METHOD'] =='POST') {
-            $userProp = $_POST;
-            dump($userProp);
-            dump($propIsGood);
-            die();
+        //tableau des propositions : 'isGood' == true
+        foreach ($goodProp as $propId => $info) {
+            $goodAnswers[$propId] =$info->getId();
         }
 
+        if ($_SERVER['REQUEST_METHOD'] =='POST') {
+            foreach ($_POST["questions"] as $questionId => $propositions) {
+                foreach ($propositions as $key => $value) {
+                    if (!in_array($value, $goodAnswers)) {
+                        $errors[$questionId][$key] = true;
+                    } else {
+                        $errors[$questionId][$key] = false;
+                    }
+                }
+            }
+            dump($errors);
+
+            return $this->redirectToRoute('ressources_quizz', ['errors'=>$errors]);
+        }
 
 
         return $this->render('ressources/quizz.html.twig', [

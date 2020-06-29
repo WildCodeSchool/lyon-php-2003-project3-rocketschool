@@ -3,12 +3,10 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-    {{ dump(goodAnswer) }}
-    {{ dump(goodProp) }}
+
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
-
     <form action="quizz" method="POST">
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
@@ -19,7 +17,7 @@
                                 <ul>
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
-                                            <input type="radio" name="check-{{ proposition.id }}" value="false">
+                                            <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}"  >
                                             <span class="checkmark"></span>
                                         </label>
                                         <P>{{ proposition.title }}</P>
