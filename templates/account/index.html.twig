@@ -6,66 +6,66 @@
     <main class="container mh-100" id="account_index">
 
         <div class="row">
-            <header id="infos" class="col-lg-3">
-{#                <img src="" alt="photo_profil">#}
-                <svg height="160" width="160">
-                    <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />
-                    <text x="70" y="80" fill="dark">BD</text>
-                </svg>
-                <h2>{{ app.user.firstname}} {{ app.user.lastname }}</h2>
-                <h6>{{ app.user.email }}</h6>
-                <h4>Program</h4>
-            </header>
+            <header id="infos" class="col-lg-4">
 
-            <section id="quiz_check" class="carousel slide col-md-6">
-
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <article class="checklist">
-                            <h3>Checklist</h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="" class="rocket">#}</td>
-                                        {#<td>Décollage réussi !</td>#}
-                                        <td><strong>Paré au décollage ?</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>{#<img src="{{ asset('build/images/check.7267afdc.svg') }}" alt="" class="checked">#}</td>
-                                        <td>3° J'évalue mes connaissances</td>
-                                    </tr>
-                                    <tr>
-                                        <td>{#<img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="" class="rocket">#}</td>
-                                        <td>2° Je m'informe sur les métiers</td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{ asset('build/images/rocket.4bb6fd32.svg') }}" alt="" class="rocket"></td>
-                                        <td>1° Je choisis mon programme</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </article>
+                <div class="row">
+                    <div class="col-md-6">
+                        <svg height="160" width="160">
+                            <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />
+                            <text x="70" y="80" fill="dark">BD</text>
+                        </svg>
                     </div>
-                    <div class="carousel-item">
-                        <article class="quiz">
-                            <h3>Quiz</h3>
-
-                            // if quiz no active : blabla regarder la video
-                            // if quiz active : passer le test
-                            // if essai 1 : result + repasser le quiz
-                            // if 2 essais : results
-
-                        </article>
+                    <div class="col-md-6">
+                        <h4>{{ app.user.firstname}} {{ app.user.lastname }}</h4>
+                        <h6>{{ app.user.email }}</h6>
                     </div>
                 </div>
 
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                    <li data-target="#quiz_check" data-slide-to="0" class="active"></li>
-                    <li data-target="#quiz_check" data-slide-to="1"></li>
-                </ul>
+                <h4>Program</h4>
 
+                {#
+                                {% if program is null %}
+                                    select
+                                {% else %}
+                                    <h4>Program</h4>
+                                {% endif %}
+                #}
+            </header>
+
+            <section id="quiz_check" class="col-lg-8 row">
+
+                <article class="checklist col-lg-6">
+                    <h3>Checklist</h3>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td><img src="{{ asset('build/images/1.svg') }}" alt=""></td>
+                            <td>Je m'informe sur les métiers</td>
+                        </tr>
+                        <tr>
+                            <td><img src="{{ asset('build/images/2.svg') }}" alt=""></td>
+                            <td>J'évalue mes connaissances</td>
+                        </tr>
+                        <tr>
+                            <td><img src="{{ asset('build/images/3.svg') }}" alt=""></td>
+                            <td>Je prépare mon entretien</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </article>
+
+                <article class="quiz col-lg-6">
+                    <h3>Quiz</h3>
+
+                    // if quiz no active : blabla regarder la video
+                    <br>
+                    // if quiz active : passer le test
+                    <br>
+                    // if essai 1 : result + repasser le quiz
+                    <br>
+                    // if 2 essais : results
+
+                </article>
 
             </section>
         </div>
