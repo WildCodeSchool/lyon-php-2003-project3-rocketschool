@@ -3,11 +3,13 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
+    {{ dump(goodAnswer) }}
+    {{ dump(goodProp) }}
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
 
-    <form method="post">
+    <form action="quizz" method="POST">
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
                 <div class="card w-auto quizz-card">
@@ -17,7 +19,7 @@
                                 <ul>
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
-                                            <input type="checkbox" name="checkbox-{{ proposition.id }}">
+                                            <input type="radio" name="check-{{ proposition.id }}" value="false">
                                             <span class="checkmark"></span>
                                         </label>
                                         <P>{{ proposition.title }}</P>
@@ -31,9 +33,6 @@
                 Valider vos réponses
             </button>
         </div>
-
-
-
 
     </form>
 {% endblock %}

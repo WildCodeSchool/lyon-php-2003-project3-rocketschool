@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Proposition;
 use App\Entity\Quizz;
 use App\Repository\PropositionRepository;
+use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
 use App\Entity\Faq;
 use App\Entity\Video;
@@ -58,19 +59,28 @@ class RessourcesController extends AbstractController
 
     /**
      * @Route("/quizz", name="quizz")
-     * @param QuizzRepository $quizzRepository
+     * @param QuizzRepository $quizzRepo
+     * @param PropositionRepository $propoRepo
      * @return Response
      */
-    public function quizz(QuizzRepository $quizzRepository)
+    public function quizz(QuizzRepository $quizzRepo, PropositionRepository $propoRepo)
     {
-        $quizz = $quizzRepository->findOneBy(['isEnable' => true]);
+        $quizz = $quizzRepo->findOneBy(['isEnable' => true]);
+        $propIsGood = $propoRepo->findBy(array('isGood' => true));
+        $userProp=[];
+
+        if ($_SERVER['REQUEST_METHOD'] =='POST') {
+            $userProp = $_POST;
+            dump($userProp);
+            dump($propIsGood);
+            die();
+        }
+
 
 
         return $this->render('ressources/quizz.html.twig', [
-            'page_name' => 'Quizz',
-            'quizz'=>$quizz,
-
-
+        'page_name' => 'Quizz',
+        'quizz'=>$quizz,
         ]);
     }
 
