@@ -16,6 +16,10 @@ header {
     top: 0;
 }
 
+h3 {
+    font-weight: 700;
+}
+
 blockquote
 {
     font-style: italic;
@@ -175,13 +179,14 @@ footer a {
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        height: 120px;
+        max-height: 120px;
         box-shadow: inset black 0px -20px 55px -30px;
         border-radius: 5px;
     }
 
     #video-description-id.is-active {
-        height: auto;
+        min-height: 120px;
+        max-height: none;
     }
 }
 
@@ -212,6 +217,188 @@ footer a {
 
     a.cke_button_disabled .cke_button_icon {
         opacity: 1;
+    }
+}
+
+
+#quizz {
+    .quizz-title {
+        margin-top: 100px;
+        text-align: center;
+
+        ul {
+            padding: inherit;
+        }
+    }
+
+    .btn-quizz {
+        background-color: $dark-blue;
+        color: $primary-color;
+        border-radius: 30px;
+    }
+
+    .btn-quizz:hover {
+        background-color: $dark-blue;
+        color: $secondary-color;
+    }
+
+    .quizz-container {
+
+        margin-top: 30px;
+
+    }
+
+    .quizz-card {
+        margin: 20px 0 20px 0;
+        border: 2px solid $secondary-color;
+        border-radius: 10px;
+    }
+
+    .quizz-proposition {
+        display: inline-block;
+    }
+
+    .quizz-text {
+        list-style-type: none;
+        font-size: 1.2em;
+        display: inline-flex;
+
+        input {
+            align-self: stretch;
+            margin-right: 20px;
+        }
+    }
+
+    .quizz-button {
+        align-self: center;
+        margin-bottom: 20px;
+    }
+
+    /* Customize the label (the container) */
+    .quizz-radio {
+        align-self: baseline;
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .quizz-radio input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border: solid 1px $third-color;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .quizz-radio:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .quizz-radio input:checked ~ .checkmark {
+        background-color: $secondary-color;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .quizz-radio input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .quizz-radio .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+
+// FAQ SECTION
+.faq-search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto;
+
+    .form-control {
+        margin: 10px;
+        width: 300px;
+        border-bottom: solid $dark-blue;
+    }
+
+    .faq-form-btn-container {
+        width: 100%;
+        text-align: center;
+
+        .btn-round-darkblue {
+            margin-top: 20px;
+            width: 230px;
+        }
+    }
+}
+
+#faq-result-length {
+    text-align: center;
+}
+
+.faq-no-result {
+    margin: 0;
+    text-align: center;
+}
+
+.faq-card {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: black 0 0 15px -5px;
+    border-top: solid $dark-blue;
+
+    h3 {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .faq-answer-container {
+        border-bottom: solid $secondary-color;
+
+        p {
+            margin: 0;
+            padding: 15px;
+        }
+
     }
 }
 
@@ -252,6 +439,10 @@ footer a {
         .nav-link:hover {
             text-decoration: underline;
         }
+
+    .quizz-container{
+        margin-top: 30px;
+        width: 80%;
     }
 }
 
@@ -314,6 +505,12 @@ footer a {
             height: 250px;
         }
     }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px 100px;
+    }
 }
 
 // PHONE AND EXTRA SMALL SCREEN
@@ -326,6 +523,12 @@ footer a {
         iframe {
             height: 160px;
         }
+    }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px 15px;
     }
 }
 
