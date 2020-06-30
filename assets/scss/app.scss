@@ -12,12 +12,12 @@ body {
     width: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-}
 
-header {
-    width: 100%;
-    position: fixed;
-    top: 0;
+    >header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+    }
 }
 
 blockquote
@@ -395,48 +395,48 @@ footer a {
     //    width: 90%;
     //}
 
-    .row {
+    >.row:first-child {
         height: 100%;
-    }
 
-    header {
-        background-color: $third-color;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-items: center;
-        padding-bottom: 20px;
+        header {
+            background-color: $third-color;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+            padding-bottom: 20px;
 
-        @media screen and (min-width: 768px) {
-            >.row {
-                align-self: start;
-                width: 100%;
+            @media screen and (min-width: 768px) {
+                >.row {
+                    align-self: start;
+                    width: 100%;
 
-                .col-md-8 {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    margin-left: -20px;
+                    .col-md-8 {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        margin-left: -20px;
 
-                    >div {
-                        margin-top: 20px;
+                        >div {
+                            margin-top: 20px;
+                        }
                     }
                 }
             }
-        }
 
-        @media screen and (min-width: 992px) {
-            padding: 50px;
-        }
+            @media screen and (min-width: 992px) {
+                padding: 50px;
+            }
 
-        svg {
-            display: block;
-            margin: 20px auto 0;
-        }
+            svg {
+                display: block;
+                margin: 20px auto 0;
+            }
 
-        .col-md-6:last-of-type {
-            text-align: center;
+            .col-md-6:last-of-type {
+                text-align: center;
+            }
         }
     }
 
@@ -509,6 +509,19 @@ footer a {
 
 
     .notes {
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
 
+            div {
+                display: flex;
+                align-items: center;
+
+                h1 {
+                    font-size: 3.5em;
+                }
+            }
+        }
     }
 }
