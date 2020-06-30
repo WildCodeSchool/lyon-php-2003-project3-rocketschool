@@ -68,8 +68,8 @@ footer {
     display: block;
     width: 100%;
     background-color: $secondary-color;
-    position: absolute;
-    bottom: 0;
+    //position: absolute;
+    //bottom: 0;
 }
 
 footer a {
@@ -386,14 +386,11 @@ footer a {
 }
 
 #account_index {
-    background-color: $white-blue;
+    //background-color: $white-blue;
     height: 100%;
     width: 100%;
     margin: 80px auto auto;
-
-    //@media screen and (min-width: 768px) {
-    //    width: 90%;
-    //}
+    //background-color: $secondary-color;
 
     >.row:first-child {
         height: 100%;
@@ -405,7 +402,8 @@ footer a {
             flex-direction: column;
             align-items: center;
             justify-items: center;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
+            text-align: center;
 
             @media screen and (min-width: 768px) {
                 >.row {
@@ -444,8 +442,8 @@ footer a {
         margin: 20px auto;
 
         @media screen and (min-width: 768px) {
-            padding: 0;
 
+            padding: 0;
             justify-content: space-around;
 
             >.col-md-6 {
@@ -454,28 +452,34 @@ footer a {
         }
 
 
-            > article {
-            padding: 30px;
+        > article {
+            padding: 20px;
             border: 1px solid $dark-blue;
             margin-bottom: 20px;
             background-color: white;
-            width: 90%;
+
+            //background-color: rgba(78,182,232,0.2);
+
+            h3 {
+                font-family: Montserra, serif;
+                color: $dark-blue;
+            }
+
+            hr {
+                margin-bottom: 40px;
+            }
         }
 
         .checklist {
             //background-color: $secondary-color;
             //color: white;
 
-            h3 {
-                margin-bottom: 40px;
-            }
-
             table {
                 width: 100%;
 
                 tr {
                     line-height: 1.5em;
-                   display: block;
+                    display: block;
                     margin-bottom: 20px;
                 }
 
@@ -486,7 +490,7 @@ footer a {
 
                 img {
                     height: auto;
-                    width: 40%;
+                    width: 60%;
                     display: block;
                     margin: auto auto;
 
@@ -507,12 +511,15 @@ footer a {
 
     }
 
-
     .notes {
         header {
             width: 100%;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            background-color: $purple;
+            color: white;
+            padding: 20px;
 
             div {
                 display: flex;

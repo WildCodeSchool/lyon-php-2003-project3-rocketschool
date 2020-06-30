@@ -47,14 +47,14 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isReady = false;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="users")
      */
     private $program;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Checklist::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $checklist;
 
     public function getId(): ?int
     {
@@ -158,18 +158,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getIsReady(): ?bool
-    {
-        return $this->isReady;
-    }
-
-    public function setIsReady(bool $isReady): self
-    {
-        $this->isReady = $isReady;
-
-        return $this;
-    }
-
     public function getProgram(): ?Program
     {
         return $this->program;
@@ -178,6 +166,23 @@ class User implements UserInterface
     public function setProgram(?Program $program): self
     {
         $this->program = $program;
+
+        return $this;
+    }
+
+    public function getChecklist(): ?Checklist
+    {
+        return $this->checklist;
+    }
+
+    public function setChecklist(Checklist $checklist): self
+    {
+        $this->checklist = $checklist;
+
+        // set the owning side of the relation if necessary
+        if ($checklist->getUser() !== $this) {
+            $checklist->setUser($this);
+        }
 
         return $this;
     }
