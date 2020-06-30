@@ -47,11 +47,16 @@
                                     alt="">
                         </a>
                     </nav>
-                {# Navbar Admin appearring when the logged user has the admin status                   #}
+                {#              Navbar Admin appearring when the logged user has the admin status                   #}
                 {% if is_granted('ROLE_ADMIN') %}
 
                         <nav class="navbar navbar-expand-lg navbar-dark nav_admin">
-                            <button class="navbar-toggler  ml-auto" type="button" data-toggle="collapse" data-target="#navbarAdminNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <div class="adminBar">
+                                MENU ADMINISTRATEUR
+                            </div>
+                            <button class="navbar-toggler  ml-auto" type="button" data-toggle="collapse"
+                                    data-target="#navbarAdminNavDropdown" aria-controls="navbarNavDropdown"
+                                    aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarAdminNavDropdown">

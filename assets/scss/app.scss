@@ -6,7 +6,7 @@
 body {
     background-color: $primary-color;
     width: 100%;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
     font-weight: 400;
 }
 
@@ -46,7 +46,7 @@ blockquote
 
 .LT_page_name h2 {
     //margin-top: 80px;
-    font-family: 'Raleway Bold';
+    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
     //margin-top: 80px;
     font-weight: bold;
     //margin-block-start: 0;
@@ -56,7 +56,7 @@ blockquote
 .navbar-light .navbar-nav .nav-link {
     width: 100%;
     color: black;
-    font-family: 'Raleway Bold';
+    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
     font-weight: bold;
     font-size: 18px;
     text-align: center;
@@ -86,6 +86,10 @@ blockquote
 
     .navbar-nav .nav-link {
         color: $primary-color;
+    }
+
+    .adminBar {
+        display: none;
     }
 }
 
@@ -137,7 +141,7 @@ footer a {
 .content-container {
     width: 80%;
     margin: auto;
-    box-shadow: black 0px 15px 15px -5px;
+    box-shadow: black 0 15px 15px -5px;
     padding-bottom: 70px;
 
     iframe {
@@ -211,27 +215,7 @@ footer a {
     }
 }
 
-//  tests for checking the admin navbar
-
-//.nav_admin {
-//    background-color: $dark-blue !important;
-//    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
-//    color: $primary-color;
-//    height: 80px;
-//    justify-content: end;
-//
-//    ul {
-//        //padding-right: 200px;
-//    }
-//    .navbar-nav .nav-link {
-//        color: $primary-color;
-//    }
-//}
-
-//  end  of tests
-
 // DESKTOP AND LARGE SCREEN
-//@media (min-width: 940px) {
 @media (min-width: 992px) {
 
     .container {
@@ -243,11 +227,6 @@ footer a {
     }
 
     .navbar-light .navbar-nav .nav-link {
-        //color: black;
-        //font-family: 'Raleway Bold';
-        //font-weight: bold;
-        //font-size: 18px;
-        //text-align: center;
         width: 200px;
         letter-spacing: 2px;
     }
@@ -264,52 +243,37 @@ footer a {
     #nav-link-profil {
         display: none;
     }
-/////////////////////////////////////////////////////////////////////////////////////
+
     #navbarAdminNavDropdown .navbar-nav {
         background-color: $dark-blue;
         .nav-link {
-            //border-bottom: 1px solid white;
-            //width: 100%;
         }
+
         .nav-link:hover {
             text-decoration: underline;
-            // background-color: $secondary-color;
-            //color : $dark-blue;
         }
     }
 }
 
 // TABLET AND SMALL SCREEN
-//@media screen and (max-width: 940px) {
 @media screen and (max-width: 991px) {
 
     #navbarNavDropdown {
         z-index: 1;
+
         .navbar-nav {
             background-color: $primary-color;
-            //z-index: 100;
         }
     }
 
-
-
     li.nav-item {
         border: 1px solid lightgrey;
-        //z-index: 100;
     }
 
     li.nav-item:hover {
         background-color: $secondary-color;
         border-bottom: solid white;
     }
-
-    //.navbar-light .navbar-nav .nav-link {
-    //    color: black;
-    //    font-family: 'Raleway Bold', serif;
-    //    font-weight: bold;
-    //    font-size: 18px;
-    //    text-align: center;
-    //}
 
     .LT_logo_profil {
         display: none;
@@ -320,19 +284,21 @@ footer a {
         color: white;
         border-bottom: none;
     }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+
     .nav_admin {
+        .adminBar {
+            display: block;
+        }
+
         .navbar-toggler {
             margin: 11px 0;
         }
 
         #navbarAdminNavDropdown .navbar-nav {
             background-color: $dark-blue;
-            //z-index: 1;
+
             .nav-link {
-                //border-bottom: 1px solid $dark-blue;
                 text-align: center;
-                //width: 100%;
             }
 
             .nav-link:hover {
@@ -460,7 +426,7 @@ footer a {
     background-color: whitesmoke;
     border-bottom: 1px solid $third-color;
     color: black;
-    font-family: 'Raleway';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
 .table td:hover {
@@ -471,7 +437,7 @@ footer a {
 .table .thead-light th {
     text-align: center;
     color: black;
-    font-family: 'Raleway';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
 .table_user {
