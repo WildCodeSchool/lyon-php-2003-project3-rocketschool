@@ -121,22 +121,20 @@ footer a
 	color: white;
 }
 
-// BUTTONS.btn-round-darkblue
-{
+// BUTTONS
+.btn-round-darkblue{
 	margin-top: 30px;
 	background-color: $dark-blue;
 	color: $primary-color;
 	border-radius: 30px;
 }
 
-.btn-round-darkblue:hover
-{
+.btn-round-darkblue:hover{
 	background-color: $dark-blue;
 	color: $secondary-color;
 }
 
-.btn-show-more
-{
+.btn-show-more{
 	width: 110px;
 	height: 30px;
 	text-align: center;
@@ -144,23 +142,19 @@ footer a
 	transition: border-bottom 0.5s;
 }
 
-.btn-show-more:hover
-{
+.btn-show-more:hover{
 	border-bottom: solid $dark-blue 1px;
 }
 
-.btn:focus
-{
+.btn:focus{
 	box-shadow: none;
 }
 
-.form-section
-{
+.form-section{
 	margin: auto;
 }
 
-.content-container
-{
+.content-container{
 	width: 80%;
 	margin: auto;
 	box-shadow: black 0 15px 15px -5px;
@@ -178,22 +172,19 @@ footer a
 	text-align: center}
 }
 
-// VIDEO SECTION.video-container
-{
+// VIDEO SECTION
+.video-container{
 	margin-top: 20px;
 	padding: 20px;
 	text-align: center;
 }
 
-.video-title-container
-{
+.video-title-container{
 	text-align: center;
 }
 
-.video-script-container
-{
-	#video-description-id
-	{
+.video-script-container{
+	#video-description-id {
 		padding: 20px 25px;
 		width: 75%;
 		color: #1d2124;
@@ -204,15 +195,13 @@ footer a
 		border-radius: 5px;
 	}
 
-	#video-description-id.is-active
-	{
+	#video-description-id.is-active	{
 		min-height: 120px;
 		max-height: none;
 	}
 }
 
-.check-video
-{
+.check-video{
 	margin: auto;
 	label
 	{
@@ -220,14 +209,13 @@ footer a
 	}
 }
 
-// VIDEO EDIT SECTION.video-form-label
-{
+// VIDEO EDIT SECTION
+.video-form-label{
 	margin: 0;
 	font-weight: bold;
 }
 
-.cke_reset
-{
+.cke_reset{
 	min-height: 500px;
 }
 
@@ -384,8 +372,8 @@ footer a
 	}
 }
 
-// FAQ SECTION.faq-search
-{
+// FAQ SECTION
+.faq-search {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -397,8 +385,7 @@ footer a
 		border-bottom: solid $dark-blue;
 	}
 
-	.faq-form-btn-container
-	{
+	.faq-form-btn-container	{
 		width: 100%;
 		text-align: center;
 		.btn-round-darkblue
@@ -445,8 +432,8 @@ footer a
 	}
 }
 
-// DESKTOP AND LARGE SCREEN@media (min-width: 992px)
-{
+// DESKTOP AND LARGE SCREEN
+@media (min-width: 992px){
 	.container
 	{
 		max-width: 100%;
@@ -500,7 +487,8 @@ footer a
 	}
 }
 
-// TABLET AND SMALL SCREEN@media screen and (max-width: 991px)
+// TABLET AND SMALL SCREEN
+@media screen and (max-width: 991px)
 {
 	#navbarNavDropdown
 	{
@@ -562,7 +550,8 @@ footer a
 		}
 	}
 
-	// VIDEO SECTION.content-container
+	// VIDEO SECTION
+	.content-container
 	{
 		iframe
 		{
@@ -577,7 +566,8 @@ footer a
 	}
 }
 
-// PHONE AND EXTRA SMALL SCREEN@media screen and (max-width: 720px)
+// PHONE AND EXTRA SMALL SCREEN
+@media screen and (max-width: 720px)
 {
 	// VIDEO SECTION.content-container
 	{
@@ -588,7 +578,8 @@ footer a
 		}
 	}
 
-	// FAQ SECTION.faq-card
+	// FAQ SECTION
+	.faq-card
 	{
 		padding: 15px;
 		margin: 20px 15px;
@@ -658,8 +649,8 @@ footer a
 	ul
 	{
 		padding-left: 5px;
-		li
-		{
+		
+		li{
 			list-style-type: none;
 			color: darkred;
 			font-size: 0.8em;
@@ -667,7 +658,8 @@ footer a
 	}
 }
 
-// 'Sub-classes' of .LT_page_name// for login & register pages.LT_page_name_ter, .LT_page_name_bis
+// 'Sub-classes' of .LT_page_name// for login & register pages
+.LT_page_name_ter, .LT_page_name_bis
 {
 	background-color: $secondary-color;
 	color: white;
@@ -688,7 +680,8 @@ footer a
 	height: 100px;
 }
 
-//Administration_users.user_table
+//Administration_users
+.user_table
 {
 	width: 100%;
 	height: 400px;
