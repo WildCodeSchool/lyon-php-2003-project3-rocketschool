@@ -1,29 +1,25 @@
 
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
-// GENERAL CSS
-body
-{
+/*	 GENERAL CSS */
+body{
 	background-color: $primary-color;
 	width: 100%;
 	font-family: 'Raleway', 'Montserrat', 'sans-serif';
 	font-weight: 400;
 }
 
-header
-{
+header{
 	width: 100%;
 	position: fixed;
 	top: 0;
 }
 
-h3
-{
+h3{
 	font-weight: 700;
 }
 
-blockquote
-{
+blockquote{
 	font-style: italic;
 	margin-left: 32px;
 	border-left: 4px solid #CCC;
@@ -34,8 +30,7 @@ blockquote
 	}
 }
 
-.LT_page_name
-{
+.LT_page_name{
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -47,23 +42,20 @@ blockquote
 	margin-top: 80px;
 }
 
-.margin_top_navbar_admin
-{
+.margin_top_navbar_admin{
 	margin-top: 160px;
 }
 
-.LT_page_name h2
-{
-	//margin-top: 80px;
+.LT_page_name h2{
+	/* margin-top: 80px;*/
 	font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
-	//margin-top: 80px;
+	/* margin-top: 80px;*/
 	font-weight: bold;
-	//margin-block-start: 0;
+	/* margin-block-start: 0; */
 	margin-block-end: 0;
 }
 
-.navbar-light .navbar-nav .nav-link
-{
+.navbar-light .navbar-nav .nav-link{
 	width: 100%;
 	color: black;
 	font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
@@ -72,56 +64,48 @@ blockquote
 	text-align: center;
 }
 
-.navbar
-{
+.navbar{
 	border-bottom: solid $secondary-color;
 }
 
-.navbar-nav
-{
+.navbar-nav{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	width: 100%;
 }
 
-.navbar
-{
+.navbar{
 	height: 80px;
 }
 
-.nav_admin
-{
+.nav_admin{
 	background-color: $dark-blue;
 	font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
 	color: $primary-color;
 	height: 80px;
 	justify-content: end;
-	.navbar-nav .nav-link
-	{
+	.navbar-nav .nav-link{
 		color: $primary-color;
 	}
 
-	.adminBar
-	{
+	.adminBar{
 		display: none;
 	}
 }
 
-footer
-{
+footer{
 	display: block;
 	width: 100%;
 	background-color: $secondary-color;
 	position: absolute;
 }
 
-footer a
-{
+footer a{
 	color: white;
 }
 
-// BUTTONS
+/* BUTTONS */
 .btn-round-darkblue{
 	margin-top: 30px;
 	background-color: $dark-blue;
@@ -172,7 +156,7 @@ footer a
 	text-align: center}
 }
 
-// VIDEO SECTION
+/*  VIDEO SECTION */
 .video-container{
 	margin-top: 20px;
 	padding: 20px;
@@ -209,7 +193,7 @@ footer a
 	}
 }
 
-// VIDEO EDIT SECTION
+/* VIDEO EDIT SECTION */
 .video-form-label{
 	margin: 0;
 	font-weight: bold;
@@ -219,11 +203,9 @@ footer a
 	min-height: 500px;
 }
 
-.ckeditor
-{
+.ckeditor{
 	margin: 10px auto;
-	a.cke_button, .cke_combo
-	{
+	a.cke_button, .cke_combo	{
 		position: unset;
 	}
 
@@ -233,10 +215,8 @@ footer a
 	}
 }
 
-#quizz
-{
-	.quizz-title
-	{
+#quizz{
+	.quizz-title{
 		margin-top: 100px;
 		text-align: center;
 		ul
@@ -245,57 +225,48 @@ footer a
 		}
 	}
 
-	.btn-quizz
-	{
+	.btn-quizz{
 		background-color: $dark-blue;
 		color: $primary-color;
 		border-radius: 30px;
 	}
 
-	.btn-quizz:hover
-	{
+	.btn-quizz:hover{
 		background-color: $dark-blue;
 		color: $secondary-color;
 	}
 
-	.quizz-container
-	{
+	.quizz-container{
 		margin-top: 30px;
 	}
 
-	.quizz-card
-	{
+	.quizz-card{
 		margin: 20px 0 20px 0;
 		border: 2px solid $secondary-color;
 		border-radius: 10px;
 	}
 
-	.quizz-proposition
-	{
+	.quizz-proposition{
 		display: inline-block;
 	}
 
-	.quizz-text
-	{
+	.quizz-text{
 		list-style-type: none;
 		font-size: 1.2em;
 		display: inline-flex;
-		input
-		{
+		input{
 			align-self: stretch;
 			margin-right: 20px;
 		}
 	}
 
-	.quizz-button
-	{
+	.quizz-button{
 		align-self: center;
 		margin-bottom: 20px;
 	}
 
 	/* Customize the label (the container) */
-	.quizz-radio
-	{
+	.quizz-radio{
 		align-self: baseline;
 		display: block;
 		position: relative;
@@ -310,8 +281,7 @@ footer a
 	}
 
 	/* Hide the browser's default checkbox */
-	.quizz-radio input
-	{
+	.quizz-radio input{
 		position: absolute;
 		opacity: 0;
 		cursor: pointer;
@@ -320,8 +290,7 @@ footer a
 	}
 
 	/* Create a custom checkbox */
-	.checkmark
-	{
+	.checkmark{
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -332,34 +301,29 @@ footer a
 	}
 
 	/* On mouse-over, add a grey background color */
-	.quizz-radio:hover input ~ .checkmark
-	{
+	.quizz-radio:hover input ~ .checkmark{
 		background-color: #ccc;
 	}
 
 	/* When the checkbox is checked, add a blue background */
-	.quizz-radio input:checked ~ .checkmark
-	{
+	.quizz-radio input:checked ~ .checkmark{
 		background-color: $secondary-color;
 	}
 
 	/* Create the checkmark/indicator (hidden when not checked) */
-	.checkmark:after
-	{
+	.checkmark:after{
 		content: "";
 		position: absolute;
 		display: none;
 	}
 
 	/* Show the checkmark when checked */
-	.quizz-radio input:checked ~ .checkmark:after
-	{
+	.quizz-radio input:checked ~ .checkmark:after{
 		display: block;
 	}
 
 	/* Style the checkmark/indicator */
-	.quizz-radio .checkmark:after
-	{
+	.quizz-radio .checkmark:after{
 		left: 9px;
 		top: 5px;
 		width: 5px;
@@ -372,7 +336,7 @@ footer a
 	}
 }
 
-// FAQ SECTION
+/* FAQ SECTION */
 .faq-search {
 	display: flex;
 	justify-content: center;
@@ -396,212 +360,174 @@ footer a
 	}
 }
 
-#faq-result-length
-{
+#faq-result-length{
 	text-align: center;
 }
 
-.faq-no-result
-{
+.faq-no-result{
 	margin: 0;
 	text-align: center;
 }
 
-.faq-card
-{
+.faq-card{
 	padding: 15px;
 	margin: 20px auto;
 	max-width: 600px;
 	border-radius: 5px;
 	box-shadow: black 0 0 15px -5px;
 	border-top: solid $dark-blue;
-	h3
-	{
+	h3{
 		margin: 0;
 		font-weight: bold;
 	}
 
-	.faq-answer-container
-	{
+	.faq-answer-container{
 		border-bottom: solid $secondary-color;
-		p
-		{
+		p{
 			margin: 0;
 			padding: 15px;
 		}
 	}
 }
 
-// DESKTOP AND LARGE SCREEN
+/* DESKTOP AND LARGE SCREEN */
 @media (min-width: 992px){
-	.container
-	{
+	.container{
 		max-width: 100%;
 	}
 
-	.table
-	{
+	.table{
 		width: 80%;
 	}
 
-	.navbar-light .navbar-nav .nav-link
-	{
+	.navbar-light .navbar-nav .nav-link{
 		width: 200px;
 		letter-spacing: 2px;
 	}
 
-	.navbar-light .navbar-nav .active > .nav-link
-	{
+	.navbar-light .navbar-nav .active > .nav-link{
 		width: 87%;
 	}
 
-	.navbar-light .navbar-nav .nav-link:hover
-	{
+	.navbar-light .navbar-nav .nav-link:hover{
 		text-decoration: underline;
 		color: black;
 	}
 
-	#nav-link-profil
-	{
+	#nav-link-profil{
 		display: none;
 	}
 
-	#navbarAdminNavDropdown .navbar-nav
-	{
+	#navbarAdminNavDropdown .navbar-nav{
 		background-color: $dark-blue;
-		.nav-link
-		{
+		.nav-link{
 			text-align: center;
 		}
 
-		.nav-link:hover
-		{
+		.nav-link:hover{
 			text-decoration: underline;
 		}
 	}
 
-	.quizz-container
-	{
+	.quizz-container{
 		margin-top: 30px;
 		width: 80%;
 	}
 }
 
-// TABLET AND SMALL SCREEN
-@media screen and (max-width: 991px)
-{
+/* TABLET AND SMALL SCREEN */
+@media screen and (max-width: 991px){
 	#navbarNavDropdown
 	{
 		z-index: 1;
-		.navbar-nav
-		{
+		.navbar-nav{
 			background-color: $primary-color;
 		}
 	}
 
-	li.nav-item
-	{
+	li.nav-item{
 		border: 1px solid lightgrey;
 	}
 
-	li.nav-item:hover
-	{
+	li.nav-item:hover{
 		background-color: $secondary-color;
 		border-bottom: solid white;
 	}
 
-	.LT_logo_profil
-	{
+	.LT_logo_profil{
 		display: none;
 	}
 
-	.navbar-light .navbar-nav .nav-link:hover
-	{
+	.navbar-light .navbar-nav .nav-link:hover{
 		text-decoration: none;
 		color: white;
 		border-bottom: none;
 	}
 
-	.nav_admin
-	{
-		.adminBar
-		{
+	.nav_admin{
+		.adminBar{
 			display: block;
 		}
 
-		.navbar-toggler
-		{
+		.navbar-toggler{
 			margin: 11px 0;
 		}
 
-		#navbarAdminNavDropdown .navbar-nav
-		{
+		#navbarAdminNavDropdown .navbar-nav{
 			background-color: $dark-blue;
-			.nav-link
-			{
+			.nav-link{
 				text-align: center;
 			}
 
-			.nav-link:hover
-			{
+			.nav-link:hover{
 				background-color: $secondary-color;
 				color : $dark-blue;
 			}
 		}
 	}
 
-	// VIDEO SECTION
-	.content-container
-	{
-		iframe
-		{
+	/* VIDEO SECTION*/
+	.content-container{
+		iframe{
 			height: 250px;
 		}
 	}
 
-	// FAQ SECTION
-	.faq-card
-	{
+	/* FAQ SECTION */
+	.faq-card{
 		padding: 15px;
 		margin: 20px 100px;
 	}
 }
 
-// PHONE AND EXTRA SMALL SCREEN
-@media screen and (max-width: 720px)
-{
-	// VIDEO SECTION
-	.content-container
-	{
+/*  PHONE AND EXTRA SMALL SCREEN */
+@media screen and (max-width: 720px){
+	/* VIDEO SECTION */
+	.content-container{
 		width: 100%;
-		iframe
-		{
+		iframe{
 			height: 160px;
 		}
 	}
 
-	// FAQ SECTION
-	.faq-card
-	{
+	/* FAQ SECTION */
+	.faq-card{
 		padding: 15px;
 		margin: 20px 15px;
 	}
 }
 
-#login_form, #register_form
-{
+#login_form, #register_form{
 	margin: 50px auto;
 	position: unset;
-	button
-	{
+	button{
 		display: block;
 		margin: 30px auto;
 		padding: 10px 50px;
 		border-radius: 30px;
 	}
 
-	.group_input
-	{
+	.group_input{
 		margin: 0 auto;
 		max-width: 300px;
 		display: flex;
@@ -609,47 +535,38 @@ footer a
 		align-content: center;
 	}
 
-	.form-control
-	{
+	.form-control{
 		margin: 10px auto;
 		height: 50px;
 	}
 
-	p
-	{
+	p{
 		text-align: center;
 	}
 
-	img
-	{
+	img{
 		display: block;
 		margin: 80px auto;
 	}
 }
 
-#login_form
-{
-	h5, h2
-	{
+#login_form{
+	h5, h2{
 		text-align: center;
 		margin-bottom: 10px;
 	}
 
-	.col-md-3
-	{
+	.col-md-3{
 		margin: 0 auto;
 	}
 }
 
-#register_form
-{
-	.col-md-3
-	{
+#register_form{
+	.col-md-3{
 		margin: 50px auto;
 	}
 
-	ul
-	{
+	ul{
 		padding-left: 5px;
 		
 		li{
@@ -660,31 +577,26 @@ footer a
 	}
 }
 
-// 'Sub-classes' of .LT_page_name// for login & register pages
-.LT_page_name_ter, .LT_page_name_bis
-{
+/* 'Sub-classes' of .LT_page_name// for login & register pages */
+.LT_page_name_ter, .LT_page_name_bis{
 	background-color: $secondary-color;
 	color: white;
-	h2
-	{
+	h2{
 		text-align: center;
 		padding-top: 30px;
 	}
 }
 
-.LT_page_name_bis
-{
+.LT_page_name_bis{
 	height: 150px;
 }
 
-.LT_page_name_ter
-{
+.LT_page_name_ter{
 	height: 100px;
 }
 
-//Administration_users
-.user_table
-{
+/* Administration_users */
+.user_table{
 	width: 100%;
 	height: 400px;
 	background-color: whitesmoke;
@@ -694,8 +606,7 @@ footer a
 	justify-content: center;
 }
 
-.table td
-{
+.table td{
 	text-align: center;
 	background-color: whitesmoke;
 	border-bottom: 1px solid $third-color;
@@ -703,20 +614,17 @@ footer a
 	font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
-.table td:hover
-{
+.table td:hover{
 	background-color: $primary-color;
 	border-bottom: 1px solid $secondary-color;
 }
 
-.table .thead-light th
-{
+.table .thead-light th{
 	text-align: center;
 	color: black;
 	font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
-.table_user
-{
+.table_user{
 	width: 80%;
 }
