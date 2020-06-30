@@ -559,7 +559,8 @@ footer a
 		}
 	}
 
-	// FAQ SECTION.faq-card
+	// FAQ SECTION
+	.faq-card
 	{
 		padding: 15px;
 		margin: 20px 100px;
@@ -569,7 +570,8 @@ footer a
 // PHONE AND EXTRA SMALL SCREEN
 @media screen and (max-width: 720px)
 {
-	// VIDEO SECTION.content-container
+	// VIDEO SECTION
+	.content-container
 	{
 		width: 100%;
 		iframe
