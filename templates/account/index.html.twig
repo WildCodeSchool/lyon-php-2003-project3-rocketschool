@@ -9,15 +9,17 @@
             <header id="infos" class="col-lg-4">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <svg height="160" width="160">
                             <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />
                             <text x="70" y="80" fill="dark">BD</text>
                         </svg>
                     </div>
-                    <div class="col-md-6">
-                        <h4>{{ app.user.firstname}} {{ app.user.lastname }}</h4>
-                        <h6>{{ app.user.email }}</h6>
+                    <div class="col-md-8">
+                        <div>
+                            <h4>{{ app.user.firstname}} {{ app.user.lastname }}</h4>
+                            <h6>{{ app.user.email }}</h6>
+                        </div>
                     </div>
                 </div>
 
@@ -34,27 +36,27 @@
 
             <section id="quiz_check" class="col-lg-8 row">
 
-                <article class="checklist col-lg-6">
+                <article class="checklist col-md-6">
                     <h3>Checklist</h3>
                     <table>
                         <tbody>
                         <tr>
                             <td><img src="{{ asset('build/images/1.svg') }}" alt=""></td>
-                            <td>Je m'informe sur les métiers</td>
+                            <td>Je m'informe sur les métiers <br><em>Onglet Vidéo</em></td>
                         </tr>
                         <tr>
                             <td><img src="{{ asset('build/images/2.svg') }}" alt=""></td>
-                            <td>J'évalue mes connaissances</td>
+                            <td>J'évalue mes connaissances <br><em>Onglet Vidéo</em></td>
                         </tr>
                         <tr>
                             <td><img src="{{ asset('build/images/3.svg') }}" alt=""></td>
-                            <td>Je prépare mon entretien</td>
+                            <td>Je prépare mon entretien <br><em>Onglet Vidéo</em></td>
                         </tr>
                         </tbody>
                     </table>
                 </article>
 
-                <article class="quiz col-lg-6">
+                <article class="quiz col-md-6">
                     <h3>Quiz</h3>
 
                     // if quiz no active : blabla regarder la video

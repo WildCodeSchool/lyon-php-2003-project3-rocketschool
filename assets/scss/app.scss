@@ -391,9 +391,9 @@ footer a {
     width: 100%;
     margin: 80px auto auto;
 
-    @media screen and (min-width: 768px) {
-        width: 90%;
-    }
+    //@media screen and (min-width: 768px) {
+    //    width: 90%;
+    //}
 
     .row {
         height: 100%;
@@ -407,6 +407,24 @@ footer a {
         align-items: center;
         justify-items: center;
         padding-bottom: 20px;
+
+        @media screen and (min-width: 768px) {
+            >.row {
+                align-self: start;
+                width: 100%;
+
+                .col-md-8 {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    margin-left: -20px;
+
+                    >div {
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
 
         @media screen and (min-width: 992px) {
             padding: 50px;
@@ -423,13 +441,25 @@ footer a {
     }
 
     #quiz_check {
-        margin-top: 20px;
+        margin: 20px auto;
 
-        > article {
+        @media screen and (min-width: 768px) {
+            padding: 0;
+
+            justify-content: space-around;
+
+            >.col-md-6 {
+                flex: 0 0 48%;
+            }
+        }
+
+
+            > article {
             padding: 30px;
             border: 1px solid $dark-blue;
             margin-bottom: 20px;
             background-color: white;
+            width: 90%;
         }
 
         .checklist {
@@ -437,14 +467,16 @@ footer a {
             //color: white;
 
             h3 {
-                margin-bottom: 20px;
+                margin-bottom: 40px;
             }
 
             table {
                 width: 100%;
 
                 tr {
-                    line-height: 2.5em;
+                    line-height: 1.5em;
+                   display: block;
+                    margin-bottom: 20px;
                 }
 
                 tbody > tr > td:last-of-type {
@@ -457,6 +489,14 @@ footer a {
                     width: 40%;
                     display: block;
                     margin: auto auto;
+
+                    @media screen and (min-width: 768px) {
+                        width: 60%;
+                    }
+                }
+
+                em {
+                    font-size: 0.8em;
                 }
             }
         }
