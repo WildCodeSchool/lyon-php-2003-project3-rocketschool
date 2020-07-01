@@ -29,12 +29,11 @@ class RessourcesController extends AbstractController
             ->getRepository(Video::class)
             ->find(1);
 
-        dump($this->getUser());
-
         if ($_GET) {
             if ($_GET['ready']) {
                 $user = $this->getUser();
-                $user->setIsReady(true);
+                $checklist = $this->getUser()->getChecklist();
+                $checklist->setCheck1(true);
                 $entityManager->persist($user);
                 $entityManager->flush();
             }

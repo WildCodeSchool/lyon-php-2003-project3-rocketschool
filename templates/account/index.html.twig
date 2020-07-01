@@ -34,13 +34,11 @@
 
                 <h4>Program</h4>
 
-                {#
-                                {% if program is null %}
+                                {% if app.user.program is null %}
                                     select
                                 {% else %}
                                     <h4>Program</h4>
                                 {% endif %}
-                #}
             </header>
 
             <section id="quiz_check" class="col-lg-8 row">
@@ -68,15 +66,22 @@
                 <article class="quiz col-md-6">
                     <h3>Quiz</h3>
 
-                    {{ dump(app.user) }}
+                    {% if not app.user.checklist.check1 %}
 
-                    // if quiz no active : blabla regarder la video
-                    <br>
-                    // if quiz active : passer le test
+                        Regarde la video !
+
+                    {% elseif app.user.checklist.check1 %}
+
+                        Prêt.e pour le quiz !
+
+                    {% endif %}
+
                     <br>
                     // if essai 1 : result + repasser le quiz
                     <br>
                     // if 2 essais : results
+                    <br>
+                    // if 100%
 
                 </article>
 
