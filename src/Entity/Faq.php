@@ -48,9 +48,9 @@ class Faq
      * @var integer $position
      *
      * @Gedmo\SortablePosition()
-     * @ORM\Column(name="position", type="integer", nullable=true)
+     * @ORM\Column(name="position", type="integer")
      */
-    private $position = 0;
+    private $position;
 
     public function getId(): ?int
     {

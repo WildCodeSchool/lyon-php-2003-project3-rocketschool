@@ -33,6 +33,10 @@ blockquote
     }
 }
 
+.opacity {
+    opacity: 0.3;
+}
+
 .LT_page_name {
     width: 100%;
     display: flex;
@@ -87,6 +91,23 @@ footer a {
 .btn-round-darkblue:hover {
     background-color: $dark-blue;
     color: $secondary-color;
+}
+
+.btn-round-danger {
+    opacity: 0.8;
+    margin-top: 30px;
+    background-color: $red;
+    color: $primary-color;
+    border-radius: 30px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.btn-round-danger:hover {
+    opacity: 1;
+    margin-top: 30px;
+    background-color: $red;
+    color: $primary-color;
+    border-radius: 30px;
 }
 
 .btn-show-more {
@@ -393,7 +414,7 @@ footer a {
     margin: 40px auto;
     text-align: center;
 
-    input, textarea {
+    input, textarea, select {
         margin-bottom: 15px;
     }
 
@@ -402,7 +423,7 @@ footer a {
     }
 }
 
-.faq-show-table {
+.faq-created-at {
     margin: 0px auto 15px auto;
     text-align: center;
 }
@@ -417,16 +438,23 @@ footer a {
 .faq-position-btn {
     width: 30px;
     height: 30px;
-}
-
-.faq-up-btn {
-    transform: rotate(180deg);
+    border: solid black 1px;
+    padding: 5px;
+    margin: 5px 0;
 }
 
 .faq-arrow-container {
     display: flex;
-    justify-content: center;
-    align-content: space-around;
+    flex-direction: column;
+}
+
+.faq-position-btn-active:hover {
+    border: solid $secondary-color 1px;
+    padding: 4px;
+}
+
+.faq-up-btn {
+    transform: rotate(180deg);
 }
 
 .faq-alert {
@@ -437,6 +465,30 @@ footer a {
         list-style: none;
     }
 }
+
+.faq-tr:first-child {
+
+    .faq-up-btn {
+        opacity: 0.3;
+    }
+    .faq-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
+.faq-tr:last-child {
+
+    .faq-down-btn {
+        opacity: 0.3;
+    }
+
+    .faq-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
 
 // DESKTOP AND LARGE SCREEN
 @media (min-width: 940px) {
@@ -516,7 +568,7 @@ footer a {
     // FAQ SECTION
     .faq-card {
         padding: 15px;
-        margin: 20px 100px;
+        margin: 20px auto;
     }
 }
 

@@ -33,14 +33,19 @@ class FaqController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FaqRepository $faqRepository): Response
     {
         $faq = new Faq();
         $form = $this->createForm(FaqType::class, $faq);
         $form->handleRequest($request);
 
+        $lastPosition = $faqRepository
+            ->findOneBy([], ['position' => 'DESC'])
+            ->getPosition();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $faq->setPosition($lastPosition + 1);
             $entityManager->persist($faq);
             $entityManager->flush();
 
@@ -63,7 +68,7 @@ class FaqController extends AbstractController
     {
         return $this->render('faq/show.html.twig', [
             'faq' => $faq,
-            'page_name' => 'FAQ - Question ' . $faq->getId(),
+            'page_name' => 'FAQ - Aperçu',
         ]);
     }
 
@@ -77,6 +82,7 @@ class FaqController extends AbstractController
     {
         $form = $this->createForm(FaqType::class, $faq);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -105,7 +111,7 @@ class FaqController extends AbstractController
     }
 
     /**
-     * @Route("/move/{id}/{position}", name="faq_move")
+     * @Route("/move/{id}/{position}", name="faq_move",methods={"GET", "POST"})
      * @return Response
      */
     public function move(FaqMoveItem $faqMoveItem, Faq $faq, string $position): Response
