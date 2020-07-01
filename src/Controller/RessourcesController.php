@@ -67,7 +67,7 @@ class RessourcesController extends AbstractController
 
 
         return $this->render('ressources/quizz.html.twig', [
-            'page_name' => 'Quizz',
+            'page_name' => 'Quiz',
             'quizz'=>$quizz,
 
 
