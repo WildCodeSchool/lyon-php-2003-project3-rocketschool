@@ -135,6 +135,9 @@
     "justinrainbow/json-schema": {
         "version": "5.2.8"
     },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.4"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -164,6 +167,9 @@
     },
     "nikic/php-parser": {
         "version": "v4.2.1"
+    },
+    "ocramius/package-versions": {
+        "version": "1.9.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
