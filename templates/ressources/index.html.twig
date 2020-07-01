@@ -32,13 +32,13 @@
                 </a>
             </div>
         {% else %}
-            {% if (app.user.isReady) %}
+{#            {% if (app.user.isReady) %}#}
                 <div class="btn-container">
                     <a href="{{ path('ressources_quizz') }}">
                         <button class="btn btn-round-darkblue">Passer le test</button>
                     </a>
                 </div>
-            {% endif %}
+{#            {% endif %}#}
             <form action="" method="get" class="form-inline">
                 <div class="form-group check-video">
                     <input
@@ -47,7 +47,7 @@
                             id="ready"
                             class="form-control"
                             onclick="this.form.submit()"
-                            {% if app.user.isReady is same as(true) %}checked{% endif %}
+{#                            {% if app.user.isReady is same as(true) %}checked{% endif %}#}
                     >
                     <label for="ready">J'ai compris !</label>
                 </div>
