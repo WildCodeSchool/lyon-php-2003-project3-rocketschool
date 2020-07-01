@@ -39,9 +39,14 @@ class FaqController extends AbstractController
         $form = $this->createForm(FaqType::class, $faq);
         $form->handleRequest($request);
 
-        $lastPosition = $faqRepository
-            ->findOneBy([], ['position' => 'DESC'])
-            ->getPosition();
+        $lastfaq = $faqRepository
+            ->findOneBy([], ['position' => 'DESC']);
+        if ($lastfaq != null) {
+            $lastPosition = $lastfaq->getPosition();
+        } else {
+            $lastPosition = -1;
+        }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
