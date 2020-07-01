@@ -29,6 +29,8 @@ class RessourcesController extends AbstractController
             ->getRepository(Video::class)
             ->find(1);
 
+        dump($this->getUser());
+
         if ($_GET) {
             if ($_GET['ready']) {
                 $user = $this->getUser();

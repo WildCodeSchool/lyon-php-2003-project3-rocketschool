@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Checklist;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -44,7 +45,7 @@ class RegistrationController extends AbstractController
             if ($pass != $check) {
                 return $this->render('registration/register.html.twig', [
                     'registrationForm' => $form->createView(),
-                    'error_check_pass' => 'Erreur lors de la saisie du mot de passe'
+                    'error_check_pass' => 'Les mots de passe doivent correspondre'
                 ]);
             }
             // encode the plain password
@@ -54,6 +55,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $checklist = new Checklist();
+            $user->setChecklist($checklist);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
