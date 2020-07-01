@@ -19,7 +19,7 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
         $index = 0;
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $faq = new Faq();
             $faq->setQuestion($faker->sentence)
                 ->setAnswer($faker->paragraph(3))
