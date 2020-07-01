@@ -468,9 +468,14 @@ footer a {
 
 .faq-tr:first-child {
 
+    .faq-btn-up {
+        pointer-events: none;
+    }
+
     .faq-up-btn {
         opacity: 0.3;
     }
+
     .faq-up-btn:hover {
         padding: 5px;
         border: solid black 1px;
@@ -478,6 +483,10 @@ footer a {
 }
 
 .faq-tr:last-child {
+
+    .faq-btn-down {
+        pointer-events: none;
+    }
 
     .faq-down-btn {
         opacity: 0.3;

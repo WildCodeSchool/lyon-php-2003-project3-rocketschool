@@ -104,13 +104,23 @@ class FaqController extends AbstractController
     /**
      * @Route("/{id}", name="faq_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Faq $faq): Response
+    public function delete(Request $request, Faq $faq, FaqRepository $faqRepository): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
         if ($this->isCsrfTokenValid('delete'.$faq->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($faq);
             $entityManager->flush();
         }
+
+        $allFaq = $faqRepository->findBy([], ['position' => 'ASC']);
+        $index = 0;
+        foreach ($allFaq as $faq) {
+            $faq->setPosition($index);
+            $index++;
+            $entityManager->persist($faq);
+        }
+        $entityManager->flush();
 
         return $this->redirectToRoute('faq_index');
     }
