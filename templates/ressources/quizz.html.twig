@@ -14,12 +14,22 @@
 
                 <div class="card w-auto quizz-card">
                     <div class="card-body quizz-body">
-                        <h3 class="card-title">{{ question.title }}</h3>
+                        <h3 class="card-title">{{ question.questionOrder }} - {{ question.title }}</h3>
                             {%  for proposition in question.propositions %}
                                 <ul>
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
-                                            <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}">
+                                            <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}"
+                                                {% if post %}
+                                                    {% for  props in post.questions %}
+                                                        {% for prop in props %}
+                                                            {% if prop == proposition.id %}
+                                                            checked
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                {% endif %}>
+
                                             <span class="checkmark"></span>
                                         </label>
 
@@ -44,6 +54,7 @@
                 </div>
 
             {% endfor %}
+
             <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
                 Valider vos réponses
             </button>
