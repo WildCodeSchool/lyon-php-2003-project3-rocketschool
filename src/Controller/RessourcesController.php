@@ -77,11 +77,14 @@ class RessourcesController extends AbstractController
             foreach ($_POST["questions"] as $questionId => $propositions) {
                 $question = $questionRepo->find($questionId);
                 $goodAnswers =$propoRepo->findBy(['question' => $question, 'isGood' => true]);
+                $goodAnswers = array_map(function ($prop) {
+                    return $prop->getId();
+                }, $goodAnswers);
 
                 $errors[$questionId] = false;
 
-                foreach ($propositions as $key => $values) {
-                    if (in_array($values, $goodAnswers)) {
+                foreach ($propositions as $key => $value) {
+                    if (!in_array($value, $goodAnswers)) {
                         $errors[$questionId]= true;
                     }
                 }
@@ -92,7 +95,7 @@ class RessourcesController extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('ressources_quizz');
+            return $this->redirectToRoute('ressources_quizz', ['errors' => $errors]);
         }
 
 
