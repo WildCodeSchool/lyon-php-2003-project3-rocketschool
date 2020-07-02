@@ -70,11 +70,18 @@ class RessourcesController extends AbstractController
         QuestionRepository $questionRepo
     ) {
         $quizz = $quizzRepo->findOneBy([]);
+        $questions = $questionRepo->findAll();
+        $nbrQuestionQuizz = count($questions);
         $errors = null;
-
+        $postValide = true;
 
         if ($_SERVER['REQUEST_METHOD'] =='POST') {
             $errors = [];
+            $nbrQuestionPost = count($_POST['questions']);
+
+            if ($nbrQuestionQuizz !== $nbrQuestionPost) {
+                $postValide  = false;
+            }
 
             foreach ($_POST["questions"] as $questionId => $propositions) {
                 $question = $questionRepo->find($questionId);
@@ -103,7 +110,8 @@ class RessourcesController extends AbstractController
         'page_name' => 'Quizz',
         'quizz'=>$quizz,
         'errors'=> $errors,
-        'post' => $_POST
+        'post' => $_POST,
+        'postValide' => $postValide
         ]);
     }
 

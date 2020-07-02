@@ -208,6 +208,9 @@ footer a {
         color: $secondary-color;
     }
 
+    .quizz-alert {
+        justify-content: center;
+    }
     .quizz-container {
 
         margin-top: 30px;
@@ -229,6 +232,7 @@ footer a {
         margin: auto;
         width: 10%;
     }
+
 
     .quizz-proposition {
         display: inline-block;

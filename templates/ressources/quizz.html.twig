@@ -4,10 +4,15 @@
 
 {% block body %}
 
+
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
-
+    <div class="quizz-alert alert alert-danger">
+        {% if postValide == false %}
+            <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les questions</h2>
+        {% endif %}
+    </div>
     <form action="quizz" method="POST">
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
@@ -20,6 +25,7 @@
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
                                             <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}"
+
                                                 {% if post %}
                                                     {% for  props in post.questions %}
                                                         {% for prop in props %}
@@ -39,16 +45,18 @@
                             {%  endfor %}
                     </div>
                     <div class="quizz-check">
-                        {% if errors is not null %}
-                            {% for key, error in errors %}
-                                {%  if key == question.id %}
-                                    {% if error == true %}
-                                        <img src="{{ asset('build/images/icons/false-check.png') }}" style="width: 90%">
-                                    {% else %}
-                                        <img src="{{ asset('build/images/icons/true-check.png') }}" style="width: 90%">
+                        {% if postValide == true %}
+                            {% if errors is not null %}
+                                {% for key, error in errors %}
+                                    {%  if key == question.id %}
+                                        {% if error == true %}
+                                            <img src="{{ asset('build/images/icons/false-check.png') }}" style="width: 90%">
+                                        {% else %}
+                                            <img src="{{ asset('build/images/icons/true-check.png') }}" style="width: 90%">
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
