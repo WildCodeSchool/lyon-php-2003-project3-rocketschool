@@ -61,41 +61,38 @@ class RessourcesController extends AbstractController
      * @Route("/quizz", name="quizz")
      * @param QuizzRepository $quizzRepo
      * @param PropositionRepository $propoRepo
+     * @param QuestionRepository $questionRepo
      * @return string
      */
-    public function quizz(QuizzRepository $quizzRepo, PropositionRepository $propoRepo)
-    {
+    public function quizz(
+        QuizzRepository $quizzRepo,
+        PropositionRepository $propoRepo,
+        QuestionRepository $questionRepo
+    ) {
         $quizz = $quizzRepo->findOneBy([]);
-        $allProp = $propoRepo->findAll();
-        $goodAnswers = [];
-        $errors =[];
-        dump($allProp);
-
-//        //tableau des propositions : 'isGood' == true
-//        foreach ($allProp as $propId => $info) {
-//            $goodAnswers[$propId] =$info->getId();
-//        }
-//
-//        dump($goodAnswers);
-
-
 
         if ($_SERVER['REQUEST_METHOD'] =='POST') {
-            dump($_POST);
+            $errors = [];
+
             foreach ($_POST["questions"] as $questionId => $propositions) {
-                foreach ($propositions as $key => $value) {
-                    if (!in_array($value, $goodAnswers)) {
-                        $errors[$questionId][$key] = true;
-                    } else {
-                        $errors[$questionId][$key] = false;
+                $question = $questionRepo->find($questionId);
+                $goodAnswers =$propoRepo->findBy(['question' => $question, 'isGood' => true]);
+
+                $errors[$questionId] = false;
+
+                foreach ($propositions as $key => $values) {
+                    if (in_array($values, $goodAnswers)) {
+                        $errors[$questionId]= true;
+                    }
+                }
+                foreach ($goodAnswers as $key => $value) {
+                    if (!in_array($value, $propositions)) {
+                        $errors[$questionId] = true;
                     }
                 }
             }
 
-            dump($errors);
-            die();
-
-            return $this->redirectToRoute('ressources_quizz', ['errors'=>$errors]);
+            return $this->redirectToRoute('ressources_quizz');
         }
 
 
