@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -20,9 +21,10 @@ class RessourcesController extends AbstractController
     /**
      * @Route("/", name="index")
      * @param EntityManagerInterface $entityManager
+     * @param SessionInterface $session
      * @return Response
      */
-    public function index(EntityManagerInterface $entityManager)
+    public function index(EntityManagerInterface $entityManager, SessionInterface $session)
     {
 
         $video = $this->getDoctrine()
@@ -38,6 +40,9 @@ class RessourcesController extends AbstractController
                 $entityManager->flush();
             }
         }
+
+        $session->set('uri', $_SERVER['REQUEST_URI']);
+
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',

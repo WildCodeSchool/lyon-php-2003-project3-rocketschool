@@ -10,12 +10,18 @@
     </style>
 {% endblock %}
 
-
 {% block body %}
     <main class="container-fluid mh-100" id="account_index">
-
         <div class="row">
             <header id="infos" class="col-lg-4">
+                <section class="menu">
+                    <a href="{{ app.session.get('uri') }}">
+                        <img src="{{ asset('build/images/back_arrow.450bf16e.svg') }}" alt="">
+                    </a>
+                    <img src="{{ asset('build/images/three_dot.619fd3b3.svg') }}" alt="">
+{#                    <p>Editer</p>#}
+{#                    <p>Se déconnecter</p>#}
+                </section>
 
                 <div class="row">
                     <div class="col-md-3">
@@ -90,7 +96,7 @@
 
             </section>
         </div>
-        <section class="notes row">
+        <section class="row notes">
             <header>
                 <h5>Notes personnelles</h5>
                 <div data-toggle="modal" data-target="#myModal">
@@ -98,6 +104,20 @@
                     <h1>+</h1>
                 </div>
             </header>
+            <article>
+                <div class="row">
+                    {% for note in app.user.notes %}
+                        <div class="col-md-6 col-lg-4">
+                            <p>{{ note.title }}</p>
+                            <div>
+                                <a href="{{ path('edit_note', {'note': note.id}) }}">edit</a>
+                                <a href="">delete</a>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </article>
             <hr>
         </section>
 

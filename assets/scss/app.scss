@@ -387,11 +387,13 @@ footer a {
 }
 
 #account_index {
-    //background-color: $white-blue;
     height: 100%;
     width: 100%;
-    //margin: 80px auto auto;
-    //background-color: $secondary-color;
+    //margin-top: 80px;
+
+    .container-fluid {
+        padding: 0;
+    }
 
     >.row:first-child {
         height: 100%;
@@ -406,9 +408,33 @@ footer a {
             padding: 20px;
             text-align: center;
 
-            //>.row {
-            //    border: 1px solid #404656;
-            //}
+            >section {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+
+                //p {
+                //    font-size: 0.8em;
+                //    display: block;
+                //    border: 1px solid #404656;
+                //    padding: 10px;
+                //}
+
+                img {
+                    width: 32px;
+                    height: auto;
+                }
+            }
+
+            svg {
+                display: block;
+                margin: -20px auto 0;
+                cursor: pointer;
+            }
+
+            .col-md-6:last-of-type {
+                text-align: center;
+            }
 
             @media screen and (min-width: 768px) {
                 >.row {
@@ -430,15 +456,6 @@ footer a {
 
             @media screen and (min-width: 992px) {
                 padding: 50px;
-            }
-
-            svg {
-                display: block;
-                margin: 20px auto 0;
-            }
-
-            .col-md-6:last-of-type {
-                text-align: center;
             }
         }
     }
@@ -535,7 +552,12 @@ footer a {
     }
 
     .notes {
-        margin-bottom: 50px;
+        background-color: rgba(149,63,174,0.7);
+        color: white;
+
+        .row {
+            margin-bottom: -20px;
+        }
 
         header {
             width: 100%;
@@ -561,6 +583,27 @@ footer a {
                     height: 40px;
                     align-items: center;
                     justify-content: center;
+                }
+            }
+        }
+
+        >article {
+            padding: 10px;
+
+            .col-md-6 {
+                display: flex;
+                justify-content: space-between;
+                padding: 15px;
+                border-bottom: 1px solid white;
+
+                >p {
+                    margin-top: 10px;
+                    margin-bottom: 0;
+                }
+
+                >div {
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }

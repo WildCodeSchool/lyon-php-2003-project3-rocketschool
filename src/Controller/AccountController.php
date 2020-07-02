@@ -6,6 +6,7 @@ use App\Entity\Note;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
@@ -32,6 +33,17 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController', 'page_name' => 'Mon Profil'
         ]);
+    }
+
+    /**
+     * @Route("/account/{note<\d+>}", name="edit_note")
+     * @param Note $note
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function edit(Note $note, EntityManagerInterface $entityManager):Response
+    {
+        return $this->render('account/index.html.twig', ['note' => $note, 'page_name' => 'Mon Profil']);
     }
 
     public static function cleanInput(string $input):string

@@ -3,6 +3,7 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
+    {{ dump(app.session.get('uri')) }}
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
