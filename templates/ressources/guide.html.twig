@@ -3,7 +3,7 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-    <div class="LT_page_name">
+    <div class="LT_page_name {% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
         <h2>{{ page_name }}</h2>
     </div>
 {% endblock %}

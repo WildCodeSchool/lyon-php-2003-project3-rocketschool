@@ -8,6 +8,7 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
+
         dbname:               '%env(resolve:DATABASE_NAME)%'
         host:                 '%env(resolve:DATABASE_HOST)%'
         port:                 '%env(resolve:DATABASE_PORT)%'
@@ -16,6 +17,7 @@ doctrine:
         driver:               '%env(resolve:DATABASE_DRIVER)%'
 
         #driver: 'pdo_mysql'
+
         server_version: '5.7'
         charset: utf8mb4
         default_table_options:
