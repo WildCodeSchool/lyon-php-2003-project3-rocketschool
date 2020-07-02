@@ -485,17 +485,30 @@ footer a {
                 width: 100%;
                 padding: 20px;
                 display: block;
-                padding: 20px;
 
-                tr {
+                tbody > tr {
                     line-height: 1.5em;
                     display: block;
                     margin-bottom: 20px;
-                }
 
-                tbody > tr > td:last-of-type {
-                    text-align: left;
-                    font-size: 1.1em;
+                    >td:first-of-type {
+                        width: 30px;
+                        height: 30px;
+
+                        span {
+                            border: 3px solid black;
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+
+                    >td:last-of-type {
+                        text-align: left;
+                        font-size: 1.1em;
+                        padding-left: 20px;
+                        padding-top: 15px;
+                    }
                 }
 
                 img {
@@ -522,6 +535,8 @@ footer a {
     }
 
     .notes {
+        margin-bottom: 50px;
+
         header {
             width: 100%;
             display: flex;
@@ -529,16 +544,42 @@ footer a {
             align-items: center;
             background-color: $purple;
             color: white;
-            padding: 5px;
+            padding: 15px;
 
             div {
                 display: flex;
                 align-items: center;
+                //margin-right: 10px;
 
                 h1 {
                     font-size: 3.5em;
+                    border: 1px solid white;
+                    margin: 0;
+                    padding: 5px;
+                    display: flex;
+                    width: 40px;
+                    height: 40px;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
+        }
+    }
+
+    .modal-header {
+        background-color: $purple;
+        color: white;
+    }
+
+    .modal-body {
+        .btn {
+            background-color: $purple;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 8px 32px;
+            margin-top: 10px;
+            float: right;
         }
     }
 
