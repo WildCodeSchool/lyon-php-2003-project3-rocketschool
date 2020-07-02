@@ -64,7 +64,6 @@ class QuizzFixtures extends Fixture
 
             foreach ($propositions as $title => $data) {
                 $proposition = new Proposition();
-                var_dump($data);
                 $proposition->setTitle($title)
                     ->setIsGood($data['isGood'])
                     ->setQuestion($question);
