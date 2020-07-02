@@ -90,7 +90,6 @@ class RessourcesController extends AbstractController
                     return $prop->getId();
                 }, $goodAnswers);
 
-
                 $errors[$questionId] = false;
 
                 foreach ($propositions as $key => $value) {

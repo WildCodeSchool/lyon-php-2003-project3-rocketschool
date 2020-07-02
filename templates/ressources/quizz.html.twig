@@ -17,7 +17,6 @@
     <form action="quizz" method="POST">
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
-
                 <div class="card w-auto quizz-card">
                     <div class="card-body quizz-body">
                         <h3 class="card-title">{{ question.questionOrder }} - {{ question.title }}</h3>
@@ -26,7 +25,6 @@
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
                                             <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}"
-
                                                 {% if post %}
                                                     {% for  props in post.questions %}
                                                         {% for prop in props %}
@@ -36,10 +34,8 @@
                                                         {% endfor %}
                                                     {% endfor %}
                                                 {% endif %}>
-
                                             <span class="checkmark"></span>
                                         </label>
-
                                         <P>{{ proposition.title }}</P>
                                     </li>
                                 </ul>
