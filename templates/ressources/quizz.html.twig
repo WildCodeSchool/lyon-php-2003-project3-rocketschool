@@ -17,7 +17,8 @@
                                 <ul>
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
-                                            <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}"  >
+                                            <input type='hidden'  name="questions[{{ question.id }}][]">
+                                            <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}">
                                             <span class="checkmark"></span>
                                         </label>
                                         <P>{{ proposition.title }}</P>

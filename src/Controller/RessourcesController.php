@@ -65,17 +65,23 @@ class RessourcesController extends AbstractController
      */
     public function quizz(QuizzRepository $quizzRepo, PropositionRepository $propoRepo)
     {
-        $quizz = $quizzRepo->findOneBy(['isEnable' => true]);
-        $goodProp = $propoRepo->findBy(array('isGood'=>true));
+        $quizz = $quizzRepo->findOneBy([]);
+        $allProp = $propoRepo->findAll();
         $goodAnswers = [];
         $errors =[];
+        dump($allProp);
 
-        //tableau des propositions : 'isGood' == true
-        foreach ($goodProp as $propId => $info) {
-            $goodAnswers[$propId] =$info->getId();
-        }
+//        //tableau des propositions : 'isGood' == true
+//        foreach ($allProp as $propId => $info) {
+//            $goodAnswers[$propId] =$info->getId();
+//        }
+//
+//        dump($goodAnswers);
+
+
 
         if ($_SERVER['REQUEST_METHOD'] =='POST') {
+            dump($_POST);
             foreach ($_POST["questions"] as $questionId => $propositions) {
                 foreach ($propositions as $key => $value) {
                     if (!in_array($value, $goodAnswers)) {
@@ -85,7 +91,9 @@ class RessourcesController extends AbstractController
                     }
                 }
             }
+
             dump($errors);
+            die();
 
             return $this->redirectToRoute('ressources_quizz', ['errors'=>$errors]);
         }
