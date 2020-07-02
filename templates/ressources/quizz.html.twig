@@ -4,15 +4,16 @@
 
 {% block body %}
 
-
     <div class="LT_page_name">
         <h2>{{ page_name }}</h2>
     </div>
-    <div class="quizz-alert alert alert-danger">
-        {% if postValide == false %}
+
+    {% if postValide == false %}
+        <div class="quizz-alert alert alert-danger">
             <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les questions</h2>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
+
     <form action="quizz" method="POST">
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
