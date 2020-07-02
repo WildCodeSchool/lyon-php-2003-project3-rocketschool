@@ -70,10 +70,10 @@ class RessourcesController extends AbstractController
         QuestionRepository $questionRepo
     ) {
         $quizz = $quizzRepo->findOneBy([]);
+        $errors = null;
 
         if ($_SERVER['REQUEST_METHOD'] =='POST') {
             $errors = [];
-
             foreach ($_POST["questions"] as $questionId => $propositions) {
                 $question = $questionRepo->find($questionId);
                 $goodAnswers =$propoRepo->findBy(['question' => $question, 'isGood' => true]);
@@ -94,14 +94,13 @@ class RessourcesController extends AbstractController
                     }
                 }
             }
-
-            return $this->redirectToRoute('ressources_quizz', ['errors' => $errors]);
         }
-
 
         return $this->render('ressources/quizz.html.twig', [
         'page_name' => 'Quizz',
         'quizz'=>$quizz,
+        'errors'=> $errors
+
         ]);
     }
 

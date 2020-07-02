@@ -11,8 +11,9 @@
     <form action="quizz" method="POST">
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
+
                 <div class="card w-auto quizz-card">
-                    <div class="card-body">
+                    <div class="card-body quizz-body">
                         <h3 class="card-title">{{ question.title }}</h3>
                             {%  for proposition in question.propositions %}
                                 <ul>
@@ -21,12 +22,27 @@
                                             <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}">
                                             <span class="checkmark"></span>
                                         </label>
+
                                         <P>{{ proposition.title }}</P>
                                     </li>
                                 </ul>
                             {%  endfor %}
                     </div>
+                    <div class="quizz-check">
+                        {% if errors is not null %}
+                            {% for key, error in errors %}
+                                {%  if key == question.id %}
+                                    {% if error == true %}
+                                        <img src="{{ asset('build/images/icons/false-check.png') }}" style="width: 90%">
+                                    {% else %}
+                                        <img src="{{ asset('build/images/icons/true-check.png') }}" style="width: 90%">
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
+
             {% endfor %}
             <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
                 Valider vos réponses
