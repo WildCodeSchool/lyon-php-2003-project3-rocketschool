@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faq{% endblock %}
+
+{% block body %}
+    <div class="faq-action-btn">
+        <a href="{{ path('faq_index') }}"><button class="btn btn-round-darkblue">back to list</button></a>
+        {{ include('faq/_delete_form.html.twig') }}
+    </div>
+
+    <div class="faq-card">
+        <div class="icone-btn-container">
+            <a href="{{ path('faq_edit', {'id': faq.id}) }}" class="icone-btn-container">
+                <img src="{{ asset('build/images/edit.png') }}" class="icone-btn icone-btn-edit" alt="Editer">
+            </a>
+        </div>
+        <h3>{{ faq.question }}</h3>
+        <div class="faq-answer-container">
+            <p>{{ faq.answer }}</p>
+        </div>
+    </div>
+    <div class="faq-created-at">
+        <small>
+            créé le {{ faq.createdAt ? faq.createdAt|date('Y-m-d') : '' }}
+            à {{ faq.createdAt ? faq.createdAt|date('H:i') : '' }}
+        </small>
+    </div>
+{% endblock %}

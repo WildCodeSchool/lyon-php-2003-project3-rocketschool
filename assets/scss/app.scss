@@ -11,6 +11,7 @@ body {
 }
 
 header {
+    z-index: 1;
     width: 100%;
     position: fixed;
     top: 0;
@@ -25,6 +26,10 @@ blockquote {
     p {
         margin-bottom: 0;
     }
+}
+
+.opacity {
+    opacity: 0.3;
 }
 
 .LT_page_name {
@@ -113,6 +118,23 @@ footer a {
     color: $secondary-color;
 }
 
+.btn-round-danger {
+    opacity: 0.8;
+    margin-top: 30px;
+    background-color: $red;
+    color: $primary-color;
+    border-radius: 30px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.btn-round-danger:hover {
+    opacity: 1;
+    margin-top: 30px;
+    background-color: $red;
+    color: $primary-color;
+    border-radius: 30px;
+}
+
 .btn-show-more {
     width: 110px;
     height: 30px;
@@ -127,6 +149,24 @@ footer a {
 
 .btn:focus {
     box-shadow: none;
+}
+
+.icone-btn {
+    z-index: -1;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+}
+
+.icone-btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+    }
 }
 
 .form-section {
@@ -233,7 +273,6 @@ footer a {
 
     .quizz-container {
         margin-top: 30px;
-
     }
 
     .quizz-card {
@@ -257,7 +296,7 @@ footer a {
         }
     }
 
-    .quizz-button{
+    .quizz-button {
         align-self: center;
         margin-bottom: 30px ;
     }
@@ -333,8 +372,157 @@ footer a {
     }
 }
 
+// FAQ SECTION
+.faq-search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto;
+
+    .form-control {
+        margin: 10px;
+        width: 300px;
+        border-bottom: solid $dark-blue;
+    }
+
+    .faq-form-btn-container {
+        width: 100%;
+        text-align: center;
+
+        .btn-round-darkblue {
+            margin-top: 20px;
+            width: 230px;
+        }
+    }
+}
+
+#faq-result-length {
+    text-align: center;
+}
+
+.faq-no-result {
+    margin: 0;
+    text-align: center;
+}
+
+.faq-card {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: black 0 0 15px -5px;
+    border-top: solid $dark-blue;
+
+    h3 {
+        margin: 0;
+        font-weight: bold;
+        width: 92%;
+    }
+
+    .faq-answer-container {
+        border-bottom: solid $secondary-color;
+
+        p {
+            margin: 0;
+            padding: 15px;
+        }
+
+    }
+}
+
+// FAQ ADMIN SECTION
+.faq-table {
+    margin: 40px auto;
+    text-align: center;
+
+    input, textarea, select {
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        height: 200px;
+    }
+}
+
+.faq-created-at {
+    margin: 0px auto 15px auto;
+    text-align: center;
+}
+
+.faq-action-btn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.faq-position-btn {
+    width: 30px;
+    height: 30px;
+    border: solid black 1px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.faq-arrow-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-position-btn-active:hover {
+    border: solid $secondary-color 1px;
+    padding: 4px;
+}
+
+.faq-up-btn {
+    transform: rotate(180deg);
+}
+
+.faq-alert {
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+}
+
+.faq-tr:first-child {
+
+    .faq-btn-up {
+        pointer-events: none;
+    }
+
+    .faq-up-btn {
+        opacity: 0.3;
+    }
+
+    .faq-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
+.faq-tr:last-child {
+
+    .faq-btn-down {
+        pointer-events: none;
+    }
+
+    .faq-down-btn {
+        opacity: 0.3;
+    }
+
+    .faq-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
 /* DESKTOP AND LARGE SCREEN */
 @media (min-width: 992px) {
+
 
     .container {
         max-width: 100%;
@@ -439,6 +627,12 @@ footer a {
         iframe {
             height: 250px;
         }
+    }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px auto;
     }
 }
 

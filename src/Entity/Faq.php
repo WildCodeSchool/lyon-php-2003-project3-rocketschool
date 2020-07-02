@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FaqRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FaqRepository::class)
@@ -19,12 +20,14 @@ class Faq
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $question;
 
     /**
-     * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $answer;
 
@@ -39,7 +42,15 @@ class Faq
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="faqs")
      */
-    private $category;
+    private $category = null;
+
+    /**
+     * @var integer $position
+     *
+     * @Gedmo\SortablePosition()
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
     public function getId(): ?int
     {
@@ -90,6 +101,18 @@ class Faq
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

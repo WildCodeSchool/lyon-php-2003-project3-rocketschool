@@ -87,7 +87,7 @@ class RessourcesController extends AbstractController
 
         $faq = $this->getDoctrine()
             ->getRepository(Faq::class)
-            ->findAll();
+            ->findBy([], ['position' => 'ASC']);
 
         $form = $this->createForm(FaqSearchFieldType::class);
         $form->handleRequest($request);
