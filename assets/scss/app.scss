@@ -271,14 +271,29 @@ footer a {
         color: $secondary-color;
     }
 
+    .quizz-alert {
+        justify-content: center;
+    }
+
     .quizz-container {
         margin-top: 30px;
     }
 
     .quizz-card {
+        display: flex;
+        flex-direction: row;
         margin: 20px 0 20px 0;
         border: 2px solid $secondary-color;
         border-radius: 10px;
+    }
+
+    .quizz-body {
+        width: 90%;
+    }
+
+    .quizz-check {
+        margin: auto;
+        width: 10%;
     }
 
     .quizz-proposition {
