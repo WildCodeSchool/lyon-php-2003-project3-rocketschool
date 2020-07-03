@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <script src="https://cdn.ckeditor.com/4.14.0/full-all/ckeditor.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700;900&display=swap" rel="stylesheet">
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
@@ -47,13 +46,55 @@
                                     alt="">
                         </a>
                     </nav>
+
+                    {#              Navbar Admin appearring when the logged user has the admin status                   #}
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <nav class="navbar navbar-expand-lg navbar-dark nav_admin">
+                            <div class="adminBar">
+                                MENU ADMINISTRATEUR
+                            </div>
+                            <button class="navbar-toggler  ml-auto" type="button" data-toggle="collapse"
+                                    data-target="#navbarAdminNavDropdown" aria-controls="navbarNavDropdown"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarAdminNavDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href={{ path('admin_index') }}>Candidats</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href={{ path('admin_video_edit') }}>Editer Vidéo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href={{ path('admin_index') }}>Editer Quiz</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href={{ path('faq_index') }}>Editer FAQ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href={{ path('admin_index') }}>Paramètres</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href={{ path('admin_index') }}>Administrateurs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                    {% endif %}
                 </header>
             {% endif %}
+            <div class="{% if app.user is not null %}LT_page_name{% else %}LT_page_name_ter{% endif %}{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
+                <h2>{{ page_name|default('') }}</h2>
+            </div>
+            <main>
             {% block body %}{% endblock %}
-
+            </main>
+            {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}
-            {{ encore_entry_script_tags('app') }}
             <!-- Footer -->
             <footer class="page-footer font-small blue">
 
