@@ -67,7 +67,7 @@ class RessourcesController extends AbstractController
 
 
         return $this->render('ressources/quizz.html.twig', [
-            'page_name' => 'Quizz',
+            'page_name' => 'Quiz',
             'quizz'=>$quizz,
 
 
@@ -87,7 +87,7 @@ class RessourcesController extends AbstractController
 
         $faq = $this->getDoctrine()
             ->getRepository(Faq::class)
-            ->findAll();
+            ->findBy([], ['position' => 'ASC']);
 
         $form = $this->createForm(FaqSearchFieldType::class);
         $form->handleRequest($request);

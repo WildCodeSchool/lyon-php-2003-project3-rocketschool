@@ -25,6 +25,8 @@ doctrine:
             collate: utf8mb4_unicode_ci
 
         #url: '%env(resolve:DATABASE_URL)%'
+        # CAUTION : When wanting to use the environment variables, this line below needs to be commented
+
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
