@@ -8,14 +8,24 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
+        # CAUTION : When using the environment variables, the lines below need to not be commented anymore
+#        dbname:               '%env(resolve:DATABASE_NAME)%'
+#        host:                 '%env(resolve:DATABASE_HOST)%'
+#        port:                 '%env(resolve:DATABASE_PORT)%'
+#        user:                 '%env(resolve:DATABASE_USER)%'
+#        password:             '%env(resolve:DATABASE_PASSWORD)%'
+#        driver:               '%env(resolve:DATABASE_DRIVER)%'
+        # CAUTION : When wanting to use the environment variables, this line below needs to be commented
         driver: 'pdo_mysql'
+
         server_version: '5.7'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
-
+        # CAUTION : When wanting to use the environment variables, this line below needs to be commented
         url: '%env(resolve:DATABASE_URL)%'
+
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore

@@ -48,11 +48,15 @@
                     </nav>
                 </header>
             {% endif %}
+            <main>
+            <div class="LT_page_name{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
+                <h2>{{ page_name|default('') }}</h2>
+            </div>
             {% block body %}{% endblock %}
-
+            </main>
+            {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}
-            {{ encore_entry_script_tags('app') }}
             <!-- Footer -->
             <footer class="page-footer font-small blue">
 

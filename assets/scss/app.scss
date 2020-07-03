@@ -2,26 +2,22 @@
 @import "~bootstrap/scss/bootstrap";
 
 
-// GENERAL CSS
+/* GENERAL CSS */
 body {
     background-color: $primary-color;
     width: 100%;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
     font-weight: 400;
 }
 
 header {
+    z-index: 1;
     width: 100%;
     position: fixed;
     top: 0;
 }
 
-h3 {
-    font-weight: 700;
-}
-
-blockquote
-{
+blockquote {
     font-style: italic;
     margin-left: 32px;
     border-left: 4px solid #CCC;
@@ -32,6 +28,10 @@ blockquote
     }
 }
 
+.opacity {
+    opacity: 0.3;
+}
+
 .LT_page_name {
     width: 100%;
     display: flex;
@@ -39,17 +39,28 @@ blockquote
     align-items: center;
     justify-content: space-around;
     background-color: $secondary-color;
-    height: 200px;
-    color: white;
+    height: 120px;
+    color: $primary-color;
+    margin-top: 80px;
+}
+
+.margin_top_navbar_admin {
+    margin-top: 160px;
 }
 
 .LT_page_name h2 {
-    margin-top: 80px;
+    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
     font-weight: bold;
+    margin-block-end: 0;
 }
 
 .navbar-light .navbar-nav .nav-link {
     width: 100%;
+    color: black;
+    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
 }
 
 .navbar {
@@ -63,8 +74,27 @@ blockquote
     width: 100%;
 }
 
-footer {
+.navbar {
+    height: 80px;
+}
 
+.nav_admin {
+    background-color: $dark-blue;
+    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
+    color: $primary-color;
+    height: 80px;
+    justify-content: end;
+
+    .navbar-nav .nav-link {
+        color: $primary-color;
+    }
+
+    .adminBar {
+        display: none;
+    }
+}
+
+footer {
     display: block;
     width: 100%;
     background-color: $secondary-color;
@@ -72,10 +102,10 @@ footer {
 }
 
 footer a {
-    color: white;
+    color: $primary-color;
 }
 
-// BUTTONS
+/* BUTTONS */
 .btn-round-darkblue {
     margin-top: 30px;
     background-color: $dark-blue;
@@ -86,6 +116,23 @@ footer a {
 .btn-round-darkblue:hover {
     background-color: $dark-blue;
     color: $secondary-color;
+}
+
+.btn-round-danger {
+    opacity: 0.8;
+    margin-top: 30px;
+    background-color: $red;
+    color: $primary-color;
+    border-radius: 30px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.btn-round-danger:hover {
+    opacity: 1;
+    margin-top: 30px;
+    background-color: $red;
+    color: $primary-color;
+    border-radius: 30px;
 }
 
 .btn-show-more {
@@ -102,6 +149,24 @@ footer a {
 
 .btn:focus {
     box-shadow: none;
+}
+
+.icone-btn {
+    z-index: -1;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+}
+
+.icone-btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+    }
 }
 
 .form-section {
@@ -126,7 +191,7 @@ footer a {
     }
 }
 
-// VIDEO SECTION
+/* VIDEO SECTION */
 .video-container {
     margin-top: 20px;
     padding: 20px;
@@ -145,14 +210,13 @@ footer a {
         color: #1d2124;
         margin: auto;
         overflow: hidden;
-        max-height: 120px;
+        height: 120px;
         box-shadow: inset black 0px -20px 55px -30px;
         border-radius: 5px;
     }
 
     #video-description-id.is-active {
-        min-height: 120px;
-        max-height: none;
+        height: auto;
     }
 }
 
@@ -164,7 +228,7 @@ footer a {
     }
 }
 
-// VIDEO EDIT SECTION
+/* VIDEO EDIT SECTION */
 .video-form-label {
     margin: 0;
     font-weight: bold;
@@ -185,7 +249,6 @@ footer a {
         opacity: 1;
     }
 }
-
 
 #quizz {
     .quizz-title {
@@ -212,9 +275,7 @@ footer a {
         justify-content: center;
     }
     .quizz-container {
-
         margin-top: 30px;
-
     }
 
     .quizz-card {
@@ -251,7 +312,7 @@ footer a {
 
     .quizz-button {
         align-self: center;
-        margin-bottom: 20px;
+        margin-bottom: 30px ;
     }
 
     /* Customize the label (the container) */
@@ -369,6 +430,7 @@ footer a {
     h3 {
         margin: 0;
         font-weight: bold;
+        width: 92%;
     }
 
     .faq-answer-container {
@@ -382,8 +444,99 @@ footer a {
     }
 }
 
-// DESKTOP AND LARGE SCREEN
-@media (min-width: 940px) {
+// FAQ ADMIN SECTION
+.faq-table {
+    margin: 40px auto;
+    text-align: center;
+
+    input, textarea, select {
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        height: 200px;
+    }
+}
+
+.faq-created-at {
+    margin: 0px auto 15px auto;
+    text-align: center;
+}
+
+.faq-action-btn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.faq-position-btn {
+    width: 30px;
+    height: 30px;
+    border: solid black 1px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.faq-arrow-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-position-btn-active:hover {
+    border: solid $secondary-color 1px;
+    padding: 4px;
+}
+
+.faq-up-btn {
+    transform: rotate(180deg);
+}
+
+.faq-alert {
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+}
+
+.faq-tr:first-child {
+
+    .faq-btn-up {
+        pointer-events: none;
+    }
+
+    .faq-up-btn {
+        opacity: 0.3;
+    }
+
+    .faq-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
+.faq-tr:last-child {
+
+    .faq-btn-down {
+        pointer-events: none;
+    }
+
+    .faq-down-btn {
+        opacity: 0.3;
+    }
+
+    .faq-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
+/* DESKTOP AND LARGE SCREEN */
+@media (min-width: 992px) {
+
 
     .container {
         max-width: 100%;
@@ -394,10 +547,6 @@ footer a {
     }
 
     .navbar-light .navbar-nav .nav-link {
-        color: black;
-        font-weight: bold;
-        font-size: 18px;
-        text-align: center;
         width: 200px;
         letter-spacing: 2px;
     }
@@ -415,29 +564,42 @@ footer a {
         display: none;
     }
 
-    .quizz-container{
-        margin-top: 30px;
-        width: 80%;
+    #navbarAdminNavDropdown .navbar-nav {
+        background-color: $dark-blue;
+
+        .nav-link {
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
     }
 }
 
-// TABLET AND SMALL SCREEN
-@media screen and (max-width: 940px) {
+.quizz-container{
+    margin-top: 30px;
+    width: 80%;
+}
+
+/* TABLET AND SMALL SCREEN */
+@media screen and (max-width: 991px) {
+
+    #navbarNavDropdown {
+        z-index: 1;
+
+        .navbar-nav {
+            background-color: $primary-color;
+        }
+    }
 
     li.nav-item {
-        border-bottom: solid lightgrey;
+        border: 1px solid lightgrey;
     }
 
     li.nav-item:hover {
         background-color: $secondary-color;
         border-bottom: solid white;
-    }
-
-    .navbar-light .navbar-nav .nav-link {
-        color: black;
-        font-weight: bold;
-        font-size: 18px;
-        text-align: center;
     }
 
     .LT_logo_profil {
@@ -446,11 +608,35 @@ footer a {
 
     .navbar-light .navbar-nav .nav-link:hover {
         text-decoration: none;
-        color: white;
+        color: $primary-color;
         border-bottom: none;
     }
 
-    // VIDEO SECTION
+    .nav_admin {
+
+        .adminBar {
+            display: block;
+        }
+
+        .navbar-toggler {
+            margin: 11px 0;
+        }
+
+        #navbarAdminNavDropdown .navbar-nav {
+            background-color: $dark-blue;
+
+            .nav-link {
+                text-align: center;
+            }
+
+            .nav-link:hover {
+                background-color: $secondary-color;
+                color : $dark-blue;
+            }
+        }
+    }
+
+    /* VIDEO SECTION */
     .content-container {
         iframe {
             height: 250px;
@@ -460,26 +646,20 @@ footer a {
     // FAQ SECTION
     .faq-card {
         padding: 15px;
-        margin: 20px 100px;
+        margin: 20px auto;
     }
 }
 
-// PHONE AND EXTRA SMALL SCREEN
+/* PHONE AND EXTRA SMALL SCREEN */
 @media screen and (max-width: 720px) {
 
-    // VIDEO SECTION
+    /* VIDEO SECTION */
     .content-container {
         width: 100%;
 
         iframe {
             height: 160px;
         }
-    }
-
-    // FAQ SECTION
-    .faq-card {
-        padding: 15px;
-        margin: 20px 15px;
     }
 }
 
@@ -502,7 +682,7 @@ footer a {
         align-content: center;
     }
 
-    .form-control{
+    .form-control {
         margin: 10px auto;
         height: 50px;
     }
@@ -518,6 +698,7 @@ footer a {
 }
 
 #login_form {
+
     h5, h2 {
         text-align: center;
         margin-bottom: 10px;
@@ -529,6 +710,7 @@ footer a {
 }
 
 #register_form {
+
     .col-md-3 {
         margin: 50px auto;
     }
@@ -544,11 +726,11 @@ footer a {
     }
 }
 
-// 'Sub-classes' of .LT_page_name
-// for login & register pages
+/* 'Sub-classes' of .LT_page_name
+for login & register pages */
 .LT_page_name_ter, .LT_page_name_bis {
-    background-color: #4EB6E8;
-    color: white;
+    background-color: $secondary-color;
+    color: $primary-color;
 
     h2 {
         text-align: center;
@@ -564,7 +746,7 @@ footer a {
     height: 100px;
 }
 
-//Administration_users
+/* Administration_users */
 .user_table {
     width: 100%;
     height: 400px;
@@ -580,7 +762,7 @@ footer a {
     background-color: whitesmoke;
     border-bottom: 1px solid $third-color;
     color: black;
-    font-family: 'Raleway';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
 .table td:hover {
@@ -591,7 +773,7 @@ footer a {
 .table .thead-light th {
     text-align: center;
     color: black;
-    font-family: 'Raleway';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
 .table_user {
