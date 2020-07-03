@@ -56,7 +56,19 @@ Encore
     // enables @babel/preset-env polyfills
     .configureBabel(() => {}, {
         useBuiltIns: 'usage',
-        corejs: 3
+        corejs: 3,
+    })
+    .copyFiles({
+        from: './assets/images',
+        // optional target path, relative to the output dir
+        to: 'images/[path][name].[ext]',
+
+        // if versioning is enabled, add the file hash too
+        // eslint-disable-next-line no-dupe-keys
+        to: 'images/[path][name].[hash:8].[ext]',
+
+        // only copy files matching this pattern
+        pattern: /\.(png|jpg|jpeg|svg)$/,
     })
 
     // enables Sass/SCSS support

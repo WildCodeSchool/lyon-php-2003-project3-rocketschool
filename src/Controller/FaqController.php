@@ -24,7 +24,7 @@ class FaqController extends AbstractController
     {
         return $this->render('faq/index.html.twig', [
             'faqs' => $faqRepository->findBy([], ['position'=> 'ASC']),
-            'page_name' => 'FAQ - index'
+            'page_name' => 'FAQ - Admin'
         ]);
     }
 
@@ -60,7 +60,7 @@ class FaqController extends AbstractController
         return $this->render('faq/new.html.twig', [
             'faq' => $faq,
             'form' => $form->createView(),
-            'page_name' => 'FAQ - Nouvelle question'
+            'page_name' => 'FAQ - Nouvelle Question'
         ]);
     }
 
@@ -97,7 +97,7 @@ class FaqController extends AbstractController
         return $this->render('faq/edit.html.twig', [
             'faq' => $faq,
             'form' => $form->createView(),
-            'page_name' => 'FAQ - Edition'
+            'page_name' => 'FAQ - Edition Question'
         ]);
     }
 
