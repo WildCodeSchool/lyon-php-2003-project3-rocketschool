@@ -42,9 +42,9 @@
                                 {% for key, error in errors %}
                                     {%  if key == question.id %}
                                         {% if error == true %}
-                                            <img src="{{ asset('build/images/icons/false-check.png') }}" style="width: 90%">
+                                            <img src="{{ asset('build/images/icons/false-check.png') }}" style="width: 50%">
                                         {% else %}
-                                            <img src="{{ asset('build/images/icons/true-check.png') }}" style="width: 90%">
+                                            <img src="{{ asset('build/images/icons/true-check.png') }}" style="width: 50%">
                                         {% endif %}
                                     {% endif %}
                                 {% endfor %}
