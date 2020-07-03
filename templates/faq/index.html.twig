@@ -9,7 +9,7 @@
 {% block body %}
     <div class="faq-action-btn">
         <a href="{{ path('faq_new') }}">
-            <button class="btn btn-round-darkblue">Create new</button>
+            <button class="btn btn-round-darkblue">Nouvelle Question</button>
         </a>
     </div>
     <table class="table faq-table sortable">
@@ -51,9 +51,9 @@
                 <td>{{ faq.answer }}</td>
                 <td><small>{{ faq.createdAt ? faq.createdAt|date('Y-m-d') : '' }}</small></td>
                 <td>
-                    <a href="{{ path('faq_show', {'id': faq.id}) }}">show</a>
-                    <a href="{{ path('faq_edit', {'id': faq.id}) }}">edit</a>
-                    <a href="{{ path('faq_delete', {'id': faq.id}) }}">delete</a>
+                    <a href="{{ path('faq_show', {'id': faq.id}) }}">voir</a>
+                    <a href="{{ path('faq_edit', {'id': faq.id}) }}">editer</a>
+                    <a href="{{ path('faq_delete', {'id': faq.id}) }}">supprimer</a>
                 </td>
             </tr>
         {% else %}

@@ -135,6 +135,10 @@ footer a {
     border-radius: 30px;
 }
 
+#video-btn-show-more {
+    font-weight: 900;
+}
+
 .btn-show-more {
     width: 110px;
     height: 30px;
@@ -750,7 +754,7 @@ for login & register pages */
 /* Administration_users */
 .user_table {
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     background-color: whitesmoke;
     display: flex;
     flex-direction: row;
