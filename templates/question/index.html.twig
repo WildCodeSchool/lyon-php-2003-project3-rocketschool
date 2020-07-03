@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_name }}{% endblock %}
+
+{% block body %}
+    <table class="table content-container">
+        <thead>
+            <tr>
+                <th>Questions / solutions </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>
+                    <h3 class="d-flex justify-content-start">{{ question.title }}</h3>
+                    <h4 class="d-flex justify-content-start"><em>{{ question.solution }}</em></h4>
+                </td>
+                <td>
+                    <a href="{{ path('question_show', {'id': question.id}) }}">voir</a>
+                    <a href="{{ path('question_edit', {'id': question.id}) }}">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('question_new') }}">Create new</a>
+
+{% endblock %}
