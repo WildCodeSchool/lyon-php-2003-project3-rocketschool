@@ -12,6 +12,7 @@ use App\Entity\Video;
 use App\Form\FaqSearchFieldType;
 use App\Repository\FaqRepository;
 use App\Repository\UserRepository;
+use App\Services\QuizResult;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -67,12 +68,14 @@ class RessourcesController extends AbstractController
     public function quizz(
         QuizzRepository $quizzRepo,
         PropositionRepository $propoRepo,
-        QuestionRepository $questionRepo
+        QuestionRepository $questionRepo,
+        QuizResult $quizResult
     ) {
         $quizz = $quizzRepo->findOneBy([]);
         $questions = $questionRepo->findAll();
         $nbrQuestionQuizz = count($questions);
         $errors = null;
+        $result = null;
         $postValide = true;
 
         if ($_SERVER['REQUEST_METHOD'] =='POST') {
@@ -102,6 +105,8 @@ class RessourcesController extends AbstractController
                         $errors[$questionId] = true;
                     }
                 }
+
+                $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
             }
         }
 
@@ -111,6 +116,7 @@ class RessourcesController extends AbstractController
         'quizz'=>$quizz,
         'errors'=> $errors,
         'post' => $_POST,
+        'result' => $result,
         'postValide' => $postValide
         ]);
     }

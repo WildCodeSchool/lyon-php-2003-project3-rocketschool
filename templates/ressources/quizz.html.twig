@@ -8,8 +8,14 @@
             <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les questions</h2>
         </div>
     {% endif %}
-
+    {% if result != null %}
+        <div class="quizz-result-container">
+            <h3>résultat : {{ result }}%</h3>
+        </div>
+    {% endif %}
     <form action="quizz" method="POST">
+        <input type="hidden" name="user_id" value="{{ app.user.id }}">
+
         <div class="container-fluid quizz-container" id="quizz">
             {% for question in quizz.questions %}
                 <div class="card w-auto quizz-card">

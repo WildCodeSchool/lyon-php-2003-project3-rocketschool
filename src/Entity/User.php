@@ -51,6 +51,16 @@ class User implements UserInterface
      */
     private $isReady = false;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $quizResult1;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $quizResult2;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +171,30 @@ class User implements UserInterface
     public function setIsReady(bool $isReady): self
     {
         $this->isReady = $isReady;
+
+        return $this;
+    }
+
+    public function getQuizResult1(): ?int
+    {
+        return $this->quizResult1;
+    }
+
+    public function setQuizResult1(?int $quizResult1): self
+    {
+        $this->quizResult1 = $quizResult1;
+
+        return $this;
+    }
+
+    public function getQuizResult2(): ?int
+    {
+        return $this->quizResult2;
+    }
+
+    public function setQuizResult2(?int $quizResult2): self
+    {
+        $this->quizResult2 = $quizResult2;
 
         return $this;
     }
