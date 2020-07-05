@@ -79,7 +79,6 @@ class RessourcesController extends AbstractController
         $errors = null;
         $result = null;
         $postValide = true;
-        $quizAttempt = 0;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = [];
@@ -111,7 +110,6 @@ class RessourcesController extends AbstractController
             }
             $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
             $quizResult->flush($user, $result);
-            $quizAttempt++;
         }
 
         return $this->render('ressources/quizz.html.twig', [
@@ -121,7 +119,6 @@ class RessourcesController extends AbstractController
             'post' => $_POST,
             'result' => $result,
             'postValide' => $postValide,
-            'attempt' => $quizAttempt,
         ]);
     }
 

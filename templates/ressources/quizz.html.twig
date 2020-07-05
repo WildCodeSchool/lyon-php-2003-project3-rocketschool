@@ -61,10 +61,19 @@
 
             {% endfor %}
 
-            <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
-                Valider vos réponses
-            </button>
-        </div>
+            {% if app.user.quizResult1 == null %}
+                <p class="quiz-attempt">essai numéro 1/2</p>
+            {% elseif app.user.quizResult2 == null %}
+                <p class="quiz-attempt">essai numéro 2/2</p>
+            {% else %}
+                <p class="quiz-attempt">Vous avez déjà validé vos deux essais</p>
+            {% endif %}
 
+            {% if  app.user.quizResult2 == null %}
+                <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
+                    Valider vos réponses
+                </button>
+            {% endif %}
+        </div>
     </form>
 {% endblock %}
