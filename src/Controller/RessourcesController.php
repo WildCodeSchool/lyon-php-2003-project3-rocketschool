@@ -69,8 +69,7 @@ class RessourcesController extends AbstractController
         QuizzRepository $quizzRepo,
         PropositionRepository $propoRepo,
         QuestionRepository $questionRepo,
-        QuizResult $quizResult,
-        EntityManagerInterface $entityManager
+        QuizResult $quizResult
     ) {
         $quizz = $quizzRepo->findOneBy([]);
         $questions = $questionRepo->findAll();
@@ -86,30 +85,30 @@ class RessourcesController extends AbstractController
 
             if ($nbrQuestionQuizz !== $nbrQuestionPost) {
                 $postValide = false;
-            }
+            } else {
+                foreach ($_POST["questions"] as $questionId => $propositions) {
+                    $question = $questionRepo->find($questionId);
+                    $goodAnswers = $propoRepo->findBy(['question' => $question, 'isGood' => true]);
+                    $goodAnswers = array_map(function ($prop) {
+                        return $prop->getId();
+                    }, $goodAnswers);
 
-            foreach ($_POST["questions"] as $questionId => $propositions) {
-                $question = $questionRepo->find($questionId);
-                $goodAnswers = $propoRepo->findBy(['question' => $question, 'isGood' => true]);
-                $goodAnswers = array_map(function ($prop) {
-                    return $prop->getId();
-                }, $goodAnswers);
+                    $errors[$questionId] = false;
 
-                $errors[$questionId] = false;
-
-                foreach ($propositions as $key => $value) {
-                    if (!in_array($value, $goodAnswers)) {
-                        $errors[$questionId] = true;
+                    foreach ($propositions as $key => $value) {
+                        if (!in_array($value, $goodAnswers)) {
+                            $errors[$questionId] = true;
+                        }
+                    }
+                    foreach ($goodAnswers as $key => $value) {
+                        if (!in_array($value, $propositions)) {
+                            $errors[$questionId] = true;
+                        }
                     }
                 }
-                foreach ($goodAnswers as $key => $value) {
-                    if (!in_array($value, $propositions)) {
-                        $errors[$questionId] = true;
-                    }
-                }
+                $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
+                $quizResult->flush($user, $result);
             }
-            $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
-            $quizResult->flush($user, $result);
         }
 
         return $this->render('ressources/quizz.html.twig', [
