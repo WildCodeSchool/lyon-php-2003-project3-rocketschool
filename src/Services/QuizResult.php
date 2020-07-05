@@ -2,8 +2,17 @@
 
 namespace App\Services;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 class QuizResult
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function calculate(array $answers, int $nbQuestion): int
     {
         $nbGoodAnswer = 0;
@@ -13,7 +22,17 @@ class QuizResult
                 $nbGoodAnswer++;
             }
         }
-        // [Valeur 1] x 100 / [Valeur2] = [Résultat en %]
         return intval($nbGoodAnswer * 100 / $nbQuestion);
+    }
+
+    public function flush($user, $result)
+    {
+        if ($user->getQuizResult1() == null) {
+            $user->setQuizResult1($result);
+        } elseif ($user->getQuizResult2() == null) {
+            $user->setQuizResult2($result);
+        }
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }

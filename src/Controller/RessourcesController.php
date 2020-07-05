@@ -69,26 +69,29 @@ class RessourcesController extends AbstractController
         QuizzRepository $quizzRepo,
         PropositionRepository $propoRepo,
         QuestionRepository $questionRepo,
-        QuizResult $quizResult
+        QuizResult $quizResult,
+        EntityManagerInterface $entityManager
     ) {
         $quizz = $quizzRepo->findOneBy([]);
         $questions = $questionRepo->findAll();
         $nbrQuestionQuizz = count($questions);
+        $user = $this->getUser();
         $errors = null;
         $result = null;
         $postValide = true;
+        $quizAttempt = 0;
 
-        if ($_SERVER['REQUEST_METHOD'] =='POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = [];
             $nbrQuestionPost = count($_POST['questions']);
 
             if ($nbrQuestionQuizz !== $nbrQuestionPost) {
-                $postValide  = false;
+                $postValide = false;
             }
 
             foreach ($_POST["questions"] as $questionId => $propositions) {
                 $question = $questionRepo->find($questionId);
-                $goodAnswers =$propoRepo->findBy(['question' => $question, 'isGood' => true]);
+                $goodAnswers = $propoRepo->findBy(['question' => $question, 'isGood' => true]);
                 $goodAnswers = array_map(function ($prop) {
                     return $prop->getId();
                 }, $goodAnswers);
@@ -97,7 +100,7 @@ class RessourcesController extends AbstractController
 
                 foreach ($propositions as $key => $value) {
                     if (!in_array($value, $goodAnswers)) {
-                        $errors[$questionId]= true;
+                        $errors[$questionId] = true;
                     }
                 }
                 foreach ($goodAnswers as $key => $value) {
@@ -105,19 +108,20 @@ class RessourcesController extends AbstractController
                         $errors[$questionId] = true;
                     }
                 }
-
-                $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
             }
+            $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
+            $quizResult->flush($user, $result);
+            $quizAttempt++;
         }
 
         return $this->render('ressources/quizz.html.twig', [
-
-        'page_name' => 'Quizz',
-        'quizz'=>$quizz,
-        'errors'=> $errors,
-        'post' => $_POST,
-        'result' => $result,
-        'postValide' => $postValide
+            'page_name' => 'Quizz',
+            'quizz' => $quizz,
+            'errors' => $errors,
+            'post' => $_POST,
+            'result' => $result,
+            'postValide' => $postValide,
+            'attempt' => $quizAttempt,
         ]);
     }
 
