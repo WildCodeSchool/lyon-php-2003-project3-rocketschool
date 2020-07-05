@@ -19,29 +19,39 @@ class AccountController extends AbstractController
     public function index(EntityManagerInterface $entityManager):Response
     {
         if ($_POST) {
-            $title = self::cleanInput($_POST['title']);
-            $content = self::cleanInput($_POST['content']);
+            if (isset($_POST['title']) || isset($_POST['content'])) {
+                $title = self::cleanInput($_POST['title']);
+                $content = self::cleanInput($_POST['content']);
 
-            $note = new Note();
-            $note->setTitle($title);
-            $note->setContent($content);
-            $note->setUser($this->getUser());
-            $entityManager->persist($note);
-            $entityManager->flush();
-        }
+                $note = new Note();
+                $note->setTitle($title);
+                $note->setContent($content);
+                $note->setUser($this->getUser());
+                $entityManager->persist($note);
+            } else {
+                $firstname = self::cleanInput($_POST['firstname']);
+                $lastname = self::cleanInput($_POST['lastname']);
+                $email = self::cleanInput($_POST['email']);
+//                $program = $_POST['program'];
 
-        if ($_FILES) {
-            list($uploaded, $failed) = self::uploadPhoto($_FILES);
+                $user = $this->getUser();
+                $user->setFirstname($firstname);
+                $user->setLastname($lastname);
+                $user->setEmail($email);
+//                $user->setProgram($program);
+                if ($_FILES) {
+                    list($uploaded, $failed) = self::uploadPhoto($_FILES);
 
-            if (!empty($failed)) {
-                return $this->render('account/index.html.twig', ['uploadError' => $failed]);
+                    if (!empty($failed)) {
+                        return $this->render('account/index.html.twig', ['uploadError' => $failed]);
+                    }
+                    $user->setImage($uploaded);
+                }
+                $entityManager->persist($user);
             }
-            // MaJ BDD -> champs photo
-            $user = $this->getUser();
-            $user->setImage($uploaded);
-            $entityManager->persist($user);
             $entityManager->flush();
         }
+
 
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController', 'page_name' => 'Mon Profil'
@@ -68,23 +78,23 @@ class AccountController extends AbstractController
         return $input;
     }
 
-    public static function uploadPhoto($files):array
+    public static function uploadPhoto($image):array
     {
-        $files = $files['files'];
+        $image = $image['image'];
 
-        $uploaded = '';
+        $publicPath = '';
         $failed = '';
 
         define('ALLOWED_EXT', ['jpg','jpeg','png','gif']);
         $sizeMax = 1048576;
 
-        $fileName = $files['name'];
-        $fileTmp = $files['tmp_name'];
-        $fileSize = $files['size'];
-        $fileError = $files['error'];
+        $fileName = $image['name'];
+        $fileTmp = $image['tmp_name'];
+        $fileSize = $image['size'];
+        $fileError = $image['error'];
 
         $fileExt = explode('.', $fileName);
-        $fileExt = $fileExt[-1];
+        $fileExt = strval(end($fileExt));
         $fileExt = strtolower($fileExt);
 
         $firstName = explode('.', $fileName);
@@ -97,7 +107,7 @@ class AccountController extends AbstractController
                     $fileDestination = $_SERVER['DOCUMENT_ROOT']  . '/uploads/' . $fileNameNew;
 
                     if (move_uploaded_file($fileTmp, $fileDestination)) {
-                        $uploaded = $fileDestination;
+                        $publicPath = 'uploads/'. $fileNameNew;
                     } else {
                         $failed = "Une erreur est survenue lors de l'upload";
                     }
@@ -110,6 +120,7 @@ class AccountController extends AbstractController
         } else {
             $failed = "L'extension $fileExt du fichier $fileName n'est pas autorisée";
         }
-        return [$uploaded,$failed];
+
+        return [$publicPath,$failed];
     }
 }
