@@ -35,7 +35,7 @@
                                 <text x="70" y="80" fill="dark">BD</text>
                             </svg>
                         {% else %}
-                            <img src="{{ app.user.image }}" alt="">
+                            <img src="{{ app.user.image }}" alt="photo" class="rounded-circle" height="120" width="120">
                         {% endif %}
                     </div>
                     <div class="col-md-8">
@@ -47,12 +47,6 @@
                 </div>
 
                 <h4>Program</h4>
-
-                                {% if app.user.program is null %}
-                                    select
-                                {% else %}
-                                    <h4>Program</h4>
-                                {% endif %}
             </header>
 
             <section id="quiz_check" class="col-lg-8 row">
