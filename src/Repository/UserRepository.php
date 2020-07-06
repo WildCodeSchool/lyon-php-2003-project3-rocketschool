@@ -37,10 +37,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    /**
-     * @param $keyword
-     * @return User[]
-     */
     public function search($keyword, $program): array
     {
         if (!empty($program)) {
