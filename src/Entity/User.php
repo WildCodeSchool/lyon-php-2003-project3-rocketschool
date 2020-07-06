@@ -58,6 +58,8 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=true)
      */
     private $program;
+
+    /**
      * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
      */
     private $quizResults;
@@ -189,6 +191,7 @@ class User implements UserInterface
     public function setProgram(?Program $program): self
     {
         $this->program = $program;
+    }
 
     /**
      * @return Collection|QuizResult[]

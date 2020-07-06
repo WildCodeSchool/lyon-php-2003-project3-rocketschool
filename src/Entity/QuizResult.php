@@ -31,11 +31,7 @@ class QuizResult
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quizResult")
      */
-    private $user;
 
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quizResults")
-     * @ORM\JoinColumn(nullable=false)
-     */
     private $user;
 
     /**
@@ -70,20 +66,9 @@ class QuizResult
     {
         $this->createdAt = $createdAt;
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-
         return $this;
     }
 
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -92,6 +77,9 @@ class QuizResult
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
 
     public function getAttempt(): ?int
     {
