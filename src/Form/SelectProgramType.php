@@ -15,7 +15,7 @@ class SelectProgramType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('firstname')
+            ->add('dataUsers')
             ->add('program', EntityType::class, [
         'placeholder' => 'Programmes',
         'class' => Program::class,

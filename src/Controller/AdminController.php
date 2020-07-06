@@ -53,7 +53,7 @@ class AdminController extends AbstractController
             $data = $form->getData();
 
             $users = $this->userRepository
-                ->search($data['firstname'], $data['program']);
+                ->search($data['dataUsers'], $data['program']);
         }
         return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats',
             'users' => $users, 'form' => $form->createView()]);

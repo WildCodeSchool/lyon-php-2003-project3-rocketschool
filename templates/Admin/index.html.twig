@@ -4,11 +4,6 @@
 
 {% block body %}
 
-    <div class="LT_page_name">
-        <h2>{{ page_name }}</h2>
-
-    </div>
-
     <section class="user_table">
         <div class="content-container_lt">
 
@@ -18,22 +13,13 @@
             'novalidate': 'novalidate'
             }}) }}
 
-
-
-            {{ form_errors(form.firstname) }}
-            {{ form_widget(form.firstname, {
+            {{ form_widget(form.dataUsers, {
 
                 'attr': {
                     'class': 'form-search',
                     'placeholder': 'Rechercher un candidat'
-                } }) }}
-
-            {% if form_errors(form.firstname) %}
-                <div class="faq-alert alert-danger">
-                    {{ form_errors(form.firstname) }}
-                </div>
-            {% endif %}
-
+                }
+            }) }}
 
             {{ form_widget(form.program, {
                 'attr': {
@@ -42,45 +28,34 @@
                 }
             }) }}
 
-            {% if form_errors(form.program) %}
-                <div class="faq-alert alert-danger">
-                    {{ form_errors(form.program) }}
-                </div>
-            {% endif %}
-
             <button type="submit" class="btn">Rechercher</button>
-
-
         </div>
 
-
-
-            {{ form_end(form) }}
-
+        {{ form_end(form) }}
 
         <table class="table table-hover table_user">
             <thead class="thead-light">
-                <tr>
+                <tr class="tr">
                     <th class="th" scope="col">Prénom</th>
                     <th class="th" scope="col">Nom</th>
                     <th class="th" scope="col">Mail</th>
                     <th class="th" scope="col">Programme</th>
-                    <th class="th" scope="col">1er essai</th>
-                    <th class="th" scope="col">2eme essai</th>
+                    <th class="th" scope="col">Resultat 1</th>
+                    <th class="th" scope="col">Resultat 2</th>
+                    <th class="th" scope="col">Check-list</th>
                 </tr>
             </thead>
+
             <tbody class="thead-light">
             {% if users is not empty %}
 
             {% for user in users %}
                 {% if 'ROLE_ADMIN' not in user.roles %}
                 <tr>
-                    <td> {{ user.firstname }} </td>
-                    <td> {{ user.lastname }} </td>
-                    <td> {{ user.email }} </td>
-                    <td> {{ user.program.name}} </td>
-
-                </tr>
+                    <td class="search_response"> {{ user.firstname }} </td>
+                    <td class="search_response"> {{ user.lastname }} </td>
+                    <td class="search_response"> {{ user.email }} </td>
+                    <td class="search_response"> {{ user.program.name}} </td>
                 {% endif %}
 
             {% endfor %}
@@ -89,7 +64,8 @@
 
             {% if users is empty %}
 
-                <tr class="error_search"> Nous n'avons pas pu trouvé de résultats à votre recherche</tr>
+                <td class="error_users_search" colspan="7">
+                    Malheureusement nous n'avons pas trouvé de résultats à votre recherche </td>
 
             {% endif %}
 
