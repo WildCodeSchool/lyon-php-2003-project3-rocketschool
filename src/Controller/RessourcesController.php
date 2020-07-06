@@ -12,7 +12,7 @@ use App\Entity\Video;
 use App\Form\FaqSearchFieldType;
 use App\Repository\FaqRepository;
 use App\Repository\UserRepository;
-use App\Services\QuizResult;
+use App\Services\QuizResultService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -69,7 +69,7 @@ class RessourcesController extends AbstractController
         QuizzRepository $quizzRepo,
         PropositionRepository $propoRepo,
         QuestionRepository $questionRepo,
-        QuizResult $quizResult
+        QuizResultService $quizResultService
     ) {
         $quizz = $quizzRepo->findOneBy([]);
         $questions = $questionRepo->findAll();
@@ -106,8 +106,8 @@ class RessourcesController extends AbstractController
                         }
                     }
                 }
-                $result = $quizResult->calculate($errors, $nbrQuestionQuizz);
-                $quizResult->flush($user, $result);
+                $result = $quizResultService->calculate($errors, $nbrQuestionQuizz);
+                $quizResultService->flush($user, $result);
             }
         }
 

@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
+use App\Entity\QuizResult;
 use Doctrine\ORM\EntityManagerInterface;
 
-class QuizResult
+class QuizResultService
 {
     private $entityManager;
 
@@ -27,12 +28,13 @@ class QuizResult
 
     public function flush($user, $result)
     {
-        if ($user->getQuizResult1() == null) {
-            $user->setQuizResult1($result);
-        } elseif ($user->getQuizResult2() == null) {
-            $user->setQuizResult2($result);
+        if (count($user->getQuizResults()) < 2) {
+            $quizResult = new QuizResult();
+            $quizResult->setUser($user)
+                ->setResult($result)
+                ->setAttempt(count($user->getQuizResults()) + 1);
+            $this->entityManager->persist($quizResult);
+            $this->entityManager->flush();
         }
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
     }
 }

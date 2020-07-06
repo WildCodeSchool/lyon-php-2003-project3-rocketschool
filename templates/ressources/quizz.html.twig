@@ -6,7 +6,8 @@
     <div class="content-container">
         {% if postValide == false %}
             <div class="quizz-alert alert alert-danger">
-                <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les questions</h2>
+                <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les
+                    questions</h2>
             </div>
         {% endif %}
         {% if result is not same as(null) %}
@@ -14,10 +15,12 @@
                 <h3>résultat : {{ result }}%</h3>
             </div>
         {% else %}
-            {% if app.user.quizResult1 is same as(null) %}
+            {% if app.user.quizResults|length == 0 %}
                 <p class="quiz-attempt">essai numéro 1/2</p>
-            {% elseif app.user.quizResult2 is same as(null) %}
+            {% elseif app.user.quizResults|length == 1 %}
                 <p class="quiz-attempt">essai numéro 2/2</p>
+            {% elseif app.user.quizResults|length > 1 %}
+                <p class="quiz-attempt">Vous avez déjà validé le test deux fois</p>
             {% endif %}
         {% endif %}
         <form action="quizz" method="POST">
@@ -26,14 +29,15 @@
             <div class="container-fluid quizz-container"
                  id="quizz">
                 {% for question in quizz.questions %}
-                    <div class="card w-auto quizz-card {% if result is not same as(null) %} quizz-container-disabled {% endif %}">
+                    <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResults|length > 1 %} quizz-container-disabled {% endif %}">
                         <div class="card-body quizz-body">
                             <h3 class="card-title">{{ question.questionOrder }} - {{ question.title }}</h3>
-                            {%  for proposition in question.propositions %}
+                            {% for proposition in question.propositions %}
                                 <ul>
                                     <li class="card-text quizz-text">
                                         <label class="quizz-radio">
-                                            <input type="checkbox" name="questions[{{ question.id }}][]" value="{{ proposition.id }}"
+                                            <input type="checkbox" name="questions[{{ question.id }}][]"
+                                                   value="{{ proposition.id }}"
                                                     {% if post %}
                                                 {% for  props in post.questions %}
                                                     {% for prop in props %}
@@ -48,17 +52,19 @@
                                         <p>{{ proposition.title }}</p>
                                     </li>
                                 </ul>
-                            {%  endfor %}
+                            {% endfor %}
                         </div>
                         <div class="quizz-check">
                             {% if postValide == true %}
                                 {% if errors is not null %}
                                     {% for key, error in errors %}
-                                        {%  if key == question.id %}
+                                        {% if key == question.id %}
                                             {% if error == true %}
-                                                <img src="{{ asset('build/images/icons/false-check.png') }}" style="width: 50%">
+                                                <img src="{{ asset('build/images/icons/false-check.png') }}"
+                                                     style="width: 50%">
                                             {% else %}
-                                                <img src="{{ asset('build/images/icons/true-check.png') }}" style="width: 50%">
+                                                <img src="{{ asset('build/images/icons/true-check.png') }}"
+                                                     style="width: 50%">
                                             {% endif %}
                                         {% endif %}
                                     {% endfor %}
@@ -66,19 +72,19 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="{% if errors[question.id] %} alert-danger {% else %} alert-success {% endif %}">
-                        {% if  app.user.quizResult2 is not same as(null) %}
+                    {% if result is not same as(null) and  app.user.quizResults|length > 0 %}
+                        <div class="{% if errors[question.id] %} alert-danger {% else %} alert-success {% endif %}">
                             <p class="quiz-solution">{{ question.solution }}</p>
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %}
                 {% endfor %}
 
-                {% if result is same as(null) %}
+                {% if result is same as(null) and  app.user.quizResults|length < 2%}
                     <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
                         Valider vos réponses
                     </button>
                 {% endif %}
-                {% if result is not same as(null) and app.user.quizResult2 is same as(null) %}
+                {% if result is not same as(null) and app.user.quizResults|length == 0 %}
                     <a href="{{ path('ressources_quizz') }}">
                         <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="button">
                             Repasser le test

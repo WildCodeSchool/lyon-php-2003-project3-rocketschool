@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,14 +54,14 @@ class User implements UserInterface
     private $isReady = false;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
      */
-    private $quizResult1;
+    private $quizResults;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $quizResult2;
+    public function __construct()
+    {
+        $this->quizResults = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,26 +177,33 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getQuizResult1(): ?int
+    /**
+     * @return Collection|QuizResult[]
+     */
+    public function getQuizResults(): Collection
     {
-        return $this->quizResult1;
+        return $this->quizResults;
     }
 
-    public function setQuizResult1(?int $quizResult1): self
+    public function addQuizResult(QuizResult $quizResult): self
     {
-        $this->quizResult1 = $quizResult1;
+        if (!$this->quizResults->contains($quizResult)) {
+            $this->quizResults[] = $quizResult;
+            $quizResult->setUser($this);
+        }
 
         return $this;
     }
 
-    public function getQuizResult2(): ?int
+    public function removeQuizResult(QuizResult $quizResult): self
     {
-        return $this->quizResult2;
-    }
-
-    public function setQuizResult2(?int $quizResult2): self
-    {
-        $this->quizResult2 = $quizResult2;
+        if ($this->quizResults->contains($quizResult)) {
+            $this->quizResults->removeElement($quizResult);
+            // set the owning side to null (unless already changed)
+            if ($quizResult->getUser() === $this) {
+                $quizResult->setUser(null);
+            }
+        }
 
         return $this;
     }
