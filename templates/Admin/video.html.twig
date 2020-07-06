@@ -2,11 +2,11 @@
 
 {% block title %}{{ page_name }}{% endblock %}
 
-{% block body %}
-    <div class="LT_page_name">
-        <h2>{{ page_name }}</h2>
-    </div>
+{% block stylesheets %}
+    <script src="https://cdn.ckeditor.com/4.14.0/full-all/ckeditor.js"></script>
+{% endblock %}
 
+{% block body %}
     <div>
         <section class="col-md-7" id="register_form">
             {{ form_start(form) }}

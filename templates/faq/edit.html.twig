@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Faq{% endblock %}
+
+{% block body %}
+    <div class="faq-action-btn">
+        <a href="{{ path('faq_index') }}"><button class="btn btn-round-darkblue">back to list</button></a>
+        {{ include('faq/_delete_form.html.twig') }}
+    </div>
+
+    {{ include('faq/_form.html.twig') }}
+{% endblock %}
