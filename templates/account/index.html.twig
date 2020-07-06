@@ -13,7 +13,7 @@
 {% block body %}
     <main class="container-fluid mh-100" id="account_index">
         <div class="row">
-            <header id="infos" class="col-lg-4">
+            <header id="infos" class="col-12">
                 <section class="menu">
                     <a href="{{ app.session.get('uri') }}">
                         <img src="{{ asset('build/images/back_arrow.450bf16e.svg') }}" alt="">
@@ -35,7 +35,7 @@
                                 <text x="70" y="80" fill="dark">BD</text>
                             </svg>
                         {% else %}
-                            <img src="{{ app.user.image }}" alt="photo" class="rounded-circle" height="120" width="120">
+                            <img src="{{ app.user.image }}" alt="photo" class="rounded-circle">
                         {% endif %}
                     </div>
                     <div class="col-md-8">
@@ -48,56 +48,56 @@
 
                 <h4>Program</h4>
             </header>
-
-            <section id="quiz_check" class="col-lg-8 row">
-
-                <article class="checklist col-md-6">
-                    <h3>Checklist</h3>
-                    <table>
-                        <tbody>
-                        <tr>
-{#                            <td><img src="{{ asset('build/images/1.svg') }}" alt=""></td>#}
-                            <td><span></span></td>
-                            <td>Je m'informe sur les métiers <br><em>En regardant attentivement la vidéo</em></td>
-                        </tr>
-                        <tr>
-{#                            <td><img src="{{ asset('build/images/2.svg') }}" alt=""></td>#}
-                            <td><span></span></td>
-                            <td>J'évalue mes connaissances <br><em>Un quiz, deux essais</em></td>
-                        </tr>
-                        <tr>
-{#                            <td><img src="{{ asset('build/images/3.svg') }}" alt=""></td>#}
-                            <td><span></span></td>
-                            <td>Je prépare mon entretien <br><em>Suivez le guide !</em></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </article>
-
-                <article class="quiz col-md-6">
-                    <h3>Quiz</h3>
-
-                    {% if not app.user.checklist.check1 %}
-
-                        Regarde la video !
-
-                    {% elseif app.user.checklist.check1 %}
-
-                        Prêt.e pour le quiz !
-
-                    {% endif %}
-
-                    <br>
-                    // if essai 1 : result + repasser le quiz
-                    <br>
-                    // if 2 essais : results
-                    <br>
-                    // if 100%
-
-                </article>
-
-            </section>
         </div>
+
+        <section id="quiz_check" class="row">
+
+            <article class="checklist col-md-6">
+                <h3>Checklist</h3>
+                <table>
+                    <tbody>
+                    <tr>
+{#                            <td><img src="{{ asset('build/images/1.svg') }}" alt=""></td>#}
+                        <td><span></span></td>
+                        <td>Je m'informe sur les métiers <br><em>En regardant attentivement la vidéo</em></td>
+                    </tr>
+                    <tr>
+{#                            <td><img src="{{ asset('build/images/2.svg') }}" alt=""></td>#}
+                        <td><span></span></td>
+                        <td>J'évalue mes connaissances <br><em>Un quiz, deux essais</em></td>
+                    </tr>
+                    <tr>
+{#                            <td><img src="{{ asset('build/images/3.svg') }}" alt=""></td>#}
+                        <td><span></span></td>
+                        <td>Je prépare mon entretien <br><em>Suivez le guide !</em></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>
+
+            <article class="quiz col-md-6">
+                <h3>Quiz</h3>
+
+                {% if not app.user.checklist.check1 %}
+
+                    Regarde la video !
+
+                {% elseif app.user.checklist.check1 %}
+
+                    Prêt.e pour le quiz !
+
+                {% endif %}
+
+                <br>
+                // if essai 1 : result + repasser le quiz
+                <br>
+                // if 2 essais : results
+                <br>
+                // if 100%
+
+            </article>
+
+        </section>
         <section class="row notes">
             <header>
                 <h5>Notes personnelles</h5>

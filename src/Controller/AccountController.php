@@ -43,7 +43,10 @@ class AccountController extends AbstractController
                     list($uploaded, $failed) = self::uploadPhoto($_FILES);
 
                     if (!empty($failed)) {
-                        return $this->render('account/index.html.twig', ['uploadError' => $failed]);
+                        $this->addFlash('danger', $failed);
+                        return $this->render('account/index.html.twig', [
+                            'controller_name' => 'AccountController', 'page_name' => 'Mon Profil'
+                        ]);
                     }
                     $user->setImage($uploaded);
                 }
@@ -51,7 +54,6 @@ class AccountController extends AbstractController
             }
             $entityManager->flush();
         }
-
 
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController', 'page_name' => 'Mon Profil'

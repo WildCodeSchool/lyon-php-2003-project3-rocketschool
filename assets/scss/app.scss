@@ -408,17 +408,10 @@ footer a {
             padding: 20px;
             text-align: center;
 
-            >section {
+            >.menu {
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
-
-                //p {
-                //    font-size: 0.8em;
-                //    display: block;
-                //    border: 1px solid #404656;
-                //    padding: 10px;
-                //}
 
                 img {
                     width: 32px;
@@ -426,10 +419,20 @@ footer a {
                 }
             }
 
-            svg {
-                display: block;
-                margin: -20px auto 0;
-                cursor: pointer;
+            >div.row {
+                svg, img {
+                    display: block;
+                }
+
+                svg {
+                    margin: -15px auto 0;
+                }
+
+                img {
+                    margin: 15px auto;
+                    height: 125px;
+                    width: 125px;
+                }
             }
 
             .col-md-6:last-of-type {
@@ -440,12 +443,14 @@ footer a {
                 >.row {
                     align-self: start;
                     width: 100%;
+                    padding-left: 50px;
 
                     .col-md-8 {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
+                        justify-content: start;
                         margin-left: -20px;
+                        text-align: left;
 
                         >div {
                             margin-top: 20px;
