@@ -71,7 +71,13 @@ class User implements UserInterface
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->quizResults = new ArrayCollection();
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
+     */
+    private $quizResults;
 
     public function getId(): ?int
     {
@@ -243,6 +249,37 @@ class User implements UserInterface
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QuizResult[]
+     */
+    public function getQuizResults(): Collection
+    {
+        return $this->quizResults;
+    }
+
+    public function addQuizResult(QuizResult $quizResult): self
+    {
+        if (!$this->quizResults->contains($quizResult)) {
+            $this->quizResults[] = $quizResult;
+            $quizResult->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuizResult(QuizResult $quizResult): self
+    {
+        if ($this->quizResults->contains($quizResult)) {
+            $this->quizResults->removeElement($quizResult);
+            // set the owning side to null (unless already changed)
+            if ($quizResult->getUser() === $this) {
+                $quizResult->setUser(null);
+            }
+        }
 
         return $this;
     }

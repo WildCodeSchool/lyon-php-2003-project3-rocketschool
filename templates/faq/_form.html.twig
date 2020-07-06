@@ -1,0 +1,30 @@
+<div class="faq-display">
+    {{ form_start(form, {'attr': {'class': 'col-md-7 faq-table','novalidate': 'novalidate'}}) }}
+
+    {{ form_widget(form.question, {
+        'attr': {
+            'class': 'form-control faq-form-control shadow',
+            'placeholder': 'Question',
+        }}) }}
+    {% if form_errors(form.question) %}
+        <div class="faq-alert alert-danger">
+            {{ form_errors(form.question) }}
+        </div>
+    {% endif %}
+    {{ form_widget(form.answer, {
+        'attr': {
+            'class': 'form-control faq-form-control shadow',
+            'placeholder': 'Réponse',
+        }}) }}
+    {% if form_errors(form.answer) %}
+        <div class="faq-alert alert-danger">
+            {{ form_errors(form.answer) }}
+        </div>
+    {% endif %}
+    {{ form_widget(form.category, {'attr': {'class': 'form-control faq-form-control shadow',}}) }}
+    <div class="faq-action-btn">
+        <button class="btn btn-round-darkblue">{{ button_label|default('Poster') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+

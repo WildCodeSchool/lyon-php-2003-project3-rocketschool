@@ -3,7 +3,55 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-    <div class="LT_page_name">
-        <h2>{{ page_name }}</h2>
+    <div class="content-container">
+        {{ form_start(form, {
+            'attr': {
+                'class': 'form-group faq-search',
+                'novalidate': 'novalidate'
+            }}) }}
+            {{ form_widget(form.searchField, {
+                'attr': {
+                    'class': 'form-control faq-form-control',
+                    'placeholder': 'Rechercher'
+                }
+            }) }}
+            {{ form_widget(form.category, {
+                'attr': {
+                    'class': 'form-control faq-form-control',
+                    'placeholder': 'Rechercher'
+                }
+            }) }}
+            <div class="faq-form-btn-container">
+                <button type="submit" class="btn btn-round-darkblue">Rechercher</button>
+            </div>
+        {{ form_end(form) }}
+        {% if faq is not empty %}
+            <div id="faq-result-length">
+                {% if faq|length == 1 %}
+                    <small>1 résultat</small>
+                {% else %}
+                    <small>{{ faq|length }} résultats</small>
+                {% endif %}
+            </div>
+            {% for card in faq %}
+                <div class="faq-card">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <div class="icone-btn-container">
+                        <a href="{{ path('faq_edit', {'id': card.id}) }}" class="icone-btn-container">
+                            <img src="{{ asset('build/images/edit.png') }}" class="icone-btn icone-btn-edit" alt="Editer">
+                        </a>
+                    </div>
+                    {% endif %}
+                    <h3>{{ card.question }}</h3>
+                    <div class="faq-answer-container">
+                        <p>{{ card.answer }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="faq-card">
+                <p class="faq-no-result">Aucun résultat</p>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
