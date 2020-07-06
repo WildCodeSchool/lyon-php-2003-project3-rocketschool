@@ -191,6 +191,8 @@ class User implements UserInterface
     public function setProgram(?Program $program): self
     {
         $this->program = $program;
+
+        return $this;
     }
 
     /**

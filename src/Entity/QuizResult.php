@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\QuizResultRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=QuizResultRepository::class)
@@ -23,8 +24,10 @@ class QuizResult
     private $result;
 
     /**
-
-     * @ORM\Column(type="date")
+     * @var \DateTimeInterface $updatedAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
