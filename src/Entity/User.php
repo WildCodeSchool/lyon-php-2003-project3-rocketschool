@@ -54,6 +54,12 @@ class User implements UserInterface
     private $isReady = false;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Program::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $program;
+
+    /**
      * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
      */
     private $quizResults;
@@ -175,6 +181,16 @@ class User implements UserInterface
         $this->isReady = $isReady;
 
         return $this;
+    }
+
+    public function getProgram(): ?Program
+    {
+        return $this->program;
+    }
+
+    public function setProgram(?Program $program): self
+    {
+        $this->program = $program;
     }
 
     /**

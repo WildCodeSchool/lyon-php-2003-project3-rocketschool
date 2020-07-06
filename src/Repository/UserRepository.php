@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Program;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -34,6 +35,28 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newEncodedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    public function search($keyword, $program): array
+    {
+        if (!empty($program)) {
+            $query = $this->createQueryBuilder('User')
+                ->andWhere('User.firstname like :keyword')
+                ->orWhere('User.lastname like :keyword')
+                ->orWhere('User.email like :keyword')
+                ->andwhere('User.program = :program')
+                ->setParameters([
+                    'keyword' =>  $keyword . '%',
+                    'program' => $program->getId(),
+                ]);
+        } else {
+            $query = $this->createQueryBuilder('User')
+                ->andWhere('User.firstname like :keyword')
+                ->orWhere('User.lastname like :keyword')
+                ->setParameter('keyword', $keyword . '%');
+        }
+
+        return $query->getQuery()->getResult();
     }
 
     // /**
