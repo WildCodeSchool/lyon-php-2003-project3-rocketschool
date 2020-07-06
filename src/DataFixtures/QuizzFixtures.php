@@ -7,6 +7,7 @@ use App\Entity\Question;
 use App\Entity\Quizz;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker;
 
 class QuizzFixtures extends Fixture
 {
@@ -225,6 +226,7 @@ class QuizzFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $faker = Faker\Factory::create('fr_FR');
         $quizz = new Quizz();
         $quizz->setTitle('Quizz de test')
             ->setIsEnable(true);
@@ -234,6 +236,7 @@ class QuizzFixtures extends Fixture
             $question = new Question();
             $question->setQuizz($quizz);
             $question->setTitle($title);
+            $question->setSolution($faker->sentence);
             $question->setQuestionOrder($nbrQ);
             $manager->persist($question);
             $nbrQ++;
