@@ -352,9 +352,9 @@ footer a {
     height: 400px;
     background-color: whitesmoke;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .table td {
@@ -379,3 +379,72 @@ footer a {
 .table_user {
     width: 80%;
 }
+
+
+.content-container_lt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 80px;
+}
+
+.form-group {
+    width: 100%;
+
+
+}
+
+
+option:hover {
+    background-color: $third-color;
+}
+
+.form-search {
+    border-radius: 30px;
+    border-bottom: solid grey 2px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    width: 200px;
+    text-align: center;
+    height: 30px;
+}
+
+.form-search:hover {
+    border-bottom: solid 2px #1e2333 ;
+}
+
+.form-program {
+    border-radius: 30px;
+    border: solid grey 2px;
+    background-color: white;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    width: 180px;
+    padding-left: 15px;
+    height: 30px;
+}
+ .btn  {
+     border-radius: 30px;
+     background-color: $third-color;
+     color: white;
+     width: 150px;
+     height: 35px;
+     text-align: center;
+     margin-left: 23px;
+
+ }
+
+ .faq-alert  {
+     background-color: red;
+
+ }
+
+ .btn:hover {
+     color: black;
+     background-color: white;
+     border: solid 2px $third-color;
+ }

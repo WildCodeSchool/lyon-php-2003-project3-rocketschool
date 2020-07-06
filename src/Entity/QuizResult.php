@@ -28,10 +28,10 @@ class QuizResult
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quizResult")
      */
     private $user;
+
 
     public function getId(): ?int
     {

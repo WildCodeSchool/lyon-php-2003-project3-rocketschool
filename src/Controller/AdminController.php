@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Entity\QuizResult;
 use App\Entity\User;
+use App\Entity\Program;
+use App\Form\SearchFilterType;
+use App\Form\SelectProgramType;
 use App\Repository\UserRepository;
 use App\Entity\Video;
+use App\Repository\ProgramRepository;
 use App\Form\VideoEditType;
 use App\Services\GetVideo;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,19 +27,36 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdminController extends AbstractController
 //Login is the home page
 {
+
+    private $userRepository;
+    private $programRepository;
+
+    public function __construct(userRepository $userRepository, programRepository $programRepository)
+    {
+        $this->userRepository = $userRepository;
+        $this->programRepository = $programRepository;
+    }
     /**
+     *@param Request $request
+     * @return Response
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(Request $request):Response
     {
         $users = $this->getDoctrine()->getRepository(User::class)
             ->findAll();
-        dump($users);
-        $score = $this->getDoctrine()->getRepository(QuizResult::class)
-            ->findAll();
-        dump($score);
+
+        $form = $this->createForm(SelectProgramType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && !empty($form->getData())) {
+            $data = $form->getData();
+
+            $users = $this->userRepository
+                ->search($data['firstname'], $data['program']);
+        }
         return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats',
-            'users' => $users, 'score' => $score]);
+            'users' => $users, 'form' => $form->createView()]);
     }
 
     /**
