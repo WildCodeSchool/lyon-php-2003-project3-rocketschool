@@ -36,7 +36,8 @@ class Question
     private $quizz;
 
     /**
-     * @ORM\OneToMany(targetEntity=Proposition::class, mappedBy="question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Proposition::class, mappedBy="question", orphanRemoval=true,
+     *     cascade={"persist"})
      */
     private $propositions;
 

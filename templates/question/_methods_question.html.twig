@@ -24,7 +24,7 @@
         let $collectionHolder;
 
 // setup an "add a tag" link
-        const $addTagButton = $('<button type="button" class="btn-quizz">Ajout</button>');
+        const $addTagButton = $('<button type="button" class="btn btn-round-clearblue">Ajouter une proposition</button>');
         const $newLinkLi = $('<p></p>').append($addTagButton);
 
 
@@ -65,7 +65,7 @@
 
         }
         function addTagFormDeleteLink($tagFormLi) {
-            const $removeFormButton = $('<button class="btn-quizz" type="button">Suppr.</button>');
+            const $removeFormButton = $('<button class="btn btn-round-danger" type="button">Supprimer cette proposition</button>');
             $tagFormLi.append($removeFormButton);
 
             $removeFormButton.on('click', function(e) {

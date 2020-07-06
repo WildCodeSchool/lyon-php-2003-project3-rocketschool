@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Entity\Quizz;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
+use App\Repository\QuizzRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,16 +33,29 @@ class QuestionController extends AbstractController
     /**
      * @Route("/new", name="question_new", methods={"GET","POST"})
      * @param Request $request
+     * @param QuizzRepository $quizzRepo
+     * @param QuestionRepository $questionRepo
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, QuizzRepository $quizzRepo, QuestionRepository $questionRepo): Response
     {
         $question = new Question();
+        $quizz = $quizzRepo->findOneBy([]);
+
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
+        $lastQuestion= $questionRepo
+            ->findOneBy([], ['questionOrder' => 'DESC']);
+        if ($lastQuestion != null) {
+            $lastPosition = $lastQuestion->getQuestionOrder();
+        } else {
+            $lastPosition = -1;
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $question->setQuizz($quizz);
+            $question->setQuestionOrder($lastPosition + 1);
             $entityManager->persist($question);
             $entityManager->flush();
 
@@ -48,6 +63,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render('question/new.html.twig', [
+            'page_name' => 'Quiz - Ajouter une question',
             'question' => $question,
             'form' => $form->createView(),
         ]);
@@ -62,6 +78,7 @@ class QuestionController extends AbstractController
     {
         return $this->render('question/show.html.twig', [
             'question' => $question,
+            'page_name' => 'Quizz - Question'
         ]);
     }
 
@@ -85,6 +102,7 @@ class QuestionController extends AbstractController
         return $this->render('question/edit.html.twig', [
             'question' => $question,
             'form' => $form->createView(),
+            'page_name' => "Quiz - Edition d'une question"
         ]);
     }
 
