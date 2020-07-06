@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <style>
-        body > header, body > footer {
+        .LT_page_name{
             display: none;
         }
     </style>
@@ -46,13 +46,13 @@
                     </div>
                 </div>
 
-                <h4>Program</h4>
+                <h5>Programme : </h5>
             </header>
         </div>
 
         <section id="quiz_check" class="row">
 
-            <article class="checklist col-md-6">
+            <article class="checklist col-md-8 col-lg-4 shadow">
                 <h3>Checklist</h3>
                 <table>
                     <tbody>
@@ -75,26 +75,36 @@
                 </table>
             </article>
 
-            <article class="quiz col-md-6">
+            <article class="quiz col-md-8 col-lg-4 shadow">
                 <h3>Quiz</h3>
 
                 {% if not app.user.checklist.check1 %}
 
                     Regarde la video !
 
-                {% elseif app.user.checklist.check1 %}
+                {% else %}
 
-                    Prêt.e pour le quiz !
+                    {% if app.user.quizResults.count == 0 %}
+
+                        Passer le quiz !
+
+                    {% elseif app.user.quizResults.count == 1 %}
+
+                            {% for result in app.user.quizResults %}
+                                {{ dump(result) }}
+                            {% endfor %}
+
+                            // repasser le quizz
+
+                    {% else %}
+
+                            {% for result in app.user.quizResults %}
+                                {{ dump(result) }}
+                            {% endfor %}
+
+                    {% endif %}
 
                 {% endif %}
-
-                <br>
-                // if essai 1 : result + repasser le quiz
-                <br>
-                // if 2 essais : results
-                <br>
-                // if 100%
-
             </article>
 
         </section>
@@ -109,7 +119,7 @@
             <article>
                 <div class="row">
                     {% for note in app.user.notes %}
-                        <div class="col-md-6 col-lg-4">
+                        <div class="col-12">
                             <p>{{ note.title }}</p>
                             <div>
                                 <a href="{{ path('edit_note', {'note': note.id}) }}">edit</a>
