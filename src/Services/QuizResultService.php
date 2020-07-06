@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Entity\QuizResult;
 use Doctrine\ORM\EntityManagerInterface;
+use DateTimeInterface;
 
 class QuizResultService
 {

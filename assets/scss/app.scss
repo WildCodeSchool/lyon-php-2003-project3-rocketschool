@@ -232,6 +232,7 @@ footer a {
 
 .check-video {
     margin: auto;
+    justify-content: center;
 
     label {
         padding: 5px;
@@ -830,7 +831,6 @@ for login & register pages */
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
     margin-bottom: 4rem;
 }
@@ -871,7 +871,7 @@ option:hover {
     outline-style:none;
 }
 
-.btn {
+.btn-search-user {
     border-radius: 30px;
     background-color: $third-color;
     color: $primary-color;
@@ -882,7 +882,7 @@ option:hover {
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
-.btn:hover {
+.btn-search-user:hover {
     color: black;
     background-color: $primary-color;
     border: solid 2px $third-color;
