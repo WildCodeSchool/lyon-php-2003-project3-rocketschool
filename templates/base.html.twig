@@ -8,6 +8,7 @@
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
         {% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
             <!-- Header + Navigation with routes  -->
@@ -70,7 +71,7 @@
                                         <a class="nav-link" href={{ path('admin_video_edit') }}>Editer Vidéo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href={{ path('admin_index') }}>Editer Quiz</a>
+                                        <a class="nav-link" href={{ path('question_index') }}>Editer Quiz</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href={{ path('faq_index') }}>Editer FAQ</a>

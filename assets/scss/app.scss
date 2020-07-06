@@ -420,6 +420,30 @@ footer a {
     }
 }
 
+/** QUIZZ EDITION **/
+.quizz-table {
+    width: 100%;
+    margin: 40px auto;
+    font-size: 1.5em;
+
+}
+
+.quizz-edit-row{
+    height: 80px;
+}
+
+.btn-round-clearblue {
+    margin-top: 30px;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 30px;
+}
+
+.btn-round-clearblue:hover {
+    background-color: $secondary-color;
+    color: $dark-blue;
+}
+
 // FAQ SECTION
 .faq-search {
     display: flex;
