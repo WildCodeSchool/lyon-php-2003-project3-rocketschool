@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -56,6 +58,14 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=true)
      */
     private $program;
+     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
+     */
+    private $quizResults;
+
+    public function __construct()
+    {
+        $this->quizResults = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -179,6 +189,34 @@ class User implements UserInterface
     public function setProgram(?Program $program): self
     {
         $this->program = $program;
+
+    /**
+     * @return Collection|QuizResult[]
+     */
+    public function getQuizResults(): Collection
+    {
+        return $this->quizResults;
+    }
+
+    public function addQuizResult(QuizResult $quizResult): self
+    {
+        if (!$this->quizResults->contains($quizResult)) {
+            $this->quizResults[] = $quizResult;
+            $quizResult->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuizResult(QuizResult $quizResult): self
+    {
+        if ($this->quizResults->contains($quizResult)) {
+            $this->quizResults->removeElement($quizResult);
+            // set the owning side to null (unless already changed)
+            if ($quizResult->getUser() === $this) {
+                $quizResult->setUser(null);
+            }
+        }
 
         return $this;
     }

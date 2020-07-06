@@ -29,6 +29,10 @@ blockquote {
     }
 }
 
+.alert-success, .alert-danger {
+    border-radius: 5px;
+}
+
 .opacity {
     opacity: 0.3;
 }
@@ -254,6 +258,28 @@ footer a {
     a.cke_button_disabled .cke_button_icon {
         opacity: 1;
     }
+}
+
+// QUIZ SECTION
+.quizz-result-container {
+    margin: 45px;
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-attempt {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.quiz-solution {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 15px;
+}
+
+.quizz-container-disabled {
+    pointer-events: none;
 }
 
 #quizz {

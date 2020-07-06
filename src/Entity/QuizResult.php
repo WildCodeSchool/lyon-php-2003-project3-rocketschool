@@ -23,6 +23,7 @@ class QuizResult
     private $result;
 
     /**
+
      * @ORM\Column(type="date")
      */
     private $createdAt;
@@ -32,6 +33,15 @@ class QuizResult
      */
     private $user;
 
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quizResults")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $attempt;
 
     public function getId(): ?int
     {
@@ -50,6 +60,7 @@ class QuizResult
         return $this;
     }
 
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -59,8 +70,19 @@ class QuizResult
     {
         $this->createdAt = $createdAt;
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+
         return $this;
     }
+
 
     public function getUser(): ?User
     {
@@ -70,6 +92,16 @@ class QuizResult
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+    public function getAttempt(): ?int
+    {
+        return $this->attempt;
+    }
+
+    public function setAttempt(int $attempt): self
+    {
+        $this->attempt = $attempt;
+
 
         return $this;
     }
