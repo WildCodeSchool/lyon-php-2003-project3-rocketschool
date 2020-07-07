@@ -9,6 +9,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use DateTime;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -58,6 +60,52 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
 
         return $query->getQuery()->getResult();
+    }
+
+    public function deleteOldAccounts()
+    {
+//        $query =
+
+        //$this->_em->createQueryBuilder('User')
+//        $query = $this->createQueryBuilder('User')
+//        ->delete('User', 'u')
+//        ->andWhere('u.createdAt <  NOW() - INTERVAL 100 DAY')
+//        ->getQuery()->execute();
+
+//        return $query->getQuery()->getResult();
+//        Ci-dessous : fonctionnel mais pas accepté par GrumPHP car format() retourne potentiellement false
+//        $now = new DateTime;
+//        $before = date_modify($now, '-100 days')->format('Y-m-d H:i:s');
+
+        $now = new DateTime();
+        //$before = date_modify($now, '-100 days')->format('Y-m-d H:i:s');
+        $before = date_modify($now, '-100 days');
+        //$qb->setParameter('date_from', $date_from, \Doctrine\DBAL\Types\Type::DATETIME);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb->delete(User::class, 'u')
+                ->where("u.createdAt < :before")
+                ->setParameter('before', $before, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
+                ->getQuery()->execute();
+
+//        if ($before) {
+//            $qb = $this->getEntityManager()->createQueryBuilder();
+//            $qb->delete(User::class, 'u')
+//                ->where("u.createdAt < '$before' -100")
+//                ->getQuery()->execute();
+//        }
+        //$now->format('Y-m-d H:i:s');
+        //$before = date_modify($now, '-100 days');
+        //$qb = $this->getEntityManager()->createQueryBuilder();
+        //$qb->delete(User::class, 'u')
+        //->where("u.createdAt < '$now -100'")
+        //->where("u.createdAt < NOW() - INTERVAL 100 DAYS")
+        //->where("u.createdAt <  new DateTime(-100 days)")
+        //->where("u.createdAt <  $now->format('Y-m-d H:i:s') INTERVAL 100 DAY")
+        //->where("u.createdAt < date_format($now, 'Y-m-d H:i:s') INTERVAL 100 DAY")
+        // CI-DESSOUS ÇA MARCHE !!!
+        //->where("u.createdAt < '2019-08-06 17:32:53'")
+        //->getQuery()->execute();
     }
 
     // /**
