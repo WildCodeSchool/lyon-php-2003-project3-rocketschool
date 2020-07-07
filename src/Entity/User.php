@@ -64,6 +64,16 @@ class User implements UserInterface
      */
     private $quizResults;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $facebookId;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $googleId;
+
     public function __construct()
     {
         $this->quizResults = new ArrayCollection();
@@ -222,6 +232,30 @@ class User implements UserInterface
                 $quizResult->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFacebookId(): ?string
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId(?string $facebookId): self
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
 
         return $this;
     }
