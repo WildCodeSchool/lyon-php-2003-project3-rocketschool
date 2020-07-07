@@ -830,7 +830,8 @@ for login & register pages */
         height: 100%;
 
         header {
-            background-color: $third-color;
+            //background-color: $third-color;
+            background: url(/build/images/background_1.7490ee1c.jpeg) no-repeat;
             color: white;
             display: flex;
             flex-direction: column;
@@ -848,6 +849,14 @@ for login & register pages */
                     width: 32px;
                     height: auto;
                 }
+
+                @media screen and (min-width: 992px) {
+                    flex-direction: column;
+                    width: 22%;
+                    height: 100%;
+                    align-items: start;
+                }
+
             }
 
             > div.row {
@@ -895,7 +904,9 @@ for login & register pages */
             }
 
             @media screen and (min-width: 992px) {
-                padding: 50px;
+                display: flex;
+                flex-direction: row;
+                margin-top: 80px;
             }
         }
     }
@@ -998,7 +1009,63 @@ for login & register pages */
         }
 
         .quiz {
+            > p {
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 40px;
+                text-align: center;
+                font-family: Montserra, sans-serif;
+            }
 
+            > em {
+                text-align: center;
+                width: 100%;
+                display: block;
+                padding: 10px;
+            }
+
+            // quiz's buttons
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+
+                button {
+                    background-color: $dark-blue;
+                    color: $primary-color;
+                    border-radius: 30px;
+                    display: block;
+                    margin: auto auto;
+                    padding: 8px 32px;
+                    font-size: 1.4em;
+                    font-family: Montserra, Raleway, sans-serif;
+
+                    &:hover {
+                        background-color: white;
+                        color: $dark-blue;
+                        border: 1px solid $dark-blue;
+                    }
+                }
+            }
+
+            //display quiz_result
+            div {
+                background-color: #999;
+                border-radius: 50%;
+                width: 128px;
+                height: 128px;
+                text-align: center;
+                margin: 30px auto;
+
+                p {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    font-size: 2em;
+                }
+            }
         }
 
     }
@@ -1068,6 +1135,25 @@ for login & register pages */
         }
     }
 
+    // background images
+    #rocket_back, #helmet_back {
+        position: fixed;
+        bottom: 0;
+        z-index: -10;
+        opacity: 0.3;
+        width: 25%;
+    }
+
+    #rocket_back {
+        right: 50px;
+    }
+
+    #helmet_back {
+        //left: -50px;
+        //bottom: -40px;
+    }
+
+    // modals style
     .modal-header {
         background-color: $purple;
         color: white;

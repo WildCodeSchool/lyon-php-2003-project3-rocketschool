@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <style>
-        .LT_page_name{
+        .LT_page_name {
             display: none;
         }
     </style>
@@ -13,6 +13,7 @@
 {% block body %}
     <main class="container-fluid mh-100" id="account_index">
         <div class="row">
+
             <header id="infos" class="col-12">
                 <section class="menu">
                     <a href="{{ app.session.get('uri') }}">
@@ -28,7 +29,7 @@
                 </section>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-lg-2">
                         {% if app.user.image is null %}
                             <svg height="160" width="160">
                                 <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />
@@ -80,26 +81,50 @@
 
                 {% if not app.user.checklist.check1 %}
 
-                    Regarde la video !
+                    <p>
+                        Pour accéder au quiz, tu dois au préalable
+                        confirmer avoir bien pris connaissance
+                        des ressources
+                    </p>
 
+                    <a href="{{ path('ressources_index') }}">
+                        <button>Voir la vidéo</button>
+                    </a>
+                    {{ dump(app.user.roles) }}
                 {% else %}
 
                     {% if app.user.quizResults.count == 0 %}
 
-                        Passer le quiz !
+                        <p>
+                            Il est maintenant temps de vérifier ce que tu as retenu !
+                            Pas de pression, tu as le droit à deux tentatives
+                        </p>
+
+                        <a href="{{ path('ressources_quizz') }}">
+                            <button>C'est parti !</button>
+                        </a>
 
                     {% elseif app.user.quizResults.count == 1 %}
 
                             {% for result in app.user.quizResults %}
-                                {{ dump(result) }}
+                                <div>
+                                    <p>{{ result.result }} %</p>
+                                </div>
                             {% endfor %}
 
-                            // repasser le quizz
+                            <em>Si tu le souhaites, tu peux tenter de faire mieux !</em>
+
+                        <a href="{{ path('ressources_quizz') }}">
+                            <button>Repasser le quiz</button>
+                        </a>
+
 
                     {% else %}
 
                             {% for result in app.user.quizResults %}
-                                {{ dump(result) }}
+                                <div style="background-color: #777; border-radius: 50%">
+                                    {{ result.result }}
+                                </div>
                             {% endfor %}
 
                     {% endif %}
@@ -200,6 +225,9 @@
                 </div>
             </div>
         </div>
+
+        <img src="{{ asset('build/images/rocket_1.85eea7f3.jpeg') }}" alt="" id="rocket_back">
+        <img src="{{ asset('build/images/helmet_1.7afae2db.jpeg') }}" alt="" id="helmet_back">
 
     </main>
 {% endblock %}
