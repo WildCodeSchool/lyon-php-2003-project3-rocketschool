@@ -6919,7 +6919,6 @@
             "time": "2020-04-02T16:40:37+00:00"
         },
         {
->>>>>>> b1ce466acf36506e11d9be9519c14fc07a183859
             "name": "fzaninotto/faker",
             "version": "v1.9.1",
             "source": {
