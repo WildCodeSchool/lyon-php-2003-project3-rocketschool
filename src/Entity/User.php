@@ -64,28 +64,30 @@ class User implements UserInterface
      */
     private $quizResults;
 
+    /**
+     * @var \DateTimeInterface $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
     public function __construct()
     {
         $this->quizResults = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -95,23 +97,21 @@ class User implements UserInterface
     {
         return (string) $this->email;
     }
-
     /**
      * @see UserInterface
      */
+
     public function getRoles(): array
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -126,21 +126,20 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
-
     /**
      * @see UserInterface
      */
+
     public function getSalt()
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
-
     /**
      * @see UserInterface
      */
+
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
@@ -155,7 +154,6 @@ class User implements UserInterface
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -167,7 +165,6 @@ class User implements UserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
-
         return $this;
     }
 
@@ -179,7 +176,6 @@ class User implements UserInterface
     public function setIsReady(bool $isReady): self
     {
         $this->isReady = $isReady;
-
         return $this;
     }
 
@@ -191,7 +187,6 @@ class User implements UserInterface
     public function setProgram(?Program $program): self
     {
         $this->program = $program;
-
         return $this;
     }
 
@@ -209,7 +204,6 @@ class User implements UserInterface
             $this->quizResults[] = $quizResult;
             $quizResult->setUser($this);
         }
-
         return $this;
     }
 
@@ -222,7 +216,17 @@ class User implements UserInterface
                 $quizResult->setUser(null);
             }
         }
+        return $this;
+    }
 
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
