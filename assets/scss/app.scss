@@ -111,12 +111,22 @@ blockquote {
     }
 }
 
+.linkedin-login-btn {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 255px;
+    }
+}
+
 .google-login-btn {
     display: flex;
     justify-content: center;
 
     .oauth-container {
-        width: 260px;
+        width: 255px;
         font-weight: 700;
         line-height: 25px;
         text-transform: none;

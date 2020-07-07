@@ -74,6 +74,11 @@ class User implements UserInterface
      */
     private $googleId;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $linkedinId;
+
     public function __construct()
     {
         $this->quizResults = new ArrayCollection();
@@ -256,6 +261,18 @@ class User implements UserInterface
     public function setGoogleId(?string $googleId): self
     {
         $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    public function getLinkedinId(): ?string
+    {
+        return $this->linkedinId;
+    }
+
+    public function setLinkedinId(?string $linkedinId): self
+    {
+        $this->linkedinId = $linkedinId;
 
         return $this;
     }

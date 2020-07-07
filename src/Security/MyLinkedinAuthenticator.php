@@ -6,9 +6,9 @@ use App\Entity\User; // your user entity
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
-use KnpU\OAuth2ClientBundle\Client\Provider\GoogleClient;
+use KnpU\OAuth2ClientBundle\Client\Provider\LinkedInClient;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
-use League\OAuth2\Client\Provider\GoogleUser;
+use League\OAuth2\Client\Provider\LinkedInResourceOwner;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class MyGoogleAuthenticator extends SocialAuthenticator
+class MyLinkedinAuthenticator extends SocialAuthenticator
 {
     private $clientRegistry;
     private $entityManager;
@@ -43,7 +43,7 @@ class MyGoogleAuthenticator extends SocialAuthenticator
     public function supports(Request $request)
     {
         // continue ONLY if the current ROUTE matches the check ROUTE
-        return $request->attributes->get('_route') === 'connect_google_check';
+        return $request->attributes->get('_route') === 'connect_linkedin_check';
     }
 
     public function getCredentials(Request $request)
@@ -55,20 +55,20 @@ class MyGoogleAuthenticator extends SocialAuthenticator
         //     return null;
         // }
 
-        return $this->fetchAccessToken($this->getGoogleClient());
+        return $this->fetchAccessToken($this->getLinkedinClient());
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        /** @var GoogleUser $googleUser */
-        $googleUser = $this->getGoogleClient()
+        /** @var LinkedInResourceOwner $linkedinUser */
+        $linkedinUser = $this->getLinkedinClient()
             ->fetchUserFromToken($credentials);
 
-        $email = $googleUser->getEmail();
+        $email = $linkedinUser->getEmail();
 
-        // 1) have they logged in with google before? Easy!
+        // 1) have they logged in with linkedin before? Easy!
         $existingUser = $this->entityManager->getRepository(User::class)
-            ->findOneBy(['googleId' => $googleUser->getId()]);
+            ->findOneBy(['linkedinId' => $linkedinUser->getId()]);
         if ($existingUser) {
             return $existingUser;
         }
@@ -81,10 +81,10 @@ class MyGoogleAuthenticator extends SocialAuthenticator
         // a User object
 
         if (empty($user)) {
-            $firstName = $googleUser->getFirstName();
-            $lastName = $googleUser->getLastName();
+            $firstName = $linkedinUser->getFirstName();
+            $lastName = $linkedinUser->getLastName();
             $user = new User();
-            $user->setGoogleId($googleUser->getId())
+            $user->setLinkedinId($linkedinUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)
                 ->setLastname((empty($lastName)) ? "" : $lastName);
@@ -98,13 +98,13 @@ class MyGoogleAuthenticator extends SocialAuthenticator
     }
 
     /**
-     * @return GoogleClient
+     * @return LinkedInClient
      */
-    private function getGoogleClient()
+    private function getLinkedinClient()
     {
         return $this->clientRegistry
-            // "facebook_main" is the key used in config/packages/knpu_oauth2_client.yaml
-            ->getClient('google');
+            // "linkedin" is the key used in config/packages/knpu_oauth2_client.yaml
+            ->getClient('linkedin');
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -136,6 +136,4 @@ class MyGoogleAuthenticator extends SocialAuthenticator
             Response::HTTP_TEMPORARY_REDIRECT
         );
     }
-
-    // ...
 }
