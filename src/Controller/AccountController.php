@@ -39,7 +39,7 @@ class AccountController extends AbstractController
                 $user->setLastname($lastname);
                 $user->setEmail($email);
 //                $user->setProgram($program);
-                if ($_FILES) {
+                if ($_FILES && !empty($_FILES['name'])) {
                     list($uploaded, $failed) = self::uploadPhoto($_FILES);
 
                     if (!empty($failed)) {

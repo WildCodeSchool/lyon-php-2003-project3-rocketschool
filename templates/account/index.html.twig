@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <style>
-        .LT_page_name {
+        .LT_page_name, body > header, .edit_hide, .logout_hide {
             display: none;
         }
     </style>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-8">
                         <div>
-                            <h4>{{ app.user.firstname}} {{ app.user.lastname }}</h4>
+                            <h3>{{ app.user.firstname}} {{ app.user.lastname }}</h3>
                             <h6>{{ app.user.email }}</h6>
                             <hr>
                             <h5>Programme</h5>
@@ -110,12 +110,15 @@
                     {% elseif app.user.quizResults.count == 1 %}
 
                             {% for result in app.user.quizResults %}
-                                <div>
-                                    <p>{{ result.result }} %</p>
-                                </div>
+                                <article>
+                                    <p>Résultat du 1er essai</p>
+                                    <div>
+                                        <p>{{ result.result }} %</p>
+                                    </div>
+                                </article>
                             {% endfor %}
 
-                            <em>Si tu le souhaites, tu peux tenter de faire mieux !</em>
+                            <em>Il te reste une tentative !</em>
 
                         <a href="{{ path('ressources_quizz') }}">
                             <button>Repasser le quiz</button>
@@ -125,9 +128,12 @@
                     {% else %}
 
                             {% for result in app.user.quizResults %}
-                                <div style="background-color: #777; border-radius: 50%">
-                                    {{ result.result }}
-                                </div>
+                                <article>
+                                    <p>Résultat du {{ result.attempt}}er essai</p>
+                                    <div>
+                                        <p>{{ result.result }} %</p>
+                                    </div>
+                                </article>
                             {% endfor %}
 
                     {% endif %}
@@ -144,20 +150,26 @@
                     <h1>+</h1>
                 </div>
             </header>
-            <article>
-                <div class="row">
-                    {% for note in app.user.notes %}
-                        <div class="col-12">
-                            <p>{{ note.title }}</p>
-                            <div>
-                                <a href="{{ path('edit_note', {'note': note.id}) }}">edit</a>
-                                <a href="">delete</a>
+            {% if app.user.notes.count > 0 %}
+                <article>
+                    <div class="row">
+                        {% for note in app.user.notes %}
+                            <div class="col-md-6 col-lg-3">
+                                <div>
+                                    <h4>{{ note.title }}</h4>
+                                    <hr>
+                                    <p>{{ note.content }}</p>
+                                </div>
+                                <div>
+                                    <a href="{{ path('edit_note', {'note': note.id}) }}">edit</a>
+                                    <a href="">delete</a>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                    {% endfor %}
-                </div>
-            </article>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </article>
+            {% endif %}
             <hr>
         </section>
 

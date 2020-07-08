@@ -848,6 +848,7 @@ for login & register pages */
                 img {
                     width: 32px;
                     height: auto;
+                    cursor: pointer;
                 }
             }
 
@@ -867,8 +868,8 @@ for login & register pages */
                     border: 3px solid #4e555b;
                 }
 
-                h4 {
-                    font-size: 2rem;
+                h3 {
+                    font-size: 2.5rem;
                 }
 
                 h6 {
@@ -881,12 +882,13 @@ for login & register pages */
             }
 
             h5 {
-                margin: -40px 20px 10px auto;
+                //margin: -40px 20px 10px auto;
+                //margin: 0 0 10px auto;
             }
 
             hr {
                 background-color: #4e555b;
-                width: 30%;
+                width: 20%;
             }
 
             @media screen and (min-width: 768px) {
@@ -905,6 +907,10 @@ for login & register pages */
                         > div {
                             margin-top: 20px;
                         }
+                    }
+
+                    hr {
+                        width: 100%;
                     }
                 }
             }
@@ -936,7 +942,7 @@ for login & register pages */
                 }
 
                 hr {
-                    width: 30%;
+                    width: 20%;
                     display: block;
                     margin: 1em 0;
                 }
@@ -1016,8 +1022,8 @@ for login & register pages */
 
                     > td:last-of-type {
                         text-align: left;
-                        font-size: 1.1em;
-                        padding-left: 20px;
+                        font-size: 1em;
+                        padding-left: 12px;
                         padding-top: 15px;
                         font-weight: 600;
                         font-family: Montserra, sans-serif;
@@ -1041,6 +1047,10 @@ for login & register pages */
 
                 em {
                     font-size: 0.8em;
+                }
+
+                @media screen and (min-width: 768px) {
+                    margin-left: 50px;
                 }
             }
         }
@@ -1073,7 +1083,7 @@ for login & register pages */
                     color: $primary-color;
                     border-radius: 30px;
                     display: block;
-                    margin: auto auto;
+                    margin: 0 auto 20px;
                     padding: 8px 32px;
                     font-size: 1.4em;
                     font-family: Montserra, Raleway, sans-serif;
@@ -1087,20 +1097,39 @@ for login & register pages */
             }
 
             //display quiz_result
-            div {
-                background-color: #999;
-                border-radius: 50%;
-                width: 128px;
-                height: 128px;
-                text-align: center;
-                margin: 30px auto;
+            article {
+                display: flex;
+                flex-direction: column;
 
-                p {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100%;
-                    font-size: 2em;
+                > p {
+                    padding-top: 20px;
+                    //padding-left: 30px;
+                    display: block;
+                    text-align: center;
+                    font-size: 1.1em;
+                    font-family: 'Montserra', sans-serif;
+                    font-weight: 600;
+                }
+
+                > div {
+                    background-color: $white-blue;
+                    border: 1px solid $secondary-color;
+                    border-radius: 50%;
+                    width: 128px;
+                    height: 128px;
+                    text-align: center;
+                    margin: auto;
+
+                     > p {
+                         display: flex;
+                         justify-content: center;
+                         align-items: center;
+                         height: 100%;
+                         font-size: 2em;
+                         //font-family: 'Montserra', sans-serif;
+                         font-weight: bold;
+                         color: $secondary-color;
+                    }
                 }
             }
         }
@@ -1108,7 +1137,7 @@ for login & register pages */
     }
 
     .notes {
-        background-color: rgba(149, 63, 174, 0.7);
+        background-color: rgba(149, 63, 174, 0.3);
         color: white;
         position: static;
         bottom: 0;
@@ -1147,12 +1176,16 @@ for login & register pages */
 
         > article {
             padding: 10px;
+            width: 100%;
 
             .col-md-6 {
                 display: flex;
                 justify-content: space-between;
                 padding: 15px;
                 border-bottom: 1px solid white;
+                margin: 10px;
+                height: 250px;
+                background-color: rgb(149, 63, 174);
 
                 > p {
                     margin-top: 10px;
@@ -1175,19 +1208,31 @@ for login & register pages */
     // background images
     #rocket_back, #helmet_back {
         position: fixed;
-        bottom: 0;
         z-index: -10;
         opacity: 0.1;
-        width: 25%;
+        width: 65%;
     }
 
     #rocket_back {
+        bottom: 0;
         right: 50px;
+
+        @media screen and (min-width: 768px) {
+            bottom: -50px;
+            right: 0;
+        }
     }
 
     #helmet_back {
-        //left: -50px;
-        //bottom: -40px;
+        top: 30px;
+
+        @media screen and (min-width: 768px) {
+            top: 200px;
+            left: -50px;
+            width: 40%;
+        }
+
+
     }
 
     // modals style
