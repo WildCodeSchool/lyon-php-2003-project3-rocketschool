@@ -6,9 +6,12 @@ use App\Entity\Program;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use DateTime;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -58,6 +61,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
 
         return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteOldAccounts(): void
+    {
+        $now = new DateTime();
+        $before = date_modify($now, '-100 days');
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb->delete(User::class, 'u')
+                ->where("u.createdAt < :before")
+                ->setParameter('before', $before, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
+                ->getQuery()->execute();
     }
 
     // /**
