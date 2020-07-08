@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Proposition;
 use App\Entity\Quizz;
+use App\Entity\User;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
@@ -20,6 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/ressources", name="ressources_")
@@ -35,15 +37,14 @@ class RessourcesController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function index(EntityManagerInterface $entityManager)
+    public function index(EntityManagerInterface $entityManager, UserRepository $userRepository)
     {
-
         $video = $this->getDoctrine()
             ->getRepository(Video::class)
             ->findOneBy([]);
 
-        if ($_GET && $_GET['ready']) {
-            $user = $this->getUser();
+        if ($_POST && $_POST['ready']) {
+            $user = $userRepository->find($_POST['userId']);
             if (!empty($user)) {
                 $user->setIsReady(true);
                 $entityManager->persist($user);
