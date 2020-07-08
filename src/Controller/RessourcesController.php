@@ -42,14 +42,15 @@ class RessourcesController extends AbstractController
             ->getRepository(Video::class)
             ->findOneBy([]);
 
-        if ($_GET) {
-            if ($_GET['ready']) {
-                $user = $this->getUser();
+        if ($_GET && $_GET['ready']) {
+            $user = $this->getUser();
+            if (!empty($user)) {
                 $user->setIsReady(true);
                 $entityManager->persist($user);
                 $entityManager->flush();
             }
         }
+
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',
