@@ -55,16 +55,6 @@ class User implements UserInterface
      */
     private $isReady = false;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Program::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $program;
-
-    /**
-     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
-     */
-    private $quizResults;
 
     /**
      * @var DateTimeInterface $createdAt
@@ -73,6 +63,16 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="users")
+     */
+    private $program;
+
+    /**
+     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
+     */
+    private $quizResults;
 
     public function __construct()
     {
