@@ -849,14 +849,6 @@ for login & register pages */
                     width: 32px;
                     height: auto;
                 }
-
-                @media screen and (min-width: 992px) {
-                    flex-direction: column;
-                    width: 22%;
-                    height: 100%;
-                    align-items: start;
-                }
-
             }
 
             > div.row {
@@ -872,6 +864,15 @@ for login & register pages */
                     margin: 15px auto;
                     height: 125px;
                     width: 125px;
+                    border: 3px solid #4e555b;
+                }
+
+                h4 {
+                    font-size: 2rem;
+                }
+
+                h6 {
+                    font-size: 1rem;
                 }
             }
 
@@ -881,6 +882,11 @@ for login & register pages */
 
             h5 {
                 margin: -40px 20px 10px auto;
+            }
+
+            hr {
+                background-color: #4e555b;
+                width: 30%;
             }
 
             @media screen and (min-width: 768px) {
@@ -907,6 +913,37 @@ for login & register pages */
                 display: flex;
                 flex-direction: row;
                 margin-top: 80px;
+
+                .menu {
+                    flex-direction: column;
+                    width: 22%;
+                    height: 100%;
+                    align-items: start;
+
+                    >a, >div {
+                        display: none;
+                    }
+
+                    >p {
+                        border: 1px solid #4e555b;
+                        padding: 8px 32px;
+                        cursor: pointer;
+                    }
+                }
+
+                .row .col-md-8 {
+                    margin-left: -50px;
+                }
+
+                hr {
+                    width: 30%;
+                    display: block;
+                    margin: 1em 0;
+                }
+
+                h5 {
+                    margin: 0;
+                }
             }
         }
     }
@@ -1140,7 +1177,7 @@ for login & register pages */
         position: fixed;
         bottom: 0;
         z-index: -10;
-        opacity: 0.3;
+        opacity: 0.1;
         width: 25%;
     }
 
