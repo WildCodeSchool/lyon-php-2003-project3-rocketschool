@@ -55,15 +55,6 @@ class User implements UserInterface
      */
     private $isReady = false;
 
-
-    /**
-     * @var DateTimeInterface $createdAt
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
     /**
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="users")
      */
@@ -73,6 +64,14 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
      */
     private $quizResults;
+
+    /**
+     * @var DateTimeInterface $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function __construct()
     {

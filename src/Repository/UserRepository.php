@@ -72,6 +72,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $before = date_modify($now, '-100 days');
 
         $qb = $this->getEntityManager()->createQueryBuilder();
+
         $qb->delete(User::class, 'u')
             ->where("u.createdAt < :before")
             ->setParameter('before', $before, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
