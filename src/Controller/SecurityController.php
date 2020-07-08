@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,7 +33,7 @@ class SecurityController extends AbstractController
         $user = $this->getUser();
 
         if (!empty($user)) {
-            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            if ($this->isGranted('ROLE_ADMIN')) {
                 return $this->redirectToRoute('admin_index');
             }
 
