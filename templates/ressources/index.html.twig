@@ -36,7 +36,7 @@
                     </a>
                 </div>
             {% endif %}
-            <form action="" method="get" class="form-inline">
+            <form action="" method="POST" class="form-inline">
                 <div class="form-group check-video">
                     <input
                             type="checkbox"
@@ -46,6 +46,7 @@
                             onclick="this.form.submit()"
                             {% if app.user.isReady is same as(true) %}checked{% endif %}
                     >
+                    <input type="hidden" name="userId" value="{{ app.user.id }}">
                     <label for="ready">J'ai compris !</label>
                 </div>
             </form>

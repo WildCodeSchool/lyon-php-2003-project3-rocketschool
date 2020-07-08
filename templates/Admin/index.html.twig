@@ -75,7 +75,13 @@
                     <td class="search_response"> {{ user.firstname }} </td>
                     <td class="search_response"> {{ user.lastname }} </td>
                     <td class="search_response"> {{ user.email }} </td>
-                    <td class="search_response"> {{ user.program.name}} </td>
+                    <td class="search_response">
+                        {% if user.program.name is defined %}
+                            {{ user.program.name}}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
                 {% endif %}
 
             {% endfor %}

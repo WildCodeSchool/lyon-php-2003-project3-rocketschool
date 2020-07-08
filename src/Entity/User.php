@@ -66,7 +66,22 @@ class User implements UserInterface
     private $quizResults;
 
     /**
-     * @var DateTimeInterface $createdAt
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $facebookId;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $googleId;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $linkedinId;
+
+    /*
+     * @var \DateTimeInterface $createdAt
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -218,6 +233,42 @@ class User implements UserInterface
                 $quizResult->setUser(null);
             }
         }
+        return $this;
+    }
+
+    public function getFacebookId(): ?string
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId(?string $facebookId): self
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    public function getLinkedinId(): ?string
+    {
+        return $this->linkedinId;
+    }
+
+    public function setLinkedinId(?string $linkedinId): self
+    {
+        $this->linkedinId = $linkedinId;
+      
         return $this;
     }
 

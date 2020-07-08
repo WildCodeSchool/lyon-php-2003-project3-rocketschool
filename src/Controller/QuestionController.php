@@ -7,6 +7,7 @@ use App\Entity\Quizz;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
+use App\Services\QuestionMoveItem;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +26,7 @@ class QuestionController extends AbstractController
     public function index(QuestionRepository $questionRepository): Response
     {
         return $this->render('question/index.html.twig', [
-            'questions' => $questionRepository->findAll(),
+            'questions' => $questionRepository->findBy([], ['questionOrder' => 'ASC']),
             'page_name' => 'Quiz - Edition',
         ]);
     }
@@ -118,6 +119,25 @@ class QuestionController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($question);
             $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('question_index');
+    }
+
+    /**
+     * @Route("/move/{id}/{position}", name="question_move",methods={"GET", "POST"})
+     * @return Response
+     */
+    public function move(QuestionMoveItem $questionMoveItem, Question $question, string $position): Response
+    {
+        $nbQuestion = count($this->getDoctrine()->getRepository(Question::class)->findAll());
+
+        if ($question->getQuestionOrder() == 0 && $position == 'Up') {
+            throw $this->createNotFoundException('Impossible de monter le premier élément');
+        } elseif ($question->getQuestionOrder() == $nbQuestion - 1 && $position == 'Down') {
+            throw $this->createNotFoundException('Impossible de descendre le dernier élément');
+        } else {
+            $questionMoveItem->move($question, $position);
         }
 
         return $this->redirectToRoute('question_index');
