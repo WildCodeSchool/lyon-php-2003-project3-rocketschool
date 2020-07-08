@@ -25,12 +25,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * @var \App\Repository\AccountsDurationRepository
      */
-    private $aDuRepo;
+    private $accDuRepo;
 
-    public function __construct(ManagerRegistry $registry, AccountsDurationRepository $aDuRepo)
+    public function __construct(ManagerRegistry $registry, AccountsDurationRepository $accDuRepo)
     {
         parent::__construct($registry, User::class);
-        $this->aDuRepo = $aDuRepo;
+        $this->accDuRepo = $accDuRepo;
     }
 
     /**
@@ -75,7 +75,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function deleteOldAccounts(): void
     {
-        $accountsDuration = $this->aDuRepo->findOneBy([]);
+        $accountsDuration = $this->accDuRepo->findOneBy([]);
         if ($accountsDuration) {
             $days = $accountsDuration->getDays();
             $now = new DateTime();
