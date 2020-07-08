@@ -1,10 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
-
+{% block stylesheets %}
+{% endblock %}
 {% block body %}
     <section class="container" id="login_form">
+        <div class="linkedin-login-btn">
+            <a href="{{ path('connect_linkedin_start') }}" class="">
+                <img src="{{ asset('build/images/icons/Linkedin-Sign-in-Default.png') }}" class="">
+            </a>
+        </div>
         <div class="form-section col-10 col-md-5 col-lg-4">
+            <div class="google-login-btn center-align">
+                <a class="oauth-container btn darken-4 white black-text" href="{{ path('connect_google_start') }}" style="text-transform:none">
+                    <div class="left">
+                        <img class="google-img" width="20px" alt="Google sign-in"
+                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    </div>
+                    Continuer avec Google
+                </a>
+            </div>
+            <a href="{{ path('connect_facebook_start') }}">
+                <div class="fb-login-button"
+                     id="fb-login-grp"
+                     data-size="large"
+                     data-button-type="continue_with"
+                     data-layout="default"
+                     data-auto-logout-link="false"
+                     data-use-continue-as="false"
+                     data-width="">
+                </div>
+            </a>
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -53,8 +79,21 @@
                     width="150px"
                     src="https://rocket-school.com/wp-content/uploads/2019/03/rocket-school.png"
                     alt="Fusée Rocket School"
+                    class="rocket-school-img"
             >
 
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <div id="fb-root"></div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <script async defer
+            crossorigin="anonymous"
+            src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v7.0&appId=320085619385200&autoLogAppEvents=1"
+            nonce="wc7HVRjq">
+    </script>
 {% endblock %}
