@@ -19,6 +19,12 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+                    - App\Security\MyFacebookAuthenticator
+                    - App\Security\MyGoogleAuthenticator
+                    - App\Security\MyLinkedinAuthenticator
+
+                entry_point: App\Security\LoginFormAuthenticator
+
             logout:
                 path: app_logout
                 # where to redirect after logout
