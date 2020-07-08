@@ -1536,20 +1536,6 @@
                 "reference": "5458bdcf176f6a53292e3f0cc73f292d6302fb0f",
                 "shasum": ""
             },
-
-            "name": "egulias/email-validator",
-            "version": "2.1.18",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "cfa3d44471c7f5bfb684ac2b0da7114283d78441"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/cfa3d44471c7f5bfb684ac2b0da7114283d78441",
-                "reference": "cfa3d44471c7f5bfb684ac2b0da7114283d78441",
-                "shasum": ""
-            },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
@@ -1568,7 +1554,6 @@
             "autoload": {
                 "psr-4": {
                     "Doctrine\\SqlFormatter\\": "src"
-                    "Egulias\\EmailValidator\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
