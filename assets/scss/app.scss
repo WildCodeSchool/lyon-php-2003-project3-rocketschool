@@ -669,6 +669,96 @@ footer a {
     }
 }
 
+// QUIZ QUESTIONS ADMIN SECTION //
+.question-table {
+    margin: 40px auto;
+    text-align: center;
+
+    input, textarea, select {
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        height: 200px;
+    }
+}
+
+.question-created-at {
+    margin: 0px auto 15px auto;
+    text-align: center;
+}
+
+.question-action-btn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.question-position-btn {
+    width: 30px;
+    height: 30px;
+    border: solid black 1px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.question-arrow-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.question-position-btn-active:hover {
+    border: solid $secondary-color 1px;
+    padding: 4px;
+}
+
+.question-up-btn {
+    transform: rotate(180deg);
+}
+
+.question-alert {
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+}
+
+.question-tr:first-child {
+
+    .question-btn-up {
+        pointer-events: none;
+    }
+
+    .question-up-btn {
+        opacity: 0.3;
+    }
+
+    .question-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
+.question-tr:last-child {
+
+    .question-btn-down {
+        pointer-events: none;
+    }
+
+    .question-down-btn {
+        opacity: 0.3;
+    }
+
+    .question-up-btn:hover {
+        padding: 5px;
+        border: solid black 1px;
+    }
+}
+
 /* DESKTOP AND LARGE SCREEN */
 @media (min-width: 992px) {
 
