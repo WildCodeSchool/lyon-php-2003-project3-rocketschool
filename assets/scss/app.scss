@@ -859,6 +859,11 @@ for login & register pages */
 
                 svg {
                     margin: -15px auto 0;
+
+                    text {
+                        font-size: 2.5em;
+                        font-family: 'Monterra', sans-serif;
+                    }
                 }
 
                 img {
@@ -925,14 +930,27 @@ for login & register pages */
                     height: 100%;
                     align-items: start;
 
-                    >a, >div {
+                    >a:first-child, >div {
                         display: none;
                     }
 
-                    >p {
+                    > p {
                         border: 1px solid #4e555b;
                         padding: 8px 32px;
                         cursor: pointer;
+                    }
+
+                    a {
+                        color: white;
+
+                        &:hover {
+                            color: white;
+                            text-decoration: none;
+                        }
+
+                        &:visited {
+                            color: white;
+                        }
                     }
                 }
 
@@ -1264,5 +1282,14 @@ for login & register pages */
             margin-top: 10px;
             float: right;
         }
+
+        form input, form select {
+            margin-bottom: 20px;
+        }
     }
+
+    //#profilModal form {
+    //    display: flex;
+    //    flex-direction: column;
+    //}
 }
