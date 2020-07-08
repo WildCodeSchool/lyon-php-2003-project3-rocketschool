@@ -20,8 +20,8 @@
                 <td class="d-flex justify-content-start quizz-edit-row">{{ question.solution }}</td>
             </tr>
             {% for proposition in question.propositions %}
-                <tr >
-                    <th >
+                <tr>
+                    <th>
                         Proposition n° {{ loop.index }}
                     </th>
                     <td class="d-flex justify-content-start quizz-edit-row">{{ proposition.title }}</td>
@@ -32,7 +32,7 @@
     </table>
 
     <div class="container-fluid quizz-container" style="margin-bottom: 40px">
-        <a href="{{ path('question_edit', {'id': question.id}) }}" class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
+        <a href="{{ path('question_edit', {'id': question.id}) }}" class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
             Apporter des modifications à cette question
         </a>
     </div>
