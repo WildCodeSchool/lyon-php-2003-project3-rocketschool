@@ -7,6 +7,12 @@
         .LT_page_name, body > header, .edit_hide, .logout_hide {
             display: none;
         }
+
+        @media screen and (min-width: 992px) {
+            body > header, .edit_hide, .logout_hide {
+                display: block;
+            }
+        }
     </style>
 {% endblock %}
 

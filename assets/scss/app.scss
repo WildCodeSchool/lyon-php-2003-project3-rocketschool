@@ -875,6 +875,10 @@ for login & register pages */
                 h6 {
                     font-size: 1rem;
                 }
+
+                hr {
+                    background-color: #4e555b;
+                }
             }
 
             .col-md-6:last-of-type {
@@ -884,11 +888,6 @@ for login & register pages */
             h5 {
                 //margin: -40px 20px 10px auto;
                 //margin: 0 0 10px auto;
-            }
-
-            hr {
-                background-color: #4e555b;
-                width: 20%;
             }
 
             @media screen and (min-width: 768px) {
@@ -937,11 +936,15 @@ for login & register pages */
                     }
                 }
 
+                >.row {
+                    padding-left: 20px;
+                }
+
                 .row .col-md-8 {
                     margin-left: -50px;
                 }
 
-                hr {
+                 >.row hr {
                     width: 20%;
                     display: block;
                     margin: 1em 0;
@@ -1051,6 +1054,10 @@ for login & register pages */
 
                 @media screen and (min-width: 768px) {
                     margin-left: 50px;
+                }
+
+                @media screen and (min-width: 768px) {
+                    margin-left: 32px;
                 }
             }
         }
@@ -1220,6 +1227,12 @@ for login & register pages */
         @media screen and (min-width: 768px) {
             bottom: -50px;
             right: 0;
+        }
+
+        @media screen and (min-width: 992px) {
+            bottom: -50px;
+            right: 0;
+            width: 25%;
         }
     }
 
