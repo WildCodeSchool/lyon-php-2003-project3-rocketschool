@@ -10,6 +10,7 @@ body {
     font-weight: 400;
 }
 
+
 header {
     z-index: 1;
     width: 100%;
@@ -26,6 +27,10 @@ blockquote {
     p {
         margin-bottom: 0;
     }
+}
+
+.alert-success, .alert-danger {
+    border-radius: 5px;
 }
 
 .opacity {
@@ -46,6 +51,25 @@ blockquote {
 
 .margin_top_navbar_admin {
     margin-top: 160px;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: unset;
+    width: 210px;
+    text-align: center;
+    box-shadow: black 0px 10px 10px -10px;
+    border-top: solid $dark-blue;
+
+    a:hover {
+        font-weight: 700;
+    }
+
+    .delimiter {
+        border-bottom: solid $secondary-color;
+        width: 80%;
+        margin: 5px auto;
+    }
 }
 
 .LT_page_name h2 {
@@ -92,6 +116,46 @@ blockquote {
     .adminBar {
         display: none;
     }
+}
+
+.linkedin-login-btn {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 255px;
+    }
+}
+
+.google-login-btn {
+    display: flex;
+    justify-content: center;
+
+    .oauth-container {
+        width: 255px;
+        font-weight: 700;
+        line-height: 25px;
+        text-transform: none;
+        display: flex;
+        box-shadow: black 0px 0px 2px;
+        justify-content: center;
+        height: 40px;
+    }
+
+    .google-img {
+        margin-top: -2px;
+        margin-right: 20px;
+    }
+}
+
+#fb-login-grp {
+    pointer-events: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 40px;
 }
 
 footer {
@@ -227,6 +291,7 @@ footer a {
 
 .check-video {
     margin: auto;
+    justify-content: center;
 
     label {
         padding: 5px;
@@ -253,6 +318,28 @@ footer a {
     a.cke_button_disabled .cke_button_icon {
         opacity: 1;
     }
+}
+
+// QUIZ SECTION
+.quizz-result-container {
+    margin: 45px;
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-attempt {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.quiz-solution {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 15px;
+}
+
+.quizz-container-disabled {
+    pointer-events: none;
 }
 
 #quizz {
@@ -390,6 +477,48 @@ footer a {
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
     }
+}
+
+/** QUIZZ EDITION **/
+.quizz-table {
+    width: 100%;
+    margin: 40px auto;
+    font-size: 1.5em;
+
+}
+
+.quizz-edit-row{
+    height: 80px;
+}
+
+.btn-round-clearblue {
+    margin-top: 30px;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 30px;
+}
+
+#quizz-edit .proposition {
+    padding: 30px 20px;
+}
+
+#quizz-edit ul li {
+    list-style-type: none;
+    padding-bottom: 10px;
+}
+
+#quizz-edit .form-group {
+    margin-bottom: 0;
+
+}
+
+#quizz-edit .checkbox label{
+    font-size: 16px;
+}
+
+.btn-round-clearblue:hover {
+    background-color: $secondary-color;
+    color: $dark-blue;
 }
 
 // FAQ SECTION
@@ -566,7 +695,7 @@ footer a {
         color: black;
     }
 
-    #nav-link-profil {
+    .nav-link-disabled {
         display: none;
     }
 
@@ -697,7 +826,7 @@ footer a {
         text-align: center;
     }
 
-    img {
+    .rocket-school-img {
         display: block;
         margin: 80px auto;
     }
@@ -713,6 +842,11 @@ footer a {
     .col-md-3 {
         margin: 0 auto;
     }
+}
+
+#login_form button{
+
+    padding: 0;
 }
 
 #register_form {
@@ -758,30 +892,135 @@ for login & register pages */
     min-height: 400px;
     background-color: whitesmoke;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.table td {
+.table .search_response {
     text-align: center;
     background-color: whitesmoke;
-    border-bottom: 1px solid $third-color;
+    border-bottom: 2px solid $third-color;
     color: black;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
 }
 
-.table td:hover {
+.table .search_response:hover {
     background-color: $primary-color;
-    border-bottom: 1px solid $secondary-color;
+    border-bottom: 2px solid $secondary-color;
 }
 
 .table .thead-light th {
     text-align: center;
     color: black;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    border-bottom: 2px $secondary-color solid;
 }
 
 .table_user {
     width: 80%;
+}
+
+/* Administration_search_users */
+.content-container_lt {
+    width: 100%;
+    padding-left: 80px;
+    margin-top: 50px;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+option:hover {
+    background-color: $third-color;
+}
+
+.form-search {
+    border-radius: 30px;
+    border-bottom: solid $third-color 3px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 200px;
+    text-align: center;
+    height: 30px;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    outline-style:none;
+}
+
+.form-search:hover {
+    border-bottom: 0 ;
+}
+
+.form-program {
+    border-radius: 30px;
+    border-bottom: solid $third-color 3px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: $primary-color;
+    width: 180px;
+    padding-left: 15px;
+    height: 30px;
+    margin-left: 20px;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    outline-style:none;
+}
+
+.btn-search-user {
+    border-radius: 30px;
+    background-color: $third-color;
+    color: $primary-color;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    margin-left: 23px;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+}
+
+.btn-search-user:hover {
+    color: black;
+    background-color: $primary-color;
+    border: solid 2px $third-color;
+}
+
+.error_users_search {
+    background-color: $third-color;
+    color: white;
+    width: 100px;
+    text-align: center;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+
+}
+
+@media screen and (max-width: 720px) {
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 200px;
+    }
+
+    .form-program, .btn {
+        margin-left: 0;
+    }
+
+    .form-program {
+        width: 50%;
+    }
+
+    .form-search {
+        width: 80%;
+    }
+
+    .content-container_lt {
+        padding-left: 0;
+    }
 }

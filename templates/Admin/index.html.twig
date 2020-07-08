@@ -3,26 +3,77 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
+
     <section class="user_table">
+        <div class="content-container_lt">
+
+            {{ form_start(form, {
+            'attr': {
+            'class': 'form-group',
+            'novalidate': 'novalidate'
+            }}) }}
+
+            {{ form_widget(form.dataUsers, {
+
+                'attr': {
+                    'class': 'form-search',
+                    'placeholder': 'Rechercher un candidat'
+                }
+            }) }}
+
+            {{ form_widget(form.program, {
+                'attr': {
+                    'class': 'form-program',
+
+                }
+            }) }}
+
+            <button type="submit" class="btn btn-search-user">Rechercher</button>
+        </div>
+
+        {{ form_end(form) }}
+
         <table class="table table-hover table_user">
             <thead class="thead-light">
-                <tr>
+                <tr class="tr">
                     <th class="th" scope="col">Prénom</th>
                     <th class="th" scope="col">Nom</th>
                     <th class="th" scope="col">Mail</th>
+                    <th class="th" scope="col">Programme</th>
+                    <th class="th" scope="col">Resultat 1</th>
+                    <th class="th" scope="col">Resultat 2</th>
+                    <th class="th" scope="col">Check-list</th>
                 </tr>
             </thead>
+
             <tbody class="thead-light">
+            {% if users is not empty %}
 
             {% for user in users %}
                 {% if 'ROLE_ADMIN' not in user.roles %}
                 <tr>
-                    <td> {{ user.firstname }} </td>
-                    <td> {{ user.lastname }} </td>
-                    <td> {{ user.email }} </td>
-                </tr>
+                    <td class="search_response"> {{ user.firstname }} </td>
+                    <td class="search_response"> {{ user.lastname }} </td>
+                    <td class="search_response"> {{ user.email }} </td>
+                    <td class="search_response">
+                        {% if user.program.name is defined %}
+                            {{ user.program.name}}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
                 {% endif %}
+
             {% endfor %}
+
+            {% endif %}
+
+            {% if users is empty %}
+
+                <td class="error_users_search" colspan="7">
+                    Malheureusement nous n'avons pas trouvé de résultats à votre recherche </td>
+
+            {% endif %}
 
             </tbody>
         </table>
