@@ -130,14 +130,14 @@
 
                     {% else %}
 
-                            {% for result in app.user.quizResults %}
-                                <article>
-                                    <p>Résultat du {{ result.attempt}}er essai</p>
-                                    <div>
-                                        <p>{{ result.result }} %</p>
-                                    </div>
-                                </article>
-                            {% endfor %}
+                            <article>
+                                <p>Résultat du 2eme essai</p>
+                                <div>
+                                    <p>{{ app.user.quizResults.1.result }} %</p>
+                                </div>
+                            </article>
+
+                        <em class="p-3">Rappel 1er essai : {{ app.user.quizResults.0.result }} %</em>
 
                     {% endif %}
 
