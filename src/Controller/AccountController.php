@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Note;
+use App\Entity\Program;
+use App\Repository\ProgramRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +16,13 @@ class AccountController extends AbstractController
     /**
      * @Route("/account", name="profil")
      * @param EntityManagerInterface $entityManager
+     * @param ProgramRepository $programRepo
      * @return Response
      */
-    public function index(EntityManagerInterface $entityManager):Response
+    public function index(EntityManagerInterface $entityManager, ProgramRepository $programRepo):Response
     {
+        $programs = $programRepo->findAll();
+
         if ($_POST) {
             if (isset($_POST['title']) || isset($_POST['content'])) {
                 $title = self::cleanInput($_POST['title']);
@@ -32,21 +37,20 @@ class AccountController extends AbstractController
                 $firstname = self::cleanInput($_POST['firstname']);
                 $lastname = self::cleanInput($_POST['lastname']);
                 $email = self::cleanInput($_POST['email']);
-//                $program = $_POST['program'];
+                $program = $programRepo->findOneBy(["id" => $_POST['program']]);
+
 
                 $user = $this->getUser();
                 $user->setFirstname($firstname);
                 $user->setLastname($lastname);
                 $user->setEmail($email);
-//                $user->setProgram($program);
-                if ($_FILES && !empty($_FILES['name'])) {
+                $user->setProgram($program);
+                if ($_FILES && !empty($_FILES['image']['name'])) {
                     list($uploaded, $failed) = self::uploadPhoto($_FILES);
 
                     if (!empty($failed)) {
                         $this->addFlash('danger', $failed);
-                        return $this->render('account/index.html.twig', [
-                            'controller_name' => 'AccountController', 'page_name' => 'Mon Profil'
-                        ]);
+                        return $this->redirectToRoute('profil');
                     }
                     $user->setImage($uploaded);
                 }
@@ -55,8 +59,15 @@ class AccountController extends AbstractController
             $entityManager->flush();
         }
 
+
+//        var_dump($programs);
+//        die();
+
+
+
+
         return $this->render('account/index.html.twig', [
-            'controller_name' => 'AccountController', 'page_name' => 'Mon Profil'
+            'controller_name' => 'AccountController', 'programs' => $programs, 'page_name' => 'Profil'
         ]);
     }
 

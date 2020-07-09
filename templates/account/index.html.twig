@@ -9,7 +9,7 @@
         }
 
         @media screen and (min-width: 992px) {
-            body > header, .edit_hide, .logout_hide {
+             body > header, .edit_hide, .logout_hide {
                 display: block;
             }
         }
@@ -23,11 +23,11 @@
             <header id="infos" class="col-12">
                 <section class="menu">
                     <button onclick="window.history.back()">
-                        <img src="{{ asset('build/images/back_arrow.450bf16e.svg') }}" alt="">
+                        <img src="{{ asset('build/images/back_arrow.421a863f.svg') }}" alt="">
                     </button>
                     <p class="edit_hide" data-toggle="modal" data-target="#profilModal">Editer profil</p>
                     <div class="dropdown dropleft">
-                        <img src="{{ asset('build/images/three_dot.619fd3b3.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset('build/images/three_dot.79424a4a.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
                         <div class="dropdown-menu">
                             <p class="dropdown-item" data-toggle="modal" data-target="#profilModal">Editer profil</p>
                             <a class="dropdown-item" href="/logout">Se déconnecter</a>
@@ -53,12 +53,20 @@
                             <h3>{{ app.user.firstname}} {{ app.user.lastname }}</h3>
                             <h6>{{ app.user.email }}</h6>
                             <hr>
-                            <h5>{{ app.user.program??'Programme' }}</h5>
+                            <h5>{{ app.user.program.title??'Programme' }}</h5>
                         </div>
                     </div>
                 </div>
 
             </header>
+            {% for category, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
         </div>
 
         <section id="quiz_check" class="row">
@@ -68,15 +76,33 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><span></span></td>
+                            <td>
+                                <span>
+                                    {% if app.user.checklist.check1 %}
+                                        <img src="{{ asset('build/images/checked.734b25b9.svg') }}" alt="">
+                                    {% endif %}
+                                </span>
+                            </td>
                             <td><a href="{{ path('ressources_index') }}">Je m'informe sur les métiers <br><em>En regardant attentivement la vidéo</em></a></td>
                         </tr>
                         <tr>
-                            <td><span></span></td>
+                            <td>
+                                <span>
+                                    {% if app.user.checklist.check2 %}
+                                        <img src="{{ asset('build/images/checked.734b25b9.svg') }}" alt="">
+                                    {% endif %}
+                                </span>
+                            </td>
                             <td><a href="{{ path('ressources_quizz') }}" class="{% if not app.user.checklist.check1 %}disabled{% endif %}">J'évalue mes connaissances <br><em>Un quiz, deux essais</em></a></td>
                         </tr>
                         <tr>
-                            <td><span></span></td>
+                            <td>
+                                <span>
+                                    {% if app.user.checklist.check3 %}
+                                        <img src="{{ asset('build/images/checked.734b25b9.svg') }}" alt="">
+                                    {% endif %}
+                                </span>
+                            </td>
                             <td><a href="{{ path('ressources_guide') }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
                         </tr>
                     </tbody>
@@ -112,21 +138,24 @@
 
                     {% elseif app.user.quizResults.count == 1 %}
 
-                            {% for result in app.user.quizResults %}
-                                <article>
-                                    <p>Résultat du 1er essai</p>
-                                    <div>
-                                        <p>{{ result.result }} %</p>
-                                    </div>
-                                </article>
-                            {% endfor %}
+                        {% for result in app.user.quizResults %}
+                            <article>
+                                <p>Résultat du 1er essai</p>
+                                <div>
+                                    <p>{{ result.result }} %</p>
+                                </div>
+                            </article>
 
-                            <em>Il te reste une tentative !</em>
+                            {% if result.result != 100 %}
+                                <em>Il te reste une tentative !</em>
 
-                        <a href="{{ path('ressources_quizz') }}">
-                            <button>Repasser le quiz</button>
-                        </a>
-
+                                <a href="{{ path('ressources_quizz') }}">
+                                    <button>Repasser le quiz</button>
+                                </a>
+                            {% else %}
+                                <p class="congrat">Félicitations !</p>
+                            {% endif %}
+                        {% endfor %}
 
                     {% else %}
 
@@ -147,7 +176,11 @@
         </section>
         <section class="row notes">
             <header>
-                <h4 id="toggler">Notes personnelles <img src="{{ asset('build/images/caret_down.9dae2ff5.svg') }}" alt=""></h4>
+                <h4 id="toggler"> Notes personnelles
+                    {% if app.user.notes.count > 0 %}
+                        <img src="{{ asset('build/images/caret_down.399d20b1.svg') }}" alt="">
+                    {% endif %}
+                </h4>
                 <div data-toggle="modal" data-target="#noteModal">
 {#                    <h6>Ajouter une note</h6>#}
                     <h1>+</h1>
@@ -228,15 +261,19 @@
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" placeholder="Email" value="{{ app.user.email }}" class="form-control">
 
-                            <label for="program">Programme</label>
-                            <select name="program" id="program">
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
+                            <div class="browse">
+                                <label for="image" class="custom-file-label">Image Profil</label>
+                                <input type="file" name="image" id="image" class="custom-file-input"><br>
+                            </div>
 
-                            <label for="image">Image Profil</label>
-                            <input type="file" name="image" id="image"><br>
-
+                            <div>
+                                <label for="program">Programme</label>
+                                <select name="program" id="program" class="custom-select">
+                                    {% for program in programs %}
+                                        <option value="{{ program.id }}" {% if app.user.program.id == program.id %}selected{% endif %}>{{ program.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                             <button type="submit" class="btn">Enregistrer</button>
                         </form>
                     </div>
@@ -245,26 +282,8 @@
             </div>
         </div>
 
-{#        <!-- The Modal Profil Edition -->#}
-{#        <div class="modal" id="deleteNote">#}
-{#            <div class="modal-dialog">#}
-{#                <div class="modal-content">#}
-
-{#                    <!-- Modal body -->#}
-{#                    <div class="modal-body">#}
-
-{#                        <p>Voulez-vous vraiment supprimer cette note ?</p>#}
-
-{#                        <button type="submit" class="btn"><a href="{{ path('delete_note', {'note': }) }}">Supprimer</a></button>#}
-
-{#                    </div>#}
-
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-
-        <img src="{{ asset('build/images/rocket_1.85eea7f3.jpeg') }}" alt="" id="rocket_back">
-        <img src="{{ asset('build/images/helmet_1.7afae2db.jpeg') }}" alt="" id="helmet_back">
+        <img src="{{ asset('build/images/rocket_1.14b1b2e7.jpeg') }}" alt="" id="rocket_back">
+        <img src="{{ asset('build/images/helmet_1.c2ba679b.jpeg') }}" alt="" id="helmet_back">
 
     </main>
 {% endblock %}

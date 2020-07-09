@@ -19,6 +19,8 @@
         {% endfor %}
     {% endfor %}
 
+    {% block body %}{% endblock %}
+
     <!-- Header + Navigation with routes  -->
             {% if app.user is not null %}
                 <header>
@@ -90,12 +92,12 @@
                     {% endif %}
                 </header>
             {% endif %}
-            <div class="{% if app.user is not null %}LT_page_name{% else %}LT_page_name_ter{% endif %}{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
+
+
+    <div class="{% if app.user is not null %}LT_page_name{% else %}LT_page_name_ter{% endif %}{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
                 <h2>{{ page_name|default('') }}</h2>
             </div>
-            <main>
-            {% block body %}{% endblock %}
-            </main>
+            <main></main>
             {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}
