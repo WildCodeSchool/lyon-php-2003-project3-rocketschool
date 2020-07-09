@@ -346,6 +346,7 @@ footer a {
 .supp-proposition {
     margin-left: 17%;
 }
+
 .supp-btn-proposition {
     margin: 10px 10px 20px;
 }
@@ -354,6 +355,7 @@ footer a {
     margin: 10px 10px 20px;
     color : $secondary-color;
 }
+
 #quizz {
     .quizz-title {
         margin-top: 100px;
@@ -1146,12 +1148,15 @@ option:hover {
         label {
             margin: 0;
         }
+
         .proposition {
             padding: 20px 0 0 20px;
         }
+
         .quizz-table {
             margin : auto;
         }
+
         .quizz-action-btn {
             margin-top: 5px;
         }
