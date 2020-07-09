@@ -759,6 +759,27 @@ footer a {
     }
 }
 
+// RESET EMAIL SECTION //
+.check-email-centered {
+    margin: 100px auto;
+    width: 70%;
+    text-align: center;
+}
+
+.reset-email-container {
+
+    form {
+
+        div {
+            margin: 25px 0px;
+        }
+    }
+
+    label {
+        display: none;
+    }
+}
+
 /* DESKTOP AND LARGE SCREEN */
 @media (min-width: 992px) {
 

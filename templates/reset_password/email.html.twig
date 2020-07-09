@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700;900&display=swap" rel="stylesheet">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            .header, .footer {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Raleway', 'Montserrat', 'sans-serif';
+                min-height: 70px;
+                background-color: #4EB6E8;
+                color: white;
+            }
+            .content, .img-container {
+                margin: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Réinitialisation du mot de passe</h1>
+        </div>
+        <h2>Bonjour {{ user.getFirstname }} !</h2>
+        <p class="content">
+            Pour réinitialiser votre mot de passe, merci de
+            <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">cliquer ici.</a>
+            Ce lien expirera dans {{ tokenLifetime|date('g') }} heure(s)..
+        </p>
+
+        <p>
+            À bientôt!
+        </p>
+        <div class="img-container">
+            <img width="150px"
+                 alt="Fusée Rocket School"
+                 class="rocket-school-img"
+                 src="https://rocket-school.com/wp-content/uploads/2019/03/rocket-school.png"
+            >
+        </div>
+        <div class="footer"></div>
+    </body>
+</html>

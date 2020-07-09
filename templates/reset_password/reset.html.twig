@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisez votre mot de passe{% endblock %}
+
+{% block body %}
+    <section class="form-section col-10 col-md-5 col-lg-4" id="register_form">
+        <div class="group_input reset-email-container">
+            {{ form_start(resetForm) }}
+            {{ form_row(resetForm.plainPassword) }}
+            <button class="btn btn-round-darkblue">Valider</button>
+            {{ form_end(resetForm) }}
+        </div>
+    </section>
+{% endblock %}
