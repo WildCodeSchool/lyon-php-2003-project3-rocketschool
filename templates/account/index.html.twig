@@ -39,10 +39,11 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-2">
                         {% if app.user.image is null %}
-                            <svg height="160" width="160">
-                                <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />
-                                <text x="50" y="94" fill="dark">FL</text>
-                            </svg>
+{#                            <svg height="160" width="160">#}
+{#                                <circle cx="80" cy="80" r="60" stroke="white" stroke-width="2" fill="lightgrey" />#}
+{#                                <text x="57" y="102" fill="dark">I</text>#}
+{#                            </svg>#}
+                            <div class="test"><p>{{ app.user.firstname|first|upper}}</p></div>
                         {% else %}
                             <img src="{{ app.user.image }}" alt="photo" class="rounded-circle">
                         {% endif %}
@@ -66,21 +67,18 @@
                 <h3>Checklist</h3>
                 <table>
                     <tbody>
-                    <tr>
-{#                            <td><img src="{{ asset('build/images/1.svg') }}" alt=""></td>#}
-                        <td><span></span></td>
-                        <td>Je m'informe sur les métiers <br><em>En regardant attentivement la vidéo</em></td>
-                    </tr>
-                    <tr>
-{#                            <td><img src="{{ asset('build/images/2.svg') }}" alt=""></td>#}
-                        <td><span></span></td>
-                        <td>J'évalue mes connaissances <br><em>Un quiz, deux essais</em></td>
-                    </tr>
-                    <tr>
-{#                            <td><img src="{{ asset('build/images/3.svg') }}" alt=""></td>#}
-                        <td><span></span></td>
-                        <td>Je prépare mon entretien <br><em>Suivez le guide !</em></td>
-                    </tr>
+                        <tr>
+                            <td><span></span></td>
+                            <td><a href="{{ path('ressources_index') }}">Je m'informe sur les métiers <br><em>En regardant attentivement la vidéo</em></a></td>
+                        </tr>
+                        <tr>
+                            <td><span></span></td>
+                            <td><a href="{{ path('ressources_quizz') }}" class="{% if not app.user.checklist.check1 %}disabled{% endif %}">J'évalue mes connaissances <br><em>Un quiz, deux essais</em></a></td>
+                        </tr>
+                        <tr>
+                            <td><span></span></td>
+                            <td><a href="{{ path('ressources_guide') }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
+                        </tr>
                     </tbody>
                 </table>
             </article>
