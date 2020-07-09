@@ -1114,3 +1114,11 @@ option:hover {
         padding-left: 0;
     }
 }
+
+td#LT_result_quiz_bad.search_response {
+    color: red;
+}
+
+td#LT_result_quiz_good.search_response {
+    color: darkgreen;
+}
