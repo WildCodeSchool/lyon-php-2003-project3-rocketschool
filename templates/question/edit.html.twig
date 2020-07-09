@@ -6,15 +6,16 @@
 {% endblock %}
 
 {% block body %}
+    <div class="quizz-container" id="quizz_edit">
+        <div class="content-container">
+            <div class="quizz-action-btn">
+                <a href="{{ path('question_index') }}"><button class="btn btn-round-darkblue">Retour à la liste</button></a>
+                {{ include('question/_delete_form.html.twig') }}
+            </div>
 
-    <div class="content-container" id="quizz-edit">
-        <div class="faq-action-btn">
-            <a href="{{ path('question_index') }}"><button class="btn btn-round-darkblue">Retour à la liste</button></a>
-            {{ include('question/_delete_form.html.twig') }}
+            {{ include('question/_form.html.twig') }}
+
         </div>
-
-        {{ include('question/_form.html.twig') }}
-
     </div>
 
 {% endblock %}

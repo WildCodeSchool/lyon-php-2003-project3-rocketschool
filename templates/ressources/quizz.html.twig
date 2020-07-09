@@ -3,7 +3,7 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-    <div class="content-container">
+    <div class="quizz-container " id="quizz_candidat">
         {% if postValide == false %}
             <div class="quizz-alert alert alert-danger">
                 <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les
@@ -80,13 +80,13 @@
                 {% endfor %}
 
                 {% if result is same as(null) and  app.user.quizResults|length < 2%}
-                    <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="submit">
+                    <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
                         Valider vos réponses
                     </button>
                 {% endif %}
                 {% if result is not same as(null) and app.user.quizResults|length == 0 %}
                     <a href="{{ path('ressources_quizz') }}">
-                        <button class="btn quizz-button btn-round-darkblue btn-lg btn-block" type="button">
+                        <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="button">
                             Repasser le test
                         </button>
                     </a>

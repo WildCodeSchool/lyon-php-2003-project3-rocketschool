@@ -7,59 +7,61 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table content-container question-table">
-        <thead>
-            <tr>
-                <th>Déplacer</th>
-                <th style="font-size: 1.5em">Questions / solutions </th>
-                <th style="font-size: 1.5em">actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr class="question-tr">
-                <td>
-                    <div class="question-arrow-container">
-                        <div id="question-btn-up-{{ question.questionOrder }}"
-                             data-href="{{ path('question_move', {'id': question.id, 'position': 'Up'}) }}"
-                             class="question-btn question-btn-up">
-                            <img src="{{ asset('build/images/multimedia-option.png') }}"
-                                 class="question-position-btn question-position-btn-active question-up-btn"
+    <div class="container quizz-container" id="quizz_index">
+        <table class="table content-container question-table-index">
+            <thead>
+                <tr>
+                    <th colspan="2">Questions / solutions </th>
+{#                    <th style="font-size: 1.5em"></th>#}
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for question in questions %}
+                <tr class="question-tr">
+                    <td>
+                        <div class="question-arrow-container">
+                            <div id="question-btn-up-{{ question.questionOrder }}"
                                  data-href="{{ path('question_move', {'id': question.id, 'position': 'Up'}) }}"
-                                 alt="Monter dans la file">
-                        </div>
-                        <div id="question-btn-down-{{ question.questionOrder }}"
-                             data-href="{{ path('question_move', {'id': question.id, 'position': 'Down'}) }}"
-                             class="question-btn question-btn-down">
-                            <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                 class="question-btn question-btn-up">
+                                <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                     class="question-position-btn question-position-btn-active question-up-btn"
+                                     data-href="{{ path('question_move', {'id': question.id, 'position': 'Up'}) }}"
+                                     alt="Monter dans la file">
+                            </div>
+                            <div id="question-btn-down-{{ question.questionOrder }}"
                                  data-href="{{ path('question_move', {'id': question.id, 'position': 'Down'}) }}"
-                                 class="question-position-btn question-position-btn-active question-down-btn"
-                                 alt="Descendre dans la file">
+                                 class="question-btn question-btn-down">
+                                <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                     data-href="{{ path('question_move', {'id': question.id, 'position': 'Down'}) }}"
+                                     class="question-position-btn question-position-btn-active question-down-btn"
+                                     alt="Descendre dans la file">
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td class="quizz-edit-row">
-                    <div class="d-flex justify-content-start" style="font-size: 1.2em">{{ question.title }}</div>
-                    <div class="d-flex justify-content-start"><em>{{ question.solution }}</em></div>
-                </td>
-                <td>
-                    <a href="{{ path('question_show', {'id': question.id}) }}">Voir</a>
-                    <a href="{{ path('question_edit', {'id': question.id}) }}">Editer</a>
-                    <a href="{{ path('question_delete', {'id': question.id}) }}">Supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                    <td class="quizz-edit-row">
+                        <div class="d-flex justify-content-start" style="font-size: 1.2em">{{ question.title }}</div>
+                        <div class="d-flex justify-content-start"><em>{{ question.solution }}</em></div>
+                    </td>
+                    <td class="quizz_action">
+                        <a  class="btn btn-round-clearblue" href="{{ path('question_show', {'id': question.id}) }}">Voir</a>
+                        <a class="btn btn-round-darkblue" href="{{ path('question_edit', {'id': question.id}) }}">Editer</a>
+{#                        <a href="{{ path('question_delete', {'id': question.id}) }}">Supprimer</a>#}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <div class="container-fluid quizz-container" style="margin-bottom: 40px">
-        <a href="{{ path('question_new') }}" class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
-            Ajouter une question
-        </a>
+        <div class="container-fluid" >
+            <a href="{{ path('question_new') }}" class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
+                Ajouter une question
+            </a>
+        </div>
     </div>
 
 {% endblock %}
