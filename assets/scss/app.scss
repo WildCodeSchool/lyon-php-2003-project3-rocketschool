@@ -1365,10 +1365,25 @@ for login & register pages */
         form input, form select {
             margin-bottom: 20px;
         }
+
+        p {
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-align: center;
+        }
     }
 
-    //#profilModal form {
-    //    display: flex;
-    //    flex-direction: column;
-    //}
+    #deleteNote .modal-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            width: 50%;
+        }
+    }
 }

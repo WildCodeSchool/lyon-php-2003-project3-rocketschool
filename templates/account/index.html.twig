@@ -166,7 +166,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="">delete</a>
+                                    <button type="button" class="close" data-dismiss="modal"><a href="{{ path('delete_note', {'note': note.id}) }}">&times;</a></button>
+
                                 </div>
                             </div>
                         {% endfor %}
@@ -243,6 +244,24 @@
                 </div>
             </div>
         </div>
+
+{#        <!-- The Modal Profil Edition -->#}
+{#        <div class="modal" id="deleteNote">#}
+{#            <div class="modal-dialog">#}
+{#                <div class="modal-content">#}
+
+{#                    <!-- Modal body -->#}
+{#                    <div class="modal-body">#}
+
+{#                        <p>Voulez-vous vraiment supprimer cette note ?</p>#}
+
+{#                        <button type="submit" class="btn"><a href="{{ path('delete_note', {'note': }) }}">Supprimer</a></button>#}
+
+{#                    </div>#}
+
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 
         <img src="{{ asset('build/images/rocket_1.85eea7f3.jpeg') }}" alt="" id="rocket_back">
         <img src="{{ asset('build/images/helmet_1.7afae2db.jpeg') }}" alt="" id="helmet_back">

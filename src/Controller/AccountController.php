@@ -60,15 +60,28 @@ class AccountController extends AbstractController
         ]);
     }
 
+//    /**
+//     * @Route("/account/{note<\d+>}", name="edit_note")
+//     * @param Note $note
+//     * @param EntityManagerInterface $entityManager
+//     * @return Response
+//     */
+//    public function edit(Note $note, EntityManagerInterface $entityManager):Response
+//    {
+//        return $this->render('account/index.html.twig', ['note' => $note, 'page_name' => 'Mon Profil']);
+//    }
+
     /**
-     * @Route("/account/{note<\d+>}", name="edit_note")
+     * @Route("/account/{note<\d+>}", name="delete_note")
      * @param Note $note
      * @param EntityManagerInterface $entityManager
-     * @return Response
      */
-    public function edit(Note $note, EntityManagerInterface $entityManager):Response
+    public function delete(Note $note, EntityManagerInterface $entityManager)
     {
-        return $this->render('account/index.html.twig', ['note' => $note, 'page_name' => 'Mon Profil']);
+        $entityManager->remove($note);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('profil');
     }
 
     public static function cleanInput(string $input):string
