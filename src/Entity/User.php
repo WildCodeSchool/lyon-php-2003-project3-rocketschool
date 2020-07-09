@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -52,7 +53,12 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="users")
      */
     private $program;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
+     */
+    private $quizResults
+  
     /**
      * @ORM\OneToOne(targetEntity=Checklist::class, mappedBy="user", cascade={"persist", "remove"})
      */
@@ -67,6 +73,29 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $facebookId;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $googleId;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $linkedinId;
+
+    /*
+     * @var \DateTimeInterface $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function __construct()
     {
@@ -253,6 +282,18 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getProgram(): ?Program
+    {
+        return $this->program;
+    }
+
+    public function setProgram(?Program $program): self
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
     /**
      * @return Collection|QuizResult[]
      */
@@ -280,6 +321,54 @@ class User implements UserInterface
                 $quizResult->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFacebookId(): ?string
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId(?string $facebookId): self
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    public function getLinkedinId(): ?string
+    {
+        return $this->linkedinId;
+    }
+
+    public function setLinkedinId(?string $linkedinId): self
+    {
+        $this->linkedinId = $linkedinId;
+      
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

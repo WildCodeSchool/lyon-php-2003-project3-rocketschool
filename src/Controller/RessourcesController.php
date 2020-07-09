@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Proposition;
 use App\Entity\Quizz;
+use App\Entity\User;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
@@ -21,6 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/ressources", name="ressources_")
@@ -37,25 +39,20 @@ class RessourcesController extends AbstractController
      * @param SessionInterface $session
      * @return Response
      */
-    public function index(EntityManagerInterface $entityManager, SessionInterface $session)
+    public function index(EntityManagerInterface $entityManager, UserRepository $userRepository)
     {
-
         $video = $this->getDoctrine()
             ->getRepository(Video::class)
             ->findOneBy([]);
 
-        if ($_GET) {
-            if ($_GET['ready']) {
-                $user = $this->getUser();
-                $checklist = $this->getUser()->getChecklist();
-                $checklist->setCheck1(true);
+        if ($_POST && $_POST['ready']) {
+            $user = $userRepository->find($_POST['userId']);
+            if (!empty($user)) {
+                $user->setIsReady(true);
                 $entityManager->persist($user);
                 $entityManager->flush();
             }
         }
-
-        $session->set('uri', $_SERVER['REQUEST_URI']);
-
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',

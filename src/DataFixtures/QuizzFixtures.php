@@ -231,7 +231,7 @@ class QuizzFixtures extends Fixture
         $quizz->setTitle('Quizz de test')
             ->setIsEnable(true);
 
-        $nbrQ = 1;
+        $nbrQ = 0;
         foreach (self::QUESTIONS as $title => $propositions) {
             $question = new Question();
             $question->setQuizz($quizz);

@@ -5,11 +5,17 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function getDependencies()
+    {
+        return [ProgramFixtures::class];
+    }
+
     private $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -23,6 +29,8 @@ class UserFixtures extends Fixture
         for ($i = 0; $i < 100; $i++) {
             $user = new User();
             $user->setEmail('user'.$i.'@mail.com')
+                ->setProgram($this->getReference('First program'))
+                ->setProgram($this->getReference('Second program'))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'password'))
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName);

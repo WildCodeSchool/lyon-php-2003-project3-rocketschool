@@ -131,7 +131,15 @@ class FaqController extends AbstractController
      */
     public function move(FaqMoveItem $faqMoveItem, Faq $faq, string $position): Response
     {
-        $faqMoveItem->move($faq, $position);
+        $nbQuestion = count($this->getDoctrine()->getRepository(Faq::class)->findAll());
+
+        if ($faq->getPosition() == 0 && $position == 'Up') {
+            throw $this->createNotFoundException('Impossible de monter le premier élément');
+        } elseif ($faq->getPosition() == $nbQuestion - 1 && $position == 'Down') {
+            throw $this->createNotFoundException('Impossible de descendre le dernier élément');
+        } else {
+            $faqMoveItem->move($faq, $position);
+        }
 
         return $this->redirectToRoute('faq_index');
     }

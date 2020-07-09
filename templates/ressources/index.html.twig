@@ -36,19 +36,21 @@
                     </a>
                 </div>
             {% else %}
-            <form action="" method="get" class="form-inline">
-                <div class="form-group check-video">
-                    <input
-                            type="checkbox"
-                            name="ready"
-                            id="ready"
-                            class="form-control"
-                            onclick="this.form.submit()"
-                    >
-                    <label for="ready">J'ai compris !</label>
-                </div>
-            </form>
-        {% endif %}
+              <form action="" method="get" class="form-inline">
+
+                  <div class="form-group check-video">
+                      <input
+                              type="checkbox"
+                              name="ready"
+                              id="ready"
+                              class="form-control"
+                              onclick="this.form.submit()"
+                      >
+                      <input type="hidden" name="userId" value="{{ app.user.id }}">
+                      <label for="ready">J'ai compris !</label>
+                  </div>
+              </form>
+          {% endif %}
         {% endif %}
     </div>
 {% endblock %}
