@@ -22,9 +22,9 @@
 
             <header id="infos" class="col-12">
                 <section class="menu">
-                    <a href="{{ app.session.get('uri') }}">
+                    <button onclick="window.history.back()">
                         <img src="{{ asset('build/images/back_arrow.450bf16e.svg') }}" alt="">
-                    </a>
+                    </button>
                     <p class="edit_hide" data-toggle="modal" data-target="#profilModal">Editer profil</p>
                     <div class="dropdown dropleft">
                         <img src="{{ asset('build/images/three_dot.619fd3b3.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
@@ -147,24 +147,25 @@
         </section>
         <section class="row notes">
             <header>
-                <h4>Notes personnelles</h4>
+                <h4 id="toggler">Notes personnelles <img src="{{ asset('build/images/caret_down.9dae2ff5.svg') }}" alt=""></h4>
                 <div data-toggle="modal" data-target="#noteModal">
 {#                    <h6>Ajouter une note</h6>#}
                     <h1>+</h1>
                 </div>
             </header>
             {% if app.user.notes.count > 0 %}
-                <article>
+                <article id="notes">
                     <div class="row">
                         {% for note in app.user.notes %}
                             <div class="col-md-6 col-lg-3">
                                 <div>
                                     <h4>{{ note.title }}</h4>
                                     <hr>
-                                    <p>{{ note.content }}</p>
+                                    <div class="content">
+                                        <p>{{ note.content}}</p>
+                                    </div>
                                 </div>
                                 <div>
-                                    <a href="{{ path('edit_note', {'note': note.id}) }}">edit</a>
                                     <a href="">delete</a>
                                 </div>
                             </div>
@@ -248,3 +249,21 @@
 
     </main>
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+
+            const notes = $("#notes");
+            const caret = $("#toggler");
+
+            notes.css("display","none");
+
+            caret.on('click', () => {
+                notes.slideToggle();
+            });
+
+        });
+    </script>
+{% endblock %}
+
