@@ -336,10 +336,12 @@ footer a {
         color: $primary-color;
         border-radius: 30px;
     }
+
     .btn-round-clearblue:hover {
         background-color: $secondary-color;
         color: $dark-blue;
     }
+
     /* BUTTONS */
     .btn-round-darkblue {
         margin: 15px 0;
@@ -521,6 +523,7 @@ footer a {
         margin: 10px 10px 20px;
         color : $secondary-color;
     }
+
     .btn-quizz {
         background-color: $dark-blue;
         color: $primary-color;
@@ -1182,6 +1185,7 @@ option:hover {
             height: 160px;
         }
     }
+
     .form-group {
         display: flex;
         flex-direction: column;

@@ -19,8 +19,7 @@ jQuery(document).ready(() => {
         newElem.appendTo(list);
     });
 
-    function addTagForm($collectionHolder, $newLinkLi)
-    {
+    function addTagForm($collectionHolder, $newLinkLi) {
         // Get the data-prototype explained earlier
         const prototype = $collectionHolder.data('prototype');
 
@@ -43,8 +42,7 @@ jQuery(document).ready(() => {
         addTagFormDeleteLink($newFormLi);
     }
 
-    function addTagFormDeleteLink($tagFormLi)
-    {
+    function addTagFormDeleteLink($tagFormLi) {
     // eslint-disable-next-line no-undef
         const $removeFormButton = $('<div class="d-flex justify-content-end"><button class="supp-btn-proposition btn btn-round-danger" type="button">Supprimer proposition</button></div>');
         $tagFormLi.append($removeFormButton);
