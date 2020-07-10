@@ -361,7 +361,7 @@ footer a {
         background-color: $secondary-color;
         color: $primary-color;
         border-radius: 30px;
-        padding: 0;
+
     }
 
     .btn-round-clearblue:hover {
@@ -374,10 +374,7 @@ footer a {
         margin: 15px 0;
         background-color: $dark-blue;
         color: $primary-color;
-        height: inherit;
-        width: inherit;
         border-radius: 30px;
-        padding: 0;
     }
 
     .btn-round-darkblue:hover {
@@ -387,6 +384,7 @@ footer a {
     .btn-round-danger {
         opacity: 0.8;
         margin: 15px 0;
+        width: 178px;
         background-color: $red;
         color: $primary-color;
         border-radius: 30px;
@@ -411,10 +409,6 @@ footer a {
         display: flex;
         justify-content: space-around;
         align-items: center;
-
-        .btn {
-            padding: initial;
-        }
     }
 
 }
@@ -437,10 +431,10 @@ footer a {
         align-content: space-between;
         height: 100%;
 
-        .btn {
-            margin: 10px;
-            border: inherit;
-        }
+        //.btn {
+        //    margin: 10px;
+        //    border: inherit;
+        //}
     }
 
 
@@ -451,21 +445,11 @@ footer a {
         width: max-content;
         display: flex;
     }
-
-    .btn {
-        padding: 5px;
-    }
-
 }
 
 #quizz_edit {
     .form-quizz {
         margin: 10px 0;
-    }
-
-    .btn {
-        padding: 5px;
-        width: initial;
     }
 
     label {
@@ -508,7 +492,8 @@ footer a {
         }
 
         .btn {
-            padding: 0 10px;
+            padding: 0 5px;
+            width: initial;
         }
     }
 }
