@@ -44,13 +44,13 @@ blockquote {
     align-items: center;
     justify-content: space-around;
     background-color: $secondary-color;
-    height: 120px;
+    height: 60px;
     color: $primary-color;
     margin-top: 80px;
 }
 
 .margin_top_navbar_admin {
-    margin-top: 160px;
+    margin-top: 139px;
 }
 
 .dropdown-menu {
@@ -106,8 +106,9 @@ blockquote {
     background-color: $dark-blue;
     font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
     color: $primary-color;
-    height: 80px;
+    height: 60px;
     justify-content: end;
+    align-content: center;
 
     .navbar-nav .nav-link {
         color: $primary-color;
@@ -171,15 +172,39 @@ footer a {
 
 /* BUTTONS */
 .btn-round-darkblue {
-    margin-top: 30px;
-    background-color: $dark-blue;
-    color: $primary-color;
     border-radius: 30px;
+    background-color: #1E2333;
+    color: white;
+    width: 178px;
+    height: 35px;
+    text-align: center;
+
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+}
+
+.btn_dark_blue_submit {
+    border-radius: 30px;
+    background-color: $third-color;
+    color: white;
+    width: 178px;
+    height: 35px;
+    margin-left: 350px;
+    text-align: center;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+
+}
+
+.btn_dark_blue_submit:hover{
+    color: black;
+    background-color: $primary-color;
+    border: solid 2px $third-color;
+    text-decoration: none;
 }
 
 .btn-round-darkblue:hover {
-    background-color: $dark-blue;
-    color: $secondary-color;
+    color: black;
+    background-color: $primary-color;
+    border: solid 2px $third-color;
 }
 
 .btn-round-danger {
@@ -320,29 +345,190 @@ footer a {
     }
 }
 
-// QUIZ SECTION
-.quizz-result-container {
-    margin: 45px;
-    display: flex;
-    justify-content: center;
+/** QUIZZ EDITION / SHOW /NEW **/
+.quizz-container {
+    margin-top: 30px;
+    padding-bottom: 10px;
+    width: 80%;
+
+    .content-container {
+        width: 90%;
+        margin: auto;
+        box-shadow: black 0 15px 15px -5px;
+        padding-bottom: 20px;
+    }
+
+    .btn-round-clearblue {
+        background-color: $secondary-color;
+        color: $primary-color;
+        border-radius: 30px;
+    }
+
+    .btn-round-clearblue:hover {
+        background-color: $secondary-color;
+        color: $dark-blue;
+    }
+
+    /* BUTTONS */
+    .btn-round-darkblue {
+        margin: 15px 0;
+        background-color: $dark-blue;
+        color: $primary-color;
+        border-radius: 30px;
+    }
+
+    .btn-round-darkblue:hover {
+        color: $secondary-color;
+    }
+
+    .btn-round-danger {
+        opacity: 0.8;
+        margin: 15px 0;
+        background-color: $red;
+        color: $primary-color;
+        border-radius: 30px;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .btn-round-danger:hover {
+        opacity: 1;
+        background-color: $red;
+        color: $primary-color;
+        border-radius: 30px;
+    }
+
+    .quizz-button {
+        margin: 25px auto;
+        width: 50%;
+    }
+
+    .quizz-action-btn {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
 
-.quiz-attempt {
-    margin-top: 25px;
-    text-align: center;
+#quizz_index {
+    .question-tr {
+        height: auto;
+    }
+
+    th {
+        font-size: 1.2em;
+
+    }
+
+    .quizz_action {
+        padding: 5px 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-content: space-between;
+        height: 100%;
+    }
 }
 
-.quiz-solution {
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 15px;
+#quizz_show {
+    .quizz-table {
+        width: max-content;
+        display: flex;
+
+    }
 }
 
-.quizz-container-disabled {
-    pointer-events: none;
+#quizz_edit {
+    .form-quizz {
+        margin: 10px 0;
+    }
+
+    label {
+        font-size: 1.5em;
+    }
+
+    .quizz_edit_row {
+        width :100%;
+        margin-right: 10px;
+    }
+
+    .control-label {
+        max-width: 200px;
+    }
+
+    .form-group {
+        margin: inherit;
+    }
+
+    .btn {
+        padding: 0 10px;
+    }
+
+    .proposition {
+        margin-top: 40px;
+
+        .form-group {
+            margin: inherit;
+        }
+
+        .btn-round-danger {
+            margin-right: 15%;
+            margin-top: -35px;
+            padding: 0 10px;
+        }
+
+        .prop-li {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+        .control-label {
+            padding: 2px;
+        }
+    }
 }
 
-#quizz {
+#quizz_candidat {
+    .quizz-card {
+        display: flex;
+        flex-direction: row;
+        margin: 20px 0 20px 0;
+        border: 2px solid $secondary-color;
+        border-radius: 10px;
+    }
+
+    .quizz-text {
+        list-style-type: none;
+        font-size: 1.2em;
+        display: inline-flex;
+
+        input {
+            align-self: stretch;
+            margin-right: 20px;
+        }
+    }
+
+    .quizz-result-container {
+        margin: 45px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .quiz-attempt {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    .quiz-solution {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 15px;
+    }
+
+    .quizz-container-disabled {
+        pointer-events: none;
+    }
+
     .quizz-title {
         margin-top: 100px;
         text-align: center;
@@ -350,6 +536,19 @@ footer a {
         ul {
             padding: inherit;
         }
+    }
+
+    .supp-proposition {
+        margin-left: 17%;
+    }
+
+    .supp-btn-proposition {
+        margin: 10px 10px 20px;
+    }
+
+    .supp-btn-proposition:hover {
+        margin: 10px 10px 20px;
+        color : $secondary-color;
     }
 
     .btn-quizz {
@@ -367,18 +566,6 @@ footer a {
         justify-content: center;
     }
 
-    .quizz-container {
-        margin-top: 30px;
-    }
-
-    .quizz-card {
-        display: flex;
-        flex-direction: row;
-        margin: 20px 0 20px 0;
-        border: 2px solid $secondary-color;
-        border-radius: 10px;
-    }
-
     .quizz-body {
         width: 90%;
     }
@@ -392,133 +579,80 @@ footer a {
         display: inline-block;
     }
 
-    .quizz-text {
-        list-style-type: none;
-        font-size: 1.2em;
-        display: inline-flex;
-
-        input {
-            align-self: stretch;
-            margin-right: 20px;
-        }
-    }
-
     .quizz-button {
         align-self: center;
         margin-bottom: 30px ;
     }
-
-    /* Customize the label (the container) */
-    .quizz-radio {
-        align-self: baseline;
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    .quizz-radio input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    /* Create a custom checkbox */
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #eee;
-        border: solid 1px $third-color;
-    }
-
-    /* On mouse-over, add a grey background color */
-    .quizz-radio:hover input ~ .checkmark {
-        background-color: #ccc;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    .quizz-radio input:checked ~ .checkmark {
-        background-color: $secondary-color;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the checkmark when checked */
-    .quizz-radio input:checked ~ .checkmark:after {
-        display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    .quizz-radio .checkmark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
 }
 
-/** QUIZZ EDITION **/
-.quizz-table {
-    width: 100%;
-    margin: 40px auto;
-    font-size: 1.5em;
-
+/* Customize the label (the container) */
+.quizz-radio {
+    align-self: baseline;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.quizz-edit-row{
-    height: 80px;
+/* Hide the browser's default checkbox */
+.quizz-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
-.btn-round-clearblue {
-    margin-top: 30px;
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: solid 1px $third-color;
+}
+
+/* On mouse-over, add a grey background color */
+.quizz-radio:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.quizz-radio input:checked ~ .checkmark {
     background-color: $secondary-color;
-    color: $primary-color;
-    border-radius: 30px;
 }
 
-#quizz-edit .proposition {
-    padding: 30px 20px;
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
 }
 
-#quizz-edit ul li {
-    list-style-type: none;
-    padding-bottom: 10px;
+/* Show the checkmark when checked */
+.quizz-radio input:checked ~ .checkmark:after {
+    display: block;
 }
 
-#quizz-edit .form-group {
-    margin-bottom: 0;
-
-}
-
-#quizz-edit .checkbox label{
-    font-size: 16px;
-}
-
-.btn-round-clearblue:hover {
-    background-color: $secondary-color;
-    color: $dark-blue;
+/* Style the checkmark/indicator */
+.quizz-radio .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 // FAQ SECTION
@@ -669,22 +803,8 @@ footer a {
     }
 }
 
-// QUIZ QUESTIONS ADMIN SECTION //
-.question-table {
-    margin: 40px auto;
-    text-align: center;
-
-    input, textarea, select {
-        margin-bottom: 15px;
-    }
-
-    textarea {
-        height: 200px;
-    }
-}
-
 .question-created-at {
-    margin: 0px auto 15px auto;
+    margin: 0 auto 15px auto;
     text-align: center;
 }
 
@@ -916,7 +1036,6 @@ footer a {
     button {
         display: block;
         margin: 30px auto;
-        padding: 10px 50px;
         border-radius: 30px;
     }
 
@@ -955,11 +1074,6 @@ footer a {
     }
 }
 
-#login_form button{
-
-    padding: 0;
-}
-
 #register_form {
 
     .col-md-3 {
@@ -985,7 +1099,7 @@ for login & register pages */
 
     h2 {
         text-align: center;
-        padding-top: 30px;
+        //padding-top: 20px;
     }
 }
 
@@ -1006,6 +1120,8 @@ for login & register pages */
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    white-space: nowrap;
+    overflow: scroll hidden;
 }
 
 .table .search_response {
@@ -1052,7 +1168,7 @@ option:hover {
 }
 
 .form-search {
-    border-radius: 30px;
+    border-radius: 5px;
     border-bottom: solid $third-color 3px;
     border-left: none;
     border-right: none;
@@ -1069,7 +1185,7 @@ option:hover {
 }
 
 .form-program {
-    border-radius: 30px;
+    border-radius: 5px;
     border-bottom: solid $third-color 3px;
     border-left: none;
     border-right: none;
@@ -1108,8 +1224,134 @@ option:hover {
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
 
 }
+//.quizz-container{
+//    margin-top: 30px;
+//    width: 80%;
+//}
 
+/* DESKTOP AND LARGE SCREEN */
+@media (min-width: 992px) {
+
+    .container {
+        max-width: 100%;
+    }
+
+    .table {
+        width: 80%;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        width: 200px;
+        letter-spacing: 2px;
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link {
+        width: 87%;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: underline;
+        color: black;
+    }
+
+    .nav-link-disabled {
+        display: none;
+    }
+
+    #navbarAdminNavDropdown .navbar-nav {
+        background-color: $dark-blue;
+
+        .nav-link {
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+/* TABLET AND SMALL SCREEN */
+@media screen and (max-width: 991px) {
+
+    #navbarNavDropdown {
+        z-index: 1;
+
+        .navbar-nav {
+            background-color: $primary-color;
+        }
+    }
+
+    li.nav-item {
+        border: 1px solid lightgrey;
+    }
+
+    li.nav-item:hover {
+        background-color: $secondary-color;
+        border-bottom: solid white;
+    }
+
+    .LT_logo_profil {
+        display: none;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: none;
+        color: $primary-color;
+        border-bottom: none;
+    }
+
+    .nav_admin {
+
+        .adminBar {
+            display: block;
+        }
+
+        .navbar-toggler {
+            margin: 11px 0;
+        }
+
+        #navbarAdminNavDropdown .navbar-nav {
+            background-color: $dark-blue;
+
+            .nav-link {
+                text-align: center;
+            }
+
+            .nav-link:hover {
+                background-color: $secondary-color;
+                color : $dark-blue;
+            }
+        }
+    }
+
+    /* VIDEO SECTION */
+    .content-container {
+        iframe {
+            height: 250px;
+        }
+    }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px auto;
+    }
+}
+
+/* PHONE AND EXTRA SMALL SCREEN */
 @media screen and (max-width: 720px) {
+
+    /* VIDEO SECTION */
+    .content-container {
+        width: 100%;
+
+        iframe {
+            height: 160px;
+        }
+    }
 
     .form-group {
         display: flex;
@@ -1134,4 +1376,20 @@ option:hover {
     .content-container_lt {
         padding-left: 0;
     }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+
+
+}
+
+
+td#LT_result_quiz_bad.search_response {
+    color: red;
+}
+
+td#LT_result_quiz_good.search_response {
+    color: darkgreen;
 }

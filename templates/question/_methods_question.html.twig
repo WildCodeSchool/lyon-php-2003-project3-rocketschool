@@ -1,8 +1,4 @@
 <script type="text/javascript">
-
-    function addPropositionFormDeleteLink($) {
-    }
-
     // add-collection-widget.js
     jQuery(document).ready(function () {
 
@@ -30,6 +26,9 @@
 
         $collectionHolder = $('ul.proposition');
 
+        $collectionHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+        });
         // add the "add a tag" anchor and li to the tags ul
         $collectionHolder.append($newLinkLi);
 
@@ -65,7 +64,7 @@
 
         }
         function addTagFormDeleteLink($tagFormLi) {
-            const $removeFormButton = $('<button class="btn btn-round-danger" type="button">Supprimer cette proposition</button>');
+            const $removeFormButton = $('<div class="supp-proposition "><button class="supp-btn-proposition btn btn-round-danger" type="button">Supprimer cette proposition</button></div>');
             $tagFormLi.append($removeFormButton);
 
             $removeFormButton.on('click', function(e) {
@@ -76,4 +75,3 @@
 
     });
 
-</script>
