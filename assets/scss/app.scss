@@ -324,6 +324,10 @@ footer a {
 
 /** QUIZZ EDITION / SHOW /NEW **/
 .quizz-container {
+        margin-top: 30px;
+        padding-bottom: 10px;
+        width: 80%;
+
     .content-container {
         width: 90%;
         margin: auto;
@@ -460,6 +464,9 @@ footer a {
         }
     }
 }
+#quizz_new {
+
+}
 
 #quizz_candidat {
     .quizz-card {
@@ -537,12 +544,6 @@ footer a {
 
     .quizz-alert {
         justify-content: center;
-    }
-
-    .quizz-container {
-        margin-top: 30px;
-        padding-bottom: 10px;
-        width: 80%;
     }
 
     .quizz-body {

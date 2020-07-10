@@ -35,18 +35,16 @@
                             {% for proposition in question.propositions %}
                                 <ul>
                                     <li class="card-text quizz-text">
-                                        <label class="quizz-radio">
+                                        <label class="quizz-radio" >
                                             <input type="checkbox" name="questions[{{ question.id }}][]"
                                                    value="{{ proposition.id }}"
-                                                    {% if post %}
+                                            {% if post %}
                                                 {% for  props in post.questions %}
                                                     {% for prop in props %}
-                                                        {% if prop == proposition.id %}
-                                                            checked
-                                                        {% endif %}
+                                                        {% if prop == proposition.id %} checked {% endif %}
                                                     {% endfor %}
                                                 {% endfor %}
-                                                    {% endif %}>
+                                            {% endif %}>
                                             <span class="checkmark"></span>
                                         </label>
                                         {{ proposition.title }}
@@ -95,3 +93,5 @@
         </form>
     </div>
 {% endblock %}
+
+
