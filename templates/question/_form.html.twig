@@ -2,20 +2,18 @@
 {{ form_start(form, {'attr': {'class': 'quizz-table', 'novalidate': 'novalidate'}}) }}
 
     <div class="form-quizz">
-    {{ form_row(form.title) }}
-    {% if form_errors(form.title) %}
-        <div class="faq-alert alert-danger">
+        {{ form_row(form.title) }}
+        <div class="quizz-alert alert-danger">
             {{ form_errors(form.title) }}
         </div>
-    {% endif %}
     </div>
+
     <div class="form-quizz">
+
         {{ form_row(form.solution)}}
-        {% if form_errors(form.solution) %}
-            <div class="faq-alert alert-danger">
+            <div class="quizz-alert alert-danger">
                 {{ form_errors(form.solution) }}
             </div>
-        {% endif %}
     </div>
 
 <ul class="proposition "
@@ -24,7 +22,7 @@
     data-widget-tags="{{ '<li></li>'|e }}"
     data-widget-counter="{{ form.propositions|length }}">
     {% for proposition in form.propositions %}
-        <li>
+        <li class="prop-li">
             {{ form_errors(proposition) }}
             {{ form_widget(proposition) }}
         </li>
