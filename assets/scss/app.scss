@@ -172,15 +172,39 @@ footer a {
 
 /* BUTTONS */
 .btn-round-darkblue {
-    margin-top: 30px;
-    background-color: $dark-blue;
-    color: $primary-color;
     border-radius: 30px;
+    background-color: #1E2333;
+    color: white;
+    width: 178px;
+    height: 35px;
+    text-align: center;
+
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+}
+
+.btn_dark_blue_submit {
+    border-radius: 30px;
+    background-color: $third-color;
+    color: white;
+    width: 178px;
+    height: 35px;
+    margin-left: 350px;
+    text-align: center;
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+
+}
+
+.btn_dark_blue_submit:hover{
+    color: black;
+    background-color: $primary-color;
+    border: solid 2px $third-color;
+    text-decoration: none;
 }
 
 .btn-round-darkblue:hover {
-    background-color: $dark-blue;
-    color: $secondary-color;
+    color: black;
+    background-color: $primary-color;
+    border: solid 2px $third-color;
 }
 
 .btn-round-danger {
@@ -916,7 +940,6 @@ footer a {
     button {
         display: block;
         margin: 30px auto;
-        padding: 10px 50px;
         border-radius: 30px;
     }
 
@@ -953,11 +976,6 @@ footer a {
     .col-md-3 {
         margin: 0 auto;
     }
-}
-
-#login_form button{
-
-    padding: 0;
 }
 
 #register_form {
@@ -1006,6 +1024,8 @@ for login & register pages */
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    white-space: nowrap;
+    overflow: scroll hidden;
 }
 
 .table .search_response {
@@ -1052,7 +1072,7 @@ option:hover {
 }
 
 .form-search {
-    border-radius: 30px;
+    border-radius: 5px;
     border-bottom: solid $third-color 3px;
     border-left: none;
     border-right: none;
@@ -1069,7 +1089,7 @@ option:hover {
 }
 
 .form-program {
-    border-radius: 30px;
+    border-radius: 5px;
     border-bottom: solid $third-color 3px;
     border-left: none;
     border-right: none;
@@ -1174,4 +1194,12 @@ option:hover {
             margin-left: 15px;
         }
     }
+}
+
+td#LT_result_quiz_bad.search_response {
+    color: red;
+}
+
+td#LT_result_quiz_good.search_response {
+    color: darkgreen;
 }
