@@ -80,3 +80,17 @@ The command to run in the terminal, so as to launch the old accounts deleting is
     php bin/console app:delete-old-accounts
 
 CAUTION : So as to be fully operational, it requires to set a cron on the server.
+
+## Functionality for login with social network
+
+Set up your app on :
+https://developers.google.com/
+https://www.linkedin.com/developers/
+https://developers.facebook.com/apps/
+
+Get your app id and secret foreach social network
+and set up your .env file
+
+## Functionality for reset password
+
+Set up your MAILER_DSN in .env
