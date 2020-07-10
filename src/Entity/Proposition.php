@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PropositionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PropositionRepository::class)
@@ -24,6 +25,8 @@ class Proposition
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
+     * @Assert\Regex("[a-zA-Z0-9-_\/-\s.]+")
      */
     private $isGood;
 

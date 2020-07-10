@@ -31,6 +31,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('faq_position', './assets/js/faq_position.js')
     .addEntry('question_position', './assets/js/question_position.js')
+    .addEntry('add_supp_question_proposition', './assets/js/add_supp_question_proposition.js')
 
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
