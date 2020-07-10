@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisez votre mot de passe{% endblock %}
+
+{% block body %}
+    <section class="check-email-body">
+        <div class="check-email-centered">
+            <p>Un email contenant un lien cliquable pour la réinitialisation de votre mot de passe a été envoyé. Ce lien expirera dans {{ tokenLifetime|date('g') }} heure(s).</p>
+            <p>Si vous n'avez rien reçu, merci de verifier dans vos spams ou <a href="{{ path('app_forgot_password_request') }}">essayer à nouveau</a>.</p>
+        </div>
+    </section>
+{% endblock %}

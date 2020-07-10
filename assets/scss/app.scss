@@ -879,6 +879,156 @@ footer a {
     }
 }
 
+// RESET EMAIL SECTION //
+.check-email-centered {
+    margin: 100px auto;
+    width: 70%;
+    text-align: center;
+}
+
+.reset-email-container {
+
+    form {
+
+        div {
+            margin: 25px 0px;
+        }
+    }
+
+    label {
+        display: none;
+    }
+}
+
+/* DESKTOP AND LARGE SCREEN */
+@media (min-width: 992px) {
+
+
+    .container {
+        max-width: 100%;
+    }
+
+    .table {
+        width: 80%;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        width: 200px;
+        letter-spacing: 2px;
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link {
+        width: 87%;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: underline;
+        color: black;
+    }
+
+    .nav-link-disabled {
+        display: none;
+    }
+
+    #navbarAdminNavDropdown .navbar-nav {
+        background-color: $dark-blue;
+
+        .nav-link {
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.quizz-container{
+    margin-top: 30px;
+    width: 80%;
+}
+
+/* TABLET AND SMALL SCREEN */
+@media screen and (max-width: 991px) {
+
+    #navbarNavDropdown {
+        z-index: 1;
+
+        .navbar-nav {
+            background-color: $primary-color;
+        }
+    }
+
+    li.nav-item {
+        border: 1px solid lightgrey;
+    }
+
+    li.nav-item:hover {
+        background-color: $secondary-color;
+        border-bottom: solid white;
+    }
+
+    .LT_logo_profil {
+        display: none;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        text-decoration: none;
+        color: $primary-color;
+        border-bottom: none;
+    }
+
+    .nav_admin {
+
+        .adminBar {
+            display: block;
+        }
+
+        .navbar-toggler {
+            margin: 11px 0;
+        }
+
+        #navbarAdminNavDropdown .navbar-nav {
+            background-color: $dark-blue;
+
+            .nav-link {
+                text-align: center;
+            }
+
+            .nav-link:hover {
+                background-color: $secondary-color;
+                color : $dark-blue;
+            }
+        }
+    }
+
+    /* VIDEO SECTION */
+    .content-container {
+        iframe {
+            height: 250px;
+        }
+    }
+
+    // FAQ SECTION
+    .faq-card {
+        padding: 15px;
+        margin: 20px auto;
+    }
+}
+
+/* PHONE AND EXTRA SMALL SCREEN */
+@media screen and (max-width: 720px) {
+
+    /* VIDEO SECTION */
+    .content-container {
+        width: 100%;
+
+        iframe {
+            height: 160px;
+        }
+    }
+}
+
 #login_form, #register_form {
     margin: 50px auto;
     position: unset;
