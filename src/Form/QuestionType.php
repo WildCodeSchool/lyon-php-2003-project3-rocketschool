@@ -16,9 +16,16 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Question'
+                'label' => 'Question',
+                    'attr' =>[
+                        'class' => 'title_quizz'
+                    ]
             ])
-            ->add('solution', TextType::class)
+            ->add('solution', TextType::class, [
+                'attr' =>[
+                    'class' => 'title_quizz'
+                ]
+            ])
             ->add('propositions', CollectionType::class, [
                 'entry_type' => PropositionType::class,
                 'entry_options' => [

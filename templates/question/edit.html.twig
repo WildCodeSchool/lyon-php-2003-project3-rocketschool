@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ page_name }}{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('add_supp_question_proposition') }}
+{% endblock %}
 
 {% block body %}
 
@@ -12,8 +15,9 @@
 
         {{ include('question/_form.html.twig') }}
 
-
     </div>
 
-
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('add_supp_question_proposition') }}
 {% endblock %}

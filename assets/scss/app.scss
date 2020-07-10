@@ -44,13 +44,13 @@ blockquote {
     align-items: center;
     justify-content: space-around;
     background-color: $secondary-color;
-    height: 120px;
+    height: 60px;
     color: $primary-color;
     margin-top: 80px;
 }
 
 .margin_top_navbar_admin {
-    margin-top: 160px;
+    margin-top: 139px;
 }
 
 .dropdown-menu {
@@ -106,8 +106,9 @@ blockquote {
     background-color: $dark-blue;
     font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
     color: $primary-color;
-    height: 80px;
+    height: 60px;
     justify-content: end;
+    align-content: center;
 
     .navbar-nav .nav-link {
         color: $primary-color;
@@ -342,6 +343,19 @@ footer a {
     pointer-events: none;
 }
 
+.supp-proposition {
+    margin-left: 17%;
+}
+
+.supp-btn-proposition {
+    margin: 10px 10px 20px;
+}
+
+.supp-btn-proposition:hover {
+    margin: 10px 10px 20px;
+    color : $secondary-color;
+}
+
 #quizz {
     .quizz-title {
         margin-top: 100px;
@@ -496,6 +510,13 @@ footer a {
     background-color: $secondary-color;
     color: $primary-color;
     border-radius: 30px;
+}
+
+.quizz-action-btn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #quizz-edit .proposition {
@@ -964,7 +985,7 @@ for login & register pages */
 
     h2 {
         text-align: center;
-        padding-top: 30px;
+        //padding-top: 20px;
     }
 }
 
@@ -1112,5 +1133,45 @@ option:hover {
 
     .content-container_lt {
         padding-left: 0;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    #quizz-edit {
+
+        .form-group {
+            height: auto;
+        }
+
+        label {
+            margin: 0;
+        }
+
+        .proposition {
+            padding: 20px 0 0 20px;
+        }
+
+        .quizz-table {
+            margin : auto;
+        }
+
+        .quizz-action-btn {
+            margin-top: 5px;
+        }
+
+        .btn-round-darkblue,
+        .btn-round-danger,
+        .btn-round-clearblue {
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 0;
+        }
+
+        p {
+            margin-left: 15px;
+        }
     }
 }
