@@ -46,12 +46,14 @@ class RessourcesController extends AbstractController
         if ($_POST && $_POST['ready']) {
             $user = $userRepository->find($_POST['userId']);
             if (!empty($user)) {
-                $user->setIsReady(true);
-                $entityManager->persist($user);
-                $entityManager->flush();
+                $checklist = $user->getChecklist();
+                if ($checklist) {
+                    $checklist->setCheckVideo(true);
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+                }
             }
         }
-
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',

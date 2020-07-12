@@ -26,9 +26,9 @@
                                 </li>
                                 <li class="nav-item">
                                         <a
-                                                class="nav-link {% if app.user.isReady is same as(false) %}
+                                                class="nav-link" {#{% if app.user.isReady is same as(false) %}
                                                                     disabled
-                                                                {% endif %}"
+                                                                {% endif %}"#}
                                                 href={{ path('ressources_quizz') }}>
                                             Quiz
 

@@ -92,10 +92,10 @@ class User implements UserInterface
      */
     private $quizResult;
 
-    public function __construct()
+    public function __construct(Checklist $checklist)
     {
         $this->notes = new ArrayCollection();
-        $this->checklist = new Checklist();
+        $this->setChecklist($checklist);
         $this->quizResult = new ArrayCollection();
     }
 
