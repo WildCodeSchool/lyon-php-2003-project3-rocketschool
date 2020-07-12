@@ -35,6 +35,7 @@ class RessourcesController extends AbstractController
     /**
      * @Route("/", name="index")
      * @param EntityManagerInterface $entityManager
+     * @param UserRepository $userRepository
      * @return Response
      */
     public function index(EntityManagerInterface $entityManager, UserRepository $userRepository)
@@ -67,6 +68,7 @@ class RessourcesController extends AbstractController
      * @param QuizzRepository $quizzRepo
      * @param PropositionRepository $propoRepo
      * @param QuestionRepository $questionRepo
+     * @param QuizResultService $quizResultService
      * @return string
      */
     public function quizz(
