@@ -25,7 +25,7 @@
                                     <a class="nav-link" href={{ path('ressources_index') }}>Vidéo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {% if not app.user.checklist.check1 and "ROLE_ADMIN" not in app.user.roles %} disabled {% endif %}" href="{{ path('ressources_quizz') }}" > Quiz </a>
+                                    <a class="nav-link {% if not app.user.checklist.checkVideo and "ROLE_ADMIN" not in app.user.roles %} disabled {% endif %}" href="{{ path('ressources_quizz') }}" > Quiz </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href={{ path('ressources_faq') }}>FAQ</a>
@@ -39,7 +39,7 @@
                             </ul>
                         </div>
 {#                        <div class="LT_logo_profil navbar-brand">#}
-                            <div class="dropdown dropleft">
+                            <div class="dropdown">
                                 <div class="hasImage" data-toggle="dropdown" id="dropdownMenuLink">
                                     {% if app.user.image is null %}
                                         <div class="no_image"><p>{{ app.user.firstname|first|upper}}</p></div>
