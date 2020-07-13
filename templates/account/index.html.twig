@@ -2,4 +2,299 @@
 
 {% block title %}{{ page_name }}{% endblock %}
 
-{% block body %}{% endblock %}
+{% block stylesheets %}
+    <style>
+        .LT_page_name, body > header, .edit_hide, .logout_hide {
+            display: none;
+        }
+
+        @media screen and (min-width: 992px) {
+            body > header, .edit_hide, .logout_hide {
+                display: block;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <main class="container-fluid mh-100" id="account_index">
+        <div class="row">
+            <header id="infos" class="col-12">
+                <section class="menu">
+                    <div class="menu-burger">
+                        <span class="menu-circle"></span>
+                        <a href="#" class="menu-link">
+                            <span class="menu-icon">
+                                <span class="menu-line menu-line-1"></span>
+                                <span class="menu-line menu-line-2"></span>
+                                <span class="menu-line menu-line-3"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <p class="edit_hide" data-toggle="modal" data-target="#profilModal">Editer profil</p>
+                    <div class="dropdown dropleft">
+                        <img src="{{ asset('build/images/icons/three_dot.79424a4a.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
+                        <div class="dropdown-menu">
+                            <p class="dropdown-item" data-toggle="modal" data-target="#profilModal">Editer profil</p>
+                            <a class="dropdown-item" href="/logout">Se déconnecter</a>
+                        </div>
+                    </div>
+                    <p class="logout_hide"><a href="/logout">Se déconnecter</a></p>
+                </section>
+                <div class="row">
+                    <div class="col-md-3 col-lg-2 hasImage">
+                        {% if app.user.image is null %}
+                            <div class="no_image"><p>{{ app.user.firstname|first|upper}}</p></div>
+                        {% else %}
+                            <img src="{{ app.user.image }}" alt="photo" class="rounded-circle">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div>
+                            <h3>{{ app.user.firstname}} {{ app.user.lastname }}</h3>
+                            <h6>{{ app.user.email }}</h6>
+                            <hr>
+                            <h5>{{ app.user.program.name??'Choisis vite ton programme dans le menu édition !' }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            {% for category, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <section id="quiz_check" class="row">
+            <article class="checklist col-md-8 col-lg-4 shadow">
+                <h3>Checklist</h3>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span>
+                                {% if app.user.checklist.checkVideo %}
+                                    <img src="{{ asset('build/images/icons/checked.734b25b9.svg') }}" alt="">
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td><a href="{{ path('ressources_index') }}">Je m'informe sur les métiers <br><em>En regardant attentivement la vidéo</em></a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>
+                                {% if app.user.checklist.checkQuizz %}
+                                    <img src="{{ asset('build/images/icons/checked.734b25b9.svg') }}" alt="">
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td><a href="{{ path('ressources_quizz') }}" class="{% if not app.user.checklist.checkVideo %}disabled{% endif %}">J'évalue mes connaissances <br><em>Un quiz, deux essais</em></a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>
+                                {% if app.user.checklist.checkGuide %}
+                                    <img src="{{ asset('build/images/icons/checked.734b25b9.svg') }}" alt="">
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td><a href="{{ path('ressources_guide') }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="quiz col-md-8 col-lg-4 shadow">
+                <h3>Quiz</h3>
+                {% if not app.user.checklist.checkVideo %}
+                    <p>
+                        Pour accéder au quiz, tu dois au préalable
+                        confirmer avoir bien pris connaissance
+                        des ressources
+                    </p>
+                    <a href="{{ path('ressources_index') }}">
+                        <button>Voir la vidéo</button>
+                    </a>
+                {% else %}
+                    {% if app.user.quizResult.count == 0 %}
+                        <p>
+                            Il est maintenant temps de vérifier ce que tu as retenu !
+                            Pas de pression, tu as le droit à deux tentatives
+                        </p>
+                        <a href="{{ path('ressources_quizz') }}">
+                            <button>C'est parti !</button>
+                        </a>
+                    {% elseif app.user.quizResult.count == 1 %}
+                        {% for result in app.user.quizResult %}
+                            <article>
+                                <p>Résultat du 1er essai</p>
+                                <div>
+                                    <p>{{ result.result }} %</p>
+                                </div>
+                            </article>
+                            {% if result.result != 100 %}
+                                <em>Il te reste une tentative !</em>
+
+                                <a href="{{ path('ressources_quizz') }}">
+                                    <button>Repasser le quiz</button>
+                                </a>
+                            {% else %}
+                                <p class="congrat">Félicitations !</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <article>
+                            <p>Résultat du 2eme essai</p>
+                            <div>
+                                <p>{{ app.user.quizResult.1.result }} %</p>
+                            </div>
+                        </article>
+                        <em class="p-3">Rappel 1er essai : {{ app.user.quizResult.0.result }} %</em>
+                    {% endif %}
+                {% endif %}
+            </article>
+        </section>
+        <section class="row notes">
+            <header>
+                <h4 id="toggler"> Notes personnelles
+                    {% if app.user.notes.count > 0 %}
+                        <img src="{{ asset('build/images/icons/caret_down.399d20b1.svg') }}" alt="">
+                    {% endif %}
+                </h4>
+                <div data-toggle="modal" data-target="#noteModal">
+                    <h1>+</h1>
+                </div>
+            </header>
+            {% if app.user.notes.count > 0 %}
+                <article id="notes">
+                    <div class="row">
+                        {% for note in app.user.notes %}
+                            <div class="col-md-6 col-lg-3">
+                                <div>
+                                    <h4>{{ note.title }}</h4>
+                                    <hr>
+                                    <div class="content">
+                                        <p>{{ note.content}}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <a href="{{ path('delete_note', {'note': note.id}) }}">&times;</a>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </article>
+            {% endif %}
+            <hr>
+        </section>
+
+        <!-- The Modal Note -->
+        <div class="modal" id="noteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nouvelle note</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="post">
+                            <label for="title"></label>
+                            <input type="text" name="title" id="title" placeholder="Titre" class="form-control">
+
+                            <label for="content"></label>
+                            <textarea name="content" id="content" cols="30" rows="10" class="form-control" placeholder="Contenu ..."></textarea>
+
+                            <input type="hidden" name="userId" value="{{ app.user.id }}">
+                            <button type="submit" class="btn">Ajoutez !</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Modal Profil Edition -->
+        <div class="modal" id="profilModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editer mon profil</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" class="form-group">
+                            <label for="firstname">Prénom</label>
+                            <input type="text" name="firstname" id="firstname" placeholder="Prénom" value="{{ app.user.firstname }}" class="form-control">
+
+                            <label for="lastname">Nom</label>
+                            <input type="text" name="lastname" id="lastname" placeholder="Nom" value="{{ app.user.lastname }}" class="form-control">
+
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Email" value="{{ app.user.email }}" class="form-control">
+
+                            <div class="browse">
+                                <label for="image" class="custom-file-label">Image Profil</label>
+                                <input type="file" name="image" id="image" class="custom-file-input"><br>
+                            </div>
+
+                            <div>
+                                <label for="program">Programme</label>
+                                <select name="program" id="program" class="custom-select">
+                                    {% for program in programs %}
+                                        {{ dump(program) }}
+                                        <option value="{{ program.id }}" {% if app.user.program.id is defined and app.user.program.id == program.id %}selected{% endif %}>{{ program.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="userId" value="{{ app.user.id }}">
+                            <button type="submit" class="btn">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img src="{{ asset('build/images/rocket_1.14b1b2e7.jpeg') }}" alt="" id="rocket_back">
+        <img src="{{ asset('build/images/helmet_1.c2ba679b.jpeg') }}" alt="" id="helmet_back">
+
+        <div class="menu-overlay" id="mySidenav">
+            <a href="{{ path('ressources_index') }}"><h1>Vidéo</h1></a>
+            <a href="{{ path('ressources_quizz') }}"><h1>Quizz</h1></a>
+            <a href="{{ path('ressources_guide') }}"><h1>Guide</h1></a>
+            <a href="{{ path('ressources_faq') }}"><h1>FAQ</h1></a>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+
+            const notes = $("#notes");
+            const caret = $("#toggler");
+
+            notes.css("display","none");
+
+            caret.on('click', () => {
+                notes.slideToggle();
+            });
+
+            $(".menu-link").click(function(e) {
+                e.preventDefault();
+
+                $(".menu-overlay").toggleClass("open");
+                $(".menu-burger").toggleClass("open");
+
+            });
+        });
+    </script>
+{% endblock %}
+

@@ -26,9 +26,9 @@
                                 </li>
                                 <li class="nav-item">
                                         <a
-                                                class="nav-link {% if app.user.isReady is same as(false) %}
+                                                class="nav-link" {#{% if app.user.isReady is same as(false) %}
                                                                     disabled
-                                                                {% endif %}"
+                                                                {% endif %}"#}
                                                 href={{ path('ressources_quizz') }}>
                                             Quiz
 
@@ -45,23 +45,23 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="LT_logo_profil navbar-brand">
-                            <div class="dropdown show">
-                                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img
-                                            width="50px"
-                                            src="https://www.tours-fondettes-agrocampus.fr/wp-content/themes/groscampus/images/avatar.png"
-                                            alt="">
-                                </a>
+{#                        <div class="LT_logo_profil navbar-brand">#}
+                            <div class="dropdown dropleft">
+                                <div class="hasImage" data-toggle="dropdown" id="dropdownMenuLink">
+                                    {% if app.user.image is null %}
+                                        <div class="no_image"><p>{{ app.user.firstname|first|upper}}</p></div>
+                                    {% else %}
+                                        <img src="{{ app.user.image }}" alt="photo" class="rounded-circle">
+                                    {% endif %}
+                                </div>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Ma page candidat</a>
-                                    <a class="dropdown-item" href="#">Modifer mon profil</a>
+                                    <a class="dropdown-item" href="{{ path('profil') }}">Ma page candidat</a>
                                     <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                                     <div class="delimiter"></div>
                                 </div>
                             </div>
-                        </div>
+{#                        </div>#}
                     </nav>
 
                     {#              Navbar Admin appearring when the logged user has the admin status                   #}

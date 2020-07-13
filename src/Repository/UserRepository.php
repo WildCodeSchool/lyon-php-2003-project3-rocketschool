@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use DateTime;
+use App\Repository\AccountsDurationRepository;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,9 +22,15 @@ use DateTime;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var \App\Repository\AccountsDurationRepository
+     */
+    private $accDuRepo;
+
+    public function __construct(ManagerRegistry $registry, AccountsDurationRepository $accDuRepo)
     {
         parent::__construct($registry, User::class);
+        $this->accDuRepo = $accDuRepo;
     }
 
     /**
@@ -68,14 +75,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function deleteOldAccounts(): void
     {
-        $now = new DateTime();
-        $before = date_modify($now, '-100 days');
+        $accountsDuration = $this->accDuRepo->findOneBy([]);
+        if ($accountsDuration) {
+            $days = $accountsDuration->getDays();
+            $now = new DateTime();
+            $before = date_modify($now, "-$days days");
 
-        $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb = $this->getEntityManager()->createQueryBuilder();
+
             $qb->delete(User::class, 'u')
                 ->where("u.createdAt < :before")
                 ->setParameter('before', $before, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
                 ->getQuery()->execute();
+        }
     }
 
     // /**

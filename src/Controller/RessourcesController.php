@@ -35,6 +35,7 @@ class RessourcesController extends AbstractController
     /**
      * @Route("/", name="index")
      * @param EntityManagerInterface $entityManager
+     * @param UserRepository $userRepository
      * @return Response
      */
     public function index(EntityManagerInterface $entityManager, UserRepository $userRepository)
@@ -45,13 +46,16 @@ class RessourcesController extends AbstractController
 
         if ($_POST && $_POST['ready']) {
             $user = $userRepository->find($_POST['userId']);
+
             if (!empty($user)) {
-                $user->setIsReady(true);
-                $entityManager->persist($user);
-                $entityManager->flush();
+                $checklist = $user->getChecklist();
+                if ($checklist) {
+                    $checklist->setCheckVideo(true);
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+                }
             }
         }
-
 
         return $this->render('ressources/index.html.twig', [
             'controller_name' => 'RessourcesController',
@@ -65,6 +69,7 @@ class RessourcesController extends AbstractController
      * @param QuizzRepository $quizzRepo
      * @param PropositionRepository $propoRepo
      * @param QuestionRepository $questionRepo
+     * @param QuizResultService $quizResultService
      * @return string
      */
     public function quizz(

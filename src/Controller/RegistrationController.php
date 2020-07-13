@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Checklist;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -32,8 +33,9 @@ class RegistrationController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('profil');
         }
+        $checklist = new Checklist();
 
-        $user = new User();
+        $user = new User($checklist);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 

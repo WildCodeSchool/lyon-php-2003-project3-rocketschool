@@ -16,6 +16,7 @@ doctrine:
         password:             '%env(resolve:DATABASE_PASSWORD)%'
         driver:               '%env(resolve:DATABASE_DRIVER)%'
 
+        # CAUTION : When wanting to use the environment variables, this line below needs to be commented
         #driver: 'pdo_mysql'
 
         server_version: '5.7'
