@@ -57,7 +57,7 @@ blockquote {
     left: unset;
     width: 210px;
     text-align: center;
-    box-shadow: black 0px 10px 10px -10px;
+    box-shadow: black 0 10px 10px -10px;
     border-top: solid $dark-blue;
 
     a:hover {
@@ -138,7 +138,7 @@ blockquote {
         line-height: 25px;
         text-transform: none;
         display: flex;
-        box-shadow: black 0px 0px 2px;
+        box-shadow: black 0 0 2px;
         justify-content: center;
         height: 40px;
     }
@@ -203,7 +203,6 @@ footer a {
 .btn-round-darkblue:hover {
     color: black;
     background-color: $primary-color;
-    border: solid 2px $third-color;
 }
 
 .btn-round-danger {
@@ -363,7 +362,7 @@ footer a {
 
 /** QUIZZ EDITION / SHOW /NEW **/
 .quizz-container {
-    margin-top: 30px;
+    margin: 30px auto;
     padding-bottom: 10px;
     width: 80%;
 
@@ -378,6 +377,9 @@ footer a {
         background-color: $secondary-color;
         color: $primary-color;
         border-radius: 30px;
+        margin: 25px;
+
+
     }
 
     .btn-round-clearblue:hover {
@@ -387,7 +389,7 @@ footer a {
 
     /* BUTTONS */
     .btn-round-darkblue {
-        margin: 15px 0;
+        margin: 15px 25px;
         background-color: $dark-blue;
         color: $primary-color;
         border-radius: 30px;
@@ -400,6 +402,7 @@ footer a {
     .btn-round-danger {
         opacity: 0.8;
         margin: 15px 0;
+        width: 178px;
         background-color: $red;
         color: $primary-color;
         border-radius: 30px;
@@ -420,10 +423,12 @@ footer a {
 
     .quizz-action-btn {
         margin-top: 10px;
+        padding: 0 20px;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
+
 }
 
 #quizz_index {
@@ -443,14 +448,16 @@ footer a {
         text-align: center;
         align-content: space-between;
         height: 100%;
+
     }
+
+
 }
 
 #quizz_show {
     .quizz-table {
-        width: max-content;
-        display: flex;
 
+        display: flex;
     }
 }
 
@@ -476,10 +483,6 @@ footer a {
         margin: inherit;
     }
 
-    .btn {
-        padding: 0 10px;
-    }
-
     .proposition {
         margin-top: 40px;
 
@@ -488,8 +491,8 @@ footer a {
         }
 
         .btn-round-danger {
-            margin-right: 15%;
-            margin-top: -35px;
+            margin-right: 20%;
+            margin-top: -10px;
             padding: 0 10px;
         }
 
@@ -501,6 +504,15 @@ footer a {
         .control-label {
             padding: 2px;
         }
+
+        .btn {
+            padding: 0 5px;
+            width: initial;
+        }
+    }
+
+    .checkbox label {
+        font-size: 1.1em;
     }
 }
 
@@ -744,7 +756,7 @@ footer a {
 }
 
 .faq-created-at {
-    margin: 0px auto 15px auto;
+    margin: 0 auto 15px auto;
     text-align: center;
 }
 
@@ -907,7 +919,7 @@ footer a {
     form {
 
         div {
-            margin: 25px 0px;
+            margin: 25px 0;
         }
     }
 
@@ -1057,10 +1069,7 @@ footer a {
         margin-right: auto;
         margin-left: auto;
     }
-}
 
-/* PHONE AND EXTRA SMALL SCREEN */
-@media screen and (max-width: 720px) {
 
     /* VIDEO SECTION */
     .content-container {
@@ -1296,122 +1305,15 @@ option:hover {
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
 
 }
-//.quizz-container{
-//    margin-top: 30px;
-//    width: 80%;
-//}
 
-/* DESKTOP AND LARGE SCREEN */
-@media (min-width: 992px) {
-
-    .container {
-        max-width: 100%;
-    }
-
-    .table {
-        width: 80%;
-    }
-
-    .navbar-light .navbar-nav .nav-link {
-        width: 200px;
-        letter-spacing: 2px;
-    }
-
-    .navbar-light .navbar-nav .active > .nav-link {
-        width: 87%;
-    }
-
-    .navbar-light .navbar-nav .nav-link:hover {
-        text-decoration: underline;
-        color: black;
-    }
-
-    .nav-link-disabled {
-        display: none;
-    }
-
-    #navbarAdminNavDropdown .navbar-nav {
-        background-color: $dark-blue;
-
-        .nav-link {
-            text-align: center;
-        }
-
-        .nav-link:hover {
-            text-decoration: underline;
-        }
-    }
+td#LT_result_quiz_bad.search_response {
+    color: red;
 }
 
-
-
-/* TABLET AND SMALL SCREEN */
-@media screen and (max-width: 991px) {
-
-    #navbarNavDropdown {
-        z-index: 1;
-
-        .navbar-nav {
-            background-color: $primary-color;
-        }
-    }
-
-    li.nav-item {
-        border: 1px solid lightgrey;
-    }
-
-    li.nav-item:hover {
-        background-color: $secondary-color;
-        border-bottom: solid white;
-    }
-
-    .LT_logo_profil {
-        display: none;
-    }
-
-    .navbar-light .navbar-nav .nav-link:hover {
-        text-decoration: none;
-        color: $primary-color;
-        border-bottom: none;
-    }
-
-    .nav_admin {
-
-        .adminBar {
-            display: block;
-        }
-
-        .navbar-toggler {
-            margin: 11px 0;
-        }
-
-        #navbarAdminNavDropdown .navbar-nav {
-            background-color: $dark-blue;
-
-            .nav-link {
-                text-align: center;
-            }
-
-            .nav-link:hover {
-                background-color: $secondary-color;
-                color : $dark-blue;
-            }
-        }
-    }
-
-    /* VIDEO SECTION */
-    .content-container {
-        iframe {
-            height: 250px;
-        }
-    }
-
-    // FAQ SECTION
-    .faq-card {
-        padding: 15px;
-        margin: 20px auto;
-    }
+td#LT_result_quiz_good.search_response {
+    color: darkgreen;
 }
+
 
 /* PHONE AND EXTRA SMALL SCREEN */
 @media screen and (max-width: 720px) {
@@ -1460,11 +1362,43 @@ option:hover {
     h2 {
         font-size: 1.3rem;
     }
-}
 
+    /* VIDEO SECTION */
+    .content-container {
+        width: 100%;
 
-td#LT_result_quiz_bad.search_response {
-    color: red;
+        iframe {
+            height: 160px;
+        }
+    }
+
+    #quizz_index,
+    #quizz_show,
+    #quizz_edit {
+        width: auto;
+        margin: auto;
+        padding: 0;
+
+        .btn {
+            width: auto;
+        }
+
+      }
+
+    #quizz_edit {
+        .form-group {
+            height: inherit;
+
+            label {
+                max-width: inherit;
+            }
+        }
+
+        .proposition .btn-round-danger {
+            //margin-right: 15%;
+            margin-top: 0;
+        }
+    }
 }
 
 td#LT_result_quiz_good.search_response {
@@ -2187,3 +2121,4 @@ td#LT_result_quiz_good.search_response {
         border: 3px solid #4e555b;
     }
 }
+
