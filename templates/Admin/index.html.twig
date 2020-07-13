@@ -55,7 +55,7 @@
                             <td class="search_response"> {{ user.email}} </td>
                             <td class="search_response"> {{ user.program.name}} </td>
 
-                            {% for user in user.quizResults %}
+                            {% for user in user.quizResult %}
                                 {% if user.result < 50 %}
                                     <td class="search_response" id="LT_result_quiz_bad"> {{ user.result }} % </td>
                                 {% endif %}
