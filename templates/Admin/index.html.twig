@@ -4,35 +4,56 @@
 
 {% block body %}
 
-    <section class="user_table">
-        <div class="content-container_lt">
+    <section class="user_table container-fluid">
+        <div class="row">
+            <div class="content-container_lt col-lg-8 pb-lg-4">
 
-            {{ form_start(form, {
-                'attr': {
-                    'class': 'form-group',
-                    'novalidate': 'novalidate'
-                }}) }}
+                {{ form_start(form, {
+                    'attr': {
+                        'class': 'form-group',
+                        'novalidate': 'novalidate'
+                    }}) }}
 
-            {{ form_widget(form.dataUsers, {
+                {{ form_widget(form.dataUsers, {
 
-                'attr': {
-                    'class': 'form-search',
-                    'placeholder': 'Rechercher un candidat'
-                }
-            }) }}
+                    'attr': {
+                        'class': 'form-search',
+                        'placeholder': 'Rechercher un candidat'
+                    }
+                }) }}
 
-            {{ form_widget(form.program, {
-                'attr': {
-                    'class': 'form-program',
+                {{ form_widget(form.program, {
+                    'attr': {
+                        'class': 'form-program',
 
-                }
-            }) }}
+                    }
+                }) }}
 
-            <button type="submit" class="btn btn-search-user">Rechercher</button>
+                <button type="submit" class="btn btn-search-user">Rechercher</button>
+                {{ form_end(form) }}
+            </div>
+            <section class="ac_duration col-lg-2 p-lg-2">
+                <div class="ac_duration_content">
+                    <p>Nb. jours avant suppression candidats</p>
+                    {{ form_start(formAccDu, {
+                        'attr': {
+                            'class': 'form-group',
+                            'novalidate': 'novalidate'
+                        }}) }}
+                    {{ form_widget(formAccDu.days, {
+
+                        'attr': {
+                            'class': 'form-search',
+                            'type': 'number',
+                            'min': '0',
+                        }
+                    }) }}
+                    <button type="submit" class="btn btn-search-user">Modifier</button>
+                    {{ form_end(formAccDu) }}
+                </div>
+            </section>
+
         </div>
-
-        {{ form_end(form) }}
-
         <table class="table table-hover table_user">
             <thead class="thead-light">
             <tr class="tr">
@@ -55,7 +76,7 @@
                             <td class="search_response"> {{ user.email}} </td>
                             <td class="search_response"> {{ user.program.name}} </td>
 
-                            {% for user in user.quizResults %}
+                            {% for user in user.quizResult %}
                                 {% if user.result < 50 %}
                                     <td class="search_response" id="LT_result_quiz_bad"> {{ user.result }} % </td>
                                 {% endif %}

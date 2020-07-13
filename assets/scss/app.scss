@@ -320,6 +320,23 @@ footer a {
     label {
         padding: 5px;
     }
+
+    button {
+        background-color: $dark-blue;
+        color: $primary-color;
+        border-radius: 30px;
+        display: block;
+        margin: 50px auto 20px;
+        padding: 8px 32px;
+        font-size: 1.4em;
+        font-family: Montserra, Raleway, sans-serif;
+
+        &:hover {
+            background-color: white;
+            color: $dark-blue;
+            border: 1px solid $dark-blue;
+        }
+    }
 }
 
 /* VIDEO EDIT SECTION */
@@ -940,6 +957,26 @@ footer a {
             text-decoration: underline;
         }
     }
+
+    .user_table .row:first-child {
+        flex-direction: row;
+    }
+
+    .ac_duration {
+        margin-left: 20px;
+
+        .ac_duration_content {
+            .form-group {
+                padding-top: 4px;
+            }
+
+            .form-search {
+                width: 120px;
+            }
+        }
+    }
+
+
 }
 
 .quizz-container{
@@ -999,6 +1036,8 @@ footer a {
                 color : $dark-blue;
             }
         }
+
+
     }
 
     /* VIDEO SECTION */
@@ -1013,6 +1052,11 @@ footer a {
         padding: 15px;
         margin: 20px auto;
     }
+
+    .ac_duration .ac_duration_content {
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 
 /* PHONE AND EXTRA SMALL SCREEN */
@@ -1024,6 +1068,15 @@ footer a {
 
         iframe {
             height: 160px;
+        }
+    }
+
+    .ac_duration_content {
+        margin-left : auto;
+        margin-right: auto;
+
+        .form-group {
+            height: 150px;
         }
     }
 }
@@ -1110,6 +1163,19 @@ for login & register pages */
     height: 100px;
 }
 
+/* Accounts duration field */
+.ac_duration {
+    width: 100%;
+    padding-top: 40px;
+    display: flex;
+    margin-bottom: -40px;
+}
+
+.ac_duration_content {
+    margin-left : auto;
+    margin-right: 40px;
+}
+
 /* Administration_users */
 .user_table {
     width: 100%;
@@ -1121,6 +1187,11 @@ for login & register pages */
     justify-content: space-around;
     white-space: nowrap;
     overflow: scroll hidden;
+    padding-top: 40px;
+
+    .row {
+        flex-direction: column-reverse;
+    }
 }
 
 .table .search_response {
@@ -1378,12 +1449,17 @@ option:hover {
         padding-left: 0;
     }
 
+    .ac_duration .ac_duration_content {
+        margin-right: 0;
+
+        .form-group {
+            align-items: center;
+        }
+    }
+
     h2 {
         font-size: 1.3rem;
     }
-
-
-
 }
 
 
@@ -2081,3 +2157,34 @@ td#LT_result_quiz_good.search_response {
     }
 }
 
+.navbar .hasImage {
+    margin: auto;
+    cursor: pointer;
+
+    .no_image {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 1px solid #4e555b;
+        background-color: $secondary-color;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+
+        p {
+            font-size: 2em;
+            margin-bottom: 0;
+            color: white;
+        }
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        height: 64px;
+        width: 64px;
+        border: 3px solid #4e555b;
+    }
+}
