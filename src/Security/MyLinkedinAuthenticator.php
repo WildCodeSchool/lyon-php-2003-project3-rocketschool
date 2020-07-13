@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Checklist;
 use App\Entity\User; // your user entity
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -83,7 +84,9 @@ class MyLinkedinAuthenticator extends SocialAuthenticator
         if (empty($user)) {
             $firstName = $linkedinUser->getFirstName();
             $lastName = $linkedinUser->getLastName();
-            $user = new User();
+            $checklist = new Checklist();
+
+            $user = new User($checklist);
             $user->setLinkedinId($linkedinUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)

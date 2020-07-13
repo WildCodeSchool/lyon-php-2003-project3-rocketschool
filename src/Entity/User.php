@@ -50,22 +50,6 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isReady = false;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Program::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $program;
-
-    /**
-     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
-     */
-    private $quizResults;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $facebookId;
@@ -88,9 +72,36 @@ class User implements UserInterface
      */
     private $createdAt;
 
-    public function __construct()
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $notes;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Checklist::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $checklist;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="users")
+     */
+    private $program;
+
+    /**
+     * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
+     */
+    private $quizResult;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    public function __construct(Checklist $checklist)
     {
-        $this->quizResults = new ArrayCollection();
+        $this->notes = new ArrayCollection();
+        $this->setChecklist($checklist);
+        $this->quizResult = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -195,61 +206,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getIsReady(): ?bool
-    {
-        return $this->isReady;
-    }
-
-    public function setIsReady(bool $isReady): self
-    {
-        $this->isReady = $isReady;
-
-        return $this;
-    }
-
-    public function getProgram(): ?Program
-    {
-        return $this->program;
-    }
-
-    public function setProgram(?Program $program): self
-    {
-        $this->program = $program;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|QuizResult[]
-     */
-    public function getQuizResults(): Collection
-    {
-        return $this->quizResults;
-    }
-
-    public function addQuizResult(QuizResult $quizResult): self
-    {
-        if (!$this->quizResults->contains($quizResult)) {
-            $this->quizResults[] = $quizResult;
-            $quizResult->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuizResult(QuizResult $quizResult): self
-    {
-        if ($this->quizResults->contains($quizResult)) {
-            $this->quizResults->removeElement($quizResult);
-            // set the owning side to null (unless already changed)
-            if ($quizResult->getUser() === $this) {
-                $quizResult->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getFacebookId(): ?string
     {
         return $this->facebookId;
@@ -282,7 +238,7 @@ class User implements UserInterface
     public function setLinkedinId(?string $linkedinId): self
     {
         $this->linkedinId = $linkedinId;
-      
+
         return $this;
     }
 
@@ -294,6 +250,109 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            // set the owning side to null (unless already changed)
+            if ($note->getUser() === $this) {
+                $note->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getChecklist(): ?Checklist
+    {
+        return $this->checklist;
+    }
+
+    public function setChecklist(Checklist $checklist): self
+    {
+        $this->checklist = $checklist;
+
+        // set the owning side of the relation if necessary
+        if ($checklist->getUser() !== $this) {
+            $checklist->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function getProgram(): ?Program
+    {
+        return $this->program;
+    }
+
+    public function setProgram(?Program $program): self
+    {
+        $this->program = $program;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QuizResult[]
+     */
+    public function getQuizResult(): Collection
+    {
+        return $this->quizResult;
+    }
+
+    public function addQuizResult(QuizResult $quizResult): self
+    {
+        if (!$this->quizResult->contains($quizResult)) {
+            $this->quizResult[] = $quizResult;
+            $quizResult->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuizResult(QuizResult $quizResult): self
+    {
+        if ($this->quizResult->contains($quizResult)) {
+            $this->quizResult->removeElement($quizResult);
+            // set the owning side to null (unless already changed)
+            if ($quizResult->getUser() === $this) {
+                $quizResult->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
