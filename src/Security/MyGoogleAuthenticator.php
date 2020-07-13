@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Checklist;
 use App\Entity\User; // your user entity
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -83,7 +84,9 @@ class MyGoogleAuthenticator extends SocialAuthenticator
         if (empty($user)) {
             $firstName = $googleUser->getFirstName();
             $lastName = $googleUser->getLastName();
-            $user = new User();
+            $checklist = new Checklist();
+
+            $user = new User($checklist);
             $user->setGoogleId($googleUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)

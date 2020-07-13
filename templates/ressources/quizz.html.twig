@@ -15,11 +15,11 @@
                 <h3>résultat : {{ result }}%</h3>
             </div>
         {% else %}
-            {% if app.user.quizResults|length == 0 %}
+            {% if app.user.quizResult|length == 0 %}
                 <p class="quiz-attempt">essai numéro 1/2</p>
-            {% elseif app.user.quizResults|length == 1 %}
+            {% elseif app.user.quizResult|length == 1 %}
                 <p class="quiz-attempt">essai numéro 2/2</p>
-            {% elseif app.user.quizResults|length > 1 %}
+            {% elseif app.user.quizResult|length > 1 %}
                 <p class="quiz-attempt">Vous avez déjà validé le test deux fois</p>
             {% endif %}
         {% endif %}
@@ -29,7 +29,7 @@
             <div class="container-fluid quizz-container"
                  id="quizz">
                 {% for question in quizz.questions %}
-                    <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResults|length > 1 %} quizz-container-disabled {% endif %}">
+                    <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResult|length > 1 %} quizz-container-disabled {% endif %}">
                         <div class="card-body quizz-body">
                             <h3 class="card-title">{{ question.questionOrder }} - {{ question.title }}</h3>
                             {% for proposition in question.propositions %}
@@ -70,21 +70,21 @@
                             {% endif %}
                         </div>
                     </div>
-                    {% if result is not same as(null) and  app.user.quizResults|length > 0 %}
+                    {% if result is not same as(null) and  app.user.quizResult|length > 0 %}
                         <div class="{% if errors[question.id] %} alert-danger {% else %} alert-success {% endif %}">
                             <p class="quiz-solution">{{ question.solution }}</p>
                         </div>
                     {% endif %}
                 {% endfor %}
 
-                {% if result is same as(null) and  app.user.quizResults|length < 2 %}
+                {% if result is same as(null) and  app.user.quizResult|length < 2 %}
 
                     <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
 
                         Valider vos réponses
                     </button>
                 {% endif %}
-                {% if result is not same as(null) and app.user.quizResults|length == 0 %}
+                {% if result is not same as(null) and app.user.quizResult|length == 0 %}
                     <a href="{{ path('ressources_quizz') }}">
 
                         <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="button">
