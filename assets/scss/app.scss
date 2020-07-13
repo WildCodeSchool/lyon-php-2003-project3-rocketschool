@@ -361,6 +361,8 @@ footer a {
         background-color: $secondary-color;
         color: $primary-color;
         border-radius: 30px;
+        margin: 25px;
+
 
     }
 
@@ -474,7 +476,7 @@ footer a {
 
         .btn-round-danger {
             margin-right: 2%;
-            margin-top: -35px;
+            margin-top: -25px;
             padding: 0 10px;
         }
 
@@ -1290,6 +1292,7 @@ td#LT_result_quiz_good.search_response {
         .btn {
             width: auto;
         }
+
       }
 
     #quizz_edit {
