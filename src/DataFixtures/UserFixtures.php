@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Checklist;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -27,7 +28,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
         for ($i = 0; $i < 100; $i++) {
-            $user = new User();
+            $checklist = new Checklist();
+            $user = new User($checklist);
             $user->setEmail('user'.$i.'@mail.com')
                 ->setProgram($this->getReference('First program'))
                 ->setProgram($this->getReference('Second program'))
@@ -37,7 +39,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($user);
         }
 
-        $admin = new User();
+        $checklistAdmin = new Checklist();
+        $admin = new User($checklistAdmin);
         $admin->setEmail('admin@mail.com')
             ->setPassword($this->passwordEncoder->encodePassword($admin, 'adminpassword'))
             ->setRoles(["ROLE_ADMIN"])

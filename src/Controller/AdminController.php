@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\AccountsDuration;
 use App\Entity\QuizResult;
 use App\Entity\User;
 use App\Entity\Program;
+use App\Form\AccountsDurationType;
 use App\Form\SearchFilterType;
 use App\Form\SelectProgramType;
+use App\Repository\AccountsDurationRepository;
 use App\Repository\UserRepository;
 use App\Entity\Video;
 use App\Repository\ProgramRepository;
@@ -30,11 +33,16 @@ class AdminController extends AbstractController
 
     private $userRepository;
     private $programRepository;
+    private $accountsDuration;
 
-    public function __construct(userRepository $userRepository, programRepository $programRepository)
-    {
+    public function __construct(
+        userRepository $userRepository,
+        programRepository $programRepository,
+        AccountsDurationRepository $accDuRepo
+    ) {
         $this->userRepository = $userRepository;
         $this->programRepository = $programRepository;
+        $this->accountsDuration = $accDuRepo;
     }
     /**
      *@param Request $request
@@ -43,6 +51,18 @@ class AdminController extends AbstractController
      */
     public function index(Request $request):Response
     {
+        $accountsDuration = $this->getDoctrine()->getRepository(AccountsDuration::class)
+            ->findOneBy([]);
+
+        $formAccDu = $this->createForm(AccountsDurationType::class, $accountsDuration);
+        $formAccDu->handleRequest($request);
+
+        if ($formAccDu->isSubmitted() && $formAccDu->isValid() && $accountsDuration) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($accountsDuration);
+            $entityManager->flush();
+        }
+
         $users = $this->getDoctrine()->getRepository(User::class)
             ->findAll();
 
@@ -56,7 +76,10 @@ class AdminController extends AbstractController
                 ->search($data['dataUsers'], $data['program']);
         }
         return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats',
-            'users' => $users, 'form' => $form->createView()]);
+            'users' => $users,
+            'accountsDuration' => $accountsDuration,
+            'form' => $form->createView(),
+            'formAccDu' => $formAccDu->createView()]);
     }
 
     /**

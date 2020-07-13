@@ -29,27 +29,21 @@
                 </a>
             </div>
         {% else %}
-            {% if (app.user.isReady) %}
+            {% if app.user.checklist.checkVideo %}
                 <div class="btn-container">
                     <a href="{{ path('ressources_quizz') }}">
                         <button class="btn btn-round-darkblue">Passer le test</button>
                     </a>
                 </div>
+            {% else %}
+                <form action="" method="post" class="form-inline">
+                    <div class="form-group check-video">
+                        <input type="hidden" name="ready" value="ready">
+                        <input type="hidden" name="userId" value="{{ app.user.id }}">
+                        <button type="submit">J'ai compris !</button>
+                    </div>
+                </form>
             {% endif %}
-            <form action="" method="POST" class="form-inline">
-                <div class="form-group check-video">
-                    <input
-                            type="checkbox"
-                            name="ready"
-                            id="ready"
-                            class="form-control"
-                            onclick="this.form.submit()"
-                            {% if app.user.isReady is same as(true) %}checked{% endif %}
-                    >
-                    <input type="hidden" name="userId" value="{{ app.user.id }}">
-                    <label for="ready">J'ai compris !</label>
-                </div>
-            </form>
         {% endif %}
     </div>
 {% endblock %}
