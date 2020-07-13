@@ -320,6 +320,23 @@ footer a {
     label {
         padding: 5px;
     }
+
+    button {
+        background-color: $dark-blue;
+        color: $primary-color;
+        border-radius: 30px;
+        display: block;
+        margin: 50px auto 20px;
+        padding: 8px 32px;
+        font-size: 1.4em;
+        font-family: Montserra, Raleway, sans-serif;
+
+        &:hover {
+            background-color: white;
+            color: $dark-blue;
+            border: 1px solid $dark-blue;
+        }
+    }
 }
 
 /* VIDEO EDIT SECTION */
@@ -2137,5 +2154,37 @@ td#LT_result_quiz_good.search_response {
     .menu-burger.open .menu-line-3 {
         transform: translateY(-7px) translateY(50%) rotate(135deg);
         background-color: #FFF;
+    }
+}
+
+.navbar .hasImage {
+    margin: auto;
+    cursor: pointer;
+
+    .no_image {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 1px solid #4e555b;
+        background-color: $secondary-color;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+
+        p {
+            font-size: 2em;
+            margin-bottom: 0;
+            color: white;
+        }
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        height: 64px;
+        width: 64px;
+        border: 3px solid #4e555b;
     }
 }

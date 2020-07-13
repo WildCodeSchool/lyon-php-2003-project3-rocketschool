@@ -38,15 +38,9 @@
             {% else %}
                 <form action="" method="post" class="form-inline">
                     <div class="form-group check-video">
-                        <input
-                                type="checkbox"
-                                name="ready"
-                                id="ready"
-                                class="form-control"
-                                onclick="this.form.submit()"
-                        >
-                        <label for="ready">J'ai compris !</label>
+                        <input type="hidden" name="ready" value="ready">
                         <input type="hidden" name="userId" value="{{ app.user.id }}">
+                        <button type="submit">J'ai compris !</button>
                     </div>
                 </form>
             {% endif %}

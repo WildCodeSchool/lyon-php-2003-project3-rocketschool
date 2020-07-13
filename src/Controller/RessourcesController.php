@@ -45,7 +45,8 @@ class RessourcesController extends AbstractController
             ->findOneBy([]);
 
         if ($_POST && $_POST['ready']) {
-                $user = $userRepository->find($_POST['userId']);
+            $user = $userRepository->find($_POST['userId']);
+
             if (!empty($user)) {
                 $checklist = $user->getChecklist();
                 if ($checklist) {
