@@ -21,6 +21,15 @@
         <div class="row">
             <header id="infos" class="col-12">
                 <section class="menu">
+                    <div class="dropdown dropleft">
+                        <img src="{{ asset('build/images/icons/three_dot.79424a4a.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
+                        <div class="dropdown-menu">
+                            <p class="dropdown-item" data-toggle="modal" data-target="#profilModal">Editer profil</p>
+                            <a class="dropdown-item" href="/logout">Se déconnecter</a>
+                        </div>
+                    </div>
+
+                    <p class="edit_hide" data-toggle="modal" data-target="#profilModal">Editer profil</p>
                     <div class="menu-burger">
                         <span class="menu-circle"></span>
                         <a href="#" class="menu-link">
@@ -30,14 +39,6 @@
                                 <span class="menu-line menu-line-3"></span>
                             </span>
                         </a>
-                    </div>
-                    <p class="edit_hide" data-toggle="modal" data-target="#profilModal">Editer profil</p>
-                    <div class="dropdown dropleft">
-                        <img src="{{ asset('build/images/icons/three_dot.79424a4a.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="dropdown-menu">
-                            <p class="dropdown-item" data-toggle="modal" data-target="#profilModal">Editer profil</p>
-                            <a class="dropdown-item" href="/logout">Se déconnecter</a>
-                        </div>
                     </div>
                     <p class="logout_hide"><a href="/logout">Se déconnecter</a></p>
                 </section>
