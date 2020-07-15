@@ -53,9 +53,9 @@
                     </td>
                     <td><small>{{ faq.createdAt ? faq.createdAt|date('d-m-y') : '' }}</small></td>
                     <td>
-                        <a href="{{ path('faq_show', {'id': faq.id}) }}">voir</a>
-                        <a href="{{ path('faq_edit', {'id': faq.id}) }}">editer</a>
-                        <a href="{{ path('faq_delete', {'id': faq.id}) }}">supprimer</a>
+                        <div class="faq-index-btn"><a class="btn-round-clearblue" href="{{ path('faq_show', {'id': faq.id}) }}">voir</a></div>
+                        <div class="faq-index-btn"><a class="btn-round-darkblue" href="{{ path('faq_edit', {'id': faq.id}) }}">editer</a></div>
+                        <div class="faq-index-btn"><a class="btn-round-danger faq-danger-btn" href="{{ path('faq_delete', {'id': faq.id}) }}">supprimer</a></div>
                     </td>
                 </tr>
             {% else %}

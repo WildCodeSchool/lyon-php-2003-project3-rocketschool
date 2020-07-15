@@ -203,6 +203,13 @@ footer a {
 .btn-round-darkblue:hover {
     color: black;
     background-color: $primary-color;
+    box-shadow: black 0px 0px 3px;
+}
+
+.btn-round-clearblue {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 30px;
 }
 
 .btn-round-danger {
@@ -378,8 +385,6 @@ footer a {
         color: $primary-color;
         border-radius: 30px;
         margin: 25px;
-
-
     }
 
     .btn-round-clearblue:hover {
@@ -745,6 +750,7 @@ footer a {
 .faq-table {
     margin: 15px auto;
     text-align: center;
+    box-shadow: black 0 15px 15px -5px;
 
     input, textarea, select {
         margin-bottom: 15px;
@@ -752,6 +758,23 @@ footer a {
 
     textarea {
         height: 200px;
+    }
+
+    .faq-index-btn {
+        margin: 3px;
+    }
+
+    .btn-round-darkblue,
+    .btn-round-clearblue,
+    .btn-round-danger {
+        display: block;
+        margin : 0;
+        height: 25px;
+        width: 100px;
+    }
+
+    .btn-round-clearblue:hover {
+        color: $dark-blue;
     }
 }
 
