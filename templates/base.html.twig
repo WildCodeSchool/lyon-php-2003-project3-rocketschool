@@ -44,7 +44,7 @@
                                     {% if app.user.image is null %}
                                         <div class="no_image"><p>{{ app.user.firstname|first|upper}}</p></div>
                                     {% else %}
-                                        <img src="{{ app.user.image }}" alt="photo" class="rounded-circle">
+                                        <img src="/{{ app.user.image }}" alt="photo" class="rounded-circle">
                                     {% endif %}
                                 </div>
 

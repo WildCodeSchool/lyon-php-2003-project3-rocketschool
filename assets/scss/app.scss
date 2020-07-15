@@ -1416,6 +1416,11 @@ td#LT_result_quiz_good.search_response {
         padding: 0;
     }
 
+    .alert-danger {
+        width: 100%;
+        text-align: center;
+    }
+
     // Personal Information
     > .row:first-child {
         height: 100%;
@@ -1582,7 +1587,8 @@ td#LT_result_quiz_good.search_response {
 
                 div.row {
                     div.col-lg-2 {
-                        margin: auto 0;
+                        margin-left: -50px;
+                        margin-right: 40px;
                     }
 
                     div.col-md-8 {
@@ -1601,7 +1607,6 @@ td#LT_result_quiz_good.search_response {
         margin: 20px auto;
 
         @media screen and (min-width: 768px) {
-
             padding: 0;
             justify-content: space-around;
 
@@ -1611,8 +1616,15 @@ td#LT_result_quiz_good.search_response {
         }
 
         @media screen and (min-width: 992px) {
-            width: 70%;
-            padding: 40px;
+            padding: 20px;
+        }
+
+        @media screen and (min-width: 1200px) {
+            width: 90%;
+        }
+
+        @media screen and (min-width: 1400px) {
+            width: 80%;
         }
 
 
@@ -1798,6 +1810,11 @@ td#LT_result_quiz_good.search_response {
 
         .row {
             margin-bottom: -20px;
+        }
+
+        hr {
+            width: 100%;
+            background-color: white;
         }
 
         header {
