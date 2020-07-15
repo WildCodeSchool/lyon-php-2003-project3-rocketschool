@@ -19,7 +19,8 @@ class Proposition
     private $id;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text")
+      * @Assert\NotBlank(message="ne me laisse pas tout vide")
      */
     private $title;
 

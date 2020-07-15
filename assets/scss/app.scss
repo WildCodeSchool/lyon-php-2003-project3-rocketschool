@@ -1374,6 +1374,7 @@ td#LT_result_quiz_good.search_response {
         }
     }
 
+    #quizz_candidat,
     #quizz_index,
     #quizz_show,
     #quizz_edit {
@@ -1383,6 +1384,14 @@ td#LT_result_quiz_good.search_response {
 
         .btn {
             width: auto;
+        }
+
+        .quizz-container {
+            width : 100%;
+        }
+
+        .quizz-body ul {
+            padding-inline-start: 10px;
         }
 
       }

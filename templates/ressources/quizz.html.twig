@@ -31,7 +31,7 @@
                 {% for question in quizz.questions %}
                     <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResult|length > 1 %} quizz-container-disabled {% endif %}">
                         <div class="card-body quizz-body">
-                            <h3 class="card-title">{{ question.questionOrder }} - {{ question.title }}</h3>
+                            <h3 class="card-title">{{ loop.index }} - {{ question.title }}</h3>
                             {% for proposition in question.propositions %}
                                 <ul>
                                     <li class="card-text quizz-text">
