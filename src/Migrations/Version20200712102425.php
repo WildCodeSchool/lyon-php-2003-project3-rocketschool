@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;

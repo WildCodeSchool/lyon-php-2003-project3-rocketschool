@@ -3,9 +3,9 @@
 
     <div class="form-quizz">
         {{ form_row(form.title) }}
-        <div class="quizz-alert alert-danger">
-            {{ form_errors(form.title) }}
-        </div>
+{#        <div class="quizz-alert alert-danger">#}
+{#            {{ form_errors(form.title) }}#}
+{#        </div>#}
     </div>
 
     <div class="form-quizz">
@@ -29,7 +29,7 @@
 
     {% endfor %}
 </ul>
-<div class="faq-action-btn">
+<div class="quizz-action-btn">
     <button class="btn btn-round-darkblue">{{ button_label|default('Enregistrer') }}</button>
 </div>
 {{ form_end(form) }}

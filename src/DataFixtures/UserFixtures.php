@@ -35,12 +35,13 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setProgram($this->getReference('Second program'))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'password'))
                 ->setFirstname($faker->firstName)
-                ->setLastname($faker->lastName)
-                ->setChecklist($checklist);
+                ->setLastname($faker->lastName);
             $manager->persist($user);
         }
 
-        $admin = new User($checklist);
+
+        $checklistAdmin = new Checklist();
+        $admin = new User($checklistAdmin);
         $admin->setEmail('admin@mail.com')
             ->setPassword($this->passwordEncoder->encodePassword($admin, 'adminpassword'))
             ->setRoles(["ROLE_ADMIN"])
