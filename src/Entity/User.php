@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\AccountsDurationRepository;
 use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -65,7 +67,7 @@ class User implements UserInterface
      */
     private $linkedinId;
 
-    /*
+    /**
      * @var \DateTimeInterface $createdAt
      *
      * @Gedmo\Timestampable(on="create")
@@ -98,11 +100,21 @@ class User implements UserInterface
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
     public function __construct(Checklist $checklist)
     {
         $this->notes = new ArrayCollection();
         $this->setChecklist($checklist);
         $this->quizResult = new ArrayCollection();
+//        $delayBeforeDeletion = $accDuRepo->findOneBy([])->getDays();
+//        $modifiedDate = $this->createdAt->format("d/m/Y");
+//        $tempDate = new DateTime($modifiedDate);
+//        $this->deletedAt = date_modify($this->createdAt, "$this->createdAt + $delayBeforeDeletion");
+            //$accDuRepo->findOneBy([])->getDays();
     }
     public function getId(): ?int
     {
@@ -205,7 +217,7 @@ class User implements UserInterface
     public function setFacebookId(?string $facebookId): self
     {
         $this->facebookId = $facebookId;
-      
+
         return $this;
     }
 
@@ -229,18 +241,6 @@ class User implements UserInterface
     public function setLinkedinId(?string $linkedinId): self
     {
         $this->linkedinId = $linkedinId;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -342,6 +342,30 @@ class User implements UserInterface
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getDeletedAt(): ?\DateTimeInterface
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
 
         return $this;
     }

@@ -63,6 +63,7 @@
                 <th class="th" scope="col">Programme</th>
                 <th class="th" scope="col">Resultat 1</th>
                 <th class="th" scope="col">Resultat 2</th>
+                <th class="th" scope="col">Compte effacé dans (jrs)</th>
             </tr>
             </thead>
             <tbody class="thead-light">
@@ -76,14 +77,32 @@
                             <td class="search_response"> {{ user.email}} </td>
                             <td class="search_response"> {{ user.program.name}} </td>
 
-                            {% for user in user.quizResult %}
-                                {% if user.result < 50 %}
-                                    <td class="search_response" id="LT_result_quiz_bad"> {{ user.result }} % </td>
-                                {% endif %}
-                                {% if user.result >= 50 %}
-                                    <td class="search_response" id="LT_result_quiz_good"> {{ user.result }} % </td>
-                                {% endif %}
+{#                            {% for user in user.quizResult %}#}
+{#                                {% if user.result < 50 %}#}
+{#                                    <td class="search_response" id="LT_result_quiz_bad"> {{ user.result }} % </td>#}
+{#                                {% endif %}#}
+{#                                {% if user.result >= 50 %}#}
+{#                                    <td class="search_response" id="LT_result_quiz_good"> {{ user.result }} % </td>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+                            {% for result in user.quizResult %}
+
+                                <td class="search_response
+                                    {% if result.result < 50 %}
+                                        LT_result_quiz_bad
+                                    {% else %}
+                                        LT_result_quiz_good
+                                    {% endif %}
+                                    ">{{ result.result }} % </td>
+                                    {% if user.quizResult|length == 1 %}
+                                        <td class="search_response">-</td>
+                                    {% endif %}
+                                {% else %}
+                                    <td class="search_response">-</td>
+                                    <td class="search_response">-</td>
                             {% endfor %}
+                            <td class="search_response"> {{ user.createdAt|date("d / M / Y") }} </td>
+{#                            {{ dump(user.createdAt|date("d/M/Y")) }}  }#}
                         </tr>
                     {% endif %}
                 {% endfor %}
