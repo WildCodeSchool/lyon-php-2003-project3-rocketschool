@@ -28,19 +28,19 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
         for ($i = 0; $i < 100; $i++) {
-            $user = new User();
             $checklist = new Checklist();
+            $user = new User($checklist);
             $user->setEmail('user'.$i.'@mail.com')
                 ->setProgram($this->getReference('First program'))
                 ->setProgram($this->getReference('Second program'))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'password'))
                 ->setFirstname($faker->firstName)
-                ->setLastname($faker->lastName)
-                ->setChecklist($checklist);
+                ->setLastname($faker->lastName);
             $manager->persist($user);
         }
 
-        $admin = new User();
+        $checklistAdmin = new Checklist();
+        $admin = new User($checklistAdmin);
         $admin->setEmail('admin@mail.com')
             ->setPassword($this->passwordEncoder->encodePassword($admin, 'adminpassword'))
             ->setRoles(["ROLE_ADMIN"])

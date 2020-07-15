@@ -21,13 +21,13 @@ class Question
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=false)
      * @Assert\NotBlank(message="Question obligatoire")
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=false)
      * @Assert\NotBlank(message="Veuillez renseigner une solution pour cette question")
      */
     private $solution;

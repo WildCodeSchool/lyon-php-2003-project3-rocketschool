@@ -19,14 +19,13 @@ class Proposition
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $title;
 
     /**
      * @ORM\Column(type="boolean")
      * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
-     * @Assert\Regex("[a-zA-Z0-9-_\/-\s.]+")
      */
     private $isGood;
 
