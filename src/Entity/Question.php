@@ -21,7 +21,7 @@ class Question
     private $id;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank(message="Question obligatoire")
      */
     private $title;
