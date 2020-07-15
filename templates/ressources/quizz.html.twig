@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="quizz-container " id="quizz_candidat">
-        {% if postValide == false %}
+        {% if not postValide %}
             <div class="quizz-alert alert alert-danger">
                 <h2 class="d-flex justify-content-center">Attention : Vous n'avez pas répondu à toutes les
                     questions</h2>
