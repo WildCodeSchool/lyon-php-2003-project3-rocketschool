@@ -4,12 +4,12 @@
 
 {% block stylesheets %}
     <style>
-        .LT_page_name, body > header, .edit_hide, .logout_hide {
+        .LT_page_name, body > header, .edit_hide {
             display: none;
         }
 
         @media screen and (min-width: 992px) {
-            body > header, .edit_hide, .logout_hide {
+            body > header, .edit_hide {
                 display: block;
             }
         }
@@ -25,7 +25,6 @@
                         <img src="{{ asset('build/images/icons/three_dot.79424a4a.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
                         <div class="dropdown-menu">
                             <p class="dropdown-item" data-toggle="modal" data-target="#profilModal">Editer profil</p>
-                            <a class="dropdown-item" href="/logout">Se déconnecter</a>
                         </div>
                     </div>
 
@@ -40,7 +39,6 @@
                             </span>
                         </a>
                     </div>
-                    <p class="logout_hide"><a href="/logout">Se déconnecter</a></p>
                 </section>
                 <div class="row">
                     <div class="col-md-3 col-lg-2 hasImage">
