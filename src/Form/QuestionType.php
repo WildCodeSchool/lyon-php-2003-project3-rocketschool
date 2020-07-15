@@ -18,11 +18,13 @@ class QuestionType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Question',
+                'empty_data' => "",
                     'attr' =>[
                         'class' => 'quizz_edit_row'
                     ]
             ])
             ->add('solution', TextareaType::class, [
+                'label' => 'Solution',
                 'attr' =>[
                     'class' => 'quizz_edit_row'
                 ]
