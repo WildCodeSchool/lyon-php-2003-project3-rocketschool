@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -27,7 +26,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
      */
     private $email;
 
@@ -44,13 +42,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
      */
     private $lastname;
 
