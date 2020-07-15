@@ -86,6 +86,7 @@ class RessourcesController extends AbstractController
         $result = null;
         $postValide = true;
 
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = [];
             $nbrQuestionPost = count($_POST['questions']);
