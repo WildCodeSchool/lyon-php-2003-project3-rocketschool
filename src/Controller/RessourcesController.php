@@ -148,8 +148,10 @@ class RessourcesController extends AbstractController
 
         if ($form->isSubmitted() && !empty($form->getData())) {
             $data = $form->getData();
-            $faq = $this->faqRepository
-                ->findBySomeField($data['searchField'], $data['category']);
+            if (isset($data['category'])) {
+                $faq = $this->faqRepository
+                    ->findBySomeField($data['searchField'], $data['category']);
+            }
         }
 
         return $this->render('ressources/faq.html.twig', [
