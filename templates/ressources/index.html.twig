@@ -12,7 +12,7 @@
         </div>
         <div class="video-title-container">
             <h2>{{ video.name }}</h2>
-            <small>updated {{ video.getUpdatedAt|date }}</small>
+            <small>mis à jour le {{ video.getUpdatedAt|date('d/m/Y') }}</small>
         </div>
         <div class="video-script-container">
             <div class="video-description" id="video-description-id">

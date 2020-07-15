@@ -4,12 +4,12 @@
 
 {% block stylesheets %}
     <style>
-        .LT_page_name, body > header, .edit_hide, .logout_hide {
+        .LT_page_name, body > header, .edit_hide {
             display: none;
         }
 
         @media screen and (min-width: 992px) {
-            body > header, .edit_hide, .logout_hide {
+            body > header, .edit_hide {
                 display: block;
             }
         }
@@ -25,7 +25,6 @@
                         <img src="{{ asset('build/images/icons/three_dot.79424a4a.svg') }}" alt="" class="dropdown-toggle" data-toggle="dropdown">
                         <div class="dropdown-menu">
                             <p class="dropdown-item" data-toggle="modal" data-target="#profilModal">Editer profil</p>
-                            <a class="dropdown-item" href="/logout">Se déconnecter</a>
                         </div>
                     </div>
 
@@ -40,7 +39,6 @@
                             </span>
                         </a>
                     </div>
-                    <p class="logout_hide"><a href="/logout">Se déconnecter</a></p>
                 </section>
                 <div class="row">
                     <div class="col-md-3 col-lg-2 hasImage">
@@ -68,8 +66,8 @@
                 {% endfor %}
             {% endfor %}
         </div>
-        <section id="quiz_check" class="row">
-            <article class="checklist col-md-8 col-lg-4 shadow">
+        <section id="quiz_check" class="row p-xl-5">
+            <article class="checklist col-md-7 col-lg-5 col-xl-5 shadow">
                 <h3>Checklist</h3>
                 <table>
                     <tbody>
@@ -106,7 +104,7 @@
                     </tbody>
                 </table>
             </article>
-            <article class="quiz col-md-8 col-lg-4 shadow">
+            <article class="quiz col-md-7 col-lg-5 col-xl-5 shadow">
                 <h3>Quiz</h3>
                 {% if not app.user.checklist.checkVideo %}
                     <p>
@@ -189,7 +187,6 @@
                     </div>
                 </article>
             {% endif %}
-            <hr>
         </section>
 
         <!-- The Modal Note -->

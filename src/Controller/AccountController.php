@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Note;
+use App\Entity\User;
 use App\Repository\ProgramRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class AccountController extends AbstractController
 {
@@ -45,19 +47,15 @@ class AccountController extends AbstractController
                     $email = self::cleanInput($_POST['email']);
                     $program = $programRepo->findOneBy(["id" => $_POST['program']]);
 
-                    $user->setFirstname($firstname);
-                    $user->setLastname($lastname);
-                    $user->setEmail($email);
-                    $user->setProgram($program);
-                    if ($_FILES && !empty($_FILES['image']['name'])) {
-                        list($uploaded, $failed) = self::uploadPhoto($_FILES);
+                    $inputs = [$firstname,$lastname,$email,$program];
 
-                        if (!empty($failed)) {
-                            $this->addFlash('danger', $failed);
-                            return $this->redirectToRoute('profil');
-                        }
-                        $user->setImage($uploaded);
+                    $errors = self::checkErrors($inputs);
+
+                    if ($errors) {
+                        return $this->redirectToRoute('profil');
                     }
+
+                    $user = self::update($user, $inputs);
                     $entityManager->persist($user);
                 }
                 $entityManager->flush();
@@ -92,6 +90,46 @@ class AccountController extends AbstractController
         $input = htmlspecialchars($input);
 
         return $input;
+    }
+
+    public function checkErrors(array $inputs)
+    {
+        $errors = [];
+
+        if (empty($inputs[0])) {
+            $this->addFlash('danger', "Veuillez renseigner un prénom svp");
+            $errors['firstname'] = true;
+        }
+        if (empty($inputs[1])) {
+            $this->addFlash('danger', "Veuillez renseigner un nom svp");
+            $errors['lastname'] = true;
+        }
+        if (empty($inputs[2])) {
+            $this->addFlash('danger', "Email obligatoire");
+            $errors['email'] = true;
+        }
+        return $errors;
+    }
+
+    public function update(User $user, array $inputs)
+    {
+        list($firstname, $lastname, $email, $program) = $inputs;
+
+        $user->setFirstname($firstname);
+        $user->setLastname($lastname);
+        $user->setEmail($email);
+        $user->setProgram($program);
+        if ($_FILES && !empty($_FILES['image']['name'])) {
+            list($uploaded, $failed) = self::uploadPhoto($_FILES);
+
+            if (!empty($failed)) {
+                $this->addFlash('danger', $failed);
+                return $this->redirectToRoute('profil');
+            }
+            $user->setImage($uploaded);
+        }
+
+        return $user;
     }
 
     public static function uploadPhoto($image):array

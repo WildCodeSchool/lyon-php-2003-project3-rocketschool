@@ -53,4 +53,13 @@ class QuizResultService
             }
         }
     }
+
+    public function isAllowed($user):bool
+    {
+        $checklist = $user->getChecklist();
+        if ($checklist->getCheckVideo()) {
+            return true;
+        }
+        return false;
+    }
 }
