@@ -1587,8 +1587,7 @@ td#LT_result_quiz_good.search_response {
 
                 div.row {
                     div.col-lg-2 {
-                        margin-left: -50px;
-                        margin-right: 40px;
+                        margin: auto 0;
                     }
 
                     div.col-md-8 {
@@ -1607,6 +1606,7 @@ td#LT_result_quiz_good.search_response {
         margin: 20px auto;
 
         @media screen and (min-width: 768px) {
+
             padding: 0;
             justify-content: space-around;
 
@@ -1616,15 +1616,8 @@ td#LT_result_quiz_good.search_response {
         }
 
         @media screen and (min-width: 992px) {
-            padding: 20px;
-        }
-
-        @media screen and (min-width: 1200px) {
-            width: 90%;
-        }
-
-        @media screen and (min-width: 1400px) {
-            width: 80%;
+            width: 70%;
+            padding: 40px;
         }
 
 
