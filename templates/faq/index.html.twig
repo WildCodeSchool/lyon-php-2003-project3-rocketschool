@@ -12,57 +12,65 @@
             <button class="btn btn-round-darkblue">Nouvelle Question</button>
         </a>
     </div>
-    <table class="table faq-table sortable">
-        <thead>
-        <tr>
-            <th>Déplacer</th>
-            <th>Catégorie</th>
-            <th>Question</th>
-            <th>réponse</th>
-            <th style="width: 100px">Créé le</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for faq in faqs %}
-            <tr class="faq-tr">
-                <td>
-                    <div class="faq-arrow-container">
-                        <div id="faq-btn-up-{{ faq.position }}"
-                             data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Up'}) }}"
-                             class="faq-btn faq-btn-up">
-                            <img src="{{ asset('build/images/multimedia-option.png') }}"
-                                 class="faq-position-btn faq-position-btn-active faq-up-btn"
-                                 data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Up'}) }}"
-                                 alt="Monter dans la file">
-                        </div>
-                        <div id="faq-btn-down-{{ faq.position }}"
-                             data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Down'}) }}"
-                             class="faq-btn faq-btn-down">
-                            <img src="{{ asset('build/images/multimedia-option.png') }}"
-                                 data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Down'}) }}"
-                                 class="faq-position-btn faq-position-btn-active faq-down-btn"
-                                 alt="Descendre dans la file">
-                        </div>
-                    </div>
-                </td>
-                <td>{{ faq.category.name|default('Sans catégorie') }}</td>
-                <td><strong>{{ faq.question }}</strong></td>
-                <td>{{ faq.answer }}</td>
-                <td><small>{{ faq.createdAt ? faq.createdAt|date('Y-m-d') : '' }}</small></td>
-                <td>
-                    <a href="{{ path('faq_show', {'id': faq.id}) }}">voir</a>
-                    <a href="{{ path('faq_edit', {'id': faq.id}) }}">editer</a>
-                    <a href="{{ path('faq_delete', {'id': faq.id}) }}">supprimer</a>
-                </td>
-            </tr>
-        {% else %}
+    <div class="faq-table-container">
+        <table class="table faq-table sortable">
+            <thead>
             <tr>
-                <td colspan="5">no records found</td>
+                <th>Déplacer</th>
+                <th>Catégorie</th>
+                <th class="faq-question-answer">Question/Réponse</th>
+                <th style="width: 100px">Créé le</th>
+                <th>actions</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for faq in faqs %}
+                <tr class="faq-tr">
+                    <td>
+                        <div class="faq-arrow-container">
+                            <div id="faq-btn-up-{{ faq.position }}"
+                                 data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Up'}) }}"
+                                 class="faq-btn faq-btn-up">
+                                <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                     class="faq-position-btn faq-position-btn-active faq-up-btn"
+                                     data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Up'}) }}"
+                                     alt="Monter dans la file">
+                            </div>
+                            <div id="faq-btn-down-{{ faq.position }}"
+                                 data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Down'}) }}"
+                                 class="faq-btn faq-btn-down">
+                                <img src="{{ asset('build/images/multimedia-option.png') }}"
+                                     data-href="{{ path('faq_move', {'id': faq.id, 'position': 'Down'}) }}"
+                                     class="faq-position-btn faq-position-btn-active faq-down-btn"
+                                     alt="Descendre dans la file">
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ faq.category.name|default('Sans catégorie') }}</td>
+                    <td class="faq-question-answer">
+                        <strong>{{ faq.question }}</strong>
+                        <p>{{ faq.answer }}</p>
+                    </td>
+                    <td><small>{{ faq.createdAt ? faq.createdAt|date('d-m-y') : '' }}</small></td>
+                    <td>
+                        <a href="{{ path('faq_show', {'id': faq.id}) }}">voir</a>
+                        <a href="{{ path('faq_edit', {'id': faq.id}) }}">editer</a>
+                        <a href="{{ path('faq_delete', {'id': faq.id}) }}">supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="faq-action-btn">
+        <a href="{{ path('faq_new') }}">
+            <button class="btn btn-round-darkblue">Nouvelle Question</button>
+        </a>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

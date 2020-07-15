@@ -743,7 +743,7 @@ footer a {
 
 // FAQ ADMIN SECTION
 .faq-table {
-    margin: 40px auto;
+    margin: 15px auto;
     text-align: center;
 
     input, textarea, select {
@@ -755,16 +755,24 @@ footer a {
     }
 }
 
+.faq-question-answer {
+    text-align: initial;
+}
+
 .faq-created-at {
     margin: 0 auto 15px auto;
     text-align: center;
 }
 
 .faq-action-btn {
-    margin-top: 15px;
+    margin: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.faq-table-container {
+    overflow: scroll;
 }
 
 .faq-position-btn {
