@@ -980,6 +980,7 @@ footer a {
         .ac_duration_content {
             .form-group {
                 padding-top: 4px;
+                display: flex;
             }
 
             .form-search {
@@ -1235,6 +1236,7 @@ for login & register pages */
 
     .form-group {
         width: 100%;
+        margin-right: 120px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -1256,7 +1258,7 @@ option:hover {
     border-top: none;
     width: 200px;
     text-align: center;
-    height: 30px;
+    height: 35px;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
     outline-style:none;
 }
@@ -1272,9 +1274,9 @@ option:hover {
     border-right: none;
     border-top: none;
     background-color: $primary-color;
-    width: 180px;
+    width: 209px;
     padding-left: 15px;
-    height: 30px;
+    height: 35px;
     margin-left: 20px;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
     outline-style:none;
