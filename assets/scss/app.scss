@@ -1,11 +1,15 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
+html {
+    height: 100%;
+}
 
 /* GENERAL CSS */
 body {
     background-color: $primary-color;
     width: 100%;
+    height: 100%;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
     font-weight: 400;
 
@@ -45,11 +49,10 @@ blockquote {
     background-color: $secondary-color;
     height: 60px;
     color: $primary-color;
-    margin-top: 80px;
 }
 
 .margin_top_navbar_admin {
-    margin-top: 139px;
+    margin-top: -5px;
 }
 
 .dropdown-menu {
@@ -166,7 +169,22 @@ footer {
     display: block;
     width: 100%;
     background-color: $secondary-color;
-    position: absolute;
+    bottom: 0;
+
+
+}
+
+
+
+#main {
+
+
+    min-height: 100%;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 footer a {
