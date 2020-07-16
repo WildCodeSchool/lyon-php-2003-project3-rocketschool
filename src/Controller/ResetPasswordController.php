@@ -48,10 +48,16 @@ class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->processSendingPasswordResetEmail(
-                $form->get('email')->getData(),
-                $mailer
-            );
+            $user = $this->userRepository->findOneBy(['email' => $form->get('email')->getData()]);
+
+            if (!empty($user)) {
+                return $this->processSendingPasswordResetEmail(
+                    $form->get('email')->getData(),
+                    $mailer
+                );
+            }
+
+            $this->addFlash("reset_password_error", "Email non répertorié");
         }
 
         return $this->render('reset_password/request.html.twig', [
@@ -118,23 +124,27 @@ class ResetPasswordController extends AbstractController
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // A password reset token should be used only once, remove it.
-            $this->resetPasswordHelper->removeResetRequest($token);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                // A password reset token should be used only once, remove it.
+                $this->resetPasswordHelper->removeResetRequest($token);
 
-            // Encode the plain password, and set it.
-            $encodedPassword = $passwordEncoder->encodePassword(
-                $user,
-                $form->get('plainPassword')->getData()
-            );
+                // Encode the plain password, and set it.
+                $encodedPassword = $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                );
 
-            $user->setPassword($encodedPassword);
-            $this->getDoctrine()->getManager()->flush();
+                $user->setPassword($encodedPassword);
+                $this->getDoctrine()->getManager()->flush();
 
-            // The session is cleaned up after the password has been changed.
-            $this->cleanSessionAfterReset();
+                // The session is cleaned up after the password has been changed.
+                $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('home');
+                return $this->redirectToRoute('home');
+            } else {
+                $this->addFlash("reset_password_error", "Mot de passe invalide");
+            }
         }
 
         return $this->render('reset_password/reset.html.twig', [
