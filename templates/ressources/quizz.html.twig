@@ -23,6 +23,15 @@
                 <p class="quiz-attempt">Vous avez déjà validé le test deux fois</p>
             {% endif %}
         {% endif %}
+        {% if result is not same as(null) and app.user.quizResult|length == 0 %}
+            <a href="{{ path('ressources_quizz') }}">
+
+                <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="button">
+
+                    Repasser le test
+                </button>
+            </a>
+        {% endif %}
         <form action="quizz" method="POST">
             <input type="hidden" name="user_id" value="{{ app.user.id }}">
 

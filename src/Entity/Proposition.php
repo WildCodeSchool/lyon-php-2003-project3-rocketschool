@@ -19,14 +19,13 @@ class Proposition
     private $id;
 
     /**
-     * @ORM\Column(type="text")
-      * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
      */
     private $title;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
      */
     private $isGood;
 
