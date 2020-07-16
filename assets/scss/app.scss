@@ -95,6 +95,10 @@ blockquote {
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
+    margin-left: 130px;
+}
+.navbar-nav li {
+    padding-left: 20px;
 }
 
 .navbar {
@@ -177,8 +181,8 @@ footer a {
     width: 178px;
     height: 35px;
     text-align: center;
-
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    transition: 0.5s;
 }
 
 .btn_dark_blue_submit {
@@ -1020,10 +1024,11 @@ footer a {
 
     .user_table .row:first-child {
         flex-direction: row;
+        margin-right: 200px;
     }
 
     .ac_duration {
-        margin-left: 20px;
+        margin-left: 80px;
 
         .ac_duration_content {
             .form-group {
@@ -1036,7 +1041,6 @@ footer a {
             }
         }
     }
-
 
 }
 
@@ -1073,6 +1077,10 @@ footer a {
         text-decoration: none;
         color: $primary-color;
         border-bottom: none;
+    }
+
+    .row {
+        margin-right: 100px;
     }
 
     .nav_admin {
@@ -1132,10 +1140,6 @@ footer a {
     .ac_duration_content {
         margin-left : auto;
         margin-right: auto;
-
-        .form-group {
-            height: 150px;
-        }
     }
 }
 
@@ -1218,13 +1222,19 @@ for login & register pages */
 }
 
 .LT_page_name_ter {
-    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $secondary-color;
+    height: 60px;
+    color: $primary-color;
 }
 
 /* Accounts duration field */
 .ac_duration {
-    width: 100%;
-    padding-top: 40px;
+    width: 30%;
     display: flex;
     margin-bottom: -40px;
 }
@@ -1232,6 +1242,10 @@ for login & register pages */
 .ac_duration_content {
     margin-left : auto;
     margin-right: 40px;
+}
+
+.ac_duration p {
+    text-align: center;
 }
 
 /* Administration_users */
@@ -1243,13 +1257,12 @@ for login & register pages */
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    white-space: nowrap;
-    overflow: scroll hidden;
     padding-top: 40px;
 
-    .row {
-        flex-direction: column-reverse;
-    }
+}
+
+.table_user {
+    width: 80%;
 }
 
 .table .search_response {
@@ -1258,6 +1271,7 @@ for login & register pages */
     border-bottom: 2px solid $third-color;
     color: black;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
+
 }
 
 .table .search_response:hover {
@@ -1272,26 +1286,30 @@ for login & register pages */
     border-bottom: 2px $secondary-color solid;
 }
 
-.table_user {
-    width: 80%;
+.bloc_table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke ;
 }
+
 
 /* Administration_search_users */
 .content-container_lt {
     width: 100%;
-    padding-left: 80px;
+    padding-left: 100px;
     margin-top: 50px;
+}
 
-    .form-group {
+.form-group {
         width: 100%;
-        margin-right: 120px;
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-bottom: 4rem;
-    }
 }
-
 
 
 option:hover {
@@ -1309,6 +1327,7 @@ option:hover {
     height: 35px;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
     outline-style:none;
+    margin-left: 20px;
 }
 
 .form-search:hover {
@@ -1364,48 +1383,89 @@ td#LT_result_quiz_good.search_response {
     color: darkgreen;
 }
 
+/* PHONE AND EXTRA SMALL SCREEN TABLE LT */
+@media screen and (max-width: 800px) {
+
+
+    .table_user {
+        width: 100%;
+        overflow: scroll;
+        table-layout: fixed;
+        overflow-scrolling: auto;
+    }
+
+    .table .search_response {
+        font-size: 12px;
+    }
+
+    .table .thead-light th {
+        font-size: 10px;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .table .search_response {
+        word-wrap: break-word;
+    }
+}
 
 /* PHONE AND EXTRA SMALL SCREEN */
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 600px) {
 
     /* VIDEO SECTION */
     .content-container {
         width: 100%;
-
-        iframe {
-            height: 160px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            height: 200px;
-        }
     }
 
-    .form-program, .btn {
-        margin-left: 0;
+    iframe {
+        height: 160px;
     }
-
-    .form-program {
-        width: 50%;
+    .ac_duration {
+        width: 100%;
     }
 
     .form-search {
-        width: 80%;
+        width: 100%;
     }
 
-    .content-container_lt {
-        padding-left: 0;
+    .form-group {
+        width: 100%;
+        margin-right: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 4rem;
+        height: 140px;
     }
+
+    #form_search_sup {
+        width: 50%;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ac_duration {
+        padding-top: 0;
+    }
+}
 
     .ac_duration .ac_duration_content {
         margin-right: 0;
 
         .form-group {
             align-items: center;
+        }
+
+    p {
+        text-align: center;
+
         }
     }
 
@@ -1458,7 +1518,7 @@ td#LT_result_quiz_good.search_response {
             margin-top: 0;
         }
     }
-}
+
 
 td#LT_result_quiz_good.search_response {
     color: darkgreen;
