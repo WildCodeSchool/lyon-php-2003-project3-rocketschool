@@ -338,8 +338,6 @@ footer a {
         border-radius: 30px;
         display: block;
         margin: 50px auto 20px;
-        padding: 8px 32px;
-        font-size: 1.4em;
         font-family: Montserra, Raleway, sans-serif;
 
         &:hover {
@@ -555,6 +553,7 @@ footer a {
 
     .quiz-attempt {
         margin-top: 25px;
+        margin-bottom: 50px;
         text-align: center;
     }
 
@@ -599,6 +598,16 @@ footer a {
     .btn-quizz:hover {
         background-color: $dark-blue;
         color: $secondary-color;
+    }
+
+    .a-btn-center {
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .no-more-attempt {
+        margin: 60px;
     }
 
     .quizz-alert {
@@ -1488,11 +1497,6 @@ td#LT_result_quiz_good.search_response {
         .quizz-container {
             width: 100%;
         }
-
-        .quizz-body ul {
-            padding-inline-start: 100px;
-        }
-
       }
 
     #quizz_edit {
@@ -2233,7 +2237,6 @@ td#LT_result_quiz_good.search_response {
         margin: auto;
 
         p {
-            font-size: 1.5em;
             margin-bottom: 0;
             color: white;
         }
