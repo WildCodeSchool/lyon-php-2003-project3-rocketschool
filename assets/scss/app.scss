@@ -659,6 +659,10 @@ footer a {
     border: solid 1px $third-color;
 }
 
+.round-checkmark {
+    border-radius: 20px;
+}
+
 /* On mouse-over, add a grey background color */
 .quizz-radio:hover input ~ .checkmark {
     background-color: #ccc;
