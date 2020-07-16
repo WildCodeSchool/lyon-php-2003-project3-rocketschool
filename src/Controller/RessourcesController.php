@@ -177,4 +177,23 @@ class RessourcesController extends AbstractController
 
         return [$postValide,$errors,$result];
     }
+
+    /**
+     * @Route("/guide/{user}", name="guide")
+     * @param User $user
+     * @return Response
+     */
+    public function guide(User $user)
+    {
+        $checklist = $user->getChecklist();
+        if ($checklist) {
+            $checklist->setCheckGuide(true);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($checklist);
+            $entityManager->flush();
+        }
+
+        return $this->redirect('http://www.google.fr');
+    }
 }
