@@ -20,12 +20,12 @@ class Proposition
 
     /**
      * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
      */
     private $title;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
      */
     private $isGood;
 
