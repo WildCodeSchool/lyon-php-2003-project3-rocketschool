@@ -4,12 +4,16 @@
 
 {% block stylesheets %}
     <style>
-        .LT_page_name, body > header, .edit_hide {
+        /*#main {*/
+        /*    justify-content: start;*/
+        /*}*/
+
+        .LT_page_name, #main > header, .edit_hide {
             display: none;
         }
 
         @media screen and (min-width: 992px) {
-            body > header, .edit_hide {
+            #main > header, .edit_hide {
                 display: block;
             }
         }

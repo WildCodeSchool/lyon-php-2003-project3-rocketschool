@@ -57,7 +57,8 @@ class QuizResultService
     public function isAllowed($user):bool
     {
         $checklist = $user->getChecklist();
-        if ($checklist->getCheckVideo()) {
+        $roles = $user->getRoles();
+        if ($checklist->getCheckVideo() || in_array("ROLE_ADMIN", $roles)) {
             return true;
         }
         return false;
