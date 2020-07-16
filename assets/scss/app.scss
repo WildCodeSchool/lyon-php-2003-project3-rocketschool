@@ -203,6 +203,13 @@ footer a {
 .btn-round-darkblue:hover {
     color: black;
     background-color: $primary-color;
+    box-shadow: black 0px 0px 3px;
+}
+
+.btn-round-clearblue {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 30px;
 }
 
 .btn-round-danger {
@@ -378,8 +385,6 @@ footer a {
         color: $primary-color;
         border-radius: 30px;
         margin: 25px;
-
-
     }
 
     .btn-round-clearblue:hover {
@@ -691,6 +696,10 @@ footer a {
     flex-wrap: wrap;
     margin: 30px auto;
 
+    .is-invalid {
+        background-image: none;
+    }
+
     .form-control {
         margin: 10px;
         width: 300px;
@@ -744,16 +753,50 @@ footer a {
 
 // FAQ ADMIN SECTION
 .faq-table {
-    margin: 40px auto;
+    margin: 15px auto;
+    text-align: center;
+
+    .faq-index-btn {
+        margin: 3px;
+    }
+
+    .btn-round-darkblue,
+    .btn-round-clearblue,
+    .btn-round-danger {
+        display: block;
+        margin : 0;
+        height: 25px;
+        width: 100px;
+    }
+
+    .btn-round-clearblue:hover {
+        color: $dark-blue;
+    }
+}
+
+.faq-table-shadow {
+    box-shadow: black 0 15px 15px -5px;
+}
+
+.faq-form {
+    margin: 15px auto;
     text-align: center;
 
     input, textarea, select {
-        margin-bottom: 15px;
+        margin-top: 15px;
     }
 
     textarea {
         height: 200px;
     }
+}
+
+.faq-danger-btn, .faq-danger-btn:hover {
+    margin: 0;
+}
+
+.faq-question-answer {
+    text-align: initial;
 }
 
 .faq-created-at {
@@ -762,10 +805,14 @@ footer a {
 }
 
 .faq-action-btn {
-    margin-top: 15px;
+    margin: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.faq-table-container {
+    overflow: scroll;
 }
 
 .faq-position-btn {
@@ -2127,7 +2174,6 @@ td#LT_result_quiz_good.search_response {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        border: 1px solid #4e555b;
         background-color: $secondary-color;
         display: flex;
         flex-direction: column;
@@ -2147,7 +2193,7 @@ td#LT_result_quiz_good.search_response {
         margin: auto;
         height: 48px;
         width: 48px;
-        border: 3px solid #4e555b;
+        border: 1px solid #4e555b;
     }
 }
 

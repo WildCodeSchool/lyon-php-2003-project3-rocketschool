@@ -120,8 +120,10 @@ class RessourcesController extends AbstractController
 
         if ($form->isSubmitted() && !empty($form->getData())) {
             $data = $form->getData();
-            $faq = $this->faqRepository
-                ->findBySomeField($data['searchField'], $data['category']);
+            if (isset($data['category'])) {
+                $faq = $this->faqRepository
+                    ->findBySomeField($data['searchField'], $data['category']);
+            }
         }
 
         return $this->render('ressources/faq.html.twig', [
@@ -129,15 +131,6 @@ class RessourcesController extends AbstractController
             'form' => $form->createView(),
             'faq' => $faq
         ]);
-    }
-
-    /**
-     * @Route("/guide", name="guide")
-     */
-
-    public function guide()
-    {
-        return $this->render('ressources/guide.html.twig', ['page_name' => 'Guide d\'entretien']);
     }
 
     public function quizzProcess($user, $quizResultService)
