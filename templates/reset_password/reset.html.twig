@@ -4,11 +4,24 @@
 
 {% block body %}
     <section class="form-section col-10 col-md-5 col-lg-4" id="register_form">
+        {% for flashError in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
         <div class="group_input reset-email-container">
             {{ form_start(resetForm) }}
             {{ form_row(resetForm.plainPassword) }}
+            {{ form_errors(resetForm) }}
             <button class="btn btn-round-darkblue">Valider</button>
             {{ form_end(resetForm) }}
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        if (document.querySelector('.form-error-message')) {
+            let error = document.querySelector('.form-error-message').textContent;
+            document.getElementsByClassName('alert-danger').item(0).innerHTML = error;
+        }
+    </script>
 {% endblock %}
