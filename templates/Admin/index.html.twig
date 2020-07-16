@@ -34,7 +34,7 @@
             </div>
             <section class="ac_duration col-lg-2 p-lg-2">
                 <div class="ac_duration_content">
-                    <p>Nb. jours avant suppression candidats</p>
+                    <p> Nb. jours avant suppression candidats</p>
                     {{ form_start(formAccDu, {
                         'attr': {
                             'class': 'form-group',
@@ -43,7 +43,7 @@
                     {{ form_widget(formAccDu.days, {
 
                         'attr': {
-                            'class': 'form-search',
+                            'class': 'form-program',
                             'type': 'number',
                             'min': '0',
                         }
@@ -54,6 +54,8 @@
             </section>
 
         </div>
+    </section>
+    <section class="bloc_table">
         <table class="table table-hover table_user">
             <thead class="thead-light">
             <tr class="tr">
@@ -132,5 +134,5 @@
             {% endif %}
             </tbody>
         </table>
-    </section>
+        </section>
 {% endblock %}
