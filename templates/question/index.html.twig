@@ -8,6 +8,11 @@
 
 {% block body %}
     <div class="container-fluid quizz-container" id="quizz_index">
+        <div class="container-fluid" >
+            <a href="{{ path('question_new') }}" class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
+                Ajouter une question
+            </a>
+        </div>
         <table class="table content-container question-table-index">
             <thead>
                 <tr>
