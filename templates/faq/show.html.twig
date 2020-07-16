@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Faq{% endblock %}
+{% block title %}FAQ - Question{% endblock %}
 
 {% block body %}
     <div class="faq-action-btn">
-        <a href="{{ path('faq_index') }}"><button class="btn btn-round-darkblue">back to list</button></a>
+        <a href="{{ path('faq_index') }}"><button class="btn btn-round-darkblue">Retour</button></a>
         {{ include('faq/_delete_form.html.twig') }}
     </div>
 
