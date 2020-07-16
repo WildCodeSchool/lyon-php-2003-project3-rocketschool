@@ -358,6 +358,7 @@ footer a {
         padding: 8px 32px;
         font-size: 1.4em;
         font-family: Montserra, Raleway, sans-serif;
+        transition: 0.5s;
 
         &:hover {
             background-color: white;
@@ -1105,7 +1106,7 @@ footer a {
         border-bottom: none;
     }
 
-    .row {
+     #row_form.row {
         margin-right: 100px;
     }
 
@@ -1321,6 +1322,7 @@ for login & register pages */
     justify-content: center;
     align-items: center;
     background-color: whitesmoke ;
+    overflow: scroll;
 }
 
 
@@ -1417,9 +1419,6 @@ td#LT_result_quiz_good.search_response {
 
     .table_user {
         width: 100%;
-        overflow: scroll;
-        table-layout: fixed;
-        overflow-scrolling: auto;
     }
 
     .table .search_response {
@@ -1472,7 +1471,7 @@ td#LT_result_quiz_good.search_response {
         width: 50%;
     }
 
-    .row {
+   #row_form .row {
         display: flex;
         flex-direction: column;
         justify-content: center;
