@@ -792,6 +792,7 @@ footer a {
 .faq-table {
     margin: 15px auto;
     text-align: center;
+    min-width: 1000px;
 
     .faq-index-btn {
         margin: 3px;
@@ -849,7 +850,7 @@ footer a {
 }
 
 .faq-table-container {
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
 .faq-position-btn {
