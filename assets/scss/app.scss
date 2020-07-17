@@ -1136,7 +1136,7 @@ footer a {
         border-bottom: none;
     }
 
-     #row_form.row {
+    #row_form.row {
         margin-right: 100px;
     }
 
@@ -1354,11 +1354,11 @@ for login & register pages */
 }
 
 .form-group {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4rem;
 }
 
 
@@ -1492,7 +1492,7 @@ td#LT_result_quiz_good.search_response {
         width: 50%;
     }
 
-   #row_form .row {
+    #row_form .row {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1504,55 +1504,55 @@ td#LT_result_quiz_good.search_response {
     }
 }
 
-    .ac_duration .ac_duration_content {
-        margin-right: 0;
+.ac_duration .ac_duration_content {
+    margin-right: 0;
 
-        .form-group {
-            align-items: center;
-        }
+    .form-group {
+        align-items: center;
+    }
 
     p {
         text-align: center;
 
-        }
     }
+}
 
-    h2 {
-        font-size: 1.3rem;
-    }
+h2 {
+    font-size: 1.3rem;
+}
 
-    #quizz_candidat,
-    #quizz_index,
-    #quizz_show,
-    #quizz_edit {
+#quizz_candidat,
+#quizz_index,
+#quizz_show,
+#quizz_edit {
+    width: auto;
+    margin: auto;
+    padding: 0;
+
+    .btn {
         width: auto;
-        margin: auto;
-        padding: 0;
+    }
 
-        .btn {
-            width: auto;
-        }
+    .quizz-container {
 
-        .quizz-container {
+        width: 100%;
+    }
+}
 
-            width: 100%;
-        }
-      }
+#quizz_edit {
+    .form-group {
+        height: inherit;
 
-    #quizz_edit {
-        .form-group {
-            height: inherit;
-
-            label {
-                max-width: inherit;
-            }
-        }
-
-        .proposition .btn-round-danger {
-            //margin-right: 15%;
-            margin-top: 0;
+        label {
+            max-width: inherit;
         }
     }
+
+    .proposition .btn-round-danger {
+        //margin-right: 15%;
+        margin-top: 0;
+    }
+}
 
 
 td#LT_result_quiz_good.search_response {
