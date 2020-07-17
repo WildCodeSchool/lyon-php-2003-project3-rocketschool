@@ -53,4 +53,14 @@ class QuizResultService
             }
         }
     }
+
+    public function isAllowed($user):bool
+    {
+        $checklist = $user->getChecklist();
+        $roles = $user->getRoles();
+        if ($checklist->getCheckVideo() || in_array("ROLE_ADMIN", $roles)) {
+            return true;
+        }
+        return false;
+    }
 }

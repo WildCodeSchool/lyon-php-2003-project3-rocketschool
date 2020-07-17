@@ -12,7 +12,7 @@
         </div>
         <div class="video-title-container">
             <h2>{{ video.name }}</h2>
-            <small>updated {{ video.getUpdatedAt|date }}</small>
+            <small>mis à jour le {{ video.getUpdatedAt|date('d/m/Y') }}</small>
         </div>
         <div class="video-script-container">
             <div class="video-description" id="video-description-id">
@@ -37,10 +37,10 @@
                 </div>
             {% else %}
                 <form action="" method="post" class="form-inline">
-                    <div class="form-group check-video">
+                    <div id="check-video" class="form-group check-video">
                         <input type="hidden" name="ready" value="ready">
                         <input type="hidden" name="userId" value="{{ app.user.id }}">
-                        <button type="submit">J'ai compris !</button>
+                        <button type="submit" class="btn btn-round-darkblue">J'ai compris !</button>
                     </div>
                 </form>
             {% endif %}

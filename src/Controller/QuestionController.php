@@ -27,7 +27,7 @@ class QuestionController extends AbstractController
     {
         return $this->render('question/index.html.twig', [
             'questions' => $questionRepository->findBy([], ['questionOrder' => 'ASC']),
-            'page_name' => 'Quiz - Edition',
+            'page_name' => 'Quizz - Edition',
         ]);
     }
 
@@ -64,7 +64,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render('question/new.html.twig', [
-            'page_name' => 'Quiz - Ajouter une question',
+            'page_name' => 'Quizz - Ajouter une question',
             'question' => $question,
             'form' => $form->createView(),
         ]);
@@ -103,7 +103,7 @@ class QuestionController extends AbstractController
         return $this->render('question/edit.html.twig', [
             'question' => $question,
             'form' => $form->createView(),
-            'page_name' => "Quiz - Edition d'une question"
+            'page_name' => "Quizz - Edition d'une question"
         ]);
     }
 
