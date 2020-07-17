@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Proposition;
 use App\Entity\Question;
 use App\Entity\Quizz;
@@ -120,10 +121,8 @@ class RessourcesController extends AbstractController
 
         if ($form->isSubmitted() && !empty($form->getData())) {
             $data = $form->getData();
-            if (isset($data['category'])) {
-                $faq = $this->faqRepository
-                    ->findBySomeField($data['searchField'], $data['category']);
-            }
+            $faq = $this->faqRepository
+                ->findBySomeField($data['searchField'], $data['category']);
         }
 
         return $this->render('ressources/faq.html.twig', [

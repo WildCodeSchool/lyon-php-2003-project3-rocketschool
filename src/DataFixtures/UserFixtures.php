@@ -29,10 +29,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for ($i = 0; $i < 100; $i++) {
-            $userManager = new UserManager();
-            $user = new User();
-
+        for ($i = 0; $i < 50; $i++) {
+            $checklist = new Checklist();
+            $user = new User($checklist);
             $user->setEmail('user'.$i.'@mail.com')
                 ->setProgram($this->getReference('First program'))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'password'))
@@ -41,15 +40,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setAccountsDuration($this->getReference('AccountsDuration'));
             $manager->persist($user);
             $manager->flush();
-
-            $userManager->setDeletedAt($user, $user->getAccountsDuration()->getDays());
             $manager->persist($user);
         }
-
-
-//        $userManager = new UserManager();
-//        $accountDuration = new AccountsDuration();
-//        $accountDuration->setDays(100);
 
         $admin = new User();
         $admin->setEmail('admin@mail.com')
@@ -57,7 +49,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setRoles(["ROLE_ADMIN"])
             ->setFirstname('Jhonny')
             ->setLastname('Begood');
-//        ->setAccountsDuration($accountDuration);
         $manager->persist($admin);
 
         $manager->flush();
