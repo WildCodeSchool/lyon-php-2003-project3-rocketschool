@@ -1158,8 +1158,6 @@ footer a {
         margin-right: 100px;
     }
 
-
-
     .nav_admin {
 
         .adminBar {
@@ -1182,8 +1180,6 @@ footer a {
                 color : $dark-blue;
             }
         }
-
-
     }
 
     /* VIDEO SECTION */
@@ -1363,7 +1359,6 @@ for login & register pages */
     overflow: scroll;
 }
 
-
 /* Administration_search_users */
 .content-container_lt {
     width: 100%;
@@ -1378,7 +1373,6 @@ for login & register pages */
         align-items: center;
         margin-bottom: 4rem;
 }
-
 
 option:hover {
     background-color: $third-color;
@@ -1518,10 +1512,10 @@ td#LT_result_quiz_good.search_response {
     .table .thead-light th {
         font-size: 10px;
     }
-
 }
 
 @media screen and (max-width: 550px) {
+
     .table .search_response {
         word-wrap: break-word;
     }
@@ -1581,9 +1575,8 @@ td#LT_result_quiz_good.search_response {
             align-items: center;
         }
 
-    p {
+        p {
         text-align: center;
-
         }
     }
 
@@ -1606,7 +1599,7 @@ td#LT_result_quiz_good.search_response {
         .quizz-container {
             width: 100%;
         }
-      }
+    }
 
     #quizz_edit {
         .form-group {
