@@ -18,6 +18,8 @@ class ProgramFixtures extends Fixture
         $program = new Program();
         $program->setName('Business Developer');
         $this->addReference('Second program', $program);
+        $manager->persist($program);
+
 
         $program = new Program();
         $program->setName('Marketing Manager');
