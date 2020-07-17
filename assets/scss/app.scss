@@ -166,6 +166,14 @@ blockquote {
     margin-bottom: 40px;
 }
 
+.social-login-desk {
+    display: block;
+}
+
+.social-login-mobile {
+    display: none;
+}
+
 footer {
     display: block;
     width: 100%;
@@ -1020,6 +1028,15 @@ footer a {
 
 /* DESKTOP AND LARGE SCREEN */
 @media (min-width: 992px) {
+
+    .social-login-desk {
+        display: block;
+    }
+
+    .social-login-mobile {
+        display: none;
+    }
+
     .content-container {
         iframe {
             height: 350px;
@@ -1101,6 +1118,14 @@ footer a {
 /* TABLET AND SMALL SCREEN */
 @media screen and (max-width: 991px) {
 
+    .social-login-desk {
+        display: block;
+    }
+
+    .social-login-mobile {
+        display: none;
+    }
+
     #navbarNavDropdown {
         z-index: 1;
 
@@ -1140,8 +1165,6 @@ footer a {
         margin-right: 100px;
     }
 
-
-
     .nav_admin {
 
         .adminBar {
@@ -1164,8 +1187,6 @@ footer a {
                 color : $dark-blue;
             }
         }
-
-
     }
 
     /* VIDEO SECTION */
@@ -1345,7 +1366,6 @@ for login & register pages */
     overflow: scroll;
 }
 
-
 /* Administration_search_users */
 .content-container_lt {
     width: 100%;
@@ -1360,7 +1380,6 @@ for login & register pages */
     align-items: center;
     margin-bottom: 4rem;
 }
-
 
 option:hover {
     background-color: $third-color;
@@ -1436,6 +1455,58 @@ td#LT_result_quiz_good.search_response {
 /* PHONE AND EXTRA SMALL SCREEN TABLE LT */
 @media screen and (max-width: 800px) {
 
+    .social-login-desk {
+        display: none;
+    }
+
+    .social-login-mobile {
+        display: block;
+    }
+
+    .social-login-mobile {
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .linkedin-login-btn-mobile {
+        margin: 15px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 40px;
+        }
+    }
+
+    .google-login-btn-mobile {
+        display: flex;
+        justify-content: center;
+
+        .oauth-container {
+            width: 25px;
+            font-weight: 700;
+            line-height: 25px;
+            text-transform: none;
+            display: flex;
+            box-shadow: black 0 0 2px;
+            justify-content: center;
+            height: 40px;
+        }
+
+        .google-img {
+            margin-top: -2px;
+            margin-right: 20px;
+        }
+    }
+
+    #fb-login-grp-mobile {
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+    }
 
     .table_user {
         width: 100%;
@@ -1448,10 +1519,10 @@ td#LT_result_quiz_good.search_response {
     .table .thead-light th {
         font-size: 10px;
     }
-
 }
 
 @media screen and (max-width: 550px) {
+
     .table .search_response {
         word-wrap: break-word;
     }
@@ -1513,7 +1584,6 @@ td#LT_result_quiz_good.search_response {
 
     p {
         text-align: center;
-
     }
 }
 
@@ -1534,7 +1604,6 @@ h2 {
     }
 
     .quizz-container {
-
         width: 100%;
     }
 }
