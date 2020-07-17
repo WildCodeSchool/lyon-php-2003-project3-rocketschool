@@ -25,6 +25,9 @@ final class Version20200617145747 extends AbstractMigration
         $this->addSql('ALTER TABLE user ADD program_id INT NULL');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D6493EB8070A FOREIGN KEY (program_id) REFERENCES program (id)');
         $this->addSql('CREATE INDEX IDX_8D93D6493EB8070A ON user (program_id)');
+        $this->addSql("INSERT INTO program (`name`) VALUES ('Customer Success Manager')");
+        $this->addSql("INSERT INTO program (`name`) VALUES ('Business Developer')");
+        $this->addSql("INSERT INTO program (`name`) VALUES ('Marketing Manager')");
     }
 
     public function down(Schema $schema) : void

@@ -133,14 +133,6 @@ class RessourcesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/guide", name="guide")
-     */
-    public function guide()
-    {
-        return $this->render('ressources/guide.html.twig', ['page_name' => 'Guide d\'entretien']);
-    }
-
     public function quizzProcess($user, $quizResultService)
     {
         $postValide = true;
