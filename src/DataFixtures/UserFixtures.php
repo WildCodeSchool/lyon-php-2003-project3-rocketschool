@@ -28,6 +28,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        $userManager = new UserManager();
         $faker = Faker\Factory::create('fr_FR');
         for ($i = 0; $i < 50; $i++) {
             $checklist = new Checklist();
@@ -40,6 +41,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setAccountsDuration($this->getReference('AccountsDuration'));
             $manager->persist($user);
             $manager->flush();
+            $userManager->setDeletedAt($user, $user->getAccountsDuration()->getDays());
             $manager->persist($user);
         }
 
@@ -50,7 +52,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setFirstname('Jhonny')
             ->setLastname('Begood');
         $manager->persist($admin);
-
         $manager->flush();
     }
 }
