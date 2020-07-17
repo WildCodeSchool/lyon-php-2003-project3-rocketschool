@@ -2,9 +2,11 @@
 
 namespace App\Security;
 
+use App\Entity\AccountsDuration;
 use App\Entity\Checklist;
 use App\Entity\User; // your user entity
 use App\Repository\UserRepository;
+use App\Services\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use KnpU\OAuth2ClientBundle\Client\Provider\LinkedInClient;
@@ -81,12 +83,15 @@ class MyLinkedinAuthenticator extends SocialAuthenticator
         // 3) Maybe you just want to "register" them by creating
         // a User object
 
+        $accountDuration = $this->entityManager->getRepository(AccountsDuration::class)->findOneBy([]);
+
+
         if (empty($user)) {
             $firstName = $linkedinUser->getFirstName();
             $lastName = $linkedinUser->getLastName();
-            $checklist = new Checklist();
 
-            $user = new User($checklist);
+            $userManager = new UserManager();
+            $user = $userManager->userCreation($accountDuration);
             $user->setLinkedinId($linkedinUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)
