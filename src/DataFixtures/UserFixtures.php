@@ -32,7 +32,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user = new User($checklist);
             $user->setEmail('user'.$i.'@mail.com')
                 ->setProgram($this->getReference('First program'))
-                ->setProgram($this->getReference('Second program'))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'password'))
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName);
