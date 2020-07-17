@@ -1308,11 +1308,11 @@ option:hover {
 
 }
 
-td#LT_result_quiz_bad.search_response {
+td.LT_result_quiz_bad.search_response {
     color: red;
 }
 
-td#LT_result_quiz_good.search_response {
+td.LT_result_quiz_good.search_response {
     color: darkgreen;
 }
 
@@ -2124,3 +2124,19 @@ td#LT_result_quiz_good.search_response {
     }
 }
 
+.update_delete_at_form {
+    display: flex;
+    margin-bottom: 0;
+
+    .form-search {
+        width: 150px;
+        margin: 6px 5px;
+
+        cursor: pointer;
+    }
+
+    .btn {
+        width: 90px;
+        margin: auto 0;
+    }
+}

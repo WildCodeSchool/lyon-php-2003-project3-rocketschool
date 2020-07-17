@@ -21,6 +21,7 @@ final class Version20200708090205 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE accounts_duration (id INT AUTO_INCREMENT NOT NULL, days INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('INSERT INTO accounts_duration (days) VALUES (100)');
     }
 
     public function down(Schema $schema) : void

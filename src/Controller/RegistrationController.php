@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\AccountsDuration;
 use App\Entity\Checklist;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\AccountsDurationRepository;
 use App\Security\LoginFormAuthenticator;
+use App\Services\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,21 +24,22 @@ class RegistrationController extends AbstractController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
      * @param LoginFormAuthenticator $authenticator
+     * @param AccountsDurationRepository $durationRepository
      * @return Response
      */
     public function register(
         Request $request,
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
-        LoginFormAuthenticator $authenticator
+        LoginFormAuthenticator $authenticator,
+        AccountsDurationRepository $durationRepository
     ): ?Response {
 
         if ($this->getUser()) {
             return $this->redirectToRoute('profil');
         }
-        $checklist = new Checklist();
 
-        $user = new User($checklist);
+        $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -58,6 +62,16 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $accountsDuration = $durationRepository->findOneBy([]);
+            if ($accountsDuration) {
+                $accountsDuration->getDays();
+            }
+
+            $userManager = new UserManager();
+            $userManager->setDeletedAt($user, $durationRepository);
             $entityManager->persist($user);
             $entityManager->flush();
 

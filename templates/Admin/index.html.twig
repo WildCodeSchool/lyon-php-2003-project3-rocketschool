@@ -37,8 +37,9 @@
                     <p>Nb. jours avant suppression candidats</p>
                     {{ form_start(formAccDu, {
                         'attr': {
+                            'id': 'deletedAtForm',
                             'class': 'form-group',
-                            'novalidate': 'novalidate'
+                            'novalidate': 'novalidate',
                         }}) }}
                     {{ form_widget(formAccDu.days, {
 
@@ -48,7 +49,7 @@
                             'min': '0',
                         }
                     }) }}
-                    <button type="submit" class="btn btn-search-user">Modifier</button>
+                    <button type="submit" class="btn btn-search-user" id="changeDeletedAtValue">Modifier</button>
                     {{ form_end(formAccDu) }}
                 </div>
             </section>
@@ -64,11 +65,11 @@
                 <th class="th" scope="col">Checklist</th>
                 <th class="th" scope="col">Resultat 1</th>
                 <th class="th" scope="col">Resultat 2</th>
-                <th class="th" scope="col">Compte effacé dans (jrs)</th>
+                <th class="th" scope="col">Compte créé le</th>
+                <th class="th" scope="col">Compte supprimé le</th>
             </tr>
             </thead>
             <tbody class="thead-light">
-
             {% if users is not empty %}
                 {%  for user in users %}
                     {% if 'ROLE_ADMIN' not in user.roles %}
@@ -82,17 +83,29 @@
                                 <td class="search_response"> à définir </td>
                             {% endif %}
 
-<<<<<<< HEAD
-{#                            {% for user in user.quizResult %}#}
-{#                                {% if user.result < 50 %}#}
-{#                                    <td class="search_response" id="LT_result_quiz_bad"> {{ user.result }} % </td>#}
-{#                                {% endif %}#}
-{#                                {% if user.result >= 50 %}#}
-{#                                    <td class="search_response" id="LT_result_quiz_good"> {{ user.result }} % </td>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
+                            {% if user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 1  and user.checklist.checkGuide == 1 %}
+                                <td class="search_response LT_result_quiz_good"> Parcours terminé </td>
+                            {% endif %}
+                             {% if (user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 0 and user.checklist.checkGuide == 0) %}
+                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
+                                {% endif %}
+                               {% if (user.checklist.checkVideo == 1 and user.checklist.checkQuizz == 0 and user.checklist.checkGuide == 0) %}
+                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
+                                {% endif %}
+                                {% if(user.checklist.checkGuide == 1 and user.checklist.checkQuizz == 0 and user.checklist.checkVideo == 0) %}
+                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
+                                {% endif %}
+                                {% if (user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 1 and user.checklist.checkGuide == 0
+                                    or user.checklist.checkQuizz == 1 and user.checklist.checkGuide == 1 and user.checklist.checkVideo == 0) %}
+                                    <td class="search_response LT_result_quiz_bad"> 2/3 </td>
+                                {% endif %}
+                                {% if (user.checklist.checkVideo == 1 and user.checklist.checkGuide == 1 and user.checklist.checkQuizz == 0) %}
+                                    <td class="search_response LT_result_quiz_bad"> 2/3 </td>
+                                {% endif %}
+                                {% if user.checklist.checkQuizz == 0 and user.checklist.checkVideo == 0 and user.checklist.checkGuide == 0 %}
+                                    <td class="search_response LT_result_quiz_bad">0/3</td>
+                                {% endif %}
                             {% for result in user.quizResult %}
-
                                 <td class="search_response
                                     {% if result.result < 50 %}
                                         LT_result_quiz_bad
@@ -100,57 +113,33 @@
                                         LT_result_quiz_good
                                     {% endif %}
                                     ">{{ result.result }} % </td>
-                                    {% if user.quizResult|length == 1 %}
-                                        <td class="search_response">-</td>
-                                    {% endif %}
-                                {% else %}
+                                {% if user.quizResult|length == 1 %}
                                     <td class="search_response">-</td>
-                                    <td class="search_response">-</td>
-                            {% endfor %}
-                            <td class="search_response"> {{ user.createdAt|date("d / M / Y") }} </td>
-{#                            {{ dump(user.createdAt|date("d/M/Y")) }}  }#}
-=======
-
-
-
-                            {% if user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 1  and user.checklist.checkGuide == 1 %}
-                                <td class="search_response" id="LT_result_quiz_good"> Parcours terminé </td>
-                            {% endif %}
-                             {% if (user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 0 and user.checklist.checkGuide == 0) %}
-                                    <td class="search_response" id="LT_result_quiz_bad"> 1/3 </td>
                                 {% endif %}
-                               {% if (user.checklist.checkVideo == 1 and user.checklist.checkQuizz == 0 and user.checklist.checkGuide == 0) %}
-                                    <td class="search_response" id="LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                                {% if(user.checklist.checkGuide == 1 and user.checklist.checkQuizz == 0 and user.checklist.checkVideo == 0) %}
-                                    <td class="search_response" id="LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                                {% if (user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 1 and user.checklist.checkGuide == 0
-                                    or user.checklist.checkQuizz == 1 and user.checklist.checkGuide == 1 and user.checklist.checkVideo == 0) %}
-                                    <td class="search_response" id="LT_result_quiz_bad"> 2/3 </td>
-                                {% endif %}
-                                {% if (user.checklist.checkVideo == 1 and user.checklist.checkGuide == 1 and user.checklist.checkQuizz == 0) %}
-                                    <td class="search_response" id="LT_result_quiz_bad"> 2/3 </td>
-                                {% endif %}
-                                {% if user.checklist.checkQuizz == 0 and user.checklist.checkVideo == 0 and user.checklist.checkGuide == 0 %}
-                                    <td class="search_response" id="LT_result_quiz_bad">0/3</td>
-                                {% endif %}
-
-
-
-                            {% if user.quizResult is not empty %}
-                                {% for user in user.quizResult %}
-                                    {% if user.result < 50 %}
-                                        <td class="search_response" id="LT_result_quiz_bad"> {{ user.result }} % </td>
-                                    {% endif %}
-                                    {% if user.result >= 50 %}
-                                        <td class="search_response" id="LT_result_quiz_good"> {{ user.result }} % </td>
-                                    {% endif %}
-                                {% endfor %}
                             {% else %}
-                                <td class="search_response" id="search_response">Quiz non commencé</td>
-                            {% endif %}
->>>>>>> dev
+                                <td class="search_response">-</td>
+                                <td class="search_response">-</td>
+                            {% endfor %}
+                            <td class="search_response"> {{ user.createdAt|date("d / m / Y") }} </td>
+                            <td class="search_response p-0">
+                                {% set formDelAtsIndex = loop.index0 %}
+
+                                {{ form_start(formDelAts[formDelAtsIndex], {
+                                    'attr': {
+                                        'class': 'form-group update_delete_at_form',
+                                        'novalidate': 'novalidate'
+                                    }}) }}
+
+                                {{ form_widget(formDelAts[formDelAtsIndex].deletedAt, {
+                                    'attr': {
+                                        'class': 'form-search',
+                                        'placeholder': 'Rechercher un candidat'
+                                    }}) }}
+
+                                <input type="hidden" name="userId" value="{{ user.id }}">
+                                <button type="submit" class="btn btn-search-user">Modifier</button>
+                                {{ form_end(formDelAts[formDelAtsIndex]) }}
+                            </td>
                         </tr>
                     {% endif %}
                 {% endfor %}
@@ -163,4 +152,19 @@
             </tbody>
         </table>
     </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        const deletedAtValue=document.getElementById("accounts_duration_days").value;
+        console.log(deletedAtValue);
+        const node = document.getElementById("deletedAtForm");
+        node.addEventListener("submit", function(event) {
+            if (confirm("Attention : modifier cette durée annulera les éventuelles modifications de suppression de candidats faites préalablement."))
+                return true;
+            document.getElementById("accounts_duration_days").value=deletedAtValue;
+            event.preventDefault();
+            return false;
+
+        });
+    </script>
 {% endblock %}

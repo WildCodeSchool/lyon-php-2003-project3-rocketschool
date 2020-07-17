@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AccountsDurationRepository;
 use App\Repository\UserRepository;
+use App\Services\UserManager;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -105,16 +106,18 @@ class User implements UserInterface
      */
     private $deletedAt;
 
-    public function __construct(Checklist $checklist)
+    /**
+     * @ORM\ManyToOne(targetEntity=AccountsDuration::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $accountsDuration;
+
+    public function __construct()
     {
-        $this->notes = new ArrayCollection();
+        $checklist = new Checklist();
         $this->setChecklist($checklist);
+        $this->notes = new ArrayCollection();
         $this->quizResult = new ArrayCollection();
-//        $delayBeforeDeletion = $accDuRepo->findOneBy([])->getDays();
-//        $modifiedDate = $this->createdAt->format("d/m/Y");
-//        $tempDate = new DateTime($modifiedDate);
-//        $this->deletedAt = date_modify($this->createdAt, "$this->createdAt + $delayBeforeDeletion");
-            //$accDuRepo->findOneBy([])->getDays();
     }
     public function getId(): ?int
     {
@@ -346,6 +349,18 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getDeletedAt(): ?\DateTimeInterface
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -358,14 +373,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getDeletedAt(): ?\DateTimeInterface
+    public function getAccountsDuration(): ?AccountsDuration
     {
-        return $this->deletedAt;
+        return $this->accountsDuration;
     }
 
-    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
+    public function setAccountsDuration(?AccountsDuration $accountsDuration): self
     {
-        $this->deletedAt = $deletedAt;
+        $this->accountsDuration = $accountsDuration;
 
         return $this;
     }

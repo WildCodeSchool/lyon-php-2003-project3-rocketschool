@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\AccountsDuration;
 use App\Entity\Program;
 use App\Entity\User;
+use App\Services\UserManager;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
@@ -77,17 +79,41 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $accountsDuration = $this->accDuRepo->findOneBy([]);
         if ($accountsDuration) {
-            $days = $accountsDuration->getDays();
-            $now = new DateTime();
-            $before = date_modify($now, "-$days days");
+            $now = new DateTime('now');
 
             $qb = $this->getEntityManager()->createQueryBuilder();
 
             $qb->delete(User::class, 'u')
-                ->where("u.createdAt < :before")
-                ->setParameter('before', $before, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
+                ->where("u.deletedAt < :now")
+                ->setParameter('now', $now, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
                 ->getQuery()->execute();
         }
+    }
+
+    public function findCandidates()
+    {
+        $candidates = $this->createQueryBuilder('User')
+            ->andWhere("User.deletedAt is not null");
+        return $candidates->getQuery()->getResult();
+    }
+
+    public function updateCandidatesDuration(AccountsDurationRepository $accDuRepo)
+    {
+        $userManager = new UserManager();
+        $accountsDuration = $accDuRepo->findOneBy([]);
+        $days = null;
+        if ($accountsDuration) {
+            $days = $accountsDuration->getDays();
+        }
+        $candidates = $this->findCandidates();
+        $entityManager = $this->getEntityManager();
+        if ($days) {
+            foreach ($candidates as $candidate) {
+                $userManager->setDeletedAt($candidate, $days);
+                $entityManager->persist($candidate);
+            }
+        }
+        $entityManager->flush();
     }
 
     // /**
