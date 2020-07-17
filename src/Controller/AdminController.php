@@ -7,6 +7,7 @@ use App\Entity\QuizResult;
 use App\Entity\User;
 use App\Entity\Program;
 use App\Form\AccountsDurationType;
+use App\Form\UserType;
 use App\Form\SearchFilterType;
 use App\Form\SelectProgramType;
 use App\Repository\AccountsDurationRepository;
@@ -15,6 +16,7 @@ use App\Entity\Video;
 use App\Repository\ProgramRepository;
 use App\Form\VideoEditType;
 use App\Services\GetVideo;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,23 +46,44 @@ class AdminController extends AbstractController
         $this->programRepository = $programRepository;
         $this->accountsDuration = $accDuRepo;
     }
+
     /**
-     *@param Request $request
+     * @param Request $request
+     * @param UserRepository $userRepo
+     * @param AccountsDurationRepository $accDuRepo
      * @return Response
      * @Route("/", name="index")
      */
-    public function index(Request $request):Response
+    public function index(Request $request, UserRepository $userRepo, AccountsDurationRepository $accDuRepo):Response
     {
-        $accountsDuration = $this->getDoctrine()->getRepository(AccountsDuration::class)
-            ->findOneBy([]);
+        list($accountsDuration, $formAccDu) = self::editCandidateDuration($request, $accDuRepo, $userRepo);
 
-        $formAccDu = $this->createForm(AccountsDurationType::class, $accountsDuration);
-        $formAccDu->handleRequest($request);
+        $formDelAts = [];
 
-        if ($formAccDu->isSubmitted() && $formAccDu->isValid() && $accountsDuration) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($accountsDuration);
-            $entityManager->flush();
+        $candidates = $userRepo->findCandidates();
+        $candidate = null;
+        foreach ($candidates as $candidate) {
+            $form = $this->createForm(UserType::class, $candidate);
+            $formDelAts[] = $form;
+        }
+
+        $formsView = [];
+
+        foreach ($formDelAts as $formDelAt) {
+            $formDelAt->handleRequest($request);
+            $formsView[] = $formDelAt->createView();
+
+            if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($candidate);
+                    $entityManager->flush();
+
+                return $this->redirectToRoute('admin_index');
+            }
+        }
+
+        foreach ($formDelAts as $formDelAt) {
+            $formDelAt->createView();
         }
 
         $users = $this->getDoctrine()->getRepository(User::class)
@@ -79,7 +102,35 @@ class AdminController extends AbstractController
             'users' => $users,
             'accountsDuration' => $accountsDuration,
             'form' => $form->createView(),
-            'formAccDu' => $formAccDu->createView()]);
+            'formAccDu' => $formAccDu->createView(),
+            'formDelAts' => $formsView]);
+    }
+
+    /**
+     * @param Request $request
+     * @param AccountsDurationRepository $accDuRepo
+     * @param UserRepository $userRepo
+     * @return array
+     * @Route("/account/duration/{user}", name="edit_account_duration")
+     */
+    public function editCandidateDuration(
+        Request $request,
+        AccountsDurationRepository $accDuRepo,
+        UserRepository $userRepo
+    ): array {
+        $accountsDuration = $this->getDoctrine()->getRepository(AccountsDuration::class)
+            ->findOneBy([]);
+
+        $formAccDu = $this->createForm(AccountsDurationType::class, $accountsDuration);
+        $formAccDu->handleRequest($request);
+
+        if ($formAccDu->isSubmitted() && $formAccDu->isValid() && $accountsDuration) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($accountsDuration);
+            $entityManager->flush();
+            $userRepo->updateCandidatesDuration($accDuRepo);
+        }
+        return [$accountsDuration, $formAccDu];
     }
 
     /**

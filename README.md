@@ -74,12 +74,12 @@ Add additional notes about how to deploy this on a live system
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 
-## Functionality for deleting users whose accounts are older than 100 days
+## Functionality for deleting users whose accounts are older than the desired number of days (100 by default)
 
 The command to run in the terminal, so as to launch the old accounts deleting is :
     php bin/console app:delete-old-accounts
 
-CAUTION : So as to be fully operational, it requires to set a cron on the server.
+CAUTION : So as to be fully operational, it requires to use the cron program on the server.
 
 ## Functionality for login with social network
 

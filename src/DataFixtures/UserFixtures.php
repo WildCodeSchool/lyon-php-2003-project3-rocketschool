@@ -2,8 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\AccountsDuration;
 use App\Entity\Checklist;
 use App\Entity\User;
+use App\Services\UserManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -14,7 +16,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public function getDependencies()
     {
-        return [ProgramFixtures::class];
+        return [ProgramFixtures::class, AccountsDurationFixtures::class];
     }
 
     private $passwordEncoder;
@@ -34,17 +36,27 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setProgram($this->getReference('First program'))
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'password'))
                 ->setFirstname($faker->firstName)
-                ->setLastname($faker->lastName);
+                ->setLastname($faker->lastName)
+                ->setAccountsDuration($this->getReference('AccountsDuration'));
+            $manager->persist($user);
+            $manager->flush();
+
+            $userManager->setDeletedAt($user, $user->getAccountsDuration()->getDays());
             $manager->persist($user);
         }
 
-        $checklistAdmin = new Checklist();
-        $admin = new User($checklistAdmin);
+
+//        $userManager = new UserManager();
+//        $accountDuration = new AccountsDuration();
+//        $accountDuration->setDays(100);
+
+        $admin = new User();
         $admin->setEmail('admin@mail.com')
             ->setPassword($this->passwordEncoder->encodePassword($admin, 'adminpassword'))
             ->setRoles(["ROLE_ADMIN"])
             ->setFirstname('Jhonny')
             ->setLastname('Begood');
+//        ->setAccountsDuration($accountDuration);
         $manager->persist($admin);
 
         $manager->flush();

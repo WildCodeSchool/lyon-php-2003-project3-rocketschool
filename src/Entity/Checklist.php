@@ -34,7 +34,7 @@ class Checklist
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="checklist", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $user;
 
