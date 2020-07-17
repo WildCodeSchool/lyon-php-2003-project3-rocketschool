@@ -84,28 +84,31 @@ class QuizzFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
         $quizz = new Quizz();
         $quizz->setTitle('Quizz de test')
             ->setIsEnable(true);
 
         $nbrQ = 0;
         foreach (self::QUESTIONS as $title => $propositions) {
+            $solution = "Bonne(s) réponse(s) : ";
             $question = new Question();
             $question->setQuizz($quizz);
             $question->setTitle($title);
-            $question->setSolution($faker->sentence);
             $question->setQuestionOrder($nbrQ);
             $manager->persist($question);
             $nbrQ++;
 
             foreach ($propositions as $title => $data) {
+                if ($data['isGood']) {
+                    $solution = $solution . "\"" . $title . "." . "\"  ";
+                }
                 $proposition = new Proposition();
                 $proposition->setTitle($title)
                     ->setIsGood($data['isGood'])
                     ->setQuestion($question);
                 $manager->persist($proposition);
             }
+            $question->setSolution($solution);
         }
 
         $manager->persist($quizz);

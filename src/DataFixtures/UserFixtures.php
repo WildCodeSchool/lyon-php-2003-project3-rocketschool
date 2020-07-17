@@ -27,7 +27,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $checklist = new Checklist();
             $user = new User($checklist);
             $user->setEmail('user'.$i.'@mail.com')
