@@ -1039,6 +1039,10 @@ footer a {
         letter-spacing: 2px;
     }
 
+    .navbar-light .navbar-nav .guide {
+        letter-spacing: 0;
+    }
+
     .navbar-light .navbar-nav .active > .nav-link {
         width: 87%;
     }
@@ -1084,6 +1088,9 @@ footer a {
         }
     }
 
+    #nav-link-profil {
+        display: none;
+    }
 }
 
 .quizz-container{
@@ -2283,4 +2290,3 @@ td#LT_result_quiz_good.search_response {
         border: 1px solid #4e555b;
     }
 }
-

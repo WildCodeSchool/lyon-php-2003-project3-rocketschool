@@ -31,7 +31,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href={{ path('ressources_faq') }}>Faq</a>
                                 </li>
-                                {% if not is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item">
+                                    <a class="nav-link guide" href={{ path('ressources_guide', {'user': app.user.id }) }}>Guide Entretien</a>
+                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item" >
                                     <a id="nav-link-profil" class="nav-link nav-link-disabled"  href={{ path('profil') }}>Profil</a>
                                 </li>
@@ -97,9 +100,9 @@
             <div class="{% if app.user is not null %}LT_page_name{% else %}LT_page_name_ter{% endif %}{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
                 <h2>{{ page_name|default('') }}</h2>
             </div>
-            <main>
+{#            <main>#}
             {% block body %}{% endblock %}
-            </main>
+{#            </main>#}
             {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}
