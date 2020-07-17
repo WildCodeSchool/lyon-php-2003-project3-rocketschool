@@ -76,7 +76,7 @@ blockquote {
 }
 
 .LT_page_name h2 {
-    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
     font-weight: bold;
     margin-block-end: 0;
 }
@@ -84,7 +84,7 @@ blockquote {
 .navbar-light .navbar-nav .nav-link {
     width: 100%;
     color: black;
-    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
     font-weight: bold;
     font-size: 18px;
     text-align: center;
@@ -111,7 +111,8 @@ blockquote {
 
 .nav_admin {
     background-color: $dark-blue;
-    font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
+    font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    font-weight: bold;
     color: $primary-color;
     height: 70px;
     justify-content: end;
@@ -1595,7 +1596,6 @@ h2 {
 #quizz_index,
 #quizz_show,
 #quizz_edit {
-    width: auto;
     margin: auto;
     padding: 0;
 
