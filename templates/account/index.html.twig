@@ -4,12 +4,16 @@
 
 {% block stylesheets %}
     <style>
-        .LT_page_name, body > header, .edit_hide {
+        /*#main {*/
+        /*    justify-content: start;*/
+        /*}*/
+
+        .LT_page_name, #main > header, .edit_hide {
             display: none;
         }
 
         @media screen and (min-width: 992px) {
-            body > header, .edit_hide {
+            #main > header, .edit_hide {
                 display: block;
             }
         }
@@ -99,7 +103,7 @@
                                 {% endif %}
                             </span>
                         </td>
-                        <td><a href="{{ path('ressources_guide') }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
+                        <td><a href="{{ path('ressources_guide', {'user': app.user.id}) }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -265,7 +269,7 @@
         <div class="menu-overlay" id="mySidenav">
             <a href="{{ path('ressources_index') }}"><h1>Vidéo</h1></a>
             <a href="{{ path('ressources_quizz') }}"><h1>Quizz</h1></a>
-            <a href="{{ path('ressources_guide') }}"><h1>Guide</h1></a>
+            <a href="{{ path('ressources_quizz', {'user': app.user.id}) }}"><h1>Guide</h1></a>
             <a href="{{ path('ressources_faq') }}"><h1>FAQ</h1></a>
         </div>
 
