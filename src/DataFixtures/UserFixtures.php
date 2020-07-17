@@ -40,15 +40,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setAccountsDuration($this->getReference('AccountsDuration'));
             $manager->persist($user);
             $manager->flush();
-
-            $userManager->setDeletedAt($user, $user->getAccountsDuration()->getDays());
             $manager->persist($user);
         }
-
-
-//        $userManager = new UserManager();
-//        $accountDuration = new AccountsDuration();
-//        $accountDuration->setDays(100);
 
         $admin = new User();
         $admin->setEmail('admin@mail.com')
@@ -56,7 +49,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             ->setRoles(["ROLE_ADMIN"])
             ->setFirstname('Jhonny')
             ->setLastname('Begood');
-//        ->setAccountsDuration($accountDuration);
         $manager->persist($admin);
 
         $manager->flush();
