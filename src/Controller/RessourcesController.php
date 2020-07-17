@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Proposition;
+use App\Entity\Question;
 use App\Entity\Quizz;
 use App\Entity\User;
 use App\Repository\PropositionRepository;
@@ -67,55 +68,26 @@ class RessourcesController extends AbstractController
     /**
      * @Route("/quizz", name="quizz")
      * @param QuizzRepository $quizzRepo
-     * @param PropositionRepository $propoRepo
-     * @param QuestionRepository $questionRepo
      * @param QuizResultService $quizResultService
      * @return string
      */
-    public function quizz(
-        QuizzRepository $quizzRepo,
-        PropositionRepository $propoRepo,
-        QuestionRepository $questionRepo,
-        QuizResultService $quizResultService
-    ) {
+    public function quizz(QuizzRepository $quizzRepo, QuizResultService $quizResultService)
+    {
         $quizz = $quizzRepo->findOneBy([]);
-        $questions = $questionRepo->findAll();
-        $nbrQuestionQuizz = count($questions);
         $user = $this->getUser();
         $errors = null;
         $result = null;
         $postValide = true;
 
+        if (!$quizResultService->isAllowed($user)) {
+            return $this->redirectToRoute('ressources_index');
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $errors = [];
-            $nbrQuestionPost = count($_POST['questions']);
-
-            if ($nbrQuestionQuizz !== $nbrQuestionPost) {
-                $postValide = false;
-            } else {
-                foreach ($_POST["questions"] as $questionId => $propositions) {
-                    $question = $questionRepo->find($questionId);
-                    $goodAnswers = $propoRepo->findBy(['question' => $question, 'isGood' => true]);
-                    $goodAnswers = array_map(function ($prop) {
-                        return $prop->getId();
-                    }, $goodAnswers);
-
-                    $errors[$questionId] = false;
-
-                    foreach ($propositions as $key => $value) {
-                        if (!in_array($value, $goodAnswers)) {
-                            $errors[$questionId] = true;
-                        }
-                    }
-                    foreach ($goodAnswers as $key => $value) {
-                        if (!in_array($value, $propositions)) {
-                            $errors[$questionId] = true;
-                        }
-                    }
-                }
-                $result = $quizResultService->calculate($errors, $nbrQuestionQuizz);
-                $quizResultService->flush($user, $result);
+            if (!isset($_POST['questions'])) {
+                return $this->redirectToRoute('ressources_quizz');
             }
+            list($postValide,$errors,$result) = self::quizzProcess($user, $quizResultService);
         }
 
         return $this->render('ressources/quizz.html.twig', [
@@ -148,8 +120,10 @@ class RessourcesController extends AbstractController
 
         if ($form->isSubmitted() && !empty($form->getData())) {
             $data = $form->getData();
-            $faq = $this->faqRepository
-                ->findBySomeField($data['searchField'], $data['category']);
+            if (isset($data['category'])) {
+                $faq = $this->faqRepository
+                    ->findBySomeField($data['searchField'], $data['category']);
+            }
         }
 
         return $this->render('ressources/faq.html.twig', [
@@ -159,12 +133,67 @@ class RessourcesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/guide", name="guide")
-     */
-
-    public function guide()
+    public function quizzProcess($user, $quizResultService)
     {
-        return $this->render('ressources/guide.html.twig', ['page_name' => 'Guide d\'entretien']);
+        $postValide = true;
+        $errors = null;
+        $result = null;
+
+        $manager = $this->getDoctrine()->getManager();
+        $questionRepo = $manager->getRepository(Question::class);
+        $propoRepo = $manager->getRepository(Proposition::class);
+        $questions = $questionRepo->findAll();
+        $nbrQuestionQuizz = count($questions);
+
+        $errors = [];
+        $nbrQuestionPost = count($_POST['questions']);
+
+        if ($nbrQuestionQuizz !== $nbrQuestionPost) {
+            $postValide = false;
+        } else {
+            foreach ($_POST["questions"] as $questionId => $propositions) {
+                $question = $questionRepo->find($questionId);
+                $goodAnswers = $propoRepo->findBy(['question' => $question, 'isGood' => true]);
+                $goodAnswers = array_map(function ($prop) {
+                    return $prop->getId();
+                }, $goodAnswers);
+
+                $errors[$questionId] = false;
+
+                foreach ($propositions as $key => $value) {
+                    if (!in_array($value, $goodAnswers)) {
+                        $errors[$questionId] = true;
+                    }
+                }
+                foreach ($goodAnswers as $key => $value) {
+                    if (!in_array($value, $propositions)) {
+                        $errors[$questionId] = true;
+                    }
+                }
+            }
+            $result = $quizResultService->calculate($errors, $nbrQuestionQuizz);
+            $quizResultService->flush($user, $result);
+        }
+
+        return [$postValide,$errors,$result];
+    }
+
+    /**
+     * @Route("/guide/{user}", name="guide")
+     * @param User $user
+     * @return Response
+     */
+    public function guide(User $user)
+    {
+        $checklist = $user->getChecklist();
+        if ($checklist) {
+            $checklist->setCheckGuide(true);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($checklist);
+            $entityManager->flush();
+        }
+
+        return $this->redirect('http://www.google.fr');
     }
 }

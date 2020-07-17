@@ -21,20 +21,20 @@ class Question
     private $id;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank(message="Question obligatoire")
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Veuillez renseigner une solution pour cette question")
      */
     private $solution;
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
-     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
      */
     private $quizz;
 
@@ -45,7 +45,8 @@ class Question
     private $propositions;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="ne me laisse pas tout vide")
      */
     private $questionOrder;
 

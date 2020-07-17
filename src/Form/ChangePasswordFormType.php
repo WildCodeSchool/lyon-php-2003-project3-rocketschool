@@ -32,14 +32,14 @@ class ChangePasswordFormType extends AbstractType
                     'label' => 'Nouveau mot de passe',
                     'attr' => [
                         'placeholder' => 'Nouveau mot de passe',
-                        'class'=> 'form-control shadow',
+                        'class'=> 'form-control reset-psw-control shadow',
                     ]
                 ],
                 'second_options' => [
                     'label' => 'répéter le mot de passe',
                     'attr' => [
                         'placeholder' => 'répéter le mot de passe',
-                        'class'=> 'form-control shadow',
+                        'class'=> 'form-control reset-psw-control shadow',
                     ]
                 ],
                 'invalid_message' => 'les mots de passe doivent être identiques.',

@@ -15,87 +15,60 @@
                 <h3>résultat : {{ result }}%</h3>
             </div>
         {% else %}
-            {% if app.user.quizResult|length == 0 %}
-                <p class="quiz-attempt">essai numéro 1/2</p>
-            {% elseif app.user.quizResult|length == 1 %}
-                <p class="quiz-attempt">essai numéro 2/2</p>
-            {% elseif app.user.quizResult|length > 1 %}
-                <p class="quiz-attempt">Vous avez déjà validé le test deux fois</p>
+            {% if not is_granted('ROLE_ADMIN') %}
+                {% if app.user.quizResult|length == 0 %}
+                    <p class="quiz-attempt">essai numéro 1/2</p>
+                {% elseif app.user.quizResult|length == 1 %}
+                    <p class="quiz-attempt">essai numéro 2/2</p>
+                {% elseif app.user.quizResult|length > 1 %}
+                    <div class="no-more-attempt">
+                        <p class="quiz-attempt">Vous avez déjà validé le test deux fois.</p>
+                        <a href="{{ path('profil') }}" class="a-btn-center">
+                            <button class="btn quizz-button btn-round-clearblue" type="button">
+                                Voir le guide d'entretien
+                            </button>
+                        </a>
+                        <a href="{{ path('profil') }}" class="a-btn-center">
+                            <button class="btn quizz-button btn-round-darkblue" type="button">
+                                Retourner sur ma page profil
+                            </button>
+                        </a>
+                    </div>
+                {% endif %}
             {% endif %}
         {% endif %}
-        <form action="quizz" method="POST">
-            <input type="hidden" name="user_id" value="{{ app.user.id }}">
+        {% if app.user.quizResult|length < 2 %}
+        {{ include('ressources/_quizzForm.html.twig') }}
+        {% endif %}
+    </div>
+{% endblock %}
 
-            <div class="container-fluid quizz-container"
-                 id="quizz">
-                {% for question in quizz.questions %}
-                    <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResult|length > 1 %} quizz-container-disabled {% endif %}">
-                        <div class="card-body quizz-body">
-                            <h3 class="card-title">{{ question.questionOrder }} - {{ question.title }}</h3>
-                            {% for proposition in question.propositions %}
-                                <ul>
-                                    <li class="card-text quizz-text">
-                                        <label class="quizz-radio" >
-                                            <input type="checkbox" name="questions[{{ question.id }}][]"
-                                                   value="{{ proposition.id }}"
-                                            {% if post %}
-                                                {% for  props in post.questions %}
-                                                    {% for prop in props %}
-                                                        {% if prop == proposition.id %} checked {% endif %}
-                                                    {% endfor %}
-                                                {% endfor %}
-                                            {% endif %}>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        {{ proposition.title }}
-                                    </li>
-                                </ul>
-                            {% endfor %}
-                        </div>
-                        <div class="quizz-check">
-                            {% if postValide == true %}
-                                {% if errors is not null %}
-                                    {% for key, error in errors %}
-                                        {% if key == question.id %}
-                                            {% if error == true %}
-                                                <img src="{{ asset('build/images/icons/false-check.png') }}"
-                                                     style="width: 50%">
-                                            {% else %}
-                                                <img src="{{ asset('build/images/icons/true-check.png') }}"
-                                                     style="width: 50%">
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% if result is not same as(null) and  app.user.quizResult|length > 0 %}
-                        <div class="{% if errors[question.id] %} alert-danger {% else %} alert-success {% endif %}">
-                            <p class="quiz-solution">{{ question.solution }}</p>
-                        </div>
+{% block javascripts %}
+    <script>
+        {% if app.user.quizResult|length < 2 %}
+            {% for question in quizz.questions %}
+                var nbGoodAnswer = 0;
+                {% for proposition in question.propositions %}
+                    {% if proposition.isGood %}
+                        nbGoodAnswer++;
                     {% endif %}
                 {% endfor %}
+                if (nbGoodAnswer == 1) {
+                    var check = document.querySelectorAll('.checkmark-question-{{ question.id }}')
+                    var quizInput = document.querySelectorAll('.quiz-input-{{ question.id }}')
+                    check.forEach((child) => {
+                        child.classList.add('round-checkmark')
+                    });
+                    quizInput.forEach((child) => {
+                        child.type = 'radio';
+                    });
+                } else {
+                    document.querySelector('.card-title-{{ question.id }}').innerHTML += ' (Plusieurs réponses possible)'
 
-                {% if result is same as(null) and  app.user.quizResult|length < 2 %}
-
-                    <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
-
-                        Valider vos réponses
-                    </button>
-                {% endif %}
-                {% if result is not same as(null) and app.user.quizResult|length == 0 %}
-                    <a href="{{ path('ressources_quizz') }}">
-
-                        <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="button">
-
-                            Repasser le test
-                        </button>
-                    </a>
-                {% endif %}
-            </div>
-        </form>
-    </div>
+                }
+            {% endfor %}
+        {% endif %}
+    </script>
 {% endblock %}
 
 

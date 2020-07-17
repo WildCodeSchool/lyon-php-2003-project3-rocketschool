@@ -11,6 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
+    <div id="main">
             <!-- Header + Navigation with routes  -->
             {% if app.user is not null %}
                 <header>
@@ -25,36 +26,42 @@
                                     <a class="nav-link" href={{ path('ressources_index') }}>Vidéo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {% if not app.user.checklist.checkVideo and "ROLE_ADMIN" not in app.user.roles %} disabled {% endif %}" href="{{ path('ressources_quizz') }}" > Quiz </a>
+                                    <a class="nav-link {% if not app.user.checklist.checkVideo and "ROLE_ADMIN" not in app.user.roles %} disabled {% endif %}" href="{{ path('ressources_quizz') }}" > Quizz </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ path('ressources_faq') }}>FAQ</a>
+                                    <a class="nav-link" href={{ path('ressources_faq') }}>Faq</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link guide" href={{ path('ressources_guide', {'user': app.user.id }) }}>Guide Entretien</a>
+                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item" >
                                     <a id="nav-link-profil" class="nav-link nav-link-disabled"  href={{ path('profil') }}>Profil</a>
                                 </li>
+                                {% endif %}
                                 <li class="nav-item" >
                                     <a id="nav-link-profil" class="nav-link nav-link-disabled"  href={{ path('app_logout') }}>Déconnexion</a>
                                 </li>
                             </ul>
                         </div>
-{#                        <div class="LT_logo_profil navbar-brand">#}
+                        <div class="LT_logo_profil navbar-brand">
                             <div class="dropdown">
                                 <div class="hasImage" data-toggle="dropdown" id="dropdownMenuLink">
                                     {% if app.user.image is null %}
                                         <div class="no_image"><p>{{ app.user.firstname|first|upper}}</p></div>
                                     {% else %}
-                                        <img src="{{ app.user.image }}" alt="photo" class="rounded-circle">
+                                        <img src="/{{ app.user.image }}" alt="photo" class="rounded-circle">
                                     {% endif %}
                                 </div>
-
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    {% if not is_granted('ROLE_ADMIN') %}
                                     <a class="dropdown-item" href="{{ path('profil') }}">Ma page candidat</a>
+                                    {% endif %}
                                     <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                                     <div class="delimiter"></div>
                                 </div>
                             </div>
-{#                        </div>#}
+                        </div>
                     </nav>
 
                     {#              Navbar Admin appearring when the logged user has the admin status                   #}
@@ -78,7 +85,7 @@
                                         <a class="nav-link" href={{ path('admin_video_edit') }}>Editer Vidéo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href={{ path('question_index') }}>Editer Quiz</a>
+                                        <a class="nav-link" href={{ path('question_index') }}>Editer Quizz</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href={{ path('faq_index') }}>Editer FAQ</a>
@@ -93,9 +100,9 @@
             <div class="{% if app.user is not null %}LT_page_name{% else %}LT_page_name_ter{% endif %}{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
                 <h2>{{ page_name|default('') }}</h2>
             </div>
-            <main>
+{#            <main>#}
             {% block body %}{% endblock %}
-            </main>
+{#            </main>#}
             {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}
@@ -106,5 +113,6 @@
                     <a href="">team-lyon@rocket-school.com</a>
                 </div>
             </footer>
+    </div>
     </body>
 </html>

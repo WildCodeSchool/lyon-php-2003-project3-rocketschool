@@ -11,13 +11,19 @@ class ProgramFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $program = new Program();
-        $program->setName('Digital business');
+        $program->setName('Customer Success Manager');
         $this->addReference('First program', $program);
         $manager->persist($program);
 
         $program = new Program();
-        $program->setName('Digital marketing');
+        $program->setName('Business Developer');
         $this->addReference('Second program', $program);
+        $manager->persist($program);
+
+
+        $program = new Program();
+        $program->setName('Marketing Manager');
+        $this->addReference('Third program', $program);
 
         $manager->persist($program);
         $manager->flush();

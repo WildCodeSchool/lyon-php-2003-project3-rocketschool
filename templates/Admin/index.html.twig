@@ -5,7 +5,7 @@
 {% block body %}
 
     <section class="user_table container-fluid">
-        <div class="row">
+        <div class="row" id="row_form">
             <div class="content-container_lt col-lg-8 pb-lg-4">
 
                 {{ form_start(form, {
@@ -34,7 +34,7 @@
             </div>
             <section class="ac_duration col-lg-2 p-lg-2">
                 <div class="ac_duration_content">
-                    <p>Nb. jours avant suppression candidats</p>
+                    <p> Nb. jours avant suppression candidats</p>
                     {{ form_start(formAccDu, {
                         'attr': {
                             'id': 'deletedAtForm',
@@ -44,7 +44,7 @@
                     {{ form_widget(formAccDu.days, {
 
                         'attr': {
-                            'class': 'form-search',
+                            'class': 'form-program',
                             'type': 'number',
                             'min': '0',
                         }
@@ -55,6 +55,8 @@
             </section>
 
         </div>
+    </section>
+    <section class="bloc_table">
         <table class="table table-hover table_user">
             <thead class="thead-light">
             <tr class="tr">
@@ -143,15 +145,14 @@
                         </tr>
                     {% endif %}
                 {% endfor %}
-            {% endif %}
-            {% if users is empty %}
+            {% else %}
                 <td class="error_users_search" colspan="7">
                     Malheureusement nous n'avons pas trouvé de résultats à votre recherche
                 </td>
             {% endif %}
             </tbody>
         </table>
-    </section>
+        </section>
 {% endblock %}
 {% block javascripts %}
     <script>

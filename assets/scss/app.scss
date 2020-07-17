@@ -1,11 +1,15 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
+html {
+    height: 100%;
+}
 
 /* GENERAL CSS */
 body {
     background-color: $primary-color;
     width: 100%;
+    height: 100%;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
     font-weight: 400;
 
@@ -30,6 +34,7 @@ blockquote {
 
 .alert-success, .alert-danger {
     border-radius: 5px;
+    text-align: center;
 }
 
 .opacity {
@@ -45,11 +50,10 @@ blockquote {
     background-color: $secondary-color;
     height: 60px;
     color: $primary-color;
-    margin-top: 80px;
 }
 
 .margin_top_navbar_admin {
-    margin-top: 139px;
+    margin-top: -5px;
 }
 
 .dropdown-menu {
@@ -97,6 +101,10 @@ blockquote {
     width: 100%;
 }
 
+.navbar-nav li {
+    padding-left: 20px;
+}
+
 .navbar {
     height: 80px;
 }
@@ -105,9 +113,9 @@ blockquote {
     background-color: $dark-blue;
     font-family: 'Raleway Bold', 'Montserrat', 'sans-serif';
     color: $primary-color;
-    height: 60px;
+    height: 70px;
     justify-content: end;
-    align-content: center;
+    align-items: center;
 
     .navbar-nav .nav-link {
         color: $primary-color;
@@ -158,11 +166,34 @@ blockquote {
     margin-bottom: 40px;
 }
 
+.social-login-desk {
+    display: block;
+}
+
+.social-login-mobile {
+    display: none;
+}
+
 footer {
     display: block;
     width: 100%;
     background-color: $secondary-color;
-    position: absolute;
+    bottom: 0;
+
+
+}
+
+
+
+#main {
+
+
+    min-height: 100%;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 footer a {
@@ -177,8 +208,8 @@ footer a {
     width: 178px;
     height: 35px;
     text-align: center;
-
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    transition: 0.5s;
 }
 
 .btn_dark_blue_submit {
@@ -203,6 +234,13 @@ footer a {
 .btn-round-darkblue:hover {
     color: black;
     background-color: $primary-color;
+    box-shadow: black 0px 0px 3px;
+}
+
+.btn-round-clearblue {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 30px;
 }
 
 .btn-round-danger {
@@ -312,6 +350,10 @@ footer a {
     }
 }
 
+#check-video {
+    margin-right: 0px;
+}
+
 .check-video {
     margin: auto;
     justify-content: center;
@@ -326,9 +368,8 @@ footer a {
         border-radius: 30px;
         display: block;
         margin: 50px auto 20px;
-        padding: 8px 32px;
-        font-size: 1.4em;
         font-family: Montserra, Raleway, sans-serif;
+        transition: 0.5s;
 
         &:hover {
             background-color: white;
@@ -378,8 +419,6 @@ footer a {
         color: $primary-color;
         border-radius: 30px;
         margin: 25px;
-
-
     }
 
     .btn-round-clearblue:hover {
@@ -391,6 +430,7 @@ footer a {
     .btn-round-darkblue {
         margin: 15px 25px;
         background-color: $dark-blue;
+        width: inherit;
         color: $primary-color;
         border-radius: 30px;
     }
@@ -544,6 +584,7 @@ footer a {
 
     .quiz-attempt {
         margin-top: 25px;
+        margin-bottom: 50px;
         text-align: center;
     }
 
@@ -588,6 +629,16 @@ footer a {
     .btn-quizz:hover {
         background-color: $dark-blue;
         color: $secondary-color;
+    }
+
+    .a-btn-center {
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .no-more-attempt {
+        margin: 60px;
     }
 
     .quizz-alert {
@@ -648,6 +699,10 @@ footer a {
     border: solid 1px $third-color;
 }
 
+.round-checkmark {
+    border-radius: 20px;
+}
+
 /* On mouse-over, add a grey background color */
 .quizz-radio:hover input ~ .checkmark {
     background-color: #ccc;
@@ -689,6 +744,10 @@ footer a {
     justify-content: center;
     flex-wrap: wrap;
     margin: 30px auto;
+
+    .is-invalid {
+        background-image: none;
+    }
 
     .form-control {
         margin: 10px;
@@ -743,16 +802,51 @@ footer a {
 
 // FAQ ADMIN SECTION
 .faq-table {
-    margin: 40px auto;
+    margin: 15px auto;
+    text-align: center;
+    min-width: 1000px;
+
+    .faq-index-btn {
+        margin: 3px;
+    }
+
+    .btn-round-darkblue,
+    .btn-round-clearblue,
+    .btn-round-danger {
+        display: block;
+        margin : 0;
+        height: 25px;
+        width: 100px;
+    }
+
+    .btn-round-clearblue:hover {
+        color: $dark-blue;
+    }
+}
+
+.faq-table-shadow {
+    box-shadow: black 0 15px 15px -5px;
+}
+
+.faq-form {
+    margin: 15px auto;
     text-align: center;
 
     input, textarea, select {
-        margin-bottom: 15px;
+        margin-top: 15px;
     }
 
     textarea {
         height: 200px;
     }
+}
+
+.faq-danger-btn, .faq-danger-btn:hover {
+    margin: 0;
+}
+
+.faq-question-answer {
+    text-align: initial;
 }
 
 .faq-created-at {
@@ -761,10 +855,14 @@ footer a {
 }
 
 .faq-action-btn {
-    margin-top: 15px;
+    margin: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.faq-table-container {
+    overflow-x: scroll;
 }
 
 .faq-position-btn {
@@ -931,6 +1029,19 @@ footer a {
 /* DESKTOP AND LARGE SCREEN */
 @media (min-width: 992px) {
 
+    .social-login-desk {
+        display: block;
+    }
+
+    .social-login-mobile {
+        display: none;
+    }
+
+    .content-container {
+        iframe {
+            height: 350px;
+        }
+    }
 
     .container {
         max-width: 100%;
@@ -943,6 +1054,10 @@ footer a {
     .navbar-light .navbar-nav .nav-link {
         width: 200px;
         letter-spacing: 2px;
+    }
+
+    .navbar-light .navbar-nav .guide {
+        letter-spacing: 0;
     }
 
     .navbar-light .navbar-nav .active > .nav-link {
@@ -972,10 +1087,11 @@ footer a {
 
     .user_table .row:first-child {
         flex-direction: row;
+        margin-right: 200px;
     }
 
     .ac_duration {
-        margin-left: 20px;
+        margin-left: 80px;
 
         .ac_duration_content {
             .form-group {
@@ -989,16 +1105,26 @@ footer a {
         }
     }
 
-
+    #nav-link-profil {
+        display: none;
+    }
 }
 
 .quizz-container{
     margin-top: 30px;
-    width: 80%;
+    width: 90%;
 }
 
 /* TABLET AND SMALL SCREEN */
 @media screen and (max-width: 991px) {
+
+    .social-login-desk {
+        display: block;
+    }
+
+    .social-login-mobile {
+        display: none;
+    }
 
     #navbarNavDropdown {
         z-index: 1;
@@ -1021,10 +1147,22 @@ footer a {
         display: none;
     }
 
+    .navbar-collapse {
+        flex-basis: 100%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
     .navbar-light .navbar-nav .nav-link:hover {
         text-decoration: none;
         color: $primary-color;
         border-bottom: none;
+    }
+
+    #row_form.row {
+        margin-right: 100px;
     }
 
     .nav_admin {
@@ -1049,8 +1187,6 @@ footer a {
                 color : $dark-blue;
             }
         }
-
-
     }
 
     /* VIDEO SECTION */
@@ -1071,23 +1207,9 @@ footer a {
         margin-left: auto;
     }
 
-
-    /* VIDEO SECTION */
-    .content-container {
-        width: 100%;
-
-        iframe {
-            height: 160px;
-        }
-    }
-
     .ac_duration_content {
         margin-left : auto;
         margin-right: auto;
-
-        .form-group {
-            height: 150px;
-        }
     }
 }
 
@@ -1170,13 +1292,19 @@ for login & register pages */
 }
 
 .LT_page_name_ter {
-    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $secondary-color;
+    height: 60px;
+    color: $primary-color;
 }
 
 /* Accounts duration field */
 .ac_duration {
-    width: 100%;
-    padding-top: 40px;
+    width: 30%;
     display: flex;
     margin-bottom: -40px;
 }
@@ -1184,6 +1312,10 @@ for login & register pages */
 .ac_duration_content {
     margin-left : auto;
     margin-right: 40px;
+}
+
+.ac_duration p {
+    text-align: center;
 }
 
 /* Administration_users */
@@ -1195,13 +1327,12 @@ for login & register pages */
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    white-space: nowrap;
-    overflow: scroll hidden;
     padding-top: 40px;
 
-    .row {
-        flex-direction: column-reverse;
-    }
+}
+
+.table_user {
+    width: 80%;
 }
 
 .table .search_response {
@@ -1210,6 +1341,7 @@ for login & register pages */
     border-bottom: 2px solid $third-color;
     color: black;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
+
 }
 
 .table .search_response:hover {
@@ -1224,27 +1356,30 @@ for login & register pages */
     border-bottom: 2px $secondary-color solid;
 }
 
-.table_user {
-    width: 80%;
+.bloc_table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke ;
+    overflow: scroll;
 }
 
 /* Administration_search_users */
 .content-container_lt {
     width: 100%;
-    padding-left: 80px;
+    padding-left: 100px;
     margin-top: 50px;
-
-    .form-group {
-        width: 100%;
-        margin-right: 120px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 4rem;
-    }
 }
 
-
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4rem;
+}
 
 option:hover {
     background-color: $third-color;
@@ -1261,6 +1396,7 @@ option:hover {
     height: 35px;
     font-family: 'Raleway', 'Montserrat', 'sans-serif';
     outline-style:none;
+    margin-left: 20px;
 }
 
 .form-search:hover {
@@ -1316,9 +1452,84 @@ td.LT_result_quiz_good.search_response {
     color: darkgreen;
 }
 
+/* PHONE AND EXTRA SMALL SCREEN TABLE LT */
+@media screen and (max-width: 800px) {
+
+    .social-login-desk {
+        display: none;
+    }
+
+    .social-login-mobile {
+        display: block;
+    }
+
+    .social-login-mobile {
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .linkedin-login-btn-mobile {
+        margin: 15px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 40px;
+        }
+    }
+
+    .google-login-btn-mobile {
+        display: flex;
+        justify-content: center;
+
+        .oauth-container {
+            width: 25px;
+            font-weight: 700;
+            line-height: 25px;
+            text-transform: none;
+            display: flex;
+            box-shadow: black 0 0 2px;
+            justify-content: center;
+            height: 40px;
+        }
+
+        .google-img {
+            margin-top: -2px;
+            margin-right: 20px;
+        }
+    }
+
+    #fb-login-grp-mobile {
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+    }
+
+    .table_user {
+        width: 100%;
+    }
+
+    .table .search_response {
+        font-size: 12px;
+    }
+
+    .table .thead-light th {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .table .search_response {
+        word-wrap: break-word;
+    }
+}
 
 /* PHONE AND EXTRA SMALL SCREEN */
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 600px) {
 
     /* VIDEO SECTION */
     .content-container {
@@ -1327,81 +1538,91 @@ td.LT_result_quiz_good.search_response {
         iframe {
             height: 160px;
         }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            height: 200px;
-        }
     }
 
-    .form-program, .btn {
-        margin-left: 0;
-    }
-
-    .form-program {
-        width: 50%;
+    .ac_duration {
+        width: 100%;
     }
 
     .form-search {
-        width: 80%;
-    }
-
-    .content-container_lt {
-        padding-left: 0;
-    }
-
-    .ac_duration .ac_duration_content {
-        margin-right: 0;
-
-        .form-group {
-            align-items: center;
-        }
-    }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
-    /* VIDEO SECTION */
-    .content-container {
         width: 100%;
-
-        iframe {
-            height: 160px;
-        }
     }
 
-    #quizz_index,
-    #quizz_show,
-    #quizz_edit {
-        width: auto;
-        margin: auto;
-        padding: 0;
+    .form-group {
+        width: 100%;
+        margin-right: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 4rem;
+        height: 140px;
+    }
 
-        .btn {
-            width: auto;
-        }
+    #form_search_sup {
+        width: 50%;
+    }
 
-      }
+    #row_form .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-    #quizz_edit {
-        .form-group {
-            height: inherit;
-
-            label {
-                max-width: inherit;
-            }
-        }
-
-        .proposition .btn-round-danger {
-            //margin-right: 15%;
-            margin-top: 0;
-        }
+    .ac_duration {
+        padding-top: 0;
     }
 }
+
+.ac_duration .ac_duration_content {
+    margin-right: 0;
+
+    .form-group {
+        align-items: center;
+    }
+
+    p {
+        text-align: center;
+    }
+}
+
+h2 {
+    font-size: 1.3rem;
+}
+
+#quizz_candidat,
+#quizz_index,
+#quizz_show,
+#quizz_edit {
+    width: auto;
+    margin: auto;
+    padding: 0;
+
+    .btn {
+        width: auto;
+    }
+
+    .quizz-container {
+        width: 100%;
+    }
+}
+
+#quizz_edit {
+    .form-group {
+        height: inherit;
+
+        label {
+            max-width: inherit;
+        }
+    }
+
+    .proposition .btn-round-danger {
+        //margin-right: 15%;
+        margin-top: 0;
+    }
+}
+
 
 td#LT_result_quiz_good.search_response {
     color: darkgreen;
@@ -1414,6 +1635,11 @@ td#LT_result_quiz_good.search_response {
 
     .container-fluid {
         padding: 0;
+    }
+
+    .alert-danger {
+        width: 100%;
+        text-align: center;
     }
 
     // Personal Information
@@ -1548,7 +1774,7 @@ td#LT_result_quiz_good.search_response {
             @media screen and (min-width: 992px) {
                 display: flex;
                 flex-direction: row;
-                margin-top: 80px;
+                //margin-top: 80px;
 
                 .menu {
                     flex-direction: column;
@@ -1582,7 +1808,8 @@ td#LT_result_quiz_good.search_response {
 
                 div.row {
                     div.col-lg-2 {
-                        margin: auto 0;
+                        margin-left: -50px;
+                        margin-right: 40px;
                     }
 
                     div.col-md-8 {
@@ -1601,7 +1828,6 @@ td#LT_result_quiz_good.search_response {
         margin: 20px auto;
 
         @media screen and (min-width: 768px) {
-
             padding: 0;
             justify-content: space-around;
 
@@ -1611,8 +1837,15 @@ td#LT_result_quiz_good.search_response {
         }
 
         @media screen and (min-width: 992px) {
-            width: 70%;
-            padding: 40px;
+            padding: 20px;
+        }
+
+        @media screen and (min-width: 1200px) {
+            width: 90%;
+        }
+
+        @media screen and (min-width: 1400px) {
+            width: 80%;
         }
 
 
@@ -1798,6 +2031,11 @@ td#LT_result_quiz_good.search_response {
 
         .row {
             margin-bottom: -20px;
+        }
+
+        hr {
+            width: 100%;
+            background-color: white;
         }
 
         header {
@@ -2100,7 +2338,6 @@ td#LT_result_quiz_good.search_response {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        border: 1px solid #4e555b;
         background-color: $secondary-color;
         display: flex;
         flex-direction: column;
@@ -2109,7 +2346,6 @@ td#LT_result_quiz_good.search_response {
         margin: auto;
 
         p {
-            font-size: 1.5em;
             margin-bottom: 0;
             color: white;
         }
@@ -2120,7 +2356,7 @@ td#LT_result_quiz_good.search_response {
         margin: auto;
         height: 48px;
         width: 48px;
-        border: 3px solid #4e555b;
+        border: 1px solid #4e555b;
     }
 }
 

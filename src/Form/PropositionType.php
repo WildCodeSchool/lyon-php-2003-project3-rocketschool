@@ -16,7 +16,8 @@ class PropositionType extends AbstractType
     {
         $builder
             ->add('title', TextareaType::class, [
-                'label' => 'Proposition'
+                'label' => 'Proposition',
+                'empty_data' => "",
             ])
             ->add('isGood', null, [
             'label' => 'Est une réponse correcte'])
