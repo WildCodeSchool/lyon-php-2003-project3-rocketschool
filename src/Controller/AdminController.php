@@ -59,16 +59,14 @@ class AdminController extends AbstractController
         list($accountsDuration, $formAccDu) = self::editCandidateDuration($request, $accDuRepo, $userRepo);
 
         $formDelAts = [];
-
-        $candidates = $userRepo->findCandidates();
         $candidate = null;
+        $candidates = $userRepo->findCandidates();
         foreach ($candidates as $candidate) {
             $form = $this->createForm(UserType::class, $candidate);
             $formDelAts[] = $form;
         }
 
         $formsView = [];
-
         foreach ($formDelAts as $formDelAt) {
             $formDelAt->handleRequest($request);
             $formsView[] = $formDelAt->createView();
@@ -107,6 +105,7 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Edit account duration for all candidates
      * @param Request $request
      * @param AccountsDurationRepository $accDuRepo
      * @param UserRepository $userRepo
