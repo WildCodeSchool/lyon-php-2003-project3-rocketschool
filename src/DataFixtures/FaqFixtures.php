@@ -49,7 +49,6 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
     {
 
         $categories = [
-            "",
             $this->getReference('category_1'),
             $this->getReference('category_2')
         ];
@@ -60,7 +59,7 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
             $faq->setQuestion($question)
                 ->setAnswer($answer)
                 ->setCreatedAt(date_create('now'))
-                ->setCategory($categories[rand(0, 2)])
+                ->setCategory($categories[rand(0, 1)])
                 ->setPosition($index);
             $index++;
             $manager->persist($faq);
