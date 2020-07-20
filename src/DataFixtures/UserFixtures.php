@@ -40,7 +40,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setLastname($faker->lastName)
                 ->setAccountsDuration($this->getReference('AccountsDuration'));
             $manager->persist($user);
-
             $manager->flush();
             $userManager->setDeletedAt($user, $user->getAccountsDuration()->getDays());
             $manager->persist($user);

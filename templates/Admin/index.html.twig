@@ -126,6 +126,10 @@
                             <td class="search_response p-0">
                                 {% set formDelAtsIndex = loop.index0 %}
 
+{#                                {{ dump(user.deletedAt) }}#}
+
+{#                                {{ dump(formDelAts[formDelAtsIndex]) }}#}
+
                                 {{ form_start(formDelAts[formDelAtsIndex], {
                                     'attr': {
                                         'class': 'form-group update_delete_at_form',

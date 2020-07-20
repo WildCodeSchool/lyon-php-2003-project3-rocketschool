@@ -59,22 +59,24 @@ class AdminController extends AbstractController
         list($accountsDuration, $formAccDu) = self::editCandidateDuration($request, $accDuRepo, $userRepo);
 
         $formDelAts = [];
-        $candidate = null;
+
         $candidates = $userRepo->findCandidates();
+        $candidate = null;
         foreach ($candidates as $candidate) {
             $form = $this->createForm(UserType::class, $candidate);
             $formDelAts[] = $form;
         }
 
         $formsView = [];
+
         foreach ($formDelAts as $formDelAt) {
             $formDelAt->handleRequest($request);
             $formsView[] = $formDelAt->createView();
 
             if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
                 $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($candidate);
-                    $entityManager->flush();
+                $entityManager->persist($candidate);
+                $entityManager->flush();
 
                 return $this->redirectToRoute('admin_index');
             }
@@ -105,7 +107,6 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Edit account duration for all candidates
      * @param Request $request
      * @param AccountsDurationRepository $accDuRepo
      * @param UserRepository $userRepo
@@ -155,9 +156,9 @@ class AdminController extends AbstractController
         }
 
         return $this->render('Admin/video.html.twig', [
-                'page_name' => 'Vidéo - Édition',
-                'video' => $video,
-                'form' => $form->createView()
-            ]);
+            'page_name' => 'Vidéo - Édition',
+            'video' => $video,
+            'form' => $form->createView()
+        ]);
     }
 }
