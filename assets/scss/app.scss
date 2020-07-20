@@ -780,9 +780,20 @@ footer a {
     padding: 15px;
     margin: 20px auto;
     max-width: 600px;
+    min-width: 200px;
     border-radius: 5px;
     box-shadow: black 0 0 15px -5px;
     border-top: solid $dark-blue;
+
+    .faq-img-container {
+        max-width: 600px;
+        min-width: 200px;
+
+        img {
+            width: 100%;
+            margin: 15px 0;
+        }
+    }
 
     h3 {
         margin: 0;
@@ -833,7 +844,12 @@ footer a {
     margin: 15px auto;
     text-align: center;
 
-    input, textarea, select {
+    .custom-file {
+        text-align: initial;
+        text-indent: 5px;
+    }
+
+    input, textarea, select, label {
         margin-top: 15px;
     }
 
