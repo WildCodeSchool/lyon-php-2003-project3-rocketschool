@@ -1,7 +1,8 @@
-const imgPath = document.getElementById('faq_image');
-var imgName = "";
+const imgDiv = document.getElementById('faq_image');
+var imgName = '';
 
 document.querySelector('#faq_image').addEventListener('change', () => {
-    imgName = imgPath.value.split("\\");
-    document.querySelector('.custom-file-label').innerHTML = imgName[2];
+    imgPath = imgDiv.value.split('\\');
+    imgName = imgPath[2];
+    document.querySelector('.custom-file-label').innerHTML = imgName;
 });
