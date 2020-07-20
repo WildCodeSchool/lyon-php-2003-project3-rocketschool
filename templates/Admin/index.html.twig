@@ -87,26 +87,17 @@
 
                             {% if user.checklist.checkQuizz and user.checklist.checkVideo and user.checklist.checkGuide %}
                                 <td class="search_response LT_result_quiz_good"> Parcours terminé </td>
+                            {% elseif user.checklist.checkQuizz and not user.checklist.checkVideo and not user.checklist.checkGuide
+                                or user.checklist.checkVideo and not user.checklist.checkQuizz and not user.checklist.checkGuide
+                                or user.checklist.checkGuide and not user.checklist.checkQuizz and not user.checklist.checkVideo %}
+                                <td class="search_response LT_result_quiz_bad"> 1/3 </td>
+                            {% elseif user.checklist.checkQuizz and user.checklist.checkVideo and not user.checklist.checkGuide
+                                or user.checklist.checkQuizz and user.checklist.checkGuide and not user.checklist.checkVideo
+                                or user.checklist.checkVideo and user.checklist.checkGuide and not user.checklist.checkQuizz %}
+                                <td class="search_response LT_result_quiz_bad"> 2/3 </td>
+                            {% else %}
+                                <td class="search_response LT_result_quiz_bad">0/3</td>
                             {% endif %}
-                             {% if user.checklist.checkQuizz and not user.checklist.checkVideo and not user.checklist.checkGuide %}
-                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                               {% if user.checklist.checkVideo and not user.checklist.checkQuizz and not user.checklist.checkGuide %}
-                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                                {% if user.checklist.checkGuide and not user.checklist.checkQuizz and not user.checklist.checkVideo %}
-                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                                {% if user.checklist.checkQuizz and user.checklist.checkVideo and not user.checklist.checkGuide
-                                    or (user.checklist.checkQuizz and user.checklist.checkGuide and not user.checklist.checkVideo) %}
-                                    <td class="search_response LT_result_quiz_bad"> 2/3 </td>
-                                {% endif %}
-                                {% if user.checklist.checkVideo and user.checklist.checkGuide and not user.checklist.checkQuizz %}
-                                    <td class="search_response LT_result_quiz_bad"> 2/3 </td>
-                                {% endif %}
-                                {% if not user.checklist.checkQuizz and not user.checklist.checkVideo and not user.checklist.checkGuide %}
-                                    <td class="search_response LT_result_quiz_bad">0/3</td>
-                                {% endif %}
 
                             {% for result in user.quizResult %}
                                 <td class="search_response
@@ -126,10 +117,6 @@
                             <td class="search_response"> {{ user.createdAt|date("d / m / Y") }} </td>
                             <td class="search_response p-0">
                                 {% set formDelAtsIndex = loop.index0 %}
-
-{#                                {{ dump(user.deletedAt) }}#}
-
-{#                                {{ dump(formDelAts[formDelAtsIndex]) }}#}
 
                                 {{ form_start(formDelAts[formDelAtsIndex], {
                                     'attr': {
