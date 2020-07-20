@@ -34,19 +34,18 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @Assert\NotBlank(message="Veuillez sélectionner le quizz correspondant")
      */
     private $quizz;
 
     /**
-     * @ORM\OneToMany(targetEntity=Proposition::class, mappedBy="question", orphanRemoval=true,
-     *     cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Proposition::class, mappedBy="question", orphanRemoval=true, cascade={"persist"})
      */
     private $propositions;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
+     * @Assert\NotBlank(message="Veuillez choisir la position")
      */
     private $questionOrder;
 

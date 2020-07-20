@@ -2101,10 +2101,13 @@ td#LT_result_quiz_good.search_response {
                     height: auto;
                 }
 
+                h4 {
+                    word-break: break-all;
+                }
+
                 > div {
                     display: flex;
                     flex-direction: column;
-
                 }
             }
 

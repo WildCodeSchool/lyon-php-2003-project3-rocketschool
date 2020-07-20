@@ -4,10 +4,6 @@
 
 {% block stylesheets %}
     <style>
-        /*#main {*/
-        /*    justify-content: start;*/
-        /*}*/
-
         .LT_page_name, #main > header, .edit_hide {
             display: none;
         }
@@ -249,7 +245,6 @@
                                 <label for="program">Programme</label>
                                 <select name="program" id="program" class="custom-select">
                                     {% for program in programs %}
-                                        {{ dump(program) }}
                                         <option value="{{ program.id }}" {% if app.user.program.id is defined and app.user.program.id == program.id %}selected{% endif %}>{{ program.name }}</option>
                                     {% endfor %}
                                 </select>
