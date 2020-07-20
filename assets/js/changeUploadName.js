@@ -1,6 +1,6 @@
 const imgDiv = document.getElementById('faq_image');
 let imgPath = '';
-let imgName = ''
+let imgName = '';
 
 document.querySelector('#faq_image').addEventListener('change', () => {
     imgPath = imgDiv.value.split('\\');
