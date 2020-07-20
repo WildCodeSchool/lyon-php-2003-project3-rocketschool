@@ -1104,11 +1104,13 @@ footer a {
 
     .user_table .row:first-child {
         flex-direction: row;
-        margin-right: 200px;
+        justify-content: space-around;
+        width: 100%;
     }
 
     .ac_duration {
-        margin-left: 80px;
+        margin-left: 0;
+        width: 100%;
 
         .ac_duration_content {
             .form-group {
@@ -1178,8 +1180,27 @@ footer a {
         border-bottom: none;
     }
 
+    .user_table {
+
+        .form-group {
+            width: 100%;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 4rem;
+            height: 140px;
+        }
+
+        .form-search {
+            width: 100%;
+        }
+    }
+
     #row_form.row {
-        margin-right: 100px;
+        margin-right: 0px;
+        justify-content: center;
     }
 
     .nav_admin {
@@ -1220,6 +1241,7 @@ footer a {
     }
 
     .ac_duration .ac_duration_content {
+        width: 100%;
         margin-right: auto;
         margin-left: auto;
     }
@@ -1321,7 +1343,7 @@ for login & register pages */
 
 /* Accounts duration field */
 .ac_duration {
-    width: 30%;
+    width: auto;
     display: flex;
     margin-bottom: -40px;
 }
@@ -1385,8 +1407,6 @@ for login & register pages */
 
 /* Administration_search_users */
 .content-container_lt {
-    width: 100%;
-    padding-left: 100px;
     margin-top: 50px;
 }
 
@@ -1535,6 +1555,13 @@ td.LT_result_quiz_good.search_response {
 
     .table .thead-light th {
         font-size: 10px;
+    }
+
+    #row_form .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -2400,6 +2427,25 @@ td#LT_result_quiz_good.search_response {
     .user_table .row:first-child {
         display: flex;
         flex-direction: inherit;
+        align-items: center;
+    }
+
+    .user_table {
+
+        .form-group {
+            width: 100%;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 4rem;
+            height: 140px;
+        }
+
+        .form-search {
+            width: 100%;
+        }
     }
 
 }

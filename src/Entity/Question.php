@@ -34,7 +34,6 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
-     * @Assert\NotBlank(message="Veuillez sélectionner le quizz correspondant")
      */
     private $quizz;
 
@@ -45,7 +44,6 @@ class Question
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="Veuillez choisir la position")
      */
     private $questionOrder;
 
