@@ -7,10 +7,10 @@
 It's symfony website-skeleton project with some additional tools to validate code standards.
 
 * GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
-  
-    * PHP_CodeSniffer to check PSR2 
+
+    * PHP_CodeSniffer to check PSR2
     * PHPStan will check PHP recommendation
-     
+
   If tests fail, the commit is canceled and a warning message is displayed to developper.
 
 * Travis CI, as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
@@ -93,4 +93,11 @@ and set up your .env file
 
 ## Functionality for reset password
 
-Set up your MAILER_DSN in .env
+
+
+## Functionality for email sending :
+1 / Set up your MAILER_DSN in .env
+    MAILER_DSN=gmail://USERNAME:PASSWORD@default
+
+2 / configure the options of your Google account and check the "Allow less secure applications:
+https://myaccount.google.com/lesssecureapps
