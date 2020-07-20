@@ -21,11 +21,11 @@
                                     <input class="quiz-input-{{ question.id }}" type="checkbox" name="questions[{{ question.id }}][]"
                                            value="{{ proposition.id }}"
                                             {% if post %}
-                                        {% for  props in post.questions %}
-                                            {% for prop in props %}
-                                                {% if prop == proposition.id %} checked {% endif %}
-                                            {% endfor %}
-                                        {% endfor %}
+                                                {% for props in post.questions %}
+                                                    {% for prop in props %}
+                                                        {% if prop == proposition.id %} checked {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
                                             {% endif %}>
                                     <span class="checkmark checkmark-question-{{ question.id }}"></span>
                                 </label>
@@ -35,24 +35,22 @@
                     {% endfor %}
                 </div>
                 <div class="quizz-check">
-                    {% if postValide == true %}
-                        {% if errors is not null %}
-                            {% for key, error in errors %}
-                                {% if key == question.id %}
-                                    {% if error == true %}
-                                        <img src="{{ asset('build/images/icons/false-check.png') }}"
-                                             style="width: 50%">
-                                    {% else %}
-                                        <img src="{{ asset('build/images/icons/true-check.png') }}"
-                                             style="width: 50%">
-                                    {% endif %}
+                    {% if postValide and errors is not null %}
+                        {% for key, error in errors %}
+                            {% if key == question.id %}
+                                {% if error %}
+                                    <img src="{{ asset('build/images/icons/false-check.png') }}"
+                                         style="width: 50%">
+                                {% else %}
+                                    <img src="{{ asset('build/images/icons/true-check.png') }}"
+                                         style="width: 50%">
                                 {% endif %}
-                            {% endfor %}
-                        {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     {% endif %}
                 </div>
             </div>
-            {% if result is not same as(null) and  app.user.quizResult|length > 0 %}
+            {% if result is not same as(null) and app.user.quizResult|length > 0 %}
                 <div class="{% if errors[question.id] %} alert-danger {% else %} alert-success {% endif %}">
                     <p class="quiz-solution">{{ question.solution }}</p>
                 </div>
