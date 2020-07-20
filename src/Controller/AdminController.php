@@ -74,16 +74,19 @@ class AdminController extends AbstractController
             $formsView[] = $formDelAt->createView();
 
             if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($candidate);
-                $entityManager->flush();
+                $userId = $request->request->get('userId');
+                $deletedAt = $request->request->get('user')["deletedAt"];
+                $deletedAt = DateTime::createFromFormat('Y-m-d', $deletedAt);
 
+                $user = $userRepo->findOneBy(['id' => $userId]);
+                if ($user && $deletedAt) {
+                    $user->setDeletedAt($deletedAt);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+                }
                 return $this->redirectToRoute('admin_index');
             }
-        }
-
-        foreach ($formDelAts as $formDelAt) {
-            $formDelAt->createView();
         }
 
         $users = $this->getDoctrine()->getRepository(User::class)
