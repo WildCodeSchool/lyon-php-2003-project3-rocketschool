@@ -2,6 +2,10 @@
 
 {% block title %}FAQ - Nouvelle Question{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('changeUploadName') }}
+{% endblock %}
+
 {% block body %}
     <div class="faq-action-btn">
         <a href="{{ path('faq_index') }}"><button class="btn btn-round-darkblue">Retour</button></a>
@@ -9,4 +13,8 @@
     </div>
 
     {{ include('faq/_form.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('changeUploadName') }}
 {% endblock %}

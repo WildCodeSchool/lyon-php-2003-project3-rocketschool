@@ -22,6 +22,10 @@
         </div>
     {% endif %}
     {{ form_widget(form.category, {'attr': {'class': 'form-control faq-form-control shadow',}}) }}
+    {{ form_widget(form.image, {'attr': {'class': 'form-control faq-form-control shadow', 'placeholder': 'Ajouter une image'}}) }}
+    <div class="faq-alert alert-danger">
+        {{ form_errors(form.image) }}
+    </div>
     <div class="faq-action-btn">
         <button class="btn btn-round-darkblue">{{ button_label|default('Poster') }}</button>
     </div>
