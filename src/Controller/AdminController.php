@@ -74,6 +74,9 @@ class AdminController extends AbstractController
             $formsView[] = $formDelAt->createView();
 
             if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
+//                dump($formDelAt); //always user0 (first user)
+//                dump($candidate); //always user49 (last user)
+//                die();
                 $userId = $request->request->get('userId');
                 $deletedAt = $request->request->get('user')["deletedAt"];
                 $deletedAt = DateTime::createFromFormat('Y-m-d', $deletedAt);
