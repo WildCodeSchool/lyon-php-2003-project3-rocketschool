@@ -1386,13 +1386,13 @@ for login & register pages */
     margin-top: 50px;
 }
 
-    #row_form .form-group {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 4rem;
-    }
+#row_form .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4rem;
+}
 
 option:hover {
     background-color: $third-color;
