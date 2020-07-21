@@ -73,40 +73,32 @@
             </thead>
             <tbody class="thead-light">
             {% if users is not empty %}
-                {%  for user in users %}
+                {% for user in users %}
                     {% if 'ROLE_ADMIN' not in user.roles %}
                         <tr>
                             <td class="search_response"> {{ user.firstname }} </td>
                             <td class="search_response"> {{ user.lastname}} </td>
                             <td class="search_response"> {{ user.email}} </td>
-                            {% if  user.program  %}
+                            {% if user.program  %}
                                 <td class="search_response"> {{ user.program.name}} </td>
                             {% else %}
                                 <td class="search_response"> à définir </td>
                             {% endif %}
 
-                            {% if user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 1  and user.checklist.checkGuide == 1 %}
+                            {% if user.checklist.checkQuizz and user.checklist.checkVideo and user.checklist.checkGuide %}
                                 <td class="search_response LT_result_quiz_good"> Parcours terminé </td>
+                            {% elseif user.checklist.checkQuizz and not user.checklist.checkVideo and not user.checklist.checkGuide
+                                or user.checklist.checkVideo and not user.checklist.checkQuizz and not user.checklist.checkGuide
+                                or user.checklist.checkGuide and not user.checklist.checkQuizz and not user.checklist.checkVideo %}
+                                <td class="search_response LT_result_quiz_bad"> 1/3 </td>
+                            {% elseif user.checklist.checkQuizz and user.checklist.checkVideo and not user.checklist.checkGuide
+                                or user.checklist.checkQuizz and user.checklist.checkGuide and not user.checklist.checkVideo
+                                or user.checklist.checkVideo and user.checklist.checkGuide and not user.checklist.checkQuizz %}
+                                <td class="search_response LT_result_quiz_bad"> 2/3 </td>
+                            {% else %}
+                                <td class="search_response LT_result_quiz_bad">0/3</td>
                             {% endif %}
-                             {% if (user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 0 and user.checklist.checkGuide == 0) %}
-                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                               {% if (user.checklist.checkVideo == 1 and user.checklist.checkQuizz == 0 and user.checklist.checkGuide == 0) %}
-                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                                {% if(user.checklist.checkGuide == 1 and user.checklist.checkQuizz == 0 and user.checklist.checkVideo == 0) %}
-                                    <td class="search_response LT_result_quiz_bad"> 1/3 </td>
-                                {% endif %}
-                                {% if (user.checklist.checkQuizz == 1 and user.checklist.checkVideo == 1 and user.checklist.checkGuide == 0
-                                    or user.checklist.checkQuizz == 1 and user.checklist.checkGuide == 1 and user.checklist.checkVideo == 0) %}
-                                    <td class="search_response LT_result_quiz_bad"> 2/3 </td>
-                                {% endif %}
-                                {% if (user.checklist.checkVideo == 1 and user.checklist.checkGuide == 1 and user.checklist.checkQuizz == 0) %}
-                                    <td class="search_response LT_result_quiz_bad"> 2/3 </td>
-                                {% endif %}
-                                {% if user.checklist.checkQuizz == 0 and user.checklist.checkVideo == 0 and user.checklist.checkGuide == 0 %}
-                                    <td class="search_response LT_result_quiz_bad">0/3</td>
-                                {% endif %}
+
                             {% for result in user.quizResult %}
                                 <td class="search_response
                                     {% if result.result < 50 %}

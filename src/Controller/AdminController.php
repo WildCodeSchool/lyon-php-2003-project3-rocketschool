@@ -75,8 +75,8 @@ class AdminController extends AbstractController
 
             if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
                 $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($candidate);
-                    $entityManager->flush();
+                $entityManager->persist($candidate);
+                $entityManager->flush();
 
                 return $this->redirectToRoute('admin_index');
             }
@@ -156,9 +156,9 @@ class AdminController extends AbstractController
         }
 
         return $this->render('Admin/video.html.twig', [
-                'page_name' => 'Vidéo - Édition',
-                'video' => $video,
-                'form' => $form->createView()
-            ]);
+            'page_name' => 'Vidéo - Édition',
+            'video' => $video,
+            'form' => $form->createView()
+        ]);
     }
 }

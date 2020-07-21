@@ -5,6 +5,7 @@
         "php": "^7.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "cocur/slugify": "^4.0",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "gedmo/doctrine-extensions": "^2.4",
         "knpuniversity/oauth2-client-bundle": "^2.1",

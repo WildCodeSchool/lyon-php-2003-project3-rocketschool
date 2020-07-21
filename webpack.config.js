@@ -29,6 +29,7 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('changeUploadName', './assets/js/changeUploadName.js')
     .addEntry('faq_position', './assets/js/faq_position.js')
     .addEntry('question_position', './assets/js/question_position.js')
     .addEntry('add_supp_question_proposition', './assets/js/add_supp_question_proposition.js')

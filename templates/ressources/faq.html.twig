@@ -6,7 +6,7 @@
     <div class="content-container">
         {{ form_start(form, {
             'attr': {
-                'class': 'form-group faq-search',
+                'class': 'faq-search',
                 'novalidate': 'novalidate'
             }}) }}
             {{ form_widget(form.searchField, {
@@ -45,6 +45,11 @@
                     <h3>{{ card.question }}</h3>
                     <div class="faq-answer-container">
                         <p>{{ card.answer }}</p>
+                        {% if card.image %}
+                        <div class="faq-img-container">
+                                <img src="{{ asset('uploads/faq/' ~ card.image) }}" class="faq-image" alt="image pour la question {{ card.question }}">
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
