@@ -46,7 +46,7 @@
 {% block javascripts %}
     <script>
         {% if app.user.quizResult|length < 2 %}
-            {% for question in quizz.questions %}
+            {% for question in questions %}
                 var nbGoodAnswer = 0;
                 {% for proposition in question.propositions %}
                     {% if proposition.isGood %}

@@ -100,9 +100,9 @@
             <div class="{% if app.user is not null %}LT_page_name{% else %}LT_page_name_ter{% endif %}{% if is_granted('ROLE_ADMIN') %} margin_top_navbar_admin{% endif %}">
                 <h2>{{ page_name|default('') }}</h2>
             </div>
-{#            <main>#}
+        <div class="page-content">
             {% block body %}{% endblock %}
-{#            </main>#}
+        </div>
             {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}

@@ -72,9 +72,13 @@ class RessourcesController extends AbstractController
      * @param QuizResultService $quizResultService
      * @return string
      */
-    public function quizz(QuizzRepository $quizzRepo, QuizResultService $quizResultService)
-    {
+    public function quizz(
+        QuizzRepository $quizzRepo,
+        QuizResultService $quizResultService,
+        QuestionRepository $questionRepository
+    ) {
         $quizz = $quizzRepo->findOneBy([]);
+        $questions = $questionRepository->findBy(['quizz' => $quizz], ['questionOrder' => 'ASC']);
         $user = $this->getUser();
         $errors = null;
         $result = null;
@@ -93,7 +97,7 @@ class RessourcesController extends AbstractController
 
         return $this->render('ressources/quizz.html.twig', [
             'page_name' => 'Quizz',
-            'quizz' => $quizz,
+            'questions' => $questions,
             'errors' => $errors,
             'post' => $_POST,
             'result' => $result,
