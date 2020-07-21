@@ -34,13 +34,14 @@
             </div>
             <section class="ac_duration p-lg-2">
                 <div class="ac_duration_content">
-                    <p> Nb. jours avant suppression candidats</p>
+                    <p class="sup-candidat-desk"> Nb. jours avant suppression candidats</p>
                     {{ form_start(formAccDu, {
                         'attr': {
                             'id': 'deletedAtForm',
                             'class': 'form-group',
                             'novalidate': 'novalidate',
                         }}) }}
+                    <p class="sup-candidat-mobile"> Nb. jours avant suppression candidats</p>
                     {{ form_widget(formAccDu.days, {
 
                         'attr': {
