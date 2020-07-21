@@ -18,6 +18,9 @@ use App\Form\VideoEditType;
 use App\Services\GetVideo;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,7 +32,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  * @package App\Controller
  * @Route("/admin", name="admin_")
  */
-class AdminController extends AbstractController
+class AdminController extends AbstractController implements FormFactoryInterface
 //Login is the home page
 {
 
@@ -51,11 +54,16 @@ class AdminController extends AbstractController
      * @param Request $request
      * @param UserRepository $userRepo
      * @param AccountsDurationRepository $accDuRepo
+     * @param FormFactoryInterface $formFactory
      * @return Response
      * @Route("/", name="index")
      */
-    public function index(Request $request, UserRepository $userRepo, AccountsDurationRepository $accDuRepo):Response
-    {
+    public function index(
+        Request $request,
+        UserRepository $userRepo,
+        AccountsDurationRepository $accDuRepo,
+        FormFactoryInterface $formFactory
+    ):Response {
         list($accountsDuration, $formAccDu) = self::editCandidateDuration($request, $accDuRepo, $userRepo);
 
         $formDelAts = [];
@@ -63,7 +71,7 @@ class AdminController extends AbstractController
         $candidates = $userRepo->findCandidates();
         $candidate = null;
         foreach ($candidates as $candidate) {
-            $form = $this->createForm(UserType::class, $candidate);
+            $form = $formFactory->createNamed('user_'.$candidate->getId(), UserType::class, $candidate);
             $formDelAts[] = $form;
         }
 
@@ -74,12 +82,8 @@ class AdminController extends AbstractController
             $formsView[] = $formDelAt->createView();
 
             if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
-//                dump($formDelAt); //always user0 (first user)
-//                dump($candidate); //always user49 (last user)
-//                die();
                 $userId = $request->request->get('userId');
-                $deletedAt = $request->request->get('user')["deletedAt"];
-                $deletedAt = DateTime::createFromFormat('Y-m-d', $deletedAt);
+                $deletedAt = $formDelAt->get("deletedAt")->getData();
 
                 $user = $userRepo->findOneBy(['id' => $userId]);
                 if ($user && $deletedAt) {
@@ -166,5 +170,67 @@ class AdminController extends AbstractController
             'video' => $video,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function create(
+        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
+        $data = null,
+        array $options = []
+    ) {
+        // TODO: Implement create() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createNamed(
+        $name,
+        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
+        $data = null,
+        array $options = []
+    ) {
+        // TODO: Implement createNamed() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createForProperty($class, $property, $data = null, array $options = [])
+    {
+        // TODO: Implement createForProperty() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createBuilder(
+        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
+        $data = null,
+        array $options = []
+    ) {
+        // TODO: Implement createBuilder() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createNamedBuilder(
+        $name,
+        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
+        $data = null,
+        array $options = []
+    ) {
+        // TODO: Implement createNamedBuilder() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createBuilderForProperty($class, $property, $data = null, array $options = [])
+    {
+        // TODO: Implement createBuilderForProperty() method.
     }
 }

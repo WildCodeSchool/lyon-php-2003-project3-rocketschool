@@ -271,27 +271,38 @@
     </main>
 {% endblock %}
 
+
 {% block javascripts %}
     <script>
         $(document).ready(function(){
-
+            function editNote() {
+                const closes = document.querySelectorAll('.deleteNote');
+                closes.forEach((child) => {
+                    child.addEventListener('click', deleteNote);
+                });
+            }
+            function deleteNote(e) {
+                e.preventDefault();
+                const close = e.target;
+                const link = close.href;
+                fetch(link)
+                    .then((res) => {
+                        $('#notes').load(document.URL +  ' #notes');
+                    })
+            }
             const notes = $("#notes");
             const caret = $("#toggler");
-
+            const deleteNoteButton = $('.close');
             notes.css("display","none");
-
             caret.on('click', () => {
                 notes.slideToggle();
             });
-
             $(".menu-link").click(function(e) {
                 e.preventDefault();
-
                 $(".menu-overlay").toggleClass("open");
                 $(".menu-burger").toggleClass("open");
-
             });
+            editNote();
         });
     </script>
 {% endblock %}
-
