@@ -49,7 +49,7 @@
                     <td>{{ faq.category.name|default('Sans catégorie') }}</td>
                     <td class="faq-question-answer">
                         <strong>{{ faq.question }}</strong>
-                        <p>{{ faq.answer }}</p>
+                        <p>{{ faq.answer|raw }}</p>
                     </td>
                     <td><small>{{ faq.createdAt ? faq.createdAt|date('d-m-y') : '' }}</small></td>
                     <td>

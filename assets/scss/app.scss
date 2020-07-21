@@ -1408,14 +1408,13 @@ for login & register pages */
 /* Administration_search_users */
 .content-container_lt {
     margin-top: 50px;
-}
 
-.form-group {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 4rem;
+    .form-group {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 4rem;
+    }
 }
 
 option:hover {
@@ -1588,23 +1587,26 @@ td.LT_result_quiz_good.search_response {
         width: 100%;
     }
 
-    .form-search {
-        width: 100%;
-    }
+    .content-container_lt {
 
-    .form-group {
-        width: 100%;
-        margin-right: 120px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        margin-bottom: 4rem;
-        height: 140px;
-    }
+        .form-search {
+            width: 100%;
+        }
 
-    #form_search_sup {
-        width: 50%;
+        .form-group {
+            width: 100%;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 4rem;
+            height: 140px;
+        }
+
+        #form_search_sup {
+            width: 50%;
+        }
     }
 
     #row_form .row {
@@ -2426,7 +2428,7 @@ td#LT_result_quiz_good.search_response {
 @media screen and (min-width: 992px) and (max-width: 1100px) {
     .user_table .row:first-child {
         display: flex;
-        flex-direction: inherit;
+        flex-direction: row;
         align-items: center;
     }
 
