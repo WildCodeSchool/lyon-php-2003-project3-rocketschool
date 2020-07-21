@@ -6,7 +6,7 @@
 
     <section class="user_table container-fluid">
         <div class="row" id="row_form">
-            <div class="content-container_lt col-lg-8 pb-lg-4">
+            <div class="content-container_lt pb-lg-4">
 
                 {{ form_start(form, {
                     'attr': {
@@ -32,15 +32,16 @@
                 <button type="submit" class="btn btn-search-user">Rechercher</button>
                 {{ form_end(form) }}
             </div>
-            <section class="ac_duration col-lg-2 p-lg-2">
+            <section class="ac_duration p-lg-2">
                 <div class="ac_duration_content">
-                    <p> Nb. jours avant suppression candidats</p>
+                    <p class="sup-candidat-desk"> Nb. jours avant suppression candidats</p>
                     {{ form_start(formAccDu, {
                         'attr': {
                             'id': 'deletedAtForm',
                             'class': 'form-group',
                             'novalidate': 'novalidate',
                         }}) }}
+                    <p class="sup-candidat-mobile"> Nb. jours avant suppression candidats</p>
                     {{ form_widget(formAccDu.days, {
 
                         'attr': {
@@ -116,29 +117,19 @@
                             {% endfor %}
                             <td class="search_response"> {{ user.createdAt|date("d / m / Y") }} </td>
                             <td class="search_response p-0">
-                                {% set formDelAtsIndex = loop.index0 %}
-
-                                {{ form_start(formDelAts[formDelAtsIndex], {
-                                    'attr': {
-                                        'class': 'form-group update_delete_at_form',
-                                        'novalidate': 'novalidate'
-                                    }}) }}
-
-                                {{ form_widget(formDelAts[formDelAtsIndex].deletedAt, {
-                                    'attr': {
-                                        'class': 'form-search',
-                                        'placeholder': 'Rechercher un candidat'
-                                    }}) }}
-
-                                <input type="hidden" name="userId" value="{{ user.id }}">
-                                <button type="submit" class="btn btn-search-user">Modifier</button>
-                                {{ form_end(formDelAts[formDelAtsIndex]) }}
+                                <form method="post">
+                                    <input type="hidden" name="userId" value="{{ user.id }}">
+                                    <input type="date" id="start" name="deletedAt"
+                                           value="{{ user.deletedAt|date("Y-m-d") }}"
+                                           >
+                                    <button type="submit" class="btn btn-search-user">Modifier</button>
+                                </form>
                             </td>
                         </tr>
                     {% endif %}
                 {% endfor %}
             {% else %}
-                <td class="error_users_search" colspan="7">
+                <td class="error_users_search" colspan="9">
                     Malheureusement nous n'avons pas trouvé de résultats à votre recherche
                 </td>
             {% endif %}

@@ -101,10 +101,6 @@ blockquote {
     width: 100%;
 }
 
-.navbar-nav li {
-    padding-left: 20px;
-}
-
 .navbar {
     height: 80px;
 }
@@ -560,6 +556,7 @@ footer a {
 #quizz_candidat {
     .quizz-card {
         display: flex;
+        z-index: -1;
         flex-direction: row;
         margin: 20px 0 20px 0;
         border: 2px solid $secondary-color;
@@ -774,6 +771,12 @@ footer a {
 .faq-no-result {
     margin: 0;
     text-align: center;
+}
+
+.faq-intro {
+    max-width: 600px;
+    min-width: 200px;
+    margin: 50px auto;
 }
 
 .faq-card {
@@ -1069,7 +1072,7 @@ footer a {
     }
 
     .navbar-light .navbar-nav .nav-link {
-        width: 200px;
+        width: 180px;
         letter-spacing: 2px;
     }
 
@@ -1104,11 +1107,21 @@ footer a {
 
     .user_table .row:first-child {
         flex-direction: row;
-        margin-right: 200px;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .sup-candidat-desk {
+        display: block;
+    }
+
+    .sup-candidat-mobile {
+        display: none;
     }
 
     .ac_duration {
-        margin-left: 80px;
+        margin-left: 0;
+        width: 100%;
 
         .ac_duration_content {
             .form-group {
@@ -1134,6 +1147,15 @@ footer a {
 
 /* TABLET AND SMALL SCREEN */
 @media screen and (max-width: 991px) {
+
+    .sup-candidat-desk {
+        display: none;
+    }
+
+    .sup-candidat-mobile {
+        display: block;
+        margin-bottom: 0;
+    }
 
     .social-login-desk {
         display: block;
@@ -1178,8 +1200,27 @@ footer a {
         border-bottom: none;
     }
 
+    .user_table {
+
+        .form-group {
+            width: 100%;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 4rem;
+            height: 140px;
+        }
+
+        .form-search {
+            width: 100%;
+        }
+    }
+
     #row_form.row {
-        margin-right: 100px;
+        margin-right: 0px;
+        justify-content: center;
     }
 
     .nav_admin {
@@ -1220,6 +1261,7 @@ footer a {
     }
 
     .ac_duration .ac_duration_content {
+        width: 100%;
         margin-right: auto;
         margin-left: auto;
     }
@@ -1227,6 +1269,7 @@ footer a {
     .ac_duration_content {
         margin-left : auto;
         margin-right: auto;
+        margin-top: 50px;
     }
 }
 
@@ -1321,7 +1364,7 @@ for login & register pages */
 
 /* Accounts duration field */
 .ac_duration {
-    width: 30%;
+    width: auto;
     display: flex;
     margin-bottom: -40px;
 }
@@ -1385,17 +1428,14 @@ for login & register pages */
 
 /* Administration_search_users */
 .content-container_lt {
-    width: 100%;
-    padding-left: 100px;
     margin-top: 50px;
-}
 
-.form-group {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 4rem;
+    .form-group {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 4rem;
+    }
 }
 
 option:hover {
@@ -1536,6 +1576,13 @@ td.LT_result_quiz_good.search_response {
     .table .thead-light th {
         font-size: 10px;
     }
+
+    #row_form .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -1561,23 +1608,26 @@ td.LT_result_quiz_good.search_response {
         width: 100%;
     }
 
-    .form-search {
-        width: 100%;
-    }
+    .content-container_lt {
 
-    .form-group {
-        width: 100%;
-        margin-right: 120px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        margin-bottom: 4rem;
-        height: 140px;
-    }
+        .form-search {
+            width: 100%;
+        }
 
-    #form_search_sup {
-        width: 50%;
+        .form-group {
+            width: 100%;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 4rem;
+            height: 140px;
+        }
+
+        #form_search_sup {
+            width: 50%;
+        }
     }
 
     #row_form .row {
@@ -2394,4 +2444,40 @@ td#LT_result_quiz_good.search_response {
         width: 90px;
         margin: auto 0;
     }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1100px) {
+    .user_table .row:first-child {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .sup-candidat-desk {
+        display: none;
+    }
+
+    .sup-candidat-mobile {
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .user_table {
+
+        .form-group {
+            width: 100%;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 4rem;
+            height: 140px;
+        }
+
+        .form-search {
+            width: 100%;
+        }
+    }
+
 }

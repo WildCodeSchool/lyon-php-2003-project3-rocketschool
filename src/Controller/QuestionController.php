@@ -53,10 +53,18 @@ class QuestionController extends AbstractController
         } else {
             $lastPosition = -1;
         }
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $propositions = $form->get('propositions')->getData();
             $entityManager = $this->getDoctrine()->getManager();
+
             $question->setQuizz($quizz);
             $question->setQuestionOrder($lastPosition + 1);
+            $entityManager->persist($question);
+            foreach ($propositions as $proposition) {
+                $proposition->setQuestion($question);
+                $question->addProposition($proposition);
+            }
             $entityManager->persist($question);
             $entityManager->flush();
 
