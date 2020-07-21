@@ -560,6 +560,7 @@ footer a {
 #quizz_candidat {
     .quizz-card {
         display: flex;
+        z-index: -1;
         flex-direction: row;
         margin: 20px 0 20px 0;
         border: 2px solid $secondary-color;
