@@ -16,7 +16,7 @@
         </div>
         <h3>{{ faq.question }}</h3>
         <div class="faq-answer-container">
-            <p>{{ faq.answer }}</p>
+            <p>{{ faq.answer|raw }}</p>
             <div class="faq-img-container">
                 {% if faq.image %}
                     <img src="{{ asset('uploads/faq/' ~ faq.image) }}" class="faq-image" alt="image pour la question {{ faq.question }}">

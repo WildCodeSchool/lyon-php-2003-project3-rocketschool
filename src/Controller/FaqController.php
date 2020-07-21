@@ -166,12 +166,11 @@ class FaqController extends AbstractController
             $originalName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $safeName = $slugify->generate($originalName);
             $newName = $safeName . "-" . uniqid() . "." . $image->guessExtension();
+            $image->move(
+                $this->getParameter('faq_uploads'),
+                $newName
+            );
         }
-
-        $image->move(
-            $this->getParameter('faq_uploads'),
-            $newName
-        );
 
         return $newName;
     }
