@@ -58,32 +58,17 @@ class AdminController extends AbstractController
     {
         list($accountsDuration, $formAccDu) = self::editCandidateDuration($request, $accDuRepo, $userRepo);
 
-        $formDelAts = [];
-
-        $candidates = $userRepo->findCandidates();
-        $candidate = null;
-        foreach ($candidates as $candidate) {
-            $form = $this->createForm(UserType::class, $candidate);
-            $formDelAts[] = $form;
-        }
-
-        $formsView = [];
-
-        foreach ($formDelAts as $formDelAt) {
-            $formDelAt->handleRequest($request);
-            $formsView[] = $formDelAt->createView();
-
-            if ($formDelAt->isSubmitted() && $formDelAt->isValid()) {
+        if ($_POST) {
+            $deletedAt = $_POST['deletedAt'];
+            $deletedAt = DateTime::createFromFormat('Y-m-d', $deletedAt);
+            $userId = $_POST["userId"];
+            $user = $userRepo->findOneBy(['id' => $userId]);
+            if ($user && $deletedAt) {
                 $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($candidate);
+                $user->setDeletedAt($deletedAt);
+                $entityManager->persist($user);
                 $entityManager->flush();
-
-                return $this->redirectToRoute('admin_index');
             }
-        }
-
-        foreach ($formDelAts as $formDelAt) {
-            $formDelAt->createView();
         }
 
         $users = $this->getDoctrine()->getRepository(User::class)
@@ -102,8 +87,7 @@ class AdminController extends AbstractController
             'users' => $users,
             'accountsDuration' => $accountsDuration,
             'form' => $form->createView(),
-            'formAccDu' => $formAccDu->createView(),
-            'formDelAts' => $formsView]);
+            'formAccDu' => $formAccDu->createView()]);
     }
 
     /**
