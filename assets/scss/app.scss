@@ -45,13 +45,17 @@ blockquote {
     width: 100%;
     display: flex;
     position: absolute;
-    margin-top: 150px;
+    margin-top: 75px;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     background-color: $secondary-color;
     height: 60px;
     color: $primary-color;
+}
+
+.margin_top_navbar_admin {
+    margin-top: 150px;
 }
 
 .dropdown-menu {
