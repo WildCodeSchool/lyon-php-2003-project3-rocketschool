@@ -122,7 +122,7 @@ blockquote {
     color: $primary-color;
     height: 70px;
     justify-content: end;
-    align-items: center;
+    align-content: center;
 
     .navbar-nav .nav-link {
         color: $primary-color;
@@ -1160,6 +1160,9 @@ footer a {
 /* TABLET AND SMALL SCREEN */
 @media screen and (max-width: 991px) {
 
+    //#deletedAtForm {
+    //    margin-top: 35px;
+    //}
     .sup-candidat-desk {
         display: none;
     }
@@ -1221,7 +1224,6 @@ footer a {
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            margin-bottom: 4rem;
             height: 140px;
         }
 
@@ -1281,7 +1283,7 @@ footer a {
     .ac_duration_content {
         margin-left : auto;
         margin-right: auto;
-        margin-top: 50px;
+        margin-top: 15px;
     }
 }
 
@@ -1378,12 +1380,28 @@ for login & register pages */
 .ac_duration {
     width: auto;
     display: flex;
-    margin-bottom: -40px;
 }
 
 .ac_duration_content {
     margin-left : auto;
     margin-right: 40px;
+
+    .btn-search-user {
+        border-radius: 30px;
+        background-color: $third-color;
+        color: $primary-color;
+        width: 85px;
+        height: 35px;
+        text-align: center;
+        margin-left: 23px;
+        font-family: 'Raleway', 'Montserrat', 'sans-serif';
+    }
+
+    .btn-search-user:hover {
+        color: black;
+        background-color: $primary-color;
+        border: solid 2px $third-color;
+    }
 }
 
 .ac_duration p {
@@ -1392,19 +1410,12 @@ for login & register pages */
 
 /* Administration_users */
 .user_table {
-    width: 100%;
-    min-height: 400px;
-    background-color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding-top: 40px;
 
+    background-color: whitesmoke;
 }
 
 .table_user {
-    width: 80%;
+    width: 95%;
 }
 
 .table .search_response {
@@ -1440,14 +1451,19 @@ for login & register pages */
 
 /* Administration_search_users */
 .content-container_lt {
-    margin-top: 50px;
+    padding-top: 35px;
+    margin-top: 15px;
 
     .form-group {
         width: 100%;
         display: flex;
         align-items: center;
-        margin-bottom: 4rem;
+
     }
+}
+
+.userCreatedAt {
+    min-width: 135px;
 }
 
 option:hover {
@@ -1491,7 +1507,7 @@ option:hover {
     border-radius: 30px;
     background-color: $third-color;
     color: $primary-color;
-    width: 150px;
+    width: auto;
     height: 35px;
     text-align: center;
     margin-left: 23px;
@@ -1519,6 +1535,10 @@ td.LT_result_quiz_bad.search_response {
 
 td.LT_result_quiz_good.search_response {
     color: darkgreen;
+}
+
+.deletedAtForm {
+    display: flex;
 }
 
 /* PHONE AND EXTRA SMALL SCREEN TABLE LT */
@@ -1578,7 +1598,7 @@ td.LT_result_quiz_good.search_response {
     }
 
     .table_user {
-        width: 100%;
+        width: 95%;
     }
 
     .table .search_response {
@@ -1633,7 +1653,6 @@ td.LT_result_quiz_good.search_response {
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            margin-bottom: 4rem;
             height: 140px;
         }
 
@@ -1664,6 +1683,8 @@ td.LT_result_quiz_good.search_response {
     p {
         text-align: center;
     }
+
+
 }
 
 h2 {
@@ -2445,16 +2466,15 @@ td#LT_result_quiz_good.search_response {
     display: flex;
     margin-bottom: 0;
 
-    .form-search {
+    #start {
         width: 150px;
         margin: 6px 5px;
-
         cursor: pointer;
     }
 
     .btn {
         width: 90px;
-        margin: auto 0;
+        margin: auto 5px;
     }
 }
 

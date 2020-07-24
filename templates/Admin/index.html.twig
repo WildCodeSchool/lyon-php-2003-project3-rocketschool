@@ -115,9 +115,9 @@
                                 <td class="search_response">-</td>
                                 <td class="search_response">-</td>
                             {% endfor %}
-                            <td class="search_response"> {{ user.createdAt|date("d / m / Y") }} </td>
+                            <td class="search_response userCreatedAt"> {{ user.createdAt|date("d / m / Y") }} </td>
                             <td class="search_response p-0">
-                                <form method="post">
+                                <form method="post" class="update_delete_at_form ">
                                     <input type="hidden" name="userId" value="{{ user.id }}">
                                     <input type="date" id="start" name="deletedAt"
                                            value="{{ user.deletedAt|date("Y-m-d") }}"

@@ -10,8 +10,10 @@
         {% endblock %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
+
     <body>
     <div id="main">
+
             <!-- Header + Navigation with routes  -->
             {% if app.user is not null %}
                 <header>
@@ -106,6 +108,7 @@
             {{ encore_entry_script_tags('app') }}
             {% block javascripts %}
             {% endblock %}
+
             <!-- Footer -->
             <footer class="page-footer font-small blue">
 
@@ -115,4 +118,5 @@
             </footer>
     </div>
     </body>
+
 </html>
