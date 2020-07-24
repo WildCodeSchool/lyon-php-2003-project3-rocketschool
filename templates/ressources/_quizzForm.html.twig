@@ -10,7 +10,7 @@
 
     <div class="container-fluid quizz-container"
          id="quizz">
-        {% for question in quizz.questions %}
+        {% for question in questions %}
             <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResult|length > 1 %} quizz-container-disabled {% endif %}">
                 <div class="card-body quizz-body">
                     <h3 class="card-title card-title-{{ question.id }}">{{ loop.index }} - {{ question.title }}</h3>

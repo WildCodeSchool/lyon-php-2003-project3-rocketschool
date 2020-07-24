@@ -44,6 +44,8 @@ blockquote {
 .LT_page_name {
     width: 100%;
     display: flex;
+    position: absolute;
+    margin-top: 75px;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
@@ -53,7 +55,7 @@ blockquote {
 }
 
 .margin_top_navbar_admin {
-    margin-top: -5px;
+    margin-top: 150px;
 }
 
 .dropdown-menu {
@@ -73,6 +75,10 @@ blockquote {
         width: 80%;
         margin: 5px auto;
     }
+}
+
+.page-content {
+    margin-top: 60px;
 }
 
 .LT_page_name h2 {
@@ -103,6 +109,10 @@ blockquote {
 
 .navbar {
     height: 80px;
+}
+
+#navbarAdminNavDropdown {
+    z-index: 1;
 }
 
 .nav_admin {
@@ -300,6 +310,7 @@ footer a {
 }
 
 .content-container {
+    padding: 15px;
     width: 80%;
     margin: auto;
     box-shadow: black 0 15px 15px -5px;
@@ -345,10 +356,6 @@ footer a {
         height: auto;
         min-height: 120px;
     }
-}
-
-#check-video {
-    margin-right: 0px;
 }
 
 .check-video {
@@ -556,7 +563,6 @@ footer a {
 #quizz_candidat {
     .quizz-card {
         display: flex;
-        z-index: -1;
         flex-direction: row;
         margin: 20px 0 20px 0;
         border: 2px solid $secondary-color;
@@ -659,6 +665,11 @@ footer a {
     .quizz-button {
         align-self: center;
         margin-bottom: 30px ;
+    }
+
+    .text-sm-center {
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -780,10 +791,10 @@ footer a {
 }
 
 .faq-card {
-    padding: 15px;
+    padding: 20px;
     margin: 20px auto;
     max-width: 600px;
-    min-width: 200px;
+    min-width: 300px;
     border-radius: 5px;
     box-shadow: black 0 0 15px -5px;
     border-top: solid $dark-blue;
@@ -1143,6 +1154,7 @@ footer a {
 .quizz-container{
     margin-top: 30px;
     width: 90%;
+    display: grid;
 }
 
 /* TABLET AND SMALL SCREEN */
@@ -1166,7 +1178,7 @@ footer a {
     }
 
     #navbarNavDropdown {
-        z-index: 1;
+        z-index: 2;
 
         .navbar-nav {
             background-color: $primary-color;
