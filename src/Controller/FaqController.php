@@ -98,10 +98,11 @@ class FaqController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $image = $form->get('image')->getData();
+            if ($image != null) {
+                $newName = $this->uploadImage($image, $slugify);
 
-            $newName = $this->uploadImage($image, $slugify);
-
-            $faq->setImage($newName);
+                $faq->setImage($newName);
+            }
             $entityManager->persist($faq);
             $entityManager->flush();
 
