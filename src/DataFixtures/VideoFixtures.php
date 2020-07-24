@@ -13,7 +13,10 @@ class VideoFixtures extends Fixture
         $video = new Video();
         $video->setName('Formation Rocket School')
             ->setEmbedUrl('https://www.youtube.com/embed/3ua1aWAUuWY')
-            ->setDescription("Vidéo Rocket School")
+            ->setDescription("Bienvenue,
+            <br/><br/>L’objectif de cette vidéo est de vous préparer au mieux aux étapes qui vous attendent 
+            pour intégrer Rocket School.
+            <br/><br/>...Script de la vidéo en construction...")
             ->setUpdatedAt(date_create('now'));
         $manager->persist($video);
         $manager->flush();
