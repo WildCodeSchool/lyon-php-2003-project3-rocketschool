@@ -8,7 +8,7 @@
 
 {% block body %}
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="change-pdf-label"><p>Changer le PDF</p></div>
+        <div class="change-pdf-label"><strong>Changer le PDF</strong></div>
         <div class="pdf-form-control-container">
             {{ form_start(form) }}
                 {{ form_widget(form.path, {'attr': {'class': 'form-control pdf-form-control shadow',}}) }}
