@@ -17,7 +17,7 @@ class UserManager
         $this->durationRepository = $durationRepository;
     }
 
-    public function userCreation($accountsDuration)
+    public function createUser($accountsDuration)
     {
         $user = new User();
         if ($accountsDuration) {
@@ -50,15 +50,4 @@ class UserManager
             }
         }
     }
-
-//    public function updateDeletedAt(int $userId, string $deletedAt, UserRepository $userRepo)
-//    {
-//        $user = $userRepo->findOneBy(['id' => $userId]);
-//        $deletedAt = DateTime::createFromFormat('Y-m-d', $deletedAt);
-//        if ($user) {
-//            $user->setDeletedAt($deletedAt);
-//        }
-//
-//        return $user;
-//    }
 }

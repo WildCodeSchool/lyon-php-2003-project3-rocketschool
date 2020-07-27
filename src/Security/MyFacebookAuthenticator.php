@@ -28,14 +28,17 @@ class MyFacebookAuthenticator extends SocialAuthenticator
     private $router;
     private $userRepository;
     private $passwordEncoder;
+    private $userManager;
 
     public function __construct(
         ClientRegistry $clientRegistry,
         EntityManagerInterface $entityManager,
         RouterInterface $router,
         UserRepository $userRepository,
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $passwordEncoder,
+        UserManager $userManager
     ) {
+        $this->userManager = $userManager;
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
         $this->router = $router;
@@ -88,8 +91,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         if (empty($user)) {
             $firstName = $facebookUser->getFirstName();
             $lastName = $facebookUser->getLastName();
-            $userManager = new UserManager();
-            $user = $userManager->userCreation($accountDuration);
+            $user = $this->userManager->createUser($accountDuration);
             $user->setFacebookId($facebookUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)
