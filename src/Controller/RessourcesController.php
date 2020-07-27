@@ -90,6 +90,7 @@ class RessourcesController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!isset($_POST['questions'])) {
+                $this->addFlash('danger', 'Vous devez repondre aux questions');
                 return $this->redirectToRoute('ressources_quizz');
             }
             list($postValide,$errors,$result) = self::quizzProcess($user, $quizResultService);

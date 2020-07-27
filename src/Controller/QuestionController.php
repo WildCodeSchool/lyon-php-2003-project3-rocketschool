@@ -54,7 +54,7 @@ class QuestionController extends AbstractController
             $lastPosition = -1;
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && isset($form->get('propositions')->getData()[1])) {
             $propositions = $form->get('propositions')->getData();
             $entityManager = $this->getDoctrine()->getManager();
 
@@ -69,6 +69,8 @@ class QuestionController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('question_index');
+        } elseif (!isset($form->get('propositions')->getData()[1])) {
+            $this->addFlash('danger', 'Vous devez ajouter au moins 2 propositions');
         }
 
         return $this->render('question/new.html.twig', [
