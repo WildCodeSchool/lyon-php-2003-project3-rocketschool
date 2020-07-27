@@ -215,45 +215,8 @@ class RessourcesController extends AbstractController
 
         $pdf = $pdfRepository->findOneBy([]);
 
-        $form = $this->createForm(PdfType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $uploadedPdf = $form->get('path')->getData();
-
-            if (!empty($uploadedPdf) && !empty($pdf)) {
-                $newName = $this->uploadPdf($uploadedPdf, $slugify);
-
-                $pdf->setPath(empty($newName)? "" : $newName);
-                $entityManager->persist($pdf);
-            }
-            $entityManager->flush();
-
-            return $this->redirectToRoute('ressources_guide');
+        if (!empty($pdf)) {
+            return $this->redirect("/uploads/pdf/" . $pdf->getPath());
         }
-
-        return $this->render('ressources/guide.html.twig', [
-            'page_name' => 'Guide entretien',
-            'form' => $form->createView(),
-            'pdf' => $pdf
-        ]);
-    }
-
-    public function uploadPdf($pdf, $slugify): ?string
-    {
-        $newName = null;
-
-        if ($pdf) {
-            $originalName = pathinfo($pdf->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeName = $slugify->generate($originalName);
-            $newName = $safeName . "-" . uniqid() . "." . $pdf->guessExtension();
-            $pdf->move(
-                $this->getParameter('pdf_uploads'),
-                $newName
-            );
-        }
-
-        return $newName;
     }
 }

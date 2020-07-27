@@ -132,6 +132,7 @@ class User implements UserInterface
         $this->email = $email;
         return $this;
     }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -141,10 +142,10 @@ class User implements UserInterface
     {
         return (string) $this->email;
     }
+
     /**
      * @see UserInterface
      */
-
     public function getRoles(): array
     {
         $roles = $this->roles;

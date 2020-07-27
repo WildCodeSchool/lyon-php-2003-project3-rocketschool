@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Note;
 use App\Entity\User;
+use App\Repository\PdfRepository;
 use App\Repository\ProgramRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,12 +20,14 @@ class AccountController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param ProgramRepository $programRepo
      * @param UserRepository $userRepository
+     * @param PdfRepository $pdfRepository
      * @return Response
      */
     public function index(
         EntityManagerInterface $entityManager,
         ProgramRepository $programRepo,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        PdfRepository $pdfRepository
     ):Response {
         if ($_POST) {
             $user = $userRepository->find($_POST['userId']);
@@ -64,8 +67,13 @@ class AccountController extends AbstractController
 
         $programs = $programRepo->findAll();
 
+        $pdf = $pdfRepository->findOneBy([]);
+
         return $this->render('account/index.html.twig', [
-            'controller_name' => 'AccountController', 'programs' => $programs, 'page_name' => 'Profil'
+            'controller_name' => 'AccountController',
+            'programs' => $programs,
+            'page_name' => 'Profil',
+            'pdf' => $pdf
         ]);
     }
 

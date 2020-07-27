@@ -793,7 +793,7 @@ footer a {
 .faq-card {
     padding: 20px;
     margin: 20px auto;
-    max-width: 600px;
+    max-width: 900px;
     min-width: 300px;
     border-radius: 5px;
     box-shadow: black 0 0 15px -5px;
@@ -1727,14 +1727,8 @@ td#LT_result_quiz_good.search_response {
     color: darkgreen;
 }
 
-.pdf-view {
-    width: 100%;
-    height: 100vh;
-}
-
 .change-pdf-label {
     text-align: center;
-    margin-top: 20px;
 }
 
 .pdf-form-control-container {
