@@ -175,7 +175,9 @@ class RessourcesController extends AbstractController
                 }
             }
             $result = $quizResultService->calculate($errors, $nbrQuestionQuizz);
-            $quizResultService->flush($user, $result);
+            if (!$this->isGranted('ROLE_ADMIN')) {
+                $quizResultService->flush($user, $result);
+            }
         }
 
         return [$postValide,$errors,$result];

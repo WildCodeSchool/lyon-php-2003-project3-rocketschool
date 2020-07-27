@@ -1699,7 +1699,7 @@ h2 {
     padding: 0;
 
     .btn {
-        width: auto;
+        width: fit-content;
     }
 
     .quizz-container {
@@ -1731,6 +1731,7 @@ td#LT_result_quiz_good.search_response {
 #account_index {
     height: 100%;
     width: 100%;
+    margin-top: -60px;
 
     .container-fluid {
         padding: 0;
