@@ -103,6 +103,9 @@
                 <h2>{{ page_name|default('') }}</h2>
             </div>
         <div class="page-content">
+            {% for flashError in app.flashes('danger') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+            {% endfor %}
             {% block body %}{% endblock %}
         </div>
             {{ encore_entry_script_tags('app') }}

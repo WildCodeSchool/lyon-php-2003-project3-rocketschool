@@ -94,7 +94,7 @@ class QuizzFixtures extends Fixture
             ],
 
         ],
-        "Le Growth Hacker doit (plusieurs réponses possibles) : " => [
+        "Le Growth Hacker doit : " => [
             "S'assurer qu'un prospect qui a un besoin correspondant à la solution de son entreprise
              la trouve facilement" => [
                 'isGood' => 1,
@@ -110,7 +110,7 @@ class QuizzFixtures extends Fixture
             ],
 
         ],
-        "Le Bizdev doit (plusieurs réponses possibles) :" => [
+        "Le Bizdev doit :" => [
             "Faire des campagnes d'acquisition payante pour se faire connaître auprès de prospects" => [
                 'isGood' => 0,
             ],
@@ -153,7 +153,7 @@ class QuizzFixtures extends Fixture
             ],
 
         ],
-        "Le rôle du Customer Success Manager, ou CSM, c'est (plusieurs réponses possibles) :" => [
+        "Le rôle du Customer Success Manager, ou CSM, c'est :" => [
             "D'accompagner les clients dans leur prise en main" => [
                 'isGood' => 1,
             ],
@@ -178,8 +178,7 @@ class QuizzFixtures extends Fixture
             ],
 
         ],
-        "Pour intégrer la formation Rocket School gratuitement, il faut impérativement
-         (plusieurs réponses possibles) : " => [
+        "Pour intégrer la formation Rocket School gratuitement, il faut impérativement : " => [
             "Parler anglais" => [
                 'isGood' => 0,
             ],
@@ -204,8 +203,7 @@ class QuizzFixtures extends Fixture
             ],
 
         ],
-        "Les contrats possibles après le bootcamp, en fonction des entreprises, sont
-         (plusieurs réponses possibles) :" => [
+        "Les contrats possibles après le bootcamp, en fonction des entreprises, sont :" => [
             "en CDI" => [
                 'isGood' => 1,
             ],
