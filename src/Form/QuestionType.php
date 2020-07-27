@@ -6,6 +6,7 @@ use App\Entity\Proposition;
 use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,9 +17,18 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Question'
+                'label' => 'Question',
+                'empty_data' => "",
+                    'attr' =>[
+                        'class' => 'quizz_edit_row'
+                    ]
             ])
-            ->add('solution', TextType::class)
+            ->add('solution', TextareaType::class, [
+                'label' => 'Solution',
+                'attr' =>[
+                    'class' => 'quizz_edit_row'
+                ]
+            ])
             ->add('propositions', CollectionType::class, [
                 'entry_type' => PropositionType::class,
                 'entry_options' => [
@@ -27,7 +37,7 @@ class QuestionType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,
-                'by_reference' => false,
+//                'by_reference' => false,
                 'required' => false,
                 'label' => false
             ])

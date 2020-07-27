@@ -2,15 +2,13 @@
 
 [![Build Status](https://travis-ci.com/WildCodeSchool/lyon-php-2003-project3-rocketschool.svg?token=vxA4AusVVxs5jx1s6rqR&branch=master)](https://travis-ci.com/WildCodeSchool/lyon-php-2003-project3-rocketschool)
 
-![Wild Code School](https://wildcodeschool.fr/wp-content/uploads/2019/01/logo_pink_176x60.png)
-
 It's symfony website-skeleton project with some additional tools to validate code standards.
 
 * GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
-  
-    * PHP_CodeSniffer to check PSR2 
+
+    * PHP_CodeSniffer to check PSR2
     * PHPStan will check PHP recommendation
-     
+
   If tests fail, the commit is canceled and a warning message is displayed to developper.
 
 * Travis CI, as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
@@ -55,6 +53,22 @@ If you develop on Windows, you should edit you git configuration to change your 
 
 ## Deployment
 
+=> Prerequisites :
+    1. Check composer is installed
+    2. Check yarn & node are installed
+
+1. Clone this project
+2. Run `composer install`
+3. Run `yarn install`
+4. Copy paste `.env` in new file `.env.local`
+    - configure your mysql database
+    - configure your app id and secret foreach social network
+    - configure your MailerDNS
+5. Run `php bin/console doctrine:database:create` to create the database
+6. Run `php bin/console doctrine:migration:migrate` to set the database
+7. Run `php bin/console doctrine:fixtures:load` to load fixtures
+8. Run `yarn encore production` to build assets, css and js
+9. Start the server
 Add additional notes about how to deploy this on a live system
 
 
@@ -74,9 +88,30 @@ Add additional notes about how to deploy this on a live system
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 
-## Functionality for deleting users whose accounts are older than 100 days
+## Functionality for deleting users whose accounts are older than the desired number of days (100 by default)
 
 The command to run in the terminal, so as to launch the old accounts deleting is :
     php bin/console app:delete-old-accounts
 
-CAUTION : So as to be fully operational, it requires to set a cron on the server.
+CAUTION : So as to be fully operational, it requires to use the cron program on the server.
+
+## Functionality for login with social network
+
+Set up your app on :
+https://developers.google.com/
+https://www.linkedin.com/developers/
+https://developers.facebook.com/apps/
+
+Get your app id and secret foreach social network
+and set up in .env.local file
+
+## Functionality for reset password
+
+
+
+## Functionality for email sending :
+1 / Set up your MAILER_DSN in .env
+    MAILER_DSN=gmail://USERNAME:PASSWORD@default
+
+2 / configure the options of your Google account and check the "Allow less secure applications:
+https://myaccount.google.com/lesssecureapps

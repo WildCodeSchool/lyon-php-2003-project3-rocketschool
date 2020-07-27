@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\AccountsDuration;
+use App\Entity\Checklist;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\AccountsDurationRepository;
 use App\Security\LoginFormAuthenticator;
+use App\Services\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,13 +24,17 @@ class RegistrationController extends AbstractController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
      * @param LoginFormAuthenticator $authenticator
+     * @param AccountsDurationRepository $durationRepository
+     * @param UserManager $userManager
      * @return Response
      */
     public function register(
         Request $request,
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
-        LoginFormAuthenticator $authenticator
+        LoginFormAuthenticator $authenticator,
+        AccountsDurationRepository $durationRepository,
+        UserManager $userManager
     ): ?Response {
 
         if ($this->getUser()) {
@@ -54,8 +62,20 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $duration = $durationRepository->findOneBy([]);
+            $user->setAccountsDuration($duration);
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $accountsDuration = $durationRepository->findOneBy([]);
+            if ($accountsDuration) {
+                $accountsDuration->getDays();
+            }
+
+
+            $userManager->setDeletedAt($user);
+
             $entityManager->persist($user);
             $entityManager->flush();
 

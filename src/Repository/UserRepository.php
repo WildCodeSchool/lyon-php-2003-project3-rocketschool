@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\AccountsDuration;
 use App\Entity\Program;
 use App\Entity\User;
+use App\Services\UserManager;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
@@ -12,6 +14,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use DateTime;
+use App\Repository\AccountsDurationRepository;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,9 +24,21 @@ use DateTime;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
-    {
+    /**
+     * @var \App\Repository\AccountsDurationRepository
+     */
+    private $accDuRepo;
+
+    private $userManager;
+
+    public function __construct(
+        ManagerRegistry $registry,
+        AccountsDurationRepository $accDuRepo,
+        UserManager $userManager
+    ) {
         parent::__construct($registry, User::class);
+        $this->accDuRepo = $accDuRepo;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -68,14 +83,43 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function deleteOldAccounts(): void
     {
-        $now = new DateTime();
-        $before = date_modify($now, '-100 days');
+        $accountsDuration = $this->accDuRepo->findOneBy([]);
+        if ($accountsDuration) {
+            $now = new DateTime('now');
 
-        $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb = $this->getEntityManager()->createQueryBuilder();
+
             $qb->delete(User::class, 'u')
-                ->where("u.createdAt < :before")
-                ->setParameter('before', $before, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
+                ->where("u.deletedAt < :now")
+                ->setParameter('now', $now, \Doctrine\DBAL\Types\Types::DATETIME_MUTABLE)
                 ->getQuery()->execute();
+        }
+    }
+
+    public function findCandidates()
+    {
+        $candidates = $this->createQueryBuilder('User')
+            ->andWhere("User.deletedAt is not null");
+        return $candidates->getQuery()->getResult();
+    }
+
+    public function updateCandidatesDuration(AccountsDurationRepository $accDuRepo)
+    {
+
+        $accountsDuration = $accDuRepo->findOneBy([]);
+        $days = null;
+        if ($accountsDuration) {
+            $days = $accountsDuration->getDays();
+        }
+        $candidates = $this->findCandidates();
+        $entityManager = $this->getEntityManager();
+        if ($days) {
+            foreach ($candidates as $candidate) {
+                $this->userManager->setDeletedAt($candidate, $days);
+                $entityManager->persist($candidate);
+            }
+        }
+        $entityManager->flush();
     }
 
     // /**

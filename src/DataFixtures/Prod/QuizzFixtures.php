@@ -1,22 +1,22 @@
 <?php
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\Prod;
 
 use App\Entity\Proposition;
 use App\Entity\Question;
 use App\Entity\Quizz;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker;
 
 class QuizzFixtures extends Fixture
 {
+
     const QUESTIONS = [
         "Lequel de ces exemples illustre le BtoB ?" => [
             "Panzani qui vend des pâtes à Casino qui les met en rayon pour les consommateurs" => [
                 'isGood' => 0,
             ],
-            "Aircall qui vend sa solution de téléphonie à d'autres entreprises qui la mettent à disposition 
+            "Aircall qui vend sa solution de téléphonie à d'autres entreprises qui la mettent à disposition
             de leurs collaborateurs" => [
                 'isGood' => 1,
             ],
@@ -50,204 +50,206 @@ class QuizzFixtures extends Fixture
                 'isGood' => 0,
             ],
         ],
-        "Qu'est-ce qu'un CRM ?" =>[
-            "Un outil qui permet de gérer la relation avec les clients"=> [
+        "Qu'est-ce qu'un CRM ?" => [
+            "Un outil qui permet de gérer la relation avec les clients" => [
                 'isGood' => 1,
             ],
-            "Une personne qui s'occupe d'accompagner les clients"=> [
+            "Une personne qui s'occupe d'accompagner les clients" => [
                 'isGood' => 0,
             ],
 
         ],
-        "Qu'est-ce que l'inbound ?" =>[
-            "Le prospect vient à l'entreprise"=> [
+        "Qu'est-ce que l'inbound ?" => [
+            "Le prospect vient à l'entreprise" => [
                 'isGood' => 1,
             ],
-            "Le commercial va au prospect"=> [
+            "Le commercial va au prospect" => [
                 'isGood' => 0,
             ],
 
         ],
-        "Un persona, c'est :" =>[
-            "Un prospect pour lequel on a toutes les informations de contact"=> [
+        "Un persona, c'est :" => [
+            "Un prospect pour lequel on a toutes les informations de contact" => [
                 'isGood' => 0,
             ],
-            "Une personne fictive représentant un profil de prospect"=> [
+            "Une personne fictive représentant un profil de prospect" => [
                 'isGood' => 1,
             ],
-            "Un prospect dont on a le nom mais pas les informations de contact"=> [
+            "Un prospect dont on a le nom mais pas les informations de contact" => [
                 'isGood' => 0,
             ],
 
         ],
-        "Qu'est-ce que le SEO ?" =>[
-            "En français l'Optimisation du Standard Tel, autrement dit toute la gestion des appels entrants"=> [
+        "Qu'est-ce que le SEO ?" => [
+            "En français l'Optimisation du Standard Tel, autrement dit toute la gestion des appels entrants" => [
                 'isGood' => 0,
             ],
             "En français l'Optimisation pour les Moteurs de Recherche, autrement dit le fait d'optimiser
-             son site internet et ses contenus pour qu'ils soient bien référencés"=> [
+             son site internet et ses contenus pour qu'ils soient bien référencés" => [
                 'isGood' => 1,
             ],
-            "En français l'Optimisation de ses Campagnes Payantes, autrement dit un outil qui permet de s'assurer 
-            qu'on a un retour sur investissement sur ses différents canaux d'acquisition payants"=> [
+            "En français l'Optimisation de ses Campagnes Payantes, autrement dit un outil qui permet de s'assurer
+            qu'on a un retour sur investissement sur ses différents canaux d'acquisition payants" => [
                 'isGood' => 0,
             ],
 
         ],
-        "Le Growth Hacker doit (plusieurs réponses possibles) : " =>[
+        "Le Growth Hacker doit : " => [
             "S'assurer qu'un prospect qui a un besoin correspondant à la solution de son entreprise
-             la trouve facilement"=> [
+             la trouve facilement" => [
                 'isGood' => 1,
             ],
-            "Entrer en contact avec les prospects qu'il a identifiés"=> [
+            "Entrer en contact avec les prospects qu'il a identifiés" => [
                 'isGood' => 0,
             ],
-            "Garantir que les clients sont satisfaits tout au long de leur expérience"=> [
+            "Garantir que les clients sont satisfaits tout au long de leur expérience" => [
                 'isGood' => 1,
             ],
-            "Automatiser des actions et mails pour faciliter la prise de contact des prospects avec l'entreprise"=> [
+            "Automatiser des actions et mails pour faciliter la prise de contact des prospects avec l'entreprise" => [
                 'isGood' => 0,
             ],
 
         ],
-        "Le Bizdev doit (plusieurs réponses possibles) :" =>[
-            "Faire des campagnes d'acquisition payante pour se faire connaître auprès de prospects"=> [
+        "Le Bizdev doit :" => [
+            "Faire des campagnes d'acquisition payante pour se faire connaître auprès de prospects" => [
                 'isGood' => 0,
             ],
             "Constituer des listes de cibles et les enrichir avec leurs données de contact pour pouvoir
-             entrer en contact direct avec eux"=> [
+             entrer en contact direct avec eux" => [
                 'isGood' => 1,
             ],
-            "Mettre en place un onboarding pour les nouveaux clients, pour faciliter leur appropriation 
-            de la solution"=> [
+            "Mettre en place un onboarding pour les nouveaux clients, pour faciliter leur appropriation
+            de la solution" => [
                 'isGood' => 0,
             ],
-            "Automatiser des séquences de mails, pour faire de la prospection"=> [
+            "Automatiser des séquences de mails, pour faire de la prospection" => [
                 'isGood' => 1,
             ],
-            "Automatiser des séquences de mails, pour faire du nurturing"=> [
+            "Automatiser des séquences de mails, pour faire du nurturing" => [
                 'isGood' => 1,
             ],
         ],
-        "Le social selling, c'est : " =>[
-            "Avoir un réseau important pour vendre par bouche à oreilles"=> [
+        "Le social selling, c'est : " => [
+            "Avoir un réseau important pour vendre par bouche à oreilles" => [
                 'isGood' => 0,
             ],
-            "Être premier dans les recherches Google"=> [
+            "Être premier dans les recherches Google" => [
                 'isGood' => 0,
             ],
-            "Utiliser les réseaux sociaux pour son acte de vente"=> [
+            "Utiliser les réseaux sociaux pour son acte de vente" => [
                 'isGood' => 1,
             ],
 
         ],
-        "Le pipe, c'est :" =>[
-            "L'ensemble des phases par lesquels passe un prospect / un client dans sa vie avec l'entreprise"=> [
+        "Le pipe, c'est :" => [
+            "L'ensemble des phases par lesquels passe un prospect / un client dans sa vie avec l'entreprise" => [
                 'isGood' => 1,
             ],
-            "Le support qui permet de faire qu'un client va bien prendre en main la solution"=> [
+            "Le support qui permet de faire qu'un client va bien prendre en main la solution" => [
                 'isGood' => 0,
             ],
-            "Le fait de concentrer ses efforts sur les clients en fonction de leur potentiel de chiffre d'affaires"=> [
+            "Le fait de concentrer ses efforts sur les clients en fonction de leur potentiel de chiffre d'affaires" => [
                 'isGood' => 0,
             ],
 
         ],
-        "Le rôle du Customer Success Manager, ou CSM, c'est (plusieurs réponses possibles) :" =>[
-            "D'accompagner les clients dans leur prise en main"=> [
+        "Le rôle du Customer Success Manager, ou CSM, c'est :" => [
+            "D'accompagner les clients dans leur prise en main" => [
                 'isGood' => 1,
             ],
-            "De réaliser des séquences de mail pour prendre contact avec des prospects"=> [
+            "De réaliser des séquences de mail pour prendre contact avec des prospects" => [
                 'isGood' => 0,
             ],
-            "De garantir la satisfaction client"=> [
+            "De garantir la satisfaction client" => [
                 'isGood' => 1,
             ],
-            "De réaliser des séquences de mail pour informer les clients notamment sur de nouvelles fonctionnalités"=> [
+            "De réaliser des séquences de mail pour informer les clients notamment sur de nouvelles 
+            fonctionnalités" => [
                 'isGood' => 1,
             ],
 
         ],
-        "Le CSM n'a pas de rôle de vente" =>[
-            "Vrai, il a juste un rôle d'accompagnement"=> [
+        "Le CSM n'a pas de rôle de vente" => [
+            "Vrai, il a juste un rôle d'accompagnement" => [
                 'isGood' => 0,
             ],
-            "Faux, il doit quand même faire prospérer son portefeuille client"=> [
+            "Faux, il doit quand même faire prospérer son portefeuille client" => [
                 'isGood' => 1,
             ],
 
         ],
-        "Pour intégrer la formation Rocket School gratuitement, il faut impérativement
-         (plusieurs réponses possibles) : " =>[
-            "Parler anglais"=> [
+        "Pour intégrer la formation Rocket School gratuitement, il faut impérativement : " => [
+            "Parler anglais" => [
                 'isGood' => 0,
             ],
-            "Avoir la promesse d'embauche d'une entreprise avant le début du bootcamp"=> [
+            "Avoir la promesse d'embauche d'une entreprise avant le début du bootcamp" => [
                 'isGood' => 1,
             ],
-            "Être âgé de plus de 25 ans"=> [
+            "Être âgé de plus de 25 ans" => [
                 'isGood' => 0,
             ],
-            "Être inscrit à Pôle Emploi"=> [
+            "Être inscrit à Pôle Emploi" => [
                 'isGood' => 1,
             ],
 
         ],
-        "Le bootcamp Rocket School, c'est : " =>[
-            "12 semaines intensives de formation très théorique, avec de grands intervenants qui donnent des cours"=> [
+        "Le bootcamp Rocket School, c'est : " => [
+            "12 semaines intensives de formation très théorique, avec de grands intervenants qui donnent des cours" => [
                 'isGood' => 0,
             ],
-            "12 semaines intensives de formation très opérationnelle, avec des challenges et de la mise en pratique"=> [
+            "12 semaines intensives de formation très opérationnelle, avec des challenges et de la mise en 
+            pratique" => [
                 'isGood' => 1,
             ],
 
         ],
-        "Les contrats possibles après le bootcamp, en fonction des entreprises, sont
-         (plusieurs réponses possibles) :" =>[
-            "en CDI"=> [
+        "Les contrats possibles après le bootcamp, en fonction des entreprises, sont :" => [
+            "en CDI" => [
                 'isGood' => 1,
             ],
-            "en CDD 12 mois minimum"=> [
+            "en CDD 12 mois minimum" => [
                 'isGood' => 1,
             ],
-            "en contrat de professionnalisation, avec 4 jours en entreprise et 1 jour à l'école par semaine"=> [
+            "en contrat de professionnalisation, avec 4 jours en entreprise et 1 jour à l'école par semaine" => [
                 'isGood' => 1,
             ],
-            "en contrat d'apprentissage, avec 4 jours en entreprise et 1 jour à l'école par semaine"=> [
+            "en contrat d'apprentissage, avec 4 jours en entreprise et 1 jour à l'école par semaine" => [
                 'isGood' => 0,
             ],
-            "en Freelance"=> [
+            "en Freelance" => [
                 'isGood' => 0,
             ],
 
         ],
     ];
 
-
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
         $quizz = new Quizz();
         $quizz->setTitle('Quizz de test')
             ->setIsEnable(true);
 
-        $nbrQ = 1;
+        $nbrQ = 0;
         foreach (self::QUESTIONS as $title => $propositions) {
+            $solution = "Bonne(s) réponse(s) : ";
             $question = new Question();
             $question->setQuizz($quizz);
             $question->setTitle($title);
-            $question->setSolution($faker->sentence);
             $question->setQuestionOrder($nbrQ);
             $manager->persist($question);
             $nbrQ++;
 
             foreach ($propositions as $title => $data) {
+                if ($data['isGood']) {
+                    $solution = $solution . "\"" . $title . "." . "\"  ";
+                }
                 $proposition = new Proposition();
                 $proposition->setTitle($title)
                     ->setIsGood($data['isGood'])
                     ->setQuestion($question);
                 $manager->persist($proposition);
             }
+            $question->setSolution($solution);
         }
 
         $manager->persist($quizz);

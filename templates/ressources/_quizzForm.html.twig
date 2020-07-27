@@ -1,0 +1,73 @@
+{% if result is not same as(null) and app.user.quizResults|length == 0 %}
+    <a href="{{ path('ressources_quizz') }}">
+        <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="button">
+            Repasser le test
+        </button>
+    </a>
+{% endif %}
+<form action="quizz" method="POST">
+    <input type="hidden" name="user_id" value="{{ app.user.id }}">
+
+    <div class="container-fluid quizz-container"
+         id="quizz">
+        {% for question in questions %}
+            <div class="card w-auto quizz-card {% if result is not same as(null) or app.user.quizResults|length > 1 %} quizz-container-disabled {% endif %}">
+                <div class="card-body quizz-body">
+                    <h3 class="card-title card-title-{{ question.id }}">{{ loop.index }} - {{ question.title }}</h3>
+                    {% for proposition in question.propositions %}
+                        <ul>
+                            <li class="card-text quizz-text">
+                                <label class="quizz-radio" >
+                                    <input class="quiz-input-{{ question.id }}" type="checkbox" name="questions[{{ question.id }}][]"
+                                           value="{{ proposition.id }}"
+                                            {% if post %}
+                                                {% for props in post.questions %}
+                                                    {% for prop in props %}
+                                                        {% if prop == proposition.id %} checked {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            {% endif %}>
+                                    <span class="checkmark checkmark-question-{{ question.id }}"></span>
+                                </label>
+                                {{ proposition.title }}
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div class="quizz-check">
+                    {% if postValide and errors is not null %}
+                        {% for key, error in errors %}
+                            {% if key == question.id %}
+                                {% if error %}
+                                    <img src="{{ asset('build/images/icons/false-check.png') }}"
+                                         style="width: 50%">
+                                {% else %}
+                                    <img src="{{ asset('build/images/icons/true-check.png') }}"
+                                         style="width: 50%">
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {% if result is not same as(null) and app.user.quizResults|length > 0 %}
+                <div class="{% if errors[question.id] %} alert-danger {% else %} alert-success {% endif %}">
+                    <p class="quiz-solution">{{ question.solution }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% if result is same as(null) and  app.user.quizResults|length < 2 %}
+            <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="submit">
+                Valider vos réponses
+            </button>
+        {% endif %}
+        {% if result is not same as(null) and app.user.quizResults|length == 0 %}
+            <a href="{{ path('ressources_quizz') }}">
+                <button class="btn quizz-button btn-round-clearblue btn-lg btn-block" type="button">
+                    Repasser le test
+                </button>
+            </a>
+        {% endif %}
+    </div>
+</form>

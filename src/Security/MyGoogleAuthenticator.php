@@ -2,8 +2,11 @@
 
 namespace App\Security;
 
+use App\Entity\AccountsDuration;
+use App\Entity\Checklist;
 use App\Entity\User; // your user entity
 use App\Repository\UserRepository;
+use App\Services\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use KnpU\OAuth2ClientBundle\Client\Provider\GoogleClient;
@@ -25,14 +28,17 @@ class MyGoogleAuthenticator extends SocialAuthenticator
     private $router;
     private $userRepository;
     private $passwordEncoder;
+    private $userManager;
 
     public function __construct(
+        UserManager $userManager,
         ClientRegistry $clientRegistry,
         EntityManagerInterface $entityManager,
         RouterInterface $router,
         UserRepository $userRepository,
         UserPasswordEncoderInterface $passwordEncoder
     ) {
+        $this->userManager =$userManager;
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
         $this->router = $router;
@@ -80,10 +86,13 @@ class MyGoogleAuthenticator extends SocialAuthenticator
         // 3) Maybe you just want to "register" them by creating
         // a User object
 
+        $accountDuration = $this->entityManager->getRepository(AccountsDuration::class)->findOneBy([]);
+
+
         if (empty($user)) {
             $firstName = $googleUser->getFirstName();
             $lastName = $googleUser->getLastName();
-            $user = new User();
+            $user = $this->userManager->createUser($accountDuration);
             $user->setGoogleId($googleUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)
@@ -93,6 +102,8 @@ class MyGoogleAuthenticator extends SocialAuthenticator
         $user->setPassword($this->passwordEncoder->encodePassword($user, $credentials->getToken()));
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+
+
 
         return $user;
     }

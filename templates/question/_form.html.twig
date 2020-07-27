@@ -1,19 +1,29 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 {{ form_start(form, {'attr': {'class': 'quizz-table', 'novalidate': 'novalidate'}}) }}
 
-    {{ form_row(form.title) }}
-    {% if form_errors(form.title) %}
+    <div class="form-quizz">
+
+        {{ form_label(form.title, 'Question') }}
+        {{ form_widget(form.title, {
+            'attr': {
+                'class': 'form-control faq-form-control shadow',
+            }}) }}
         <div class="faq-alert alert-danger">
             {{ form_errors(form.title) }}
         </div>
-    {% endif %}
 
-    {{ form_row(form.solution) }}
-{% if form_errors(form.solution) %}
-    <div class="faq-alert alert-danger">
-        {{ form_errors(form.solution) }}
     </div>
-{% endif %}
+
+    <div class="form-quizz">
+        {{ form_label(form.solution, 'Solution') }}
+        {{ form_widget(form.solution, {
+            'attr': {
+                'class': 'form-control faq-form-control shadow',
+            }}) }}
+        <div class="faq-alert alert-danger">
+            {{ form_errors(form.solution) }}
+        </div>
+    </div>
 
 <ul class="proposition "
     id="proposition-fields-list"
@@ -21,14 +31,16 @@
     data-widget-tags="{{ '<li></li>'|e }}"
     data-widget-counter="{{ form.propositions|length }}">
     {% for proposition in form.propositions %}
-        <li>
-            {{ form_errors(proposition) }}
+        <li class="prop-li">
             {{ form_widget(proposition) }}
+            <div class="faq-alert alert-danger">
+                {{ form_errors(form.solution) }}
+            </div>
         </li>
 
     {% endfor %}
 </ul>
-<div class="faq-action-btn">
+<div class="quizz-action-btn">
     <button class="btn btn-round-darkblue">{{ button_label|default('Enregistrer') }}</button>
 </div>
 {{ form_end(form) }}

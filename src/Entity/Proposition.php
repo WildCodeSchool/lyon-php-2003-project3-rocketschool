@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PropositionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PropositionRepository::class)
@@ -18,7 +19,8 @@ class Proposition
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank(message="Renseigner une proposition ou la supprimer")
      */
     private $title;
 

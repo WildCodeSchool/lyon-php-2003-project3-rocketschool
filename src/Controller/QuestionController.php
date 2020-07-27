@@ -7,6 +7,7 @@ use App\Entity\Quizz;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
+use App\Services\QuestionMoveItem;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,8 @@ class QuestionController extends AbstractController
     public function index(QuestionRepository $questionRepository): Response
     {
         return $this->render('question/index.html.twig', [
-            'questions' => $questionRepository->findAll(),
-            'page_name' => 'Quiz - Edition',
+            'questions' => $questionRepository->findBy([], ['questionOrder' => 'ASC']),
+            'page_name' => 'Quizz - Edition',
         ]);
     }
 
@@ -52,18 +53,28 @@ class QuestionController extends AbstractController
         } else {
             $lastPosition = -1;
         }
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid() && isset($form->get('propositions')->getData()[1])) {
+            $propositions = $form->get('propositions')->getData();
             $entityManager = $this->getDoctrine()->getManager();
+
             $question->setQuizz($quizz);
             $question->setQuestionOrder($lastPosition + 1);
+            $entityManager->persist($question);
+            foreach ($propositions as $proposition) {
+                $proposition->setQuestion($question);
+                $question->addProposition($proposition);
+            }
             $entityManager->persist($question);
             $entityManager->flush();
 
             return $this->redirectToRoute('question_index');
+        } elseif (!isset($form->get('propositions')->getData()[1])) {
+            $this->addFlash('danger', 'Vous devez ajouter au moins 2 propositions');
         }
 
         return $this->render('question/new.html.twig', [
-            'page_name' => 'Quiz - Ajouter une question',
+            'page_name' => 'Quizz - Ajouter une question',
             'question' => $question,
             'form' => $form->createView(),
         ]);
@@ -102,7 +113,7 @@ class QuestionController extends AbstractController
         return $this->render('question/edit.html.twig', [
             'question' => $question,
             'form' => $form->createView(),
-            'page_name' => "Quiz - Edition d'une question"
+            'page_name' => "Quizz - Edition d'une question"
         ]);
     }
 
@@ -118,6 +129,25 @@ class QuestionController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($question);
             $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('question_index');
+    }
+
+    /**
+     * @Route("/move/{id}/{position}", name="question_move",methods={"GET", "POST"})
+     * @return Response
+     */
+    public function move(QuestionMoveItem $questionMoveItem, Question $question, string $position): Response
+    {
+        $nbQuestion = count($this->getDoctrine()->getRepository(Question::class)->findAll());
+
+        if ($question->getQuestionOrder() == 0 && $position == 'Up') {
+            throw $this->createNotFoundException('Impossible de monter le premier élément');
+        } elseif ($question->getQuestionOrder() == $nbQuestion - 1 && $position == 'Down') {
+            throw $this->createNotFoundException('Impossible de descendre le dernier élément');
+        } else {
+            $questionMoveItem->move($question, $position);
         }
 
         return $this->redirectToRoute('question_index');
