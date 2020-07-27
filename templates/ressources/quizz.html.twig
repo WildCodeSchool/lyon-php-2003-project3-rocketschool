@@ -16,11 +16,11 @@
             </div>
         {% else %}
             {% if not is_granted('ROLE_ADMIN') %}
-                {% if app.user.quizResult|length == 0 %}
+                {% if app.user.quizResults|length == 0 %}
                     <p class="quiz-attempt">essai numéro 1/2</p>
-                {% elseif app.user.quizResult|length == 1 %}
+                {% elseif app.user.quizResults|length == 1 %}
                     <p class="quiz-attempt">essai numéro 2/2</p>
-                {% elseif app.user.quizResult|length > 1 %}
+                {% elseif app.user.quizResults|length > 1 %}
                     <div class="no-more-attempt">
                         <p class="quiz-attempt">Vous avez déjà validé le test deux fois.</p>
                         <a href="{{ path('profil') }}" class="a-btn-center">
@@ -37,7 +37,7 @@
                 {% endif %}
             {% endif %}
         {% endif %}
-        {% if app.user.quizResult|length < 2 %}
+        {% if app.user.quizResults|length < 2 %}
         {{ include('ressources/_quizzForm.html.twig') }}
         {% endif %}
     </div>
@@ -45,7 +45,7 @@
 
 {% block javascripts %}
     <script>
-        {% if app.user.quizResult|length < 2 %}
+        {% if app.user.quizResults|length < 2 %}
             {% for question in questions %}
                 var nbGoodAnswer = 0;
                 {% for proposition in question.propositions %}

@@ -29,10 +29,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     private $accDuRepo;
 
-    public function __construct(ManagerRegistry $registry, AccountsDurationRepository $accDuRepo)
-    {
+    private $userManager;
+
+    public function __construct(
+        ManagerRegistry $registry,
+        AccountsDurationRepository $accDuRepo,
+        UserManager $userManager
+    ) {
         parent::__construct($registry, User::class);
         $this->accDuRepo = $accDuRepo;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -99,7 +105,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     public function updateCandidatesDuration(AccountsDurationRepository $accDuRepo)
     {
-        $userManager = new UserManager();
+
         $accountsDuration = $accDuRepo->findOneBy([]);
         $days = null;
         if ($accountsDuration) {
@@ -109,7 +115,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $entityManager = $this->getEntityManager();
         if ($days) {
             foreach ($candidates as $candidate) {
-                $userManager->setDeletedAt($candidate, $days);
+                $this->userManager->setDeletedAt($candidate, $days);
                 $entityManager->persist($candidate);
             }
         }

@@ -23,15 +23,17 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    private $userManager;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, UserManager $userManager)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->userManager = $userManager;
     }
 
     public function load(ObjectManager $manager)
     {
         $program = ['First program', 'Second program', 'Third program'];
-        $userManager = new UserManager();
         $faker = Faker\Factory::create('fr_FR');
         for ($i = 0; $i < 25; $i++) {
             $checklist = new Checklist();
@@ -44,7 +46,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 ->setAccountsDuration($this->getReference('AccountsDuration'));
             $manager->persist($user);
             $manager->flush();
-            $userManager->setDeletedAt($user, $user->getAccountsDuration()->getDays());
+            $this->userManager->setDeletedAt($user);
             $manager->persist($user);
         }
 

@@ -3,13 +3,21 @@
 namespace App\Services;
 
 use App\Entity\User;
+use App\Repository\AccountsDurationRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeInterface;
 
 class UserManager
 {
-    public function userCreation($accountsDuration)
+    private $durationRepository;
+
+    public function __construct(AccountsDurationRepository $durationRepository)
+    {
+        $this->durationRepository = $durationRepository;
+    }
+
+    public function createUser($accountsDuration)
     {
         $user = new User();
         if ($accountsDuration) {
@@ -23,10 +31,12 @@ class UserManager
         return $user;
     }
 
-    public function setDeletedAt($user, $accountDuration)
+    public function setDeletedAt($user)
     {
+        $accountDuration = $this->durationRepository->findOneBy([]);
+
         $createdAt = $user->getCreatedAt();
-        $user->setDeletedAt($this->delAtCreation($createdAt, $accountDuration));
+        $user->setDeletedAt($this->delAtCreation($createdAt, $accountDuration->getDays()));
     }
 
     public function delAtCreation(?DateTimeInterface $createdAt, $days)
@@ -40,15 +50,4 @@ class UserManager
             }
         }
     }
-
-//    public function updateDeletedAt(int $userId, string $deletedAt, UserRepository $userRepo)
-//    {
-//        $user = $userRepo->findOneBy(['id' => $userId]);
-//        $deletedAt = DateTime::createFromFormat('Y-m-d', $deletedAt);
-//        if ($user) {
-//            $user->setDeletedAt($deletedAt);
-//        }
-//
-//        return $user;
-//    }
 }

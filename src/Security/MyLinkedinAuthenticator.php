@@ -28,14 +28,17 @@ class MyLinkedinAuthenticator extends SocialAuthenticator
     private $router;
     private $userRepository;
     private $passwordEncoder;
+    private $userManager;
 
     public function __construct(
+        UserManager $userManager,
         ClientRegistry $clientRegistry,
         EntityManagerInterface $entityManager,
         RouterInterface $router,
         UserRepository $userRepository,
         UserPasswordEncoderInterface $passwordEncoder
     ) {
+        $this->userManager = $userManager;
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
         $this->router = $router;
@@ -89,9 +92,7 @@ class MyLinkedinAuthenticator extends SocialAuthenticator
         if (empty($user)) {
             $firstName = $linkedinUser->getFirstName();
             $lastName = $linkedinUser->getLastName();
-
-            $userManager = new UserManager();
-            $user = $userManager->userCreation($accountDuration);
+            $user = $this->userManager->createUser($accountDuration);
             $user->setLinkedinId($linkedinUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)

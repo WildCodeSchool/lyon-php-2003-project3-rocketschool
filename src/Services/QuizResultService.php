@@ -30,11 +30,11 @@ class QuizResultService
 
     public function flush($user, $result)
     {
-        if (count($user->getQuizResult()) < 2) {
+        if (count($user->getQuizResults()) < 2) {
             $quizResult = new QuizResult();
             $quizResult->setUser($user)
                 ->setResult($result)
-                ->setAttempt(count($user->getQuizResult()) + 1);
+                ->setAttempt(count($user->getQuizResults()) + 1);
             $this->entityManager->persist($quizResult);
 
             $this->validateCheckQuizz($quizResult, $user);

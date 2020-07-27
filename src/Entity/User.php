@@ -94,7 +94,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity=QuizResult::class, mappedBy="user")
      */
-    private $quizResult;
+    private $quizResults;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -117,7 +117,7 @@ class User implements UserInterface
         $checklist = new Checklist();
         $this->setChecklist($checklist);
         $this->notes = new ArrayCollection();
-        $this->quizResult = new ArrayCollection();
+        $this->quizResults = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -309,15 +309,15 @@ class User implements UserInterface
     /**
      * @return Collection|QuizResult[]
      */
-    public function getQuizResult(): Collection
+    public function getQuizResults(): Collection
     {
-        return $this->quizResult;
+        return $this->quizResults;
     }
 
     public function addQuizResult(QuizResult $quizResult): self
     {
-        if (!$this->quizResult->contains($quizResult)) {
-            $this->quizResult[] = $quizResult;
+        if (!$this->quizResults->contains($quizResult)) {
+            $this->quizResults[] = $quizResult;
             $quizResult->setUser($this);
         }
 
@@ -326,8 +326,8 @@ class User implements UserInterface
 
     public function removeQuizResult(QuizResult $quizResult): self
     {
-        if ($this->quizResult->contains($quizResult)) {
-            $this->quizResult->removeElement($quizResult);
+        if ($this->quizResults->contains($quizResult)) {
+            $this->quizResults->removeElement($quizResult);
             // set the owning side to null (unless already changed)
             if ($quizResult->getUser() === $this) {
                 $quizResult->setUser(null);

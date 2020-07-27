@@ -53,18 +53,18 @@ If you develop on Windows, you should edit you git configuration to change your 
 
 ## Deployment
 
-=> Prerequisites : 
+=> Prerequisites :
     1. Check composer is installed
     2. Check yarn & node are installed
 
 1. Clone this project
 2. Run `composer install`
 3. Run `yarn install`
-4. Copy paste `.env` in new file `.env.local` 
+4. Copy paste `.env` in new file `.env.local`
     - configure your mysql database
     - configure your app id and secret foreach social network
     - configure your MailerDNS
-5. Run `php bin/console doctrine:database:create` to create the database    
+5. Run `php bin/console doctrine:database:create` to create the database
 6. Run `php bin/console doctrine:migration:migrate` to set the database
 7. Run `php bin/console doctrine:fixtures:load` to load fixtures
 8. Run `yarn encore production` to build assets, css and js
@@ -103,7 +103,7 @@ https://www.linkedin.com/developers/
 https://developers.facebook.com/apps/
 
 Get your app id and secret foreach social network
-and set up your .env file
+and set up in .env.local file
 
 ## Functionality for reset password
 
