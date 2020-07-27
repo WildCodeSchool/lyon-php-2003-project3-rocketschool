@@ -25,6 +25,7 @@ class RegistrationController extends AbstractController
      * @param GuardAuthenticatorHandler $guardHandler
      * @param LoginFormAuthenticator $authenticator
      * @param AccountsDurationRepository $durationRepository
+     * @param UserManager $userManager
      * @return Response
      */
     public function register(
@@ -32,7 +33,8 @@ class RegistrationController extends AbstractController
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $authenticator,
-        AccountsDurationRepository $durationRepository
+        AccountsDurationRepository $durationRepository,
+        UserManager $userManager
     ): ?Response {
 
         if ($this->getUser()) {
@@ -60,7 +62,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $duration = $durationRepository->findOneBy([]);
+            $user->setAccountsDuration($duration);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -70,8 +73,9 @@ class RegistrationController extends AbstractController
                 $accountsDuration->getDays();
             }
 
-            $userManager = new UserManager();
-            $userManager->setDeletedAt($user, $durationRepository);
+
+            $userManager->setDeletedAt($user);
+
             $entityManager->persist($user);
             $entityManager->flush();
 

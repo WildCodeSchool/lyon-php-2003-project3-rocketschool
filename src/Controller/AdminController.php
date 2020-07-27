@@ -109,7 +109,7 @@ class AdminController extends AbstractController implements FormFactoryInterface
                 ->search($data['dataUsers'], $data['program']);
         }
         return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats',
-            'users' => $users,
+            'users' => $candidates,
             'accountsDuration' => $accountsDuration,
             'form' => $form->createView(),
             'formAccDu' => $formAccDu->createView(),
