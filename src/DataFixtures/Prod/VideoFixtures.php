@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\Prod;
 
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;

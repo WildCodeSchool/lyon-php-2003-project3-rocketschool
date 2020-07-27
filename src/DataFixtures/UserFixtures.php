@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\DataFixtures\Prod\AccountsDurationFixtures;
+use App\DataFixtures\Prod\ProgramFixtures;
 use App\Entity\AccountsDuration;
 use App\Entity\Checklist;
 use App\Entity\User;
