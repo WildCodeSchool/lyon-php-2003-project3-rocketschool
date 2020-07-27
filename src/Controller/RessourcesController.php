@@ -70,6 +70,7 @@ class RessourcesController extends AbstractController
      * @Route("/quizz", name="quizz")
      * @param QuizzRepository $quizzRepo
      * @param QuizResultService $quizResultService
+     * @param QuestionRepository $questionRepository
      * @return string
      */
     public function quizz(

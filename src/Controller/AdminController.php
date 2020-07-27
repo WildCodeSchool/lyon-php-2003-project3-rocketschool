@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\AccountsDuration;
-use App\Entity\QuizResult;
 use App\Entity\User;
 use App\Entity\Program;
 use App\Form\AccountsDurationType;

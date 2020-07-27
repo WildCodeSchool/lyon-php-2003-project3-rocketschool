@@ -100,7 +100,7 @@
                                 <td class="search_response LT_result_quiz_bad">0/3</td>
                             {% endif %}
 
-                            {% for result in user.quizResult %}
+                            {% for result in user.quizResults %}
                                 <td class="search_response
                                     {% if result.result < 50 %}
                                         LT_result_quiz_bad
@@ -108,7 +108,7 @@
                                         LT_result_quiz_good
                                     {% endif %}
                                     ">{{ result.result }} % </td>
-                                {% if user.quizResult|length == 1 %}
+                                {% if user.quizResults|length == 1 %}
                                     <td class="search_response">-</td>
                                 {% endif %}
                             {% else %}
