@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Pdf;
 use App\Entity\Proposition;
 use App\Entity\Question;
 use App\Entity\Quizz;
 use App\Entity\User;
+use App\Form\PdfType;
+use App\Repository\PdfRepository;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizzRepository;
@@ -16,9 +19,12 @@ use App\Form\FaqSearchFieldType;
 use App\Repository\FaqRepository;
 use App\Repository\UserRepository;
 use App\Services\QuizResultService;
+use App\Services\Slugify;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -185,21 +191,69 @@ class RessourcesController extends AbstractController
     }
 
     /**
-     * @Route("/guide/{user}", name="guide")
-     * @param User $user
+     * @Route("/guide", name="guide")
      * @return Response
      */
-    public function guide(User $user)
-    {
-        $checklist = $user->getChecklist();
-        if ($checklist) {
-            $checklist->setCheckGuide(true);
+    public function guide(
+        Request $request,
+        PdfRepository $pdfRepository,
+        Slugify $slugify,
+        UserRepository $userRepository
+    ) {
+        $user = $userRepository->find($this->getUser());
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($checklist);
-            $entityManager->flush();
+        if (!empty($user)) {
+            $checklist = $user->getChecklist();
+            if ($checklist) {
+                $checklist->setCheckGuide(true);
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($checklist);
+                $entityManager->flush();
+            }
         }
 
-        return $this->redirect('http://www.google.fr');
+        $pdf = $pdfRepository->findOneBy([]);
+
+        $form = $this->createForm(PdfType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $uploadedPdf = $form->get('path')->getData();
+
+            if (!empty($uploadedPdf) && !empty($pdf)) {
+                $newName = $this->uploadPdf($uploadedPdf, $slugify);
+
+                $pdf->setPath(empty($newName)? "" : $newName);
+                $entityManager->persist($pdf);
+            }
+            $entityManager->flush();
+
+            return $this->redirectToRoute('ressources_guide');
+        }
+
+        return $this->render('ressources/guide.html.twig', [
+            'page_name' => 'Guide entretien',
+            'form' => $form->createView(),
+            'pdf' => $pdf
+        ]);
+    }
+
+    public function uploadPdf($pdf, $slugify): ?string
+    {
+        $newName = null;
+
+        if ($pdf) {
+            $originalName = pathinfo($pdf->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeName = $slugify->generate($originalName);
+            $newName = $safeName . "-" . uniqid() . "." . $pdf->guessExtension();
+            $pdf->move(
+                $this->getParameter('pdf_uploads'),
+                $newName
+            );
+        }
+
+        return $newName;
     }
 }

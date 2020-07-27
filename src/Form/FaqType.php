@@ -40,10 +40,8 @@ class FaqType extends AbstractType
                             'image/jpg',
                             'image/jpeg',
                             'image/png',
-                            'application/pdf',
-                            'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'L\'image doit être au format png, jpg, pdf ou x-pdf'
+                        'mimeTypesMessage' => 'L\'image doit être au format png, jpeg ou jpg'
                     ])
                 ]
             ])
