@@ -112,7 +112,9 @@ class AdminController extends AbstractController implements FormFactoryInterface
             'users' => $users,
             'accountsDuration' => $accountsDuration,
             'form' => $form->createView(),
-            'formAccDu' => $formAccDu->createView()]);
+            'formAccDu' => $formAccDu->createView(),
+            'formDelAts'=> $formsView
+        ]);
     }
 
     /**

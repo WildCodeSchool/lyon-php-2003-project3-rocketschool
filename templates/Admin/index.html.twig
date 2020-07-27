@@ -117,13 +117,12 @@
                             {% endfor %}
                             <td class="search_response userCreatedAt"> {{ user.createdAt|date("d / m / Y") }} </td>
                             <td class="search_response p-0">
-                                <form method="post" class="update_delete_at_form ">
-                                    <input type="hidden" name="userId" value="{{ user.id }}">
-                                    <input type="date" id="start" name="deletedAt"
-                                           value="{{ user.deletedAt|date("Y-m-d") }}"
-                                           >
-                                    <button type="submit" class="btn btn-search-user">Modifier</button>
-                                </form>
+                                {% set formDelAtsIndex = loop.index0 %}
+                                {{ form_start(formDelAts[formDelAtsIndex], {    'attr': {    'class': 'form-group update_delete_at_form',    'novalidate': 'novalidate'    }}) }}
+                                {{ form_widget(formDelAts[formDelAtsIndex].deletedAt, {    'attr': {    'class': 'form-search',    'placeholder': 'Rechercher un candidat'    }}) }}
+                                <input type="hidden" name="userId" value="{{ user.id }}">
+                                <button type="submit" class="btn btn-search-user">Modifier</button>
+                                {{ form_end(formDelAts[formDelAtsIndex]) }}
                             </td>
                         </tr>
                     {% endif %}
