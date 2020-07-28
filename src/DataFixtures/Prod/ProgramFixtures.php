@@ -4,9 +4,10 @@ namespace App\DataFixtures\Prod;
 
 use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ProgramFixtures extends Fixture
+class ProgramFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -27,5 +28,10 @@ class ProgramFixtures extends Fixture
 
         $manager->persist($program);
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupProd'];
     }
 }

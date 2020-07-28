@@ -5,9 +5,10 @@ namespace App\DataFixtures\Prod;
 use App\Entity\AccountsDuration;
 use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class AccountsDurationFixtures extends Fixture
+class AccountsDurationFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -17,5 +18,10 @@ class AccountsDurationFixtures extends Fixture
 
         $manager->persist($accountsDuration);
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupProd'];
     }
 }

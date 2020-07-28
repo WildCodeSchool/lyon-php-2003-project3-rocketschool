@@ -4,11 +4,12 @@ namespace App\DataFixtures\Prod;
 
 use App\Entity\Faq;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class FaqFixtures extends Fixture implements DependentFixtureInterface
+class FaqFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
 
     const FAQ = [
@@ -248,5 +249,10 @@ class FaqFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($faq);
         }
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupProd'];
     }
 }
