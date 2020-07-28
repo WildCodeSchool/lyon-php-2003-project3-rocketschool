@@ -21,10 +21,9 @@ class UserManager
     {
         $user = new User();
         if ($accountsDuration) {
-            $days = $accountsDuration->getDays();
             $createdAt = $user->getCreatedAt();
             if ($createdAt) {
-                $user->setDeletedAt($this->delAtCreation($user->getCreatedAt(), $days));
+                $this->setDeletedAt($user);
             }
         }
 

@@ -99,16 +99,13 @@ class AdminController extends AbstractController
             }
         }
 
-        $users = $this->getDoctrine()->getRepository(User::class)
-            ->findAll();
-
         $form = $this->createForm(SelectProgramType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && !empty($form->getData())) {
             $data = $form->getData();
 
-            $users = $this->userRepository
+            $candidates = $this->userRepository
                 ->search($data['dataUsers'], $data['program']);
         }
         return $this->render('Admin/index.html.twig', ['page_name' => 'Candidats',
