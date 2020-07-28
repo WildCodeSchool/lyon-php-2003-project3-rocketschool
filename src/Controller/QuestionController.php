@@ -97,17 +97,38 @@ class QuestionController extends AbstractController
      * @Route("/{id}/edit", name="question_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Question $question
+     * @param QuestionRepository $questionRepo
+     * @param QuizzRepository $quizzRepo
      * @return Response
      */
-    public function edit(Request $request, Question $question): Response
-    {
+    public function edit(
+        Request $request,
+        Question $question,
+        QuestionRepository $questionRepo,
+        QuizzRepository $quizzRepo
+    ): Response {
+
+        $quizz = $quizzRepo->findOneBy([]);
+
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() && $form->isValid() && isset($form->get('propositions')->getData()[1])) {
+            $propositions = $form->get('propositions')->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $question->setQuizz($quizz);
+            $entityManager->persist($question);
+            foreach ($propositions as $proposition) {
+                $proposition->setQuestion($question);
+                $question->addProposition($proposition);
+            }
+            $entityManager->persist($question);
+            $entityManager->flush();
 
             return $this->redirectToRoute('question_index');
+        } elseif (!isset($form->get('propositions')->getData()[1])) {
+            $this->addFlash('danger', 'Vous devez ajouter au moins 2 propositions');
         }
 
         return $this->render('question/edit.html.twig', [

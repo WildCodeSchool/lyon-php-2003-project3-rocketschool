@@ -5,6 +5,7 @@ namespace App\Security;
 use App\Entity\AccountsDuration;
 use App\Entity\Checklist;
 use App\Entity\User; // your user entity
+use App\Repository\AccountsDurationRepository;
 use App\Repository\UserRepository;
 use App\Services\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +30,7 @@ class MyFacebookAuthenticator extends SocialAuthenticator
     private $userRepository;
     private $passwordEncoder;
     private $userManager;
+    private $accountsRepository;
 
     public function __construct(
         ClientRegistry $clientRegistry,
@@ -36,8 +38,10 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         RouterInterface $router,
         UserRepository $userRepository,
         UserPasswordEncoderInterface $passwordEncoder,
-        UserManager $userManager
+        UserManager $userManager,
+        AccountsDurationRepository $accountsRepository
     ) {
+        $this->accountsRepository = $accountsRepository;
         $this->userManager = $userManager;
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
@@ -86,16 +90,21 @@ class MyFacebookAuthenticator extends SocialAuthenticator
         // 3) Maybe you just want to "register" them by creating
         // a User object
 
-        $accountDuration = $this->entityManager->getRepository(AccountsDuration::class)->findOneBy([]);
+        $accountsDuration = $this->accountsRepository->findOneBy([]);
 
         if (empty($user)) {
             $firstName = $facebookUser->getFirstName();
             $lastName = $facebookUser->getLastName();
-            $user = $this->userManager->createUser($accountDuration);
+            $user = $this->userManager->createUser($accountsDuration);
             $user->setFacebookId($facebookUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)
-                ->setLastname((empty($lastName)) ? "" : $lastName);
+                ->setLastname((empty($lastName)) ? "" : $lastName)
+                ->setAccountsDuration($accountsDuration)
+                ->setPassword($this->passwordEncoder->encodePassword($user, $credentials->getToken()));
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+            $this->userManager->setDeletedAt($user);
         }
 
         $user->setPassword($this->passwordEncoder->encodePassword($user, $credentials->getToken()));

@@ -23,7 +23,7 @@
                 {% elseif app.user.quizResults|length > 1 %}
                     <div class="no-more-attempt">
                         <p class="quiz-attempt">Vous avez déjà validé le test deux fois.</p>
-                        <a href="{{ path('profil') }}" class="a-btn-center">
+                        <a href="{{ path('ressources_guide', {'user': app.user.id }) }}" target="_blank" class="a-btn-center">
                             <button class="btn quizz-button btn-round-clearblue" type="button">
                                 Voir le guide d'entretien
                             </button>

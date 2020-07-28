@@ -73,7 +73,6 @@ class RegistrationController extends AbstractController
                 $accountsDuration->getDays();
             }
 
-
             $userManager->setDeletedAt($user);
 
             $entityManager->persist($user);

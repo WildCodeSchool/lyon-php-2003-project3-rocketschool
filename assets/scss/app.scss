@@ -793,7 +793,7 @@ footer a {
 .faq-card {
     padding: 20px;
     margin: 20px auto;
-    max-width: 600px;
+    max-width: 900px;
     min-width: 300px;
     border-radius: 5px;
     box-shadow: black 0 0 15px -5px;
@@ -1729,6 +1729,24 @@ h2 {
 
 td#LT_result_quiz_good.search_response {
     color: darkgreen;
+}
+
+.change-pdf-label {
+    text-align: center;
+}
+
+.pdf-form-control-container {
+    width: 300px;
+    display: flex;
+    margin: auto;
+
+    input, label {
+        margin: 5px;
+    }
+
+    label {
+        overflow: hidden;
+    }
 }
 
 // Profil page
