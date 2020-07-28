@@ -6,9 +6,10 @@ use App\Entity\Proposition;
 use App\Entity\Question;
 use App\Entity\Quizz;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class QuizzFixtures extends Fixture
+class QuizzFixtures extends Fixture implements FixtureGroupInterface
 {
 
     const QUESTIONS = [
@@ -254,5 +255,10 @@ class QuizzFixtures extends Fixture
 
         $manager->persist($quizz);
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupProd'];
     }
 }

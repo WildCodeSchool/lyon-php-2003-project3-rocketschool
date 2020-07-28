@@ -35,7 +35,7 @@ It's symfony website-skeleton project with some additional tools to validate cod
 `)
 
 4. Run `symfony server:start` to launch your local php web server
-5. Run `yarn run dev --watch` to launch your local server for assets
+5. Run `yarn run dev` to launch your local server for assets
 
 ### Testing
 
@@ -66,7 +66,7 @@ If you develop on Windows, you should edit you git configuration to change your 
     - configure your MailerDNS
 5. Run `php bin/console doctrine:database:create` to create the database
 6. Run `php bin/console doctrine:migration:migrate` to set the database
-7. Run `php bin/console doctrine:fixtures:load` to load fixtures
+7. Run `php bin/console doctrine:fixtures:load --group=groupProd` to load fixtures
 8. Run `yarn encore production` to build assets, css and js
 9. Start the server
 Add additional notes about how to deploy this on a live system
