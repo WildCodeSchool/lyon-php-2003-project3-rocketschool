@@ -6,15 +6,19 @@ use App\Entity\AccountsDuration;
 use App\Entity\User;
 use App\Entity\Program;
 use App\Form\AccountsDurationType;
+use App\Form\PdfType;
 use App\Form\UserType;
 use App\Form\SearchFilterType;
 use App\Form\SelectProgramType;
 use App\Repository\AccountsDurationRepository;
+use App\Repository\PdfRepository;
 use App\Repository\UserRepository;
 use App\Entity\Video;
 use App\Repository\ProgramRepository;
 use App\Form\VideoEditType;
 use App\Services\GetVideo;
+use App\Services\Slugify;
+use App\Services\UploadService;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +35,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  * @package App\Controller
  * @Route("/admin", name="admin_")
  */
-class AdminController extends AbstractController implements FormFactoryInterface
+class AdminController extends AbstractController
 //Login is the home page
 {
 
@@ -173,64 +177,44 @@ class AdminController extends AbstractController implements FormFactoryInterface
     }
 
     /**
-     * @inheritDoc
+     * @Route("/guide", name="guide")
+     * @param Request $request
+     * @param PdfRepository $pdfRepository
+     * @param UploadService $uploadService
+     * @return Response
      */
-    public function create(
-        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
-        $data = null,
-        array $options = []
-    ) {
-        // TODO: Implement create() method.
-    }
+    public function guide(
+        Request $request,
+        PdfRepository $pdfRepository,
+        UploadService $uploadService
+    ): Response {
+        $pdf = $pdfRepository->findOneBy([]);
 
-    /**
-     * @inheritDoc
-     */
-    public function createNamed(
-        $name,
-        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
-        $data = null,
-        array $options = []
-    ) {
-        // TODO: Implement createNamed() method.
-    }
+        $form = $this->createForm(PdfType::class);
+        $form->handleRequest($request);
 
-    /**
-     * @inheritDoc
-     */
-    public function createForProperty($class, $property, $data = null, array $options = [])
-    {
-        // TODO: Implement createForProperty() method.
-    }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $uploadedPdf = $form->get('path')->getData();
 
-    /**
-     * @inheritDoc
-     */
-    public function createBuilder(
-        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
-        $data = null,
-        array $options = []
-    ) {
-        // TODO: Implement createBuilder() method.
-    }
+            if (!empty($uploadedPdf) && !empty($pdf)) {
+                $newName = $uploadService->upload($uploadedPdf);
+                $uploadedPdf->move(
+                    $this->getParameter('pdf_uploads'),
+                    $newName
+                );
+                $pdf->setPath(empty($newName)? "" : $newName);
+                $entityManager->persist($pdf);
+            }
+            $entityManager->flush();
 
-    /**
-     * @inheritDoc
-     */
-    public function createNamedBuilder(
-        $name,
-        $type = 'Symfony\Component\Form\Extension\Core\Type\FormType',
-        $data = null,
-        array $options = []
-    ) {
-        // TODO: Implement createNamedBuilder() method.
-    }
+            $this->addFlash('success', 'Votre PDF à bien été enregistré');
+            return $this->redirectToRoute('admin_guide');
+        }
 
-    /**
-     * @inheritDoc
-     */
-    public function createBuilderForProperty($class, $property, $data = null, array $options = [])
-    {
-        // TODO: Implement createBuilderForProperty() method.
+        return $this->render('Admin/guide.html.twig', [
+            'page_name' => 'Guide entretien',
+            'form' => $form->createView(),
+        ]);
     }
 }

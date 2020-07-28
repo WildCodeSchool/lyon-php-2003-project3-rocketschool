@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('changeUploadName') }}
+{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="change-pdf-label"><strong>Changer le PDF</strong></div>
+        <div class="pdf-form-control-container">
+            {{ form_start(form) }}
+                {{ form_widget(form.path, {'attr': {'class': 'form-control pdf-form-control shadow',}}) }}
+                <div class="faq-action-btn">
+                    <button class="btn btn-round-darkblue">{{ button_label|default('Poster') }}</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('changeUploadName') }}
+{% endblock %}

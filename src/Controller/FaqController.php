@@ -7,6 +7,7 @@ use App\Form\FaqType;
 use App\Repository\FaqRepository;
 use App\Services\FaqMoveItem;
 use App\Services\Slugify;
+use App\Services\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,8 +36,12 @@ class FaqController extends AbstractController
      * @param FaqRepository $faqRepository
      * @return Response
      */
-    public function new(Request $request, FaqRepository $faqRepository, Slugify $slugify): Response
-    {
+    public function new(
+        Request $request,
+        FaqRepository $faqRepository,
+        Slugify $slugify,
+        UploadService $uploadService
+    ): Response {
         $faq = new Faq();
         $form = $this->createForm(FaqType::class, $faq);
         $form->handleRequest($request);
@@ -52,9 +57,11 @@ class FaqController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $image = $form->get('image')->getData();
-
-            $newName = $this->uploadImage($image, $slugify);
-
+            $newName = $uploadService->upload($image);
+            $image->move(
+                $this->getParameter('faq_uploads'),
+                $newName
+            );
             $faq->setPosition($lastPosition + 1)
                 ->setImage($newName);
             $entityManager->persist($faq);
@@ -89,8 +96,12 @@ class FaqController extends AbstractController
      * @param Faq $faq
      * @return Response
      */
-    public function edit(Request $request, Faq $faq, Slugify $slugify): Response
-    {
+    public function edit(
+        Request $request,
+        Faq $faq,
+        Slugify $slugify,
+        UploadService $uploadService
+    ): Response {
         $form = $this->createForm(FaqType::class, $faq);
         $form->handleRequest($request);
 
@@ -99,8 +110,11 @@ class FaqController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $image = $form->get('image')->getData();
             if ($image != null) {
-                $newName = $this->uploadImage($image, $slugify);
-
+                $newName = $uploadService->upload($image);
+                $image->move(
+                    $this->getParameter('faq_uploads'),
+                    $newName
+                );
                 $faq->setImage($newName);
             }
             $entityManager->persist($faq);
@@ -157,22 +171,5 @@ class FaqController extends AbstractController
         }
 
         return $this->redirectToRoute('faq_index');
-    }
-
-    public function uploadImage($image, $slugify): ?string
-    {
-        $newName = null;
-
-        if ($image) {
-            $originalName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeName = $slugify->generate($originalName);
-            $newName = $safeName . "-" . uniqid() . "." . $image->guessExtension();
-            $image->move(
-                $this->getParameter('faq_uploads'),
-                $newName
-            );
-        }
-
-        return $newName;
     }
 }
