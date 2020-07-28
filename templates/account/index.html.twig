@@ -99,7 +99,7 @@
                                 {% endif %}
                             </span>
                         </td>
-                        <td><a href="{{ path('ressources_guide', {'user': app.user.id}) }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
+                        <td><a target="_blank" href="{{ path('ressources_guide', {'user': app.user.id}) }}">Je prépare mon entretien <br><em>Suivez le guide !</em></a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -116,7 +116,7 @@
                         <button>Voir la vidéo</button>
                     </a>
                 {% else %}
-                    {% if app.user.quizResult.count == 0 %}
+                    {% if app.user.quizResults.count == 0 %}
                         <p>
                             Il est maintenant temps de vérifier ce que tu as retenu !
                             Pas de pression, tu as le droit à deux tentatives
@@ -124,8 +124,8 @@
                         <a href="{{ path('ressources_quizz') }}">
                             <button>C'est parti !</button>
                         </a>
-                    {% elseif app.user.quizResult.count == 1 %}
-                        {% for result in app.user.quizResult %}
+                    {% elseif app.user.quizResults.count == 1 %}
+                        {% for result in app.user.quizResults %}
                             <article>
                                 <p>Résultat du 1er essai</p>
                                 <div>
@@ -146,10 +146,10 @@
                         <article>
                             <p>Résultat du 2eme essai</p>
                             <div>
-                                <p>{{ app.user.quizResult.1.result }} %</p>
+                                <p>{{ app.user.quizResults.1.result }} %</p>
                             </div>
                         </article>
-                        <em class="p-3">Rappel 1er essai : {{ app.user.quizResult.0.result }} %</em>
+                        <em class="p-3">Rappel 1er essai : {{ app.user.quizResults.0.result }} %</em>
                     {% endif %}
                 {% endif %}
             </article>

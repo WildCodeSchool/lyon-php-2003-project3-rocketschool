@@ -48,7 +48,7 @@ class AccountController extends AbstractController
                     $firstname = self::cleanInput($_POST['firstname']);
                     $lastname = self::cleanInput($_POST['lastname']);
                     $email = self::cleanInput($_POST['email']);
-                    $program = $programRepo->findOneBy($_POST['program']);
+                    $program = $programRepo->find($_POST['program']);
 
                     $inputs = [$firstname,$lastname,$email,$program];
 

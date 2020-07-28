@@ -96,7 +96,12 @@ class MyLinkedinAuthenticator extends SocialAuthenticator
             $user->setLinkedinId($linkedinUser->getId())
                 ->setEmail((empty($email)) ? "" : $email)
                 ->setFirstname((empty($firstName)) ? "" : $firstName)
-                ->setLastname((empty($lastName)) ? "" : $lastName);
+                ->setLastname((empty($lastName)) ? "" : $lastName)
+                ->setAccountsDuration($accountDuration)
+                ->setPassword($this->passwordEncoder->encodePassword($user, $credentials->getToken()));
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+            $this->userManager->setDeletedAt($user);
         }
 
         $user->setPassword($this->passwordEncoder->encodePassword($user, $credentials->getToken()));
