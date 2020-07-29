@@ -4,9 +4,10 @@ namespace App\DataFixtures\Prod;
 
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CategoryFixtures extends Fixture
+class CategoryFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -36,5 +37,10 @@ class CategoryFixtures extends Fixture
         $this->addReference('category_5', $category5);
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupProd'];
     }
 }

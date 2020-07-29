@@ -4,9 +4,10 @@ namespace App\DataFixtures\Prod;
 
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class VideoFixtures extends Fixture
+class VideoFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -20,5 +21,10 @@ class VideoFixtures extends Fixture
             ->setUpdatedAt(date_create('now'));
         $manager->persist($video);
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['groupProd'];
     }
 }
