@@ -63,6 +63,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->orWhere('User.lastname like :keyword')
                 ->orWhere('User.email like :keyword')
                 ->andwhere('User.program = :program')
+                ->andWhere('User.deletedAt is not null')
                 ->setParameters([
                     'keyword' =>  $keyword . '%',
                     'program' => $program->getId(),
@@ -72,6 +73,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->andWhere('User.firstname like :keyword')
                 ->orWhere('User.lastname like :keyword')
                 ->orWhere('User.email like :keyword')
+                ->andWhere('User.deletedAt is not null')
                 ->setParameter('keyword', $keyword . '%');
         }
 
