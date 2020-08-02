@@ -91,9 +91,14 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Functionality for deleting users whose accounts are older than the desired number of days (100 by default)
 
 The command to run in the terminal, so as to launch the old accounts deleting is :
-    php bin/console app:delete-old-accounts
+    `$ php bin/console app:delete-old-accounts`
 
-CAUTION : So as to be fully operational, it requires to use the cron program on the server.
+CAUTION : So as to be fully operational, it requires to use the cron program on the server :
+   to open and edit cron actions in crantab file, run : 
+   `$ crontab -e`
+   
+   add this line at the end of the file (this will delete old acounts every days at 22h00) : 
+   `00 22 * * *  php bin/console app:delete-old-accounts`
 
 ## Functionality for login with social network
 
@@ -107,11 +112,13 @@ and set up in .env.local file
 
 ## Functionality for reset password
 
+Change mail informations in src/Controller/ResetPasswordController.php line 183
 
 
 ## Functionality for email sending :
+
 1 / Set up your MAILER_DSN in .env
-    MAILER_DSN=gmail://USERNAME:PASSWORD@default
+    `MAILER_DSN=gmail://USERNAME:PASSWORD@default`
 
 2 / configure the options of your Google account and check the "Allow less secure applications:
 https://myaccount.google.com/lesssecureapps
